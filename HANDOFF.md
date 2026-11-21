@@ -1,50 +1,60 @@
-# Handoff: for the Claude picking up development
+# Handoff: Magic and Monsters
+
+**Read this first in any new session**, then `CLAUDE.md` §0 (house rules), the top of `STATUS.md`,
+and `09-Production/Development-Plan.md`. Whoever orchestrates keeps this file current: update
+**State**, **Next**, and **Waiting on** whenever something lands.
 
 ## Context
-- **Magic and Monsters** is a monster-catching browser game designed by a 10-year-old, with a parent helping.
-- Goal: a **simple** game that matches his vision. When unsure, pick the smaller version.
-- His exact words are in `00-Raw-Input/Kid-Description.md` (61 rounds). That is the source of truth for intent. Voice typing caused many name slips; the notes under each round say how they were read.
-- Open issues and agreed simplifications: `09-Production/Flags.md`. Decisions: `09-Production/Decisions-Log.md`. Remaining questions: `09-Production/Open-Questions.md` (only section E is left, and every item has a default you can build with).
+- **Magic and Monsters** is a monster-catching browser game **designed by a 10-year-old**, with his parent (the owner, GitHub `emccr-hr`) helping. Separate from the owner's Pulse work.
+- Goal: a **simple, fun** game that matches his vision. He drives themes and choices. We suggest numbers and engineering, and ask when it matters.
+- His exact words: `00-Raw-Input/Kid-Description.md` (61 rounds; voice-typing slips are noted under each round).
+- Repo: https://github.com/emccr-hr/MonsterGame (public, `main`). It may later move to another account the owner controls.
 
-## Current status (2026-11-21)
-**Design complete. No code yet.** Ready to build.
+## State (2026-11-21)
+- **Design complete. Development plan written. No code yet.**
+- Planning docs: `09-Production/Development-Plan.md` (milestones M0–M9), `docs/ci-standards.md`, ADRs 0001–0006, `01-Vision/Genre-Research.md`, filled-in Controls, UI, Tech, Audio and Characters docs.
+- The `design-buddy` skill exists for talking with the designer.
 
-## Hard rules
-- **Original content only.** He named an existing monster-catching game as inspiration. Never use its names, creatures, items, map, music or art (Flags N1). Avatar must have an original look, with nothing from any TV show of a similar name (Flags N2).
-- **Data-driven monsters.** The designer will keep adding monsters. Adding one should mean adding a data row, not changing code (Mechanics → "Adding unlimited monsters").
-- **Scope:** build **everything at once** (all 5 biomes, 30 monsters, Avatar). No reduced first version.
+## Next
+1. **M0 Foundation** (Development Plan §4): Vite + TS + Phaser 4 skeleton, lint and type check, spelling lint, Vitest, Playwright, `ci:local`, pre-commit hook, one-job `ci.yml`, seeded RNG, test hook, developer guide.
+2. **M1 Content as data**: Zod schemas plus JSON converted from the design docs (subagent on a cheaper model, then verify).
+3. **M2 Core rules** in `src/logic/` with unit tests.
+From M2 on, two work sessions can run in parallel (logic and scenes), each in its own worktree beside the clone.
+
+## Orchestrator's job (lighter version of Pulse's)
+1. Start **one or two** focused work sessions at a time, each with a brief: files, exit criteria, "read HANDOFF.md first", worktree at `..\MonsterGame-<name>`.
+2. **Verify, don't trust:** check the PR, run `npm run ci:local`, and look at the change before telling the owner it's done.
+3. **Merging:** docs-only PRs after review (no CI). Code PRs when the one CI job is green. Ask the owner about anything unusual.
+4. **PRs don't edit `STATUS.md`**: each PR body has a STATUS line, and the orchestrator adds the row after merging.
+5. **CI minutes:** draft PRs, `ci:local` first, mark ready once, push once (`docs/ci-standards.md`).
+6. When the build needs a design answer, collect questions and ask through **`design-buddy`** (kid-friendly, 1–3 questions at a time). Record answers in the design docs and Decisions-Log.
+7. After each milestone, have a **play-test build** ready for the designer, and capture his reactions as a new raw-input round.
+
+## Hard rules (summary; full list in CLAUDE.md §0)
+- **Original content only** (Flags N1, N2). Avatar's look must be original: a body made of the 5 elements.
+- **Data-driven monsters** (ADR 0003). **Rules in `src/logic/`**, no Phaser imports (ADR 0002).
+- **No live AI or API keys in the game** (ADR 0004). The guide character uses scripted hints.
+- Archive, don't delete. American English. Never commit secrets.
 
 ## The game in one screen
 | Area | What's decided | Where |
 |---|---|---|
-| Platform | Browser on a computer, keyboard, 2D top-down | 08-Tech/Tech-Notes.md |
-| Start | Ansonville (center of map), **no starter monster**, **100 cages** + 100 Magic Gems; pick 1 biome to open | 02-Gameplay/Mechanics.md |
-| World | 5 biomes (Forest, Beach, Desert, Snowy, Volcano) around Ansonville; others open by **buying their map part** | 03-World-and-Story/Setting.md |
-| Catching | Throw a cage right away or battle first; lower HP = better chance; tiny cage grows big when thrown | Mechanics.md |
-| Battles | Turn-based 1v1, 4 moves max, 1 ability, no types; element tags on moves; only statuses are Burned and Frozen | Mechanics.md, Move-List.md |
-| Team | 6 at the ready, unlimited backpack; swap outside battle, or mid-battle at the cost of a turn | Mechanics.md |
-| Growth | XP from battles, max level 100, each monster evolves at its own level (15–45); 2 forms per family | Monster-List.md |
-| Monsters | **30 monsters, 15 families, 3 wild per biome**, spawn weights; Big Monster = 1 in 100, 1.5x size | 04-Characters/ |
-| Economy | Magic Gems; shops in Ansonville + every biome; Cage 10, Potion 15, Wake-Up Snack 30, Map part 50, Teleport pin 100 | Progression-and-Economy.md |
-| Healing | Free **Reviver** next to every shop; losing sends you to the last one used | Mechanics.md |
-| Level 50 | Teleport to any shop, plus up to 5 placeable teleport pins | Mechanics.md |
-| Ending | Catch one of every wild monster → Avatar arena in Ansonville opens → beat **Avatar** (5 element moves, no ability, not catchable, 10x Dumble) | 04-Characters/Final-Boss.md |
-| Art | Base character art first (15 base monsters + player), placeholders elsewhere, the designer's drawings swapped in later | 06-Art-and-Audio/Art-Direction.md |
+| Start | Ansonville (center of map), **no starter monster**, **100 cages** + 100 Magic Gems; pick 1 biome to open | Mechanics.md |
+| World | 5 biomes (Forest, Beach, Desert, Snowy, Volcano) around Ansonville; others open by buying their map part | Setting.md |
+| Catching | Throw a cage now or battle first; lower HP means a better chance; the tiny cage grows big | Mechanics.md |
+| Battles | Turn-based 1v1, 4 moves, 1 ability, no types; element tags; only statuses are Burned and Frozen | Mechanics.md, Move-List.md |
+| Team | 6 at the ready, unlimited backpack | Mechanics.md |
+| Growth | Max level 100; each monster evolves at its own level (15–45) | Monster-List.md |
+| Monsters | 30 (15 families, 3 wild per biome), spawn weights, Big Monster 1 in 100 | 04-Characters/ |
+| Economy | Magic Gems; Cage 10, Potion 15, Wake-Up Snack 30, Map part 50, Teleport pin 100 | Progression-and-Economy.md |
+| Healing | Free Reviver next to every shop | Mechanics.md |
+| Level 50 | Teleport to shops plus 5 placeable pins | Mechanics.md |
+| Ending | Catch all 15 wild monsters → Avatar arena in Ansonville → beat Avatar | Final-Boss.md |
+| Art | Base character art first, placeholders elsewhere, his drawings later | Art-Direction.md |
 
-## Suggested build order
-1. **Project setup:** browser game (e.g., Phaser 3 or plain HTML5 canvas), with a simple local dev server and save to browser storage.
-2. **Data files:** monsters, moves, abilities, biomes and shop items as JSON, built from `04-Characters/` and `02-Gameplay/Move-List.md`.
-3. **Map:** Ansonville hub + 5 biome areas (small), biome gates, map-part unlocks, first-biome pick on new game.
-4. **Wild encounters:** spawn by weight, Big Monster roll, level scaling (Flags X18).
-5. **Catching:** cage throw animation (tiny → big), catch-chance formula.
-6. **Battles:** turn order (speed, Quick ability), moves, abilities, Burned/Frozen, element tags, 2-turn Dig, Fetch stacking, switching.
-7. **Team and backpack** screens.
-8. **XP, leveling, evolution** (with move swaps on evolve).
-9. **Shops, Magic Gems, Revivers.**
-10. **Teleporting** at level 50: shop list + 5 pins.
-11. **Collection screen** and center gate counter; **Avatar** fight and ending.
-12. **Art pass:** base monster art first, placeholders elsewhere; designer drawings as they arrive.
-13. **Tuning:** XP curve (level 50 ≈ after exploring all biomes), prices, catch rates.
+## Waiting on
+- **Designer (via design-buddy):** Open-Questions sections **F** (research ideas: visible wild monsters, catch streaks, partner, throw timing, tough trainers) and **G** (player character, guide character). Needed by M3–M7, not M0–M2.
+- **Owner:** confirm the section E defaults (C7, C8, X18, X19) when convenient; the final repo home and deploy host (ADR 0006).
 
 ## Folder map
-See `README.md`.
+See `README.md` and `CLAUDE.md` §1.
