@@ -18,9 +18,8 @@ and `09-Production/Development-Plan.md`. Whoever orchestrates keeps this file cu
 - The `design-buddy` skill exists for talking with the designer.
 
 ## Next
-1. **M1 Content as data**: Zod schemas plus JSON converted from the design docs (subagent on a cheaper model, then verify); turn `scripts/validate-data.mjs` into real schema and cross-checks; start `src/data/guide.json` (include a title-screen tip, left over from M0's review).
+1. **M1 Content as data**: Zod schemas plus JSON converted from the design docs (subagent on a cheaper model, then verify); turn `scripts/validate-data.mjs` into real schema and cross-checks; give `src/data/guide.json` (started with a title-screen tip) a schema.
 2. **M2 Core rules** in `src/logic/` with unit tests (use `Rng` from `rng.ts`; the lint rule blocks `Math.random` there).
-3. Small follow-up: the pre-commit spelling step checks the working tree, not only staged files (fine for now).
 From M2 on, two work sessions can run in parallel (logic and scenes), each in its own worktree beside the clone.
 
 ## Orchestrator's job (lighter version of Pulse's)
