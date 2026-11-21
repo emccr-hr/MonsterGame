@@ -1,0 +1,65 @@
+# Move List
+
+Build each move **once** and give it to any monster that knows it. Element tags: 🔥 Fire · 💧 Water · 🪨 Earth · 🧊 Ice · 🌿 Nature. Power values are starting proposals to tune.
+
+| Move | Tag | Effect | Power | Known by |
+|---|---|---|---|---|
+| Hit | | Always hits | Low | Blobbin, Slimy, Dumble, Rom, Hootle, Camelump, Ashflap, Grandhoot, Triplump |
+| Bite | | Damage | Medium | Blobbin, Slimy, Peggy, Scout, Anti-Ant, Queen Ant, Yeti, Bushtail, Frostpaw, Cinderscale, Ashflap, Treetail, Glacitail, Moltenmaw, Smokewing |
+| Scratch | | Damage | Low–Medium | Yeti, Bushtail, Frostpaw, Treetail |
+| Pinch | | Damage | Low–Medium | Dumble, Rom, Sidesnap, Stingtail, Boulderclaw, Dunestinger |
+| Peck | | Damage | Low | Hootle, Squawkle, Pengwiggle |
+| Goop Throw | | Damage | Medium | Blobbin, Slimy |
+| Bounce Attack | | Damage | Medium | Dumble |
+| Shell Bash | | Damage | Medium | Sidesnap, Boulderclaw |
+| Sting | | Damage | Medium | Anti-Ant, Queen Ant, Stingtail, Dunestinger |
+| Tail Smack | | Damage | Medium | Cinderscale |
+| Pounce | | Damage | Medium–High | Frostpaw, Glacitail |
+| Dive Bomb | | Damage | High | Squawkle, Pouchbeak |
+| Belly Flop | | Damage | High | Yeti, Pengwiggle, Emperwaddle |
+| Burn | 🔥 | Damage + **Burned** (small damage for 2 turns) | Medium | Blobbin, Slimy, Cinderscale, **Avatar**, Moltenmaw |
+| Lava Spit | 🔥 | Damage | Medium–High | Cinderscale, Moltenmaw |
+| Ash Cloud | 🔥 | Damage | Medium | Ashflap, Smokewing |
+| Splash | 💧 | Damage | Medium–High | Rom, Sidesnap, Squawkle, **Avatar**, Boulderclaw, Pouchbeak |
+| Bubble Blast | 💧 | Damage | Low–Medium | Sidesnap |
+| Dig | 🪨 | Underground 1 turn (can't be hit), then attacks | High | Anti-Ant, Queen Ant, Stingtail, **Avatar**, Dunestinger |
+| Sand Spray | 🪨 | Damage | Low–Medium | Stingtail |
+| Stomp | 🪨 | Damage | High | Camelump, Triplump |
+| Freeze | 🧊 | Damage + 25% **Frozen** (skip a turn) | Medium | Yeti, Abominable Snowman, Frostpaw, **Avatar**, Glacitail |
+| Snowball | 🧊 | Damage | Medium | Abominable Snowman, Pengwiggle, Emperwaddle |
+| Ice Slap | 🧊 | Damage | Medium–High | Abominable Snowman, Pengwiggle, Emperwaddle |
+| Acorn Toss | 🌿 | Damage | Low–Medium | Bushtail |
+| Wing Gust | 🌿 | Damage | Medium | Hootle, Grandhoot |
+| Fetch | 🌿 | +20% attack (stacks to 2) | — | Scout, **Avatar** |
+| Pinecone Blast | 🌿 | Damage | Medium–High | Treetail |
+| Talon Strike |  | Damage | High | Grandhoot |
+| Tide Crash | 💧 | Damage | High | Boulderclaw |
+| Beak Slam |  | Damage | Medium–High | Pouchbeak |
+| Sandstorm | 🪨 | Damage | High | Dunestinger |
+| Desert Charge | 🪨 | Damage | High | Triplump |
+| Iceberg Slide | 🧊 | Damage | High | Emperwaddle |
+| Icicle Claw | 🧊 | Damage | Medium–High | Glacitail |
+| Magma Slam | 🔥 | Damage | High | Moltenmaw |
+| Cinder Dive | 🔥 | Damage | Medium–High | Smokewing |
+| Eat | | Damage + heal half of it | Medium | Dumble, Rom, Bushtail, Squawkle, Treetail, Pouchbeak |
+| Lick | | Damage | Low | Peggy, Scout |
+| Slobber | | Damage + target's next attack weaker | Low | Peggy |
+| Spit | | Damage + target's next attack weaker | Low | Camelump |
+| Screech | | Target's next attack weaker | — | Ashflap, Smokewing |
+| Sleep | | Heal; can't attack next turn | — | Peggy, Scout, Hootle, Camelump, Grandhoot, Triplump |
+| Popsicle | | Heal 25% | — | Abominable Snowman |
+| Protect the Queen | | Heal your other team monsters | — | Anti-Ant, Queen Ant |
+
+## Abilities in use
+| Ability | Effect | Monsters |
+|---|---|---|
+| Lava Skin | 50% chance to ignore 🔥 moves | Blobbin, Slimy, Cinderscale, Moltenmaw |
+| Not at this restaurant | Eat does nothing to it | Dumble, Rom |
+| Cute | 5% chance per turn the opponent doesn't attack | Peggy, Scout |
+| Colony Bond | Can't be attacked by red ants | Anti-Ant, Queen Ant |
+| Fur Coat | Immune to Frozen | Yeti, Abominable Snowman |
+| Quick | Always attacks first | Bushtail, Stingtail, Frostpaw, Treetail, Dunestinger, Glacitail |
+| Wise | Takes 10% less damage | Hootle, Sidesnap, Ashflap, Grandhoot, Boulderclaw, Smokewing |
+| Slippery | 10% chance attacks on it miss | Pengwiggle, Emperwaddle |
+| Snack Thief | Its Eat heals double | Squawkle, Pouchbeak |
+| Water Storage | Heals 5% each turn | Camelump, Triplump |
