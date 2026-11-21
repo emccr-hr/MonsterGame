@@ -1,0 +1,52 @@
+# One job, local first (ADR 0005, docs/ci-standards.md).
+# Skips drafts and docs-only changes. E2E only on a manual run with "full" checked.
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths-ignore: # keep in sync with push.paths-ignore and DOC_PATH in scripts/merge-if-green.mjs
+      - '**/*.md'
+      - 'docs/**'
+      - '0[0-9]-*/**'
+      - '10-*/**'
+  push:
+    branches: [main]
+    paths-ignore:
+      - '**/*.md'
+      - 'docs/**'
+      - '0[0-9]-*/**'
+      - '10-*/**'
+  workflow_dispatch:
+    inputs:
+      full:
+        description: 'Also run the Playwright smoke tests'
+        type: boolean
+        default: false
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    name: ci
+    if: github.event_name != 'pull_request' || github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - name: Install Chromium (full run only)
+        if: inputs.full
+        run: npx playwright install --with-deps chromium
+      - name: ci:local
+        run: npm run ci:local ${{ inputs.full && '-- --full' || '' }}

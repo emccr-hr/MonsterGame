@@ -1,0 +1,21 @@
+# Dependencies and builds
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Test output
+test-results/
+playwright-report/
+blob-report/
+coverage/
+
+# Secrets never get committed (CLAUDE.md §0.4, ADR 0004)
+.env
+.env.*
+!.env.example
+
+# Local tools
+.claude/settings.local.json
+.DS_Store
+Thumbs.db
+*.log
