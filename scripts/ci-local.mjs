@@ -14,7 +14,8 @@ const steps = [
   ['Unit tests', 'npm test'],
   ['Build', 'npm run build'],
 ];
-if (full) steps.push(['Smoke tests (Playwright)', 'npm run e2e']);
+// Straight to Playwright: the Build step above already made dist/ (`npm run e2e` would build again).
+if (full) steps.push(['Smoke tests (Playwright)', 'npx playwright test']);
 
 const results = [];
 let failed = false;

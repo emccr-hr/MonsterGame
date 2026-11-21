@@ -33,7 +33,8 @@ export function testHookEnabled(): boolean {
 }
 
 export function installTestHook(version: string): void {
-  if (!testHookEnabled()) return;
+  // Already there after a dev hot reload; redefining a non-configurable property would throw.
+  if (!testHookEnabled() || window.__TEST__) return;
   const hook: TestHook = {
     get ready() {
       return ready;

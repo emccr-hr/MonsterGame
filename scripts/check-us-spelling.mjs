@@ -58,7 +58,7 @@ const BANNED = [
 ];
 
 const EXTENSIONS = /\.(js|mjs|cjs|ts|tsx|json|md|html|css|yml|yaml|sh)$/;
-const SKIP_DIRS = new Set(['node_modules', 'dist', '.git', 'test-results', 'playwright-report', 'coverage', '.claude']);
+const SKIP_DIRS = new Set(['node_modules', 'dist', '.git', 'test-results', 'playwright-report', 'coverage']);
 const SKIP_PATHS = ['00-Raw-Input', path.join('docs', 'archive')];
 const EXTRA_FILES = [path.join('.githooks', 'pre-commit')];
 

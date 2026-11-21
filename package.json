@@ -16,7 +16,7 @@
     "validate:data": "node scripts/validate-data.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
-    "e2e": "playwright test",
+    "e2e": "npm run build && playwright test",
     "ci:local": "node scripts/ci-local.mjs",
     "prepare": "node scripts/setup-hooks.mjs"
   },

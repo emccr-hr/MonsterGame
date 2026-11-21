@@ -18,7 +18,7 @@ rules; this file is the "how."
 | `npm run lint:spelling` | American English check (skips `00-Raw-Input/`, the designer's own words) |
 | `npm run validate:data` | Checks `src/data/*.json` (schemas and cross-checks from M1) |
 | `npm test` | Vitest unit tests (`tests/unit/`) |
-| `npm run e2e` | Playwright smoke tests against the build (`tests/smoke/`); build first |
+| `npm run e2e` | Builds, then runs the Playwright smoke tests (`tests/smoke/`) |
 | `npm run ci:local` | Everything CI runs: lint, spelling, data, unit tests, build |
 | `npm run ci:local -- --full` | ...plus the smoke tests (builds first) |
 
