@@ -6,6 +6,8 @@
 //   00-Raw-Input/   the designer's exact words; never edited (CLAUDE.md §0.8)
 //   docs/archive/   historical record
 // To name a banned word on purpose (like in this file), put "spelling:ignore-line" on that line.
+// `--staged` checks only staged files, as staged (used by .githooks/pre-commit).
+import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -60,6 +62,8 @@ const BANNED = [
 const EXTENSIONS = /\.(js|mjs|cjs|ts|tsx|json|md|html|css|yml|yaml|sh)$/;
 const SKIP_DIRS = new Set(['node_modules', 'dist', '.git', 'test-results', 'playwright-report', 'coverage']);
 const SKIP_PATHS = ['00-Raw-Input', path.join('docs', 'archive')];
+// Local-only files: settings.local.json is gitignored and may hold anything.
+const SKIP_FILES = new Set(['package-lock.json', 'settings.local.json']);
 const EXTRA_FILES = [path.join('.githooks', 'pre-commit')];
 
 function walk(dir, out) {
@@ -69,20 +73,42 @@ function walk(dir, out) {
     if (SKIP_PATHS.some((p) => rel === p || rel.startsWith(p + path.sep))) continue;
     if (entry.isDirectory()) {
       if (!SKIP_DIRS.has(entry.name)) walk(full, out);
-    } else if (EXTENSIONS.test(entry.name) && entry.name !== 'package-lock.json') {
+    } else if (EXTENSIONS.test(entry.name) && !SKIP_FILES.has(entry.name)) {
       out.push(full);
     }
   }
 }
 
+// --staged (the pre-commit hook): check only staged files, as staged, so untracked or unstaged
+// edits never pass or block a commit.
+const staged = process.argv.includes('--staged');
+const git = (...a) => execFileSync('git', a, { cwd: ROOT, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
+
+function wanted(rel) {
+  if (EXTRA_FILES.includes(rel)) return true;
+  if (SKIP_PATHS.some((p) => rel === p || rel.startsWith(p + path.sep))) return false;
+  if (rel.split(path.sep).some((part) => SKIP_DIRS.has(part))) return false;
+  const name = path.basename(rel);
+  return EXTENSIONS.test(name) && !SKIP_FILES.has(name);
+}
+
 const files = [];
-walk(ROOT, files);
-for (const f of EXTRA_FILES) if (fs.existsSync(path.join(ROOT, f))) files.push(path.join(ROOT, f));
+if (staged) {
+  for (const f of git('diff', '--cached', '--name-only', '--diff-filter=ACMR', '-z').split('\0')) {
+    if (f && wanted(path.normalize(f))) files.push(path.join(ROOT, f));
+  }
+} else {
+  walk(ROOT, files);
+  for (const f of EXTRA_FILES) if (fs.existsSync(path.join(ROOT, f))) files.push(path.join(ROOT, f));
+}
+
+const read = (file) =>
+  staged ? git('show', `:${path.relative(ROOT, file).split(path.sep).join('/')}`) : fs.readFileSync(file, 'utf8');
 
 const wordRe = new RegExp(`\\b(${BANNED.join('|')})\\b`, 'i');
 let hits = 0;
 for (const file of files) {
-  fs.readFileSync(file, 'utf8')
+  read(file)
     .split('\n')
     .forEach((line, i) => {
       if (line.includes('spelling:ignore-line')) return;
