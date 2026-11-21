@@ -11,14 +11,16 @@ and `09-Production/Development-Plan.md`. Whoever orchestrates keeps this file cu
 - Repo: https://github.com/emccr-hr/MonsterGame (public, `main`). It may later move to another account the owner controls.
 
 ## State (2026-11-21)
-- **Design complete. Development plan written. No code yet.**
-- Planning docs: `09-Production/Development-Plan.md` (milestones M0–M9), `docs/ci-standards.md`, ADRs 0001–0006, `01-Vision/Genre-Research.md`, filled-in Controls, UI, Tech, Audio and Characters docs.
+- **Design complete. M0 Foundation merged (PR #3):** Phaser 4.2.1 + Vite 8 + TypeScript 6.0 skeleton that boots to a Title screen (New Game / Continue), seeded RNG (`src/logic/rng.ts`), `window.__TEST__` hook, ESLint/`tsc`/spelling/data checks, `npm run ci:local` (`--full` adds 3 Playwright smoke tests), pre-commit hook, one-job `ci.yml`. How-to: `docs/developer-guide.md`.
+- **Merging:** owner's standing rule (ADR 0007, PR #2): merge only with `node scripts/merge-if-green.mjs <pr>` (`--docs-only` for docs PRs).
+- TypeScript stays on 6.0 until typescript-eslint supports 7. Smoke tests run one at a time (parallel headless WebGL stalled on the laptop).
+- Planning docs: `09-Production/Development-Plan.md` (milestones M0–M9), `docs/ci-standards.md`, ADRs 0001–0007, `01-Vision/Genre-Research.md`, filled-in Controls, UI, Tech, Audio and Characters docs.
 - The `design-buddy` skill exists for talking with the designer.
 
 ## Next
-1. **M0 Foundation** (Development Plan §4): Vite + TS + Phaser 4 skeleton, lint and type check, spelling lint, Vitest, Playwright, `ci:local`, pre-commit hook, one-job `ci.yml`, seeded RNG, test hook, developer guide.
-2. **M1 Content as data**: Zod schemas plus JSON converted from the design docs (subagent on a cheaper model, then verify).
-3. **M2 Core rules** in `src/logic/` with unit tests.
+1. **M1 Content as data**: Zod schemas plus JSON converted from the design docs (subagent on a cheaper model, then verify); turn `scripts/validate-data.mjs` into real schema and cross-checks; start `src/data/guide.json` (include a title-screen tip, left over from M0's review).
+2. **M2 Core rules** in `src/logic/` with unit tests (use `Rng` from `rng.ts`; the lint rule blocks `Math.random` there).
+3. Small follow-up: the pre-commit spelling step checks the working tree, not only staged files (fine for now).
 From M2 on, two work sessions can run in parallel (logic and scenes), each in its own worktree beside the clone.
 
 ## Orchestrator's job (lighter version of Pulse's)
