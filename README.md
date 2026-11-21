@@ -2,7 +2,7 @@
 
 Working title: **Magic and Monsters**
 
-New Claude? Read `HANDOFF.md` first. Start with `01-Vision/Pitch.md`, then fill in folders roughly in order.
+New Claude? Read `HANDOFF.md` first, then `CLAUDE.md`. Building? See `09-Production/Development-Plan.md`. Talking with the designer? Use the `design-buddy` skill. Start with `01-Vision/Pitch.md`, then fill in folders roughly in order.
 
 | Folder | What goes here |
 |---|---|
@@ -16,4 +16,5 @@ New Claude? Read `HANDOFF.md` first. Start with `01-Vision/Pitch.md`, then fill 
 | 07-UI-UX | Menus, HUD, onboarding/tutorial |
 | 08-Tech | Platform, engine, architecture notes |
 | 09-Production | Scope, milestones, open questions, decisions log |
+| docs | CI standards, architecture decisions (ADRs) |
 | 10-Ideas-Parking-Lot | Anything not yet decided — capture it here first |
