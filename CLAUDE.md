@@ -31,7 +31,7 @@ except the standards copied below.
 - One branch per milestone task. Parallel sessions use **git worktrees beside the main clone** (`..\MonsterGame-<name>`), not under `.claude/worktrees/`, because on Windows some test runners skip dot-folders (a Pulse lesson).
 - PRs to `main` only. Draft first. Run the `code-review` skill (or an equivalent review pass) before marking ready.
 - PR body sections: **Summary**, **Testing** (`ci:local` result), **STATUS line**, **Screenshots** (for anything visible).
-- Docs-only PRs: reviewed, then merged by the orchestrator (no CI). Code PRs: merged when CI is green.
+- **Merging (owner's standing rule, 2026-11-21, ADR 0007):** Claude may merge a PR when CI is green, **only** via `node scripts/merge-if-green.mjs <pr>`. The script checks the PR is open, ready, conflict-free and every check passed, and merges that exact commit. Docs-only PRs (no CI) are merged with `--docs-only` after review. Never use `gh pr merge` directly.
 - Every code session ends with: `ci:local` green, a PR opened (draft or ready), and a STATUS line written.
 - Run **one or two work sessions at a time** (laptop memory, usage limits).
 
