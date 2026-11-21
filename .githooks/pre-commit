@@ -1,0 +1,33 @@
+#!/bin/sh
+# Pre-commit checks (docs/ci-standards.md). Enabled by `npm install` (scripts/setup-hooks.mjs),
+# or by hand: git config core.hooksPath .githooks
+# Fast on purpose: spelling, secrets, and data files when they change.
+set -e
+
+# 1. No .env files, ever (CLAUDE.md §0.4).
+envs=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '(^|/)\.env($|\.)' | grep -v '\.env\.example$' || true)
+if [ -n "$envs" ]; then
+  echo "pre-commit: refusing to commit .env files:"
+  echo "$envs"
+  exit 1
+fi
+
+# 2. Nothing that looks like an API key or private key in the added lines (this file is skipped,
+#    because it names the patterns).
+keys=$(git diff --cached -U0 --diff-filter=ACMR -- . ':(exclude).githooks/pre-commit' \
+  | grep -E '^\+' \
+  | grep -E 'sk-(ant-)?[A-Za-z0-9_-]{20,}|AKIA[0-9A-Z]{16}|gh[pousr]_[A-Za-z0-9]{30,}|xox[abprs]-[A-Za-z0-9-]{10,}|AIza[0-9A-Za-z_-]{35}|-----BEGIN [A-Z ]*PRIVATE KEY-----' \
+  || true)
+if [ -n "$keys" ]; then
+  echo "pre-commit: this looks like a secret (API key, token or private key). Not committing."
+  echo "$keys" | cut -c1-80
+  exit 1
+fi
+
+# 3. American English.
+npm run --silent lint:spelling
+
+# 4. Data files, when any changed.
+if git diff --cached --name-only --diff-filter=ACMR | grep -qE '^src/data/.*\.json$'; then
+  npm run --silent validate:data
+fi

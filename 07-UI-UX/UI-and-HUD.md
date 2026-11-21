@@ -30,4 +30,4 @@ Counter for the Avatar gate: "Wild monsters caught: X / 15".
 List with icon, name, price, and how many you have. Buy with confirm.
 
 ## Map and teleport (level 50+)
-World map with Ansonville in the middle; locked biomes greyed out with a lock. Teleport list of shops and pins (place, delete).
+World map with Ansonville in the middle; locked biomes grayed out with a lock. Teleport list of shops and pins (place, delete).
