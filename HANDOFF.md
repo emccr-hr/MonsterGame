@@ -24,7 +24,7 @@ From M2 on, two work sessions can run in parallel (logic and scenes), each in it
 ## Orchestrator's job (lighter version of Pulse's)
 1. Start **one or two** focused work sessions at a time, each with a brief: files, exit criteria, "read HANDOFF.md first", worktree at `..\MonsterGame-<name>`.
 2. **Verify, don't trust:** check the PR, run `npm run ci:local`, and look at the change before telling the owner it's done.
-3. **Merging:** docs-only PRs after review (no CI). Code PRs when the one CI job is green. Ask the owner about anything unusual.
+3. **Merging (standing rule, ADR 0007):** merge any PR whose CI is green with `node scripts/merge-if-green.mjs <pr>`. Docs-only PRs (no CI): review, then `--docs-only`. Never `gh pr merge` directly. Ask the owner about anything unusual (a red check you think is a flake, a security-sensitive change).
 4. **PRs don't edit `STATUS.md`**: each PR body has a STATUS line, and the orchestrator adds the row after merging.
 5. **CI minutes:** draft PRs, `ci:local` first, mark ready once, push once (`docs/ci-standards.md`).
 6. When the build needs a design answer, collect questions and ask through **`design-buddy`** (kid-friendly, 1–3 questions at a time). Record answers in the design docs and Decisions-Log.
