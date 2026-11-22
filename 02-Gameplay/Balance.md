@@ -33,7 +33,7 @@ Avatar's moves hit 30% harder (`bossMovePowerBonus`, from `Final-Boss.md`).
 
 ## Base stats (proposal)
 A simple rule, so it's easy to explain and tune:
-- **Stat total:** first forms 200, evolved forms 280, Avatar 520.
+- **Stat total:** first forms 200, evolved forms 280, Avatar 340. Avatar fights at the team's best level + 5 (at least 30). Simulated fights with random moves: a level 35–50 team of six evolved monsters wins about 80–88%, a level 20 team never does.
 - **Size:** bigger monsters get more HP and less speed; smaller ones the reverse. A monster twice
   Dumble's size gets an even split (a quarter of the total each). Each size step of 1× moves 3% of the
   total from speed to HP. Attack and Defense stay at a quarter each.
@@ -72,7 +72,7 @@ A simple rule, so it's easy to explain and tune:
 | Moltenmaw | Evolved | 3.5 | 83 | 70 | 70 | 57 |
 | Ashflap | First form | 1 | 44 | 50 | 50 | 56 |
 | Smokewing | Evolved | 2 | 70 | 70 | 70 | 70 |
-| Avatar | Boss | 10 | 177 | 130 | 130 | 83 |
+| Avatar | Boss | 10 | 116 | 85 | 85 | 54 |
 
 ## Other numbers (`rules.json`)
 | What | Number | Source |
