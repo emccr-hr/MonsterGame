@@ -9,6 +9,7 @@ import { installEncounterFlow } from './scenes/encounterFlow';
 import { EvolveScene } from './scenes/EvolveScene';
 import { MapScene } from './scenes/MapScene';
 import { MenuScene } from './scenes/MenuScene';
+import { ShopScene } from './scenes/ShopScene';
 import { TeamScene } from './scenes/TeamScene';
 import { PickBiomeScene } from './scenes/PickBiome';
 import { TitleScene } from './scenes/Title';
@@ -24,7 +25,7 @@ const game = new Phaser.Game({
   backgroundColor: COLORS.background,
   pixelArt: true,
   scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },
-  scene: [BootScene, TitleScene, PickBiomeScene, ...MAPS.map((m) => new MapScene(m)), BattleScene, EvolveScene, MenuScene, TeamScene, BagScene, BookScene],
+  scene: [BootScene, TitleScene, PickBiomeScene, ...MAPS.map((m) => new MapScene(m)), BattleScene, EvolveScene, MenuScene, TeamScene, BagScene, BookScene, ShopScene],
 });
 
 installEncounterFlow(game);

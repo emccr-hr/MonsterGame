@@ -87,6 +87,7 @@ All in `src/logic/`, all unit-tested:
 - Level 50 unlock: teleport menu (shops and pins; place, delete and return pins; max 5).
 - Avatar arena gate counter ("Monsters caught: 12 / 15"); Avatar fight (5 moves, no ability, can't be caught); ending scene and credits ("Designed by …", with the name the parent chooses to show).
 - **Exit:** full game playable start to finish (with fast-XP debug cheats behind a dev flag).
+- **Status (2026-11-22):** shop, map parts, gem/cage HUD and the arena counter are built (M6a). Left for **M6b:** teleport menu and pins, the Avatar battle, the ending and credits. Dev builds already have the L key (fast leveling).
 
 ### M7: Guide character and onboarding
 - Guide character in Ansonville (name and look from the designer). Scripted hints (ADR 0004):
