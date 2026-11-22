@@ -129,10 +129,11 @@ figure{margin:0}
       <ellipse cx="62" cy="68" rx="34" ry="20" fill="#8a5a35"/>
       <rect x="20" y="80" width="13" height="16" rx="4" fill="#8a5a35"/>
       <path d="M94 60 Q100 54 98 50" fill="none"/>
+      <path d="M62 56 Q72 50 84 56 Q90 66 82 74 Q70 78 62 70 Q58 62 62 56 Z" fill="#fff" stroke="none"/>
       <circle cx="34" cy="50" r="26" fill="#8a5a35"/>
+      <clipPath id="peggyHeadClip"><circle cx="34" cy="50" r="24.5"/></clipPath>
+      <path d="M4 18 H35 Q38 30 35 40 Q30 50 18 50 Q8 50 4 46 Z" fill="#fff" stroke="none" clip-path="url(#peggyHeadClip)"/>
       <path d="M12 30 L8 18 L22 26 Z M56 30 L60 18 L46 26 Z" fill="#5e3a20"/>
-      <circle cx="40" cy="38" r="7" fill="#fff" stroke="none"/><circle cx="22" cy="44" r="5" fill="#fff" stroke="none"/>
-      <circle cx="38" cy="72" r="6" fill="#fff" stroke="none"/><circle cx="50" cy="66" r="5" fill="#fff" stroke="none"/><circle cx="28" cy="74" r="4" fill="#fff" stroke="none"/>
       <ellipse cx="34" cy="58" rx="16" ry="10" fill="#a8774f"/>
       <ellipse cx="34" cy="52" rx="5" ry="3.5" fill="#1a1a1a"/>
       <circle cx="24" cy="42" r="3.5" fill="#111"/><circle cx="44" cy="42" r="3.5" fill="#111"/>
@@ -360,38 +361,45 @@ figure{margin:0}
   <!-- PLAYER (owner's working look): boy, shoulder-length blonde hair, light skin, blue eyes. Outfit = mockup guess -->
   <symbol id="m-player" viewBox="0 0 100 160">
     <g stroke="#2a2030" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="24" y="68" width="52" height="40" rx="8" fill="#d63a2f"/>
-      <path d="M28 40 Q24 12 50 10 Q76 12 72 40 L75 70 Q64 74 60 64 L40 64 Q36 74 25 70 Z" fill="#f2cf5b"/>
-      <rect x="37" y="108" width="11" height="36" rx="3" fill="#4a5568"/><rect x="52" y="108" width="11" height="36" rx="3" fill="#4a5568"/>
-      <path d="M34 142 h15 v10 h-18 z M51 142 h15 l3 10 h-18 z" fill="#7a4a22"/>
-      <path d="M33 74 L23 104 M67 74 L77 104" stroke="#2a2030" stroke-width="12"/>
-      <path d="M33 74 L23 104 M67 74 L77 104" stroke="#2f6fdc" stroke-width="7.5"/>
-      <circle cx="23" cy="107" r="5" fill="#f6d3b3"/><circle cx="77" cy="107" r="5" fill="#f6d3b3"/>
-      <path d="M32 70 Q50 62 68 70 L71 112 L29 112 Z" fill="#2f6fdc"/>
-      <path d="M50 72 V104" stroke="#1d4a9a" stroke-width="2"/>
-      <path d="M37 72 L40 104 M63 72 L60 104" stroke="#d63a2f" stroke-width="4"/>
-      <rect x="29" y="104" width="42" height="6" fill="#7a4a22" stroke-width="1.5"/>
-      <path d="M36 62 Q50 72 64 62 L64 68 Q50 78 36 68 Z" fill="#ffcc00"/>
-      <path d="M57 69 L62 86 L53 83 Z" fill="#ffcc00"/>
-      <circle cx="50" cy="38" r="18" fill="#f6d3b3"/>
-      <path d="M32 36 Q34 18 50 18 Q66 18 68 36 Q60 28 54 30 Q50 24 44 30 Q38 28 32 36 Z" fill="#f2cf5b"/>
-      <path d="M32 34 Q29 50 31 63 L36 61 Q34 48 35 38 Z M68 34 Q71 50 69 63 L64 61 Q66 48 65 38 Z" fill="#f2cf5b"/>
-      <ellipse cx="43" cy="40" rx="3.6" ry="4.2" fill="#fff" stroke-width="1.2"/><circle cx="43" cy="40.6" r="2.4" fill="#2f7fe0" stroke="none"/><circle cx="43" cy="40.6" r="1" fill="#111" stroke="none"/>
-      <ellipse cx="57" cy="40" rx="3.6" ry="4.2" fill="#fff" stroke-width="1.2"/><circle cx="57" cy="40.6" r="2.4" fill="#2f7fe0" stroke="none"/><circle cx="57" cy="40.6" r="1" fill="#111" stroke="none"/>
-      <path d="M45 48 Q50 52 55 48" fill="none" stroke-width="2"/>
+      <rect x="20" y="70" width="60" height="38" rx="6" fill="#d63a2f"/>
+      <path d="M30 34 Q27 9 50 8 Q73 9 70 34 L73 60 L68 55 L66 63 L62 55 L38 55 L34 63 L32 55 L27 60 Z" fill="#e8c34a"/>
+      <path d="M34 108 h13 v34 h-13 z M53 108 h13 v34 h-13 z" fill="#4a5568"/>
+      <path d="M30 140 h18 v12 h-21 z M52 140 h18 l3 12 h-21 z" fill="#7a4a22"/>
+      <path d="M25 74 L16 106 M75 74 L84 106" stroke="#2a2030" stroke-width="15"/>
+      <path d="M25 74 L16 106 M75 74 L84 106" stroke="#2f6fdc" stroke-width="10.5"/>
+      <circle cx="16" cy="109" r="6" fill="#f6d3b3"/><circle cx="84" cy="109" r="6" fill="#f6d3b3"/>
+      <path d="M21 72 Q50 64 79 72 L77 112 L23 112 Z" fill="#2f6fdc"/>
+      <path d="M50 74 V104" stroke="#1d4a9a" stroke-width="2"/>
+      <path d="M33 72 L36 104 M67 72 L64 104" stroke="#9a2a20" stroke-width="5"/>
+      <rect x="23" y="103" width="54" height="7" fill="#7a4a22" stroke-width="1.5"/><rect x="45" y="103" width="10" height="7" fill="#d9b040" stroke-width="1.2"/>
+      <rect x="43" y="52" width="14" height="14" fill="#f0c8a4"/>
+      <path d="M37 67 Q50 72 63 67 L63 71 Q50 77 37 71 Z" fill="#ffcc00"/>
+      <path d="M33 26 Q33 18 50 18 Q67 18 67 26 L67 44 Q67 54 57 57 L43 57 Q33 54 33 44 Z" fill="#f6d3b3"/>
+      <path d="M33 36 q-4 0 -4 5 q0 5 4 5 M67 36 q4 0 4 5 q0 5 -4 5" fill="#f6d3b3"/>
+      <path d="M31 34 Q29 12 50 11 Q71 12 69 34 L66 27 L63 33 L59 25 L55 32 L51 24 L47 32 L43 25 L39 33 L35 27 Z" fill="#e8c34a"/>
+      <path d="M31 32 L28 54 L32 50 L33 56 L35 38 Z M69 32 L72 54 L68 50 L67 56 L65 38 Z" fill="#e8c34a"/>
+      <path d="M38 36.5 L46 35.5 M54 35.5 L62 36.5" stroke="#8a6a1a" stroke-width="3.4"/>
+      <ellipse cx="42" cy="41.5" rx="3" ry="2.8" fill="#fff" stroke-width="1.1"/><circle cx="42" cy="41.8" r="1.9" fill="#2f7fe0" stroke="none"/><circle cx="42" cy="41.8" r=".8" fill="#111" stroke="none"/>
+      <ellipse cx="58" cy="41.5" rx="3" ry="2.8" fill="#fff" stroke-width="1.1"/><circle cx="58" cy="41.8" r="1.9" fill="#2f7fe0" stroke="none"/><circle cx="58" cy="41.8" r=".8" fill="#111" stroke="none"/>
+      <path d="M50 42 L48 47 L51 47.5" fill="none" stroke-width="1.6"/>
+      <path d="M44 51 Q50 53 57 50" fill="none" stroke-width="2.4"/>
     </g>
   </symbol>
   <symbol id="m-player-ow" viewBox="0 0 32 40">
     <g stroke="#2a2030" stroke-width="1.1" stroke-linejoin="round">
       <ellipse cx="16" cy="38" rx="8" ry="2" fill="#000" opacity=".2" stroke="none"/>
-      <rect x="7" y="20" width="18" height="12" rx="3" fill="#d63a2f"/>
-      <rect x="11" y="31" width="4" height="6" fill="#4a5568"/><rect x="17" y="31" width="4" height="6" fill="#4a5568"/>
-      <rect x="9" y="21" width="14" height="11" rx="3" fill="#2f6fdc"/>
-      <path d="M6 12 Q5 2 16 2 Q27 2 26 12 L27 22 L22 22 L22 14 L10 14 L10 22 L5 22 Z" fill="#f2cf5b"/>
-      <path d="M10 20.5 h12 v2.8 h-12z" fill="#ffcc00"/>
-      <circle cx="16" cy="13" r="7" fill="#f6d3b3"/>
-      <path d="M9 11 Q10 5 16 5 Q22 5 23 11 Q19 8 16 9 Q13 8 9 11Z" fill="#f2cf5b"/>
-      <circle cx="13.5" cy="14" r="1.3" fill="#2f7fe0" stroke="none"/><circle cx="18.5" cy="14" r="1.3" fill="#2f7fe0" stroke="none"/>
+      <rect x="5" y="21" width="22" height="11" rx="2" fill="#d63a2f"/>
+      <rect x="9.5" y="31" width="5" height="6" fill="#4a5568"/><rect x="17.5" y="31" width="5" height="6" fill="#4a5568"/>
+      <path d="M8.5 37 h6.5 v1.6 h-7z M17 37 h6.5 l.5 1.6 h-7z" fill="#7a4a22" stroke-width=".8"/>
+      <rect x="6.5" y="21.5" width="19" height="10.5" rx="2" fill="#2f6fdc"/>
+      <path d="M8 12 Q7 2 16 2 Q25 2 24 12 L25 20 L22.5 18 L21.5 21 L10.5 21 L9.5 18 L7 20 Z" fill="#e8c34a"/>
+      <rect x="14" y="17" width="4" height="4.5" fill="#f0c8a4" stroke-width=".8"/>
+      <path d="M11.5 21.6 h9 v1.8 h-9z" fill="#ffcc00" stroke-width=".8"/>
+      <rect x="9.5" y="6.5" width="13" height="12" rx="3.5" fill="#f6d3b3"/>
+      <path d="M8.5 10.5 Q8.5 3.5 16 3.5 Q23.5 3.5 23.5 10.5 L21.8 8.2 L20.4 10.6 L18.6 7.6 L16.8 10.4 L15 7.4 L13.2 10.4 L11.6 7.8 L10.2 10.4 Z" fill="#e8c34a"/>
+      <path d="M11.8 11.6 h2.6 M17.6 11.6 h2.6" stroke="#8a6a1a" stroke-width="1.2"/>
+      <circle cx="13.2" cy="13.6" r="1.15" fill="#2f7fe0" stroke="none"/><circle cx="18.8" cy="13.6" r="1.15" fill="#2f7fe0" stroke="none"/>
+      <path d="M14.2 16.4 h3.6" stroke-width=".9"/>
     </g>
   </symbol>
 
@@ -481,7 +489,7 @@ figure{margin:0}
 </table>
 </div>
 
-<div class="ownbox"><b>Owner decided, 2026-11-21:</b> (1) Keep the placeholder colors, leaning toward playful primary colors with a theme per area. (2) Compare Peggy as vector and pixel art (section 3). (3) Working player look: a boy with shoulder-length blonde hair, light skin and blue eyes. (4) "N x Dumble" scales every direction. (5) In battle, all monsters shrink so a 10x Avatar fits (rule in section 7). (6) Propose looks for Ansonville, the arena, gates, buildings and items (section 6). (7) The guide is a bald man with a dark mustache. The player and guide looks are the owner's working picks. The designer still gets a say (Open-Questions 37 and 38).</div>
+<div class="ownbox"><b>Owner decided, 2026-11-21:</b> (1) Keep the placeholder colors, leaning toward playful primary colors with a theme per area. (2) Compare Peggy as vector and pixel art (section 3). (3) Working player look: a boy with shoulder-length blonde hair, light skin and blue eyes. (4) "N x Dumble" scales every direction. (5) In battle, all monsters shrink so a 10x Avatar fits (rule in section 7). (6) Propose looks for Ansonville, the arena, gates, buildings and items (section 6). (7) The guide is a bald man with a dark mustache. The player and guide looks are the owner's working picks. The designer still gets a say (Open-Questions 37 and 38).<br><b>Round 2, also 2026-11-21:</b> (8) Vector art is chosen over pixel art. (9) The guide is approved as drawn, and his name is <b>Papai</b>. (10) The brighter palette rows are now the chosen colors. (11) The section 6 looks are approved (placeholder art until the designer's drawings). (12) The player was redrawn as a clearly boyish adventurer, with a neck, a squarer face, thicker brows and shaggier hair. (13) Peggy's white spots moved to one big spot on her body and one covering the upper-left quarter of her face. The battle size rule is still a proposal.</div>
 <h3>For contrast: today's placeholder screens (M3)</h3>
 <p>Right now the game uses flat colored tiles, a pink circle for the player, and labeled boxes for the shop and Reviver.</p>
 <div class="shots">
@@ -502,26 +510,27 @@ figure{margin:0}
 <div class="card"><svg id="lineup" viewBox="0 0 1000 300" role="img" aria-label="Size lineup from Dumble to Avatar"></svg></div>
 
 <h2>3. Peggy: vector vs. pixel art</h2>
-<p>Same Peggy (Peggy.md: a brown English bulldog with white spots on her neck and head), same pose, same colors, same size on screen. Left: <b>vector</b>, smooth SVG shapes. Right: <b>pixel</b>, a real 32x32 grid of square cells, drawn crisp and scaled up.</p>
+<p><span class="own">Owner decided, 2026-11-21</span> <b>Vector is chosen.</b> The comparison stays here for the record.</p>
+<p>Same Peggy (a brown English bulldog; spots per the owner's round-2 note: one big white spot on her body, one covering the upper-left quarter of her face), same pose, same colors, same size on screen. Left: <b>vector</b>, smooth SVG shapes. Right: <b>pixel</b>, a real 32x32 grid of square cells, drawn crisp and scaled up.</p>
 <div class="card">
   <div class="grid2">
-    <div><b>Vector</b>
+    <div><b>Vector</b> <span class="own">Chosen</span>
       <svg viewBox="0 0 440 340" style="width:100%;display:block" role="img" aria-label="Peggy vector at game size and enlarged">
         <rect width="440" height="340" rx="10" fill="#d9f0c8"/>
         <use href="#m-peggy" x="16" y="214" width="96" height="96"/>
         <text x="64" y="330" text-anchor="middle" font-family="system-ui" font-size="12" fill="#333">game size (96 px)</text>
         <use href="#m-peggy" x="128" y="22" width="288" height="288"/>
         <text x="278" y="330" text-anchor="middle" font-family="system-ui" font-size="12" fill="#333">enlarged (3x more)</text>
-        <text x="12" y="20" class="stamp">Proposal, not final</text>
+        <text x="12" y="20" class="stamp">Chosen style, placeholder art</text>
       </svg></div>
-    <div><b>Pixel (32x32 grid)</b>
+    <div><b>Pixel (32x32 grid)</b> <span class="src">not chosen</span>
       <svg viewBox="0 0 440 340" style="width:100%;display:block" role="img" aria-label="Peggy pixel art at game size and enlarged">
         <rect width="440" height="340" rx="10" fill="#d9f0c8"/>
         <g id="peggyPxSmall" transform="translate(16,214) scale(3)" shape-rendering="crispEdges"></g>
         <text x="64" y="330" text-anchor="middle" font-family="system-ui" font-size="12" fill="#333">game size (96 px = 3x)</text>
         <g id="peggyPxBig" transform="translate(134,22) scale(9)" shape-rendering="crispEdges"></g>
         <text x="278" y="330" text-anchor="middle" font-family="system-ui" font-size="12" fill="#333">enlarged (9x)</text>
-        <text x="12" y="20" class="stamp">Proposal, not final</text>
+        <text x="12" y="20" class="stamp">Not chosen, for comparison</text>
       </svg></div>
   </div>
   <table style="margin-top:10px">
@@ -569,20 +578,20 @@ figure{margin:0}
         <use href="#m-dumble" x="68" y="16" width="64" height="64"/>
         <text x="66" y="98" text-anchor="middle" font-family="system-ui" font-size="11" fill="#333">Zoomed 2x, next to 1x Dumble</text>
       </g>
-      <text x="10" y="18" class="stamp">Working look, placeholder art</text>
+      <text x="10" y="18" class="stamp">Working look (redrawn), placeholder art</text>
     </svg>
-    <p><span class="own">Owner decided, 2026-11-21</span> Working look: a <b>boy with shoulder-length blonde hair, light skin and blue eyes</b>. <span class="guess">mockup guess</span> Outfit: blue jacket, yellow scarf, red backpack, gray pants, brown boots. Characters.md still proposes picking from 3 to 4 looks and typing a name (max 10 letters). The designer still gets a say <span class="src">(Open-Questions 37)</span>.</p>
+    <p><span class="own">Owner decided, 2026-11-21</span> Working look: a <b>boy with shoulder-length blonde hair, light skin and blue eyes</b>. Round 2: redrawn as a clearly boyish adventurer, with a visible neck, a squarer jaw and face, thicker brows, a plain grin, sturdier shoulders and stance, and shaggier hair. <span class="guess">mockup guess</span> Outfit: blue jacket, yellow scarf, red backpack, gray pants, brown boots. Characters.md still proposes picking from 3 to 4 looks and typing a name (max 10 letters). The designer still gets a say <span class="src">(Open-Questions 37)</span>.</p>
     <p class="src">Dumble's map size (about 1 tile) is a mockup guess.</p>
   </div>
   <div class="card">
-    <h3 style="margin-top:0">The guide</h3>
+    <h3 style="margin-top:0">The guide: Papai</h3>
     <svg viewBox="0 0 320 250" style="width:100%;display:block" role="img" aria-label="Guide front view with a hint bubble">
       <rect width="320" height="250" rx="12" fill="#eef8ee"/>
       <use href="#m-guide" x="10" y="38" width="120" height="192"/>
       <text x="70" y="242" text-anchor="middle" font-family="system-ui" font-size="12" fill="#333">Front view</text>
       <path d="M140 22 h168 a8 8 0 0 1 8 8 v74 a8 8 0 0 1 -8 8 h-130 l-26 18 6 -18 h-18 a8 8 0 0 1 -8 -8 v-74 a8 8 0 0 1 8 -8z" fill="#fff" stroke="#2a2030" stroke-width="2"/>
-      <text font-family="system-ui" font-size="13" fill="#1f1d2b"><tspan x="146" y="44" font-weight="700">Catch your first monster!</tspan><tspan x="146" y="64">Walk into the tall grass</tspan><tspan x="146" y="82">in the Forest.</tspan></text>
-      <text x="308" y="104" text-anchor="end" font-family="system-ui" font-size="11" fill="#777">Skip &#9654;</text>
+      <text font-family="system-ui" font-size="13" fill="#1f1d2b"><tspan x="146" y="42" font-weight="700" fill="#2f7a4a">Papai:</tspan><tspan x="146" y="60" font-weight="700">Catch your first monster!</tspan><tspan x="146" y="78">Walk into the tall grass</tspan><tspan x="146" y="95">in the Forest.</tspan></text>
+      <text x="308" y="107" text-anchor="end" font-family="system-ui" font-size="11" fill="#777">Skip &#9654;</text>
       <g transform="translate(176,146)">
         <rect width="128" height="64" fill="#8fc46a" stroke="#6aa04a"/>
         <path d="M32 0 V64 M64 0 V64 M96 0 V64 M0 32 H128" stroke="#84b862"/>
@@ -590,18 +599,18 @@ figure{margin:0}
         <use href="#m-player-ow" x="60" y="14" width="32" height="40"/>
         <text x="64" y="80" text-anchor="middle" font-family="system-ui" font-size="11" fill="#333">Map size</text>
       </g>
-      <text x="10" y="18" class="stamp">Owner's look, placeholder art</text>
+      <text x="10" y="18" class="stamp">Approved look, placeholder art</text>
     </svg>
-    <p><span class="own">Owner decided, 2026-11-21</span> The guide is a <b>bald man with a dark mustache</b>. He explains the game when needed and points the player toward quests and goals. He stands next to the Reviver in Ansonville <span class="src">(Characters.md; ADR 0004)</span>. <span class="guess">mockup guess</span> Outfit: green vest, cream shirt, brown pants, a rolled-up map in his hand. <b>His name is still open</b>, so for now he's just "the guide".</p>
+    <p><span class="own">Owner decided, 2026-11-21</span> The guide is a <b>bald man with a dark mustache</b>. He explains the game when needed and points the player toward quests and goals. He stands next to the Reviver in Ansonville <span class="src">(Characters.md; ADR 0004)</span>. Outfit: green vest, cream shirt, brown pants, a rolled-up map in his hand. </p><p><span class="own">Owner decided, 2026-11-21</span> <b>Approved as drawn. His name is Papai.</b> The outfit shown is part of the approved look.</p>
   </div>
 </div>
 
 <h2>5. Tile colors per area</h2>
-<p>These swatches are the <b>M3 placeholder colors already in the code</b>, with the look words from Setting.md. <span class="own">Owner decided, 2026-11-21</span> These colors are fine. Lean toward playful primary colors with a theme per area. Desert, Snowy and Volcano look dull or washed out next to that goal, so each gets a <b>proposed tweak</b> row: brighter, same idea. Forest, Beach and Ansonville already fit.</p>
+<p>These swatches are the <b>M3 placeholder colors already in the code</b>, with the look words from Setting.md. <span class="own">Owner decided, 2026-11-21</span> These colors are fine. Lean toward playful primary colors with a theme per area. Desert, Snowy and Volcano looked dull next to that goal, so they got brighter rows. <span class="own">Owner decided, 2026-11-21</span> <b>The brighter rows are the chosen colors.</b> The old rows are kept, faded, as "earlier placeholder". Forest, Beach and Ansonville keep their colors.</p>
 <div id="tiles" class="card"></div>
 
-<h2>6. Ansonville, buildings and items (proposals)</h2>
-<p>The owner asked for these on 2026-11-21. Nothing here is decided yet. Each drawing is a proposal with a one-line reason. Ansonville sits where all 5 biomes meet <span class="src">(Setting.md)</span>, so each corner of town hints at the biome its gate leads to.</p>
+<h2>6. Ansonville, buildings and items: approved look</h2>
+<p><span class="own">Owner decided, 2026-11-21</span> <b>Approved look (placeholder art until the designer's drawings).</b> Each drawing has a one-line reason. Ansonville sits where all 5 biomes meet <span class="src">(Setting.md)</span>, so each corner of town hints at the biome its gate leads to.</p>
 <h3>Biome gates: locked and open</h3>
 <p>Locked gates are faded and barred, with a padlock <b>and</b> the word "Locked", so you can tell without relying on color <span class="src">(UI-and-HUD.md rules)</span>.</p>
 <div class="card"><div id="gates" class="items"></div></div>
@@ -707,7 +716,7 @@ figure{margin:0}
 </div>
 
 <h3>Ansonville from above</h3>
-<p>This uses the current M3 grid: Snowy gate north, Desert and Volcano on the upper sides, Forest and Beach on the lower sides, arena in the middle. Each corner's ground and trees take on the colors of the biome its gate leads to. Here the player picked Beach first, so only the Beach gate is open <span class="guess">mockup guess</span>. The player is talking with the guide, who stands next to the Reviver.</p>
+<p>This uses the current M3 grid: Snowy gate north, Desert and Volcano on the upper sides, Forest and Beach on the lower sides, arena in the middle. Each corner's ground and trees take on the colors of the biome its gate leads to. Here the player picked Beach first, so only the Beach gate is open <span class="guess">mockup guess</span>. The player is talking with Papai, the guide, who stands next to the Reviver.</p>
 <svg id="anson" class="screen" viewBox="0 0 1152 704" role="img" aria-label="Ansonville top-down mockup"></svg>
 <p class="src">Layout: src/data/maps/index.ts (ANSONVILLE rows). Mockup guesses: the corner colors, tree types, building art, and which biome is open.</p>
 
@@ -841,9 +850,12 @@ figure{margin:0}
 <div class="card">
 <h3 style="margin-top:0">Decided</h3>
 <ul class="dec">
-<li><span class="own">Owner decided, 2026-11-21</span> <b>Palette:</b> keep today's placeholder colors, leaning toward playful primary colors with a theme per area. Tweaks are proposed for Desert, Snowy and Volcano (section 5).</li>
-<li><span class="own">Owner decided, 2026-11-21</span> <b>Player look (working):</b> a boy with shoulder-length blonde hair, light skin and blue eyes. The outfit is a mockup guess.</li>
-<li><span class="own">Owner decided, 2026-11-21</span> <b>Guide look:</b> a bald man with a dark mustache who explains the game and points to quests and goals. His name and outfit are still open.</li>
+<li><span class="own">Owner decided, 2026-11-21</span> <b>Palette:</b> playful primary colors with a theme per area. Forest, Beach and Ansonville keep their colors. The brighter Desert, Snowy and Volcano rows are chosen (section 5).</li>
+<li><span class="own">Owner decided, 2026-11-21</span> <b>Vector art</b> is chosen over pixel art for the interim sprites (section 3).</li>
+<li><span class="own">Owner decided, 2026-11-21</span> <b>Ansonville, gates, arena, shop, Reviver and item looks</b> are approved, as placeholder art until the designer's drawings (section 6).</li>
+<li><span class="own">Owner decided, 2026-11-21</span> <b>Peggy's spots:</b> one big white spot on her body and one covering the upper-left quarter of her face. Peggy.md still says "white spots on her neck and head", so the doc needs updating.</li>
+<li><span class="own">Owner decided, 2026-11-21</span> <b>Player look (working):</b> a boy with shoulder-length blonde hair, light skin and blue eyes, drawn as a clearly boyish adventurer (round 2). The outfit is a mockup guess.</li>
+<li><span class="own">Owner decided, 2026-11-21</span> <b>The guide is Papai</b>, a bald man with a dark mustache who explains the game and points to quests and goals. Approved as drawn, outfit included.</li>
 <li><span class="own">Owner decided, 2026-11-21</span> <b>"N x Dumble" scales every direction</b> (N times as wide and N times as tall).</li>
 <li><span class="own">Owner decided, 2026-11-21</span> <b>Battle sprites shrink</b> so a 10x Avatar fits, Dumble included. The exact rule is still a proposal (see Still open).</li>
 <li>Final art is <b>his hand drawings</b>, scanned or photographed. <span class="src">Art-Direction; Decisions-Log</span></li>
@@ -860,12 +872,9 @@ figure{margin:0}
 <div class="card">
 <h3 style="margin-top:0">Still open</h3>
 <ul class="und">
-<li><b>Interim sprite style:</b> vector or pixel? Section 3 shows both side by side. <span class="src">Development-Plan M8</span></li>
 <li><b>Battle size formula:</b> proposed as clamp(72 &times; &radic;N, 56, 240). Needs a yes.</li>
-<li><b>Palette tweaks</b> for Desert, Snowy and Volcano: proposed, need a yes.</li>
-<li><b>Looks for Ansonville, the arena, gates, shop, Reviver and items:</b> proposed in section 6, need a yes.</li>
-<li><b>The designer's say on the player and guide.</b> Both looks are the owner's working picks. Pick-a-look and typing the player's name are still proposals. <span class="src">Open-Questions 37, 38</span></li>
-<li><b>The guide's name</b>, and both characters' outfits.</li>
+<li><b>The designer's say on the player and guide.</b> Both looks are the owner's picks. Pick-a-look and typing the player's name are still proposals. <span class="src">Open-Questions 37, 38</span></li>
+<li><b>The player's outfit</b> (still a mockup guess).</li>
 <li>Avatar's <b>face, chest, and which arm is which</b>; the doc's list is "e.g." examples.</li>
 <li><b>Missing colors</b> for some monsters (Dumble, Rom, Hootle's leaf tufts, Queen Ant's crown).</li>
 <li><b>Blobbin and Slimy's exact size</b> (just "tall"). <span class="src">Flags.md size scale</span></li>
@@ -889,7 +898,7 @@ const biomes = [
   { id: 'forest', name: 'Forest', words: 'Trees, grass, flowers', sky: '#d9f0c8', ground: '#7cb35a',
     pal: { ground: '#7cb35a', path: '#b89c6a', encounter: '#3f8f3a', wall: '#2f4f2f', blocker: '#1f5a24', water: '#3b7dd8' },
     mons: [
-      { id: 'peggy', name: 'Peggy', h: 2, look: 'Brown English bulldog with white spots on her neck and head.', size: 'Medium, 2x Dumble', who: 'designer' },
+      { id: 'peggy', name: 'Peggy', h: 2, look: 'Brown English bulldog. Owner (round 2): one big white spot on her body and one over the upper-left quarter of her face. Peggy.md says spots on her neck and head.', size: 'Medium, 2x Dumble', who: 'designer' },
       { id: 'bushtail', name: 'Bushtail', h: 1, look: 'Gray-brown squirrel, huge fluffy tail bigger than its body, cheeks stuffed with acorns.', size: 'Small, 1x', who: 'Claude-made, approved' },
       { id: 'hootle', name: 'Hootle', h: 1.5, look: 'Round brown owl, giant yellow eyes, ear tufts like leaves, tiny beak.', size: 'Small-medium, 1.5x', who: 'Claude-made, approved', guess: 'leaf tuft color' } ],
     evo: 'Scout (4x, skinny yellow Labrador), Treetail, Grandhoot' },
@@ -1005,11 +1014,12 @@ for (const b of biomes) {
     const sw = document.createElement('div'); sw.className = 'swatches';
     const all = Object.assign({}, r.pal, r.extra || {});
     for (const k in all) sw.innerHTML += `<div class="sw"><div style="background:${all[k]}"></div>${label[k] || k}<br><span class="src">${all[k]}</span></div>`;
-    host.appendChild(sw);
     const tw = TWEAKS[r.id];
+    if (tw) { sw.style.opacity = '.55'; sw.insertAdjacentHTML('afterbegin', '<div class="sw" style="width:120px;align-self:center"><span class="src">earlier placeholder</span></div>'); }
+    host.appendChild(sw);
     if (tw) {
       const t2 = document.createElement('div'); t2.className = 'swatches'; t2.style.marginTop = '-4px';
-      t2.innerHTML = '<div class="sw" style="width:120px;align-self:center"><span class="guess">proposed tweak</span><br>' + tw.why + '</div>';
+      t2.innerHTML = '<div class="sw" style="width:120px;align-self:center"><span class="own">chosen</span><br>' + tw.why + '</div>';
       for (const k in tw.pal) t2.innerHTML += `<div class="sw"><div style="background:${tw.pal[k]}"></div>${label[k] || k}<br><span class="src">${tw.pal[k]}</span></div>`;
       host.appendChild(t2);
     }
@@ -1225,9 +1235,9 @@ function gateSVG(id, open) {
   el('use', { href: '#m-player-ow', x: 12 * T + 4, y: 6 * T - 8, width: 32, height: 40 }, svg);
   const bx = 9 * T, by = 6 * T - 86;
   el('path', { d: `M${bx} ${by} h270 a8 8 0 0 1 8 8 v36 a8 8 0 0 1 -8 8 h-208 l-14 16 2 -16 h-50 a8 8 0 0 1 -8 -8 v-36 a8 8 0 0 1 8 -8z`, fill: '#fff', stroke: '#2a2030', 'stroke-width': 2 }, svg);
-  txt(svg, bx + 8, by + 20, 'Catch your first monster!', { 'font-size': 13, 'font-weight': 700, fill: '#1f1d2b' });
+  txt(svg, bx + 8, by + 20, 'Papai: Catch your first monster!', { 'font-size': 13, 'font-weight': 700, fill: '#1f1d2b' });
   txt(svg, bx + 8, by + 38, 'Walk into the tall grass at the Beach.', { 'font-size': 13, fill: '#1f1d2b' });
-  txt(svg, 11 * T + 22, 7 * T + 28, 'the guide', { 'font-size': 11, 'font-weight': 700, fill: '#1f1d2b', 'text-anchor': 'middle' });
+  txt(svg, 11 * T + 22, 7 * T + 28, 'Papai', { 'font-size': 11, 'font-weight': 700, fill: '#1f1d2b', 'text-anchor': 'middle' });
   // HUD
   el('rect', { x: 12, y: 12, width: 190, height: 42, rx: 10, fill: '#14112b', opacity: .92 }, svg);
   el('use', { href: '#i-star', x: 22, y: 21, width: 24, height: 24, fill: '#ffd166' }, svg);

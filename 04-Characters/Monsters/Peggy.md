@@ -8,7 +8,7 @@
 | Spawn chance | **5%** of monster spawns in the Forest (rare!) (designer, Round 29) |
 | Size | **Medium**: **2x Dumble**, the same size as Rom (designer, Round 27). |
 | How it moves | Proposed: waddles/trots like a bulldog |
-| Look | An **English bulldog**, **brown** with **white spots on her neck and head**. |
+| Look | An **English bulldog**, **brown** with **white spots on her neck and head**. **Art (owner, 2026-11-21):** one **big white spot on her body** and one **big white spot over the upper-left quarter of her face**; no small spots over the eyes or on the chin. |
 | Ability (1) | **Cute**: each turn, **5 in 100 (5%)** chance the opponent doesn't attack. |
 | Evolves into | **[Scout](Scout.md)** |
 | Evolves at level X | **45** |
