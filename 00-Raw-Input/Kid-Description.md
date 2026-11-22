@@ -318,3 +318,19 @@ Don't edit or tidy this up. Interpretations go in the numbered folders, and issu
 > 24 - let's develop the base character art first, then use placeholders where we need to
 > 25 - everything at once.
 
+## 2026-11-22 — Round 62 (see the wild monsters walking around)
+
+> to see the monsters before you run into them and try to battle them or catch them. I want to see if they're a big one before I battle them. And I just want to stop to admire their artwork and see them walk around in scenery.
+
+His answers to three follow-up questions (picked from options):
+> Surprise battles in the grass: **Some surprises** (you can see most monsters, but sometimes a hidden one still jumps out of the grass).
+> When you walk near a wild monster: **Just wanders** (it walks around slowly on its own; a battle starts only when you bump into it).
+> How to spot a Big Monster on the map: **Just bigger** (no star).
+
+*(note: the first sentence starts mid-thought, read as "I want to be able to see the monsters before you run into them". This answers Open-Questions 30.)*
+
+## 2026-11-22 — Round 63 (the game keeps going after Avatar)
+
+> I want to be able to, after you defeat the avatar, the game doesn't just end. You can still walk around catching monsters. Um, And maybe I'll add some new ones.
+
+*(note: "add some new ones" read as: he may design new monsters later. Adding a monster is a data change, so new ones can join after the game is "finished".)*

@@ -165,3 +165,9 @@ No code change needed (ADR 0003). Schemas: `src/data/schema.ts`; cross-checks: `
 - **Audio:** songs and sound effects are notes in `src/data/audio.json` (schema `audioFile` in `schema.ts`; note rules in `src/logic/music.ts`). `src/ui/audio.ts` plays them: `playMusic(areaId)` (MapScene and BattleScene; the same song keeps playing), `playSfx(id)`, and the Sound setting (`cycleVolume`, saved under `magic-and-monsters.sound`). Sound starts after the first key press or click (browser rule). `playMusic('avatar')` is ready for the Avatar battle.
 - **Licenses:** `06-Art-and-Audio/Audio-Credits.md`. Everything today is original.
 - **The designer's drawings:** `06-Art-and-Audio/Designer-Drawings-How-To.md`.
+
+## Visible wild monsters (designer, Round 62)
+- On biome maps, 5 wild monsters wander on encounter ground (`WildWalkers` in `src/ui/wildWalkers.ts`; rules and numbers in `src/logic/wildWalkers.ts`). Walking into one sends `WILD_ENCOUNTER` with its `spawn`, and `startWildEncounter(..., seen)` battles exactly that monster. A new one appears a few seconds later.
+- Big Monsters are 1.5x bigger on the map, with no star (his choice). Map size: `mapSpriteSize` (`clamp(26·√N, 22, 64)` px).
+- Some hidden surprises stay: `SURPRISE_ENCOUNTER_RATE` (4% a step after 5 safe steps) replaces the old rate on maps with walkers.
+- The test hook's map state has `wild: [{ species, big, tile }]`.

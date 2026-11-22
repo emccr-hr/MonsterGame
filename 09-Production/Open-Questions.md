@@ -43,7 +43,7 @@
 
 ## F. Ideas from genre research, for the designer to pick (2026-11-21)
 *From `01-Vision/Genre-Research.md`. Suggestions only. He decides yes, no, or change it.*
-30. **See wild monsters walking around** on the map instead of surprise encounters?
+30. ~~**See wild monsters walking around** on the map instead of surprise encounters?~~ **Answered (Round 62):** yes, they wander; walk into one to battle it; some surprises stay; Big ones just look bigger.
 31. **Catch streaks:** catching the same monster several times in a row gives a slightly better Big Monster chance?
 32. **Partner monster** follows you around on the map?
 33. **Cage-throw timing:** a shrinking circle; a well-timed throw gives a catch bonus (never required)?

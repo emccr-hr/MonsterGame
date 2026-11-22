@@ -23,7 +23,7 @@
     {
       "id": "biome",
       "screen": "Biome",
-      "text": "Wild monsters hide in the tall grass, sand, snow and ash. The shop and Reviver are by the exit."
+      "text": "Wild monsters walk around in the grass, sand, snow and ash. Walk into one to battle it! Shop and Reviver: by the exit."
     },
     {
       "id": "first-catch",
@@ -101,7 +101,7 @@
     {
       "id": "find-monsters",
       "question": "Where are the wild monsters?",
-      "answer": "They hide in the tall grass, sand, snow and ash in each open place. Walk around there and one will jump out!",
+      "answer": "Look in the grass, sand, snow and ash! Wild monsters walk around there. Walk into one to battle it. A bigger one is a Big Monster. Sometimes a hidden one jumps out too!",
       "covers": [
         "rule:encounters"
       ]
@@ -144,7 +144,7 @@
     {
       "id": "big-monsters",
       "question": "What is a Big Monster?",
-      "answer": "Sometimes a wild monster is BIG. It is stronger, harder to catch, and gets a star in your Monster Book. About 1 in 100!",
+      "answer": "Sometimes a wild monster is BIG. You can spot it on the map: it looks bigger than the others. It is stronger, harder to catch, and gets a star in your Monster Book. About 1 in 100!",
       "covers": [
         "rule:big"
       ]
@@ -278,7 +278,7 @@
     {
       "id": "catch-first",
       "when": "noMonster",
-      "text": "Catch your first monster! Walk into the tall grass, sand, snow or ash and pick Throw cage."
+      "text": "Catch your first monster! Walk into a wild monster in the grass, sand, snow or ash and pick Throw cage."
     },
     {
       "id": "heal-tired",
