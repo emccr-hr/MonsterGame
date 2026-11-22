@@ -1,0 +1,424 @@
+[
+  {
+    "id": "hit",
+    "name": "Hit",
+    "element": null,
+    "power": "low",
+    "description": "A basic body slam. Always hits.",
+    "effects": [
+      {
+        "kind": "alwaysHits"
+      }
+    ]
+  },
+  {
+    "id": "bite",
+    "name": "Bite",
+    "element": null,
+    "power": "medium",
+    "description": "A big chomp.",
+    "effects": []
+  },
+  {
+    "id": "scratch",
+    "name": "Scratch",
+    "element": null,
+    "power": "low-medium",
+    "description": "Scratches with its claws.",
+    "effects": []
+  },
+  {
+    "id": "pinch",
+    "name": "Pinch",
+    "element": null,
+    "power": "low-medium",
+    "description": "A quick pinch.",
+    "effects": []
+  },
+  {
+    "id": "peck",
+    "name": "Peck",
+    "element": null,
+    "power": "low",
+    "description": "Pecks with its beak.",
+    "effects": []
+  },
+  {
+    "id": "goop-throw",
+    "name": "Goop Throw",
+    "element": null,
+    "power": "medium",
+    "description": "Throws a glob of goop.",
+    "effects": []
+  },
+  {
+    "id": "bounce-attack",
+    "name": "Bounce Attack",
+    "element": null,
+    "power": "medium",
+    "description": "Bounces up and lands on the other monster.",
+    "effects": []
+  },
+  {
+    "id": "shell-bash",
+    "name": "Shell Bash",
+    "element": null,
+    "power": "medium",
+    "description": "Bashes with its hard shell.",
+    "effects": []
+  },
+  {
+    "id": "sting",
+    "name": "Sting",
+    "element": null,
+    "power": "medium",
+    "description": "A sharp sting.",
+    "effects": []
+  },
+  {
+    "id": "tail-smack",
+    "name": "Tail Smack",
+    "element": null,
+    "power": "medium",
+    "description": "Smacks with its tail.",
+    "effects": []
+  },
+  {
+    "id": "pounce",
+    "name": "Pounce",
+    "element": null,
+    "power": "medium-high",
+    "description": "Leaps onto the other monster.",
+    "effects": []
+  },
+  {
+    "id": "dive-bomb",
+    "name": "Dive Bomb",
+    "element": null,
+    "power": "high",
+    "description": "Dives down from the sky.",
+    "effects": []
+  },
+  {
+    "id": "belly-flop",
+    "name": "Belly Flop",
+    "element": null,
+    "power": "high",
+    "description": "Flops down with its big belly.",
+    "effects": []
+  },
+  {
+    "id": "burn",
+    "name": "Burn",
+    "element": "fire",
+    "power": "medium",
+    "description": "Burns the other monster. It gets hurt a little for 2 turns.",
+    "effects": [
+      {
+        "kind": "burn",
+        "turns": 2
+      }
+    ]
+  },
+  {
+    "id": "lava-spit",
+    "name": "Lava Spit",
+    "element": "fire",
+    "power": "medium-high",
+    "description": "Spits hot lava.",
+    "effects": []
+  },
+  {
+    "id": "ash-cloud",
+    "name": "Ash Cloud",
+    "element": "fire",
+    "power": "medium",
+    "description": "Blows a cloud of hot ash.",
+    "effects": []
+  },
+  {
+    "id": "splash",
+    "name": "Splash",
+    "element": "water",
+    "power": "medium-high",
+    "description": "A big splash of water.",
+    "effects": []
+  },
+  {
+    "id": "bubble-blast",
+    "name": "Bubble Blast",
+    "element": "water",
+    "power": "low-medium",
+    "description": "Shoots a stream of bubbles.",
+    "effects": []
+  },
+  {
+    "id": "dig",
+    "name": "Dig",
+    "element": "earth",
+    "power": "high",
+    "description": "Hides underground for a turn, then pops up and attacks.",
+    "effects": [
+      {
+        "kind": "dig"
+      }
+    ]
+  },
+  {
+    "id": "sand-spray",
+    "name": "Sand Spray",
+    "element": "earth",
+    "power": "low-medium",
+    "description": "Sprays sand.",
+    "effects": []
+  },
+  {
+    "id": "stomp",
+    "name": "Stomp",
+    "element": "earth",
+    "power": "high",
+    "description": "A heavy stomp.",
+    "effects": []
+  },
+  {
+    "id": "freeze",
+    "name": "Freeze",
+    "element": "ice",
+    "power": "medium",
+    "description": "An icy blast. It might freeze the other monster for a turn.",
+    "effects": [
+      {
+        "kind": "freeze",
+        "chance": 0.25
+      }
+    ]
+  },
+  {
+    "id": "snowball",
+    "name": "Snowball",
+    "element": "ice",
+    "power": "medium",
+    "description": "Throws a snowball.",
+    "effects": []
+  },
+  {
+    "id": "ice-slap",
+    "name": "Ice Slap",
+    "element": "ice",
+    "power": "medium-high",
+    "description": "Slaps with an icy flipper.",
+    "effects": []
+  },
+  {
+    "id": "acorn-toss",
+    "name": "Acorn Toss",
+    "element": "nature",
+    "power": "low-medium",
+    "description": "Throws an acorn.",
+    "effects": []
+  },
+  {
+    "id": "wing-gust",
+    "name": "Wing Gust",
+    "element": "nature",
+    "power": "medium",
+    "description": "Flaps up a strong wind.",
+    "effects": []
+  },
+  {
+    "id": "fetch",
+    "name": "Fetch",
+    "element": "nature",
+    "power": "none",
+    "description": "Powers up! Attacks get stronger, up to 2 times.",
+    "effects": [
+      {
+        "kind": "attackBoost",
+        "amount": 0.2,
+        "maxStacks": 2
+      }
+    ]
+  },
+  {
+    "id": "pinecone-blast",
+    "name": "Pinecone Blast",
+    "element": "nature",
+    "power": "medium-high",
+    "description": "Fires a pinecone.",
+    "effects": []
+  },
+  {
+    "id": "talon-strike",
+    "name": "Talon Strike",
+    "element": null,
+    "power": "high",
+    "description": "Strikes with sharp talons.",
+    "effects": []
+  },
+  {
+    "id": "tide-crash",
+    "name": "Tide Crash",
+    "element": "water",
+    "power": "high",
+    "description": "Crashes down like a wave.",
+    "effects": []
+  },
+  {
+    "id": "beak-slam",
+    "name": "Beak Slam",
+    "element": null,
+    "power": "medium-high",
+    "description": "Slams with its big beak.",
+    "effects": []
+  },
+  {
+    "id": "sandstorm",
+    "name": "Sandstorm",
+    "element": "earth",
+    "power": "high",
+    "description": "Whips up a sandstorm.",
+    "effects": []
+  },
+  {
+    "id": "desert-charge",
+    "name": "Desert Charge",
+    "element": "earth",
+    "power": "high",
+    "description": "Charges across the sand.",
+    "effects": []
+  },
+  {
+    "id": "iceberg-slide",
+    "name": "Iceberg Slide",
+    "element": "ice",
+    "power": "high",
+    "description": "Slides in on an iceberg.",
+    "effects": []
+  },
+  {
+    "id": "icicle-claw",
+    "name": "Icicle Claw",
+    "element": "ice",
+    "power": "medium-high",
+    "description": "Slashes with icy claws.",
+    "effects": []
+  },
+  {
+    "id": "magma-slam",
+    "name": "Magma Slam",
+    "element": "fire",
+    "power": "high",
+    "description": "Slams with a fist of magma.",
+    "effects": []
+  },
+  {
+    "id": "cinder-dive",
+    "name": "Cinder Dive",
+    "element": "fire",
+    "power": "medium-high",
+    "description": "Dives down trailing hot cinders.",
+    "effects": []
+  },
+  {
+    "id": "eat",
+    "name": "Eat",
+    "element": null,
+    "power": "medium",
+    "description": "Takes a bite and heals by half the damage.",
+    "effects": [
+      {
+        "kind": "drain",
+        "fraction": 0.5
+      }
+    ]
+  },
+  {
+    "id": "lick",
+    "name": "Lick",
+    "element": null,
+    "power": "low",
+    "description": "A big slurpy lick.",
+    "effects": []
+  },
+  {
+    "id": "slobber",
+    "name": "Slobber",
+    "element": null,
+    "power": "low",
+    "description": "Slobbers on the other monster. Its next attack is weaker.",
+    "effects": [
+      {
+        "kind": "weakenNextAttack",
+        "amount": 0.3
+      }
+    ]
+  },
+  {
+    "id": "spit",
+    "name": "Spit",
+    "element": null,
+    "power": "low",
+    "description": "Spits at the other monster. Its next attack is weaker.",
+    "effects": [
+      {
+        "kind": "weakenNextAttack",
+        "amount": 0.3
+      }
+    ]
+  },
+  {
+    "id": "screech",
+    "name": "Screech",
+    "element": null,
+    "power": "none",
+    "description": "A loud screech. The other monster's next attack is weaker.",
+    "effects": [
+      {
+        "kind": "weakenNextAttack",
+        "amount": 0.3
+      }
+    ]
+  },
+  {
+    "id": "sleep",
+    "name": "Sleep",
+    "element": null,
+    "power": "none",
+    "description": "Takes a nap to heal. It cannot attack next turn.",
+    "effects": [
+      {
+        "kind": "healSelf",
+        "fraction": 0.5
+      },
+      {
+        "kind": "skipNextTurn"
+      }
+    ]
+  },
+  {
+    "id": "popsicle",
+    "name": "Popsicle",
+    "element": null,
+    "power": "none",
+    "description": "Eats a popsicle and heals a little.",
+    "effects": [
+      {
+        "kind": "healSelf",
+        "fraction": 0.25
+      }
+    ]
+  },
+  {
+    "id": "protect-the-queen",
+    "name": "Protect the Queen",
+    "element": null,
+    "power": "none",
+    "description": "Heals the other monsters on your team.",
+    "effects": [
+      {
+        "kind": "healTeam",
+        "fraction": 0.25
+      }
+    ]
+  }
+]

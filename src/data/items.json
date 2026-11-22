@@ -1,0 +1,51 @@
+[
+  {
+    "id": "cage",
+    "name": "Cage",
+    "price": 10,
+    "description": "Throw it to catch a monster.",
+    "effect": {
+      "kind": "catch"
+    }
+  },
+  {
+    "id": "potion",
+    "name": "Healing Potion",
+    "price": 15,
+    "description": "Heals 20 HP for one monster.",
+    "effect": {
+      "kind": "heal",
+      "hp": 20
+    }
+  },
+  {
+    "id": "wake-up-snack",
+    "name": "Wake-Up Snack",
+    "price": 30,
+    "description": "Wakes up a knocked-out monster with half its HP.",
+    "effect": {
+      "kind": "revive",
+      "fraction": 0.5
+    }
+  },
+  {
+    "id": "map-part",
+    "name": "Map Part",
+    "price": 50,
+    "description": "Opens a hidden part of the map.",
+    "effect": {
+      "kind": "mapPart"
+    }
+  },
+  {
+    "id": "teleport-pin",
+    "name": "Teleport Pin",
+    "price": 100,
+    "description": "Place it on the map and teleport there. Works from level 50.",
+    "effect": {
+      "kind": "teleportPin",
+      "maxPlaced": 5,
+      "minLevel": 50
+    }
+  }
+]

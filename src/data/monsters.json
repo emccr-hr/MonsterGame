@@ -1,0 +1,889 @@
+[
+  {
+    "id": "peggy",
+    "name": "Peggy",
+    "kind": "monster",
+    "biome": "forest",
+    "spawnWeight": 5,
+    "sizeLabel": "Medium (2x Dumble)",
+    "scale": 2,
+    "look": "A brown English bulldog with white spots on her neck and head.",
+    "traits": [],
+    "ability": "cute",
+    "moves": [
+      "bite",
+      "lick",
+      "slobber",
+      "sleep"
+    ],
+    "evolvesTo": {
+      "monster": "scout",
+      "level": 45
+    },
+    "evolvesFrom": null,
+    "catchable": true,
+    "baseStats": {
+      "hp": 50,
+      "attack": 50,
+      "defense": 50,
+      "speed": 50
+    }
+  },
+  {
+    "id": "scout",
+    "name": "Scout",
+    "kind": "monster",
+    "biome": "forest",
+    "spawnWeight": null,
+    "sizeLabel": "4x Dumble, skinny",
+    "scale": 4,
+    "look": "A skinny yellow Labrador.",
+    "traits": [],
+    "ability": "cute",
+    "moves": [
+      "bite",
+      "lick",
+      "fetch",
+      "sleep"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "peggy",
+    "catchable": true,
+    "baseStats": {
+      "hp": 87,
+      "attack": 70,
+      "defense": 70,
+      "speed": 53
+    }
+  },
+  {
+    "id": "bushtail",
+    "name": "Bushtail",
+    "kind": "monster",
+    "biome": "forest",
+    "spawnWeight": 55,
+    "sizeLabel": "Small",
+    "scale": 1,
+    "look": "A gray-brown squirrel with a huge fluffy tail and acorn cheeks.",
+    "traits": [],
+    "ability": "quick",
+    "moves": [
+      "acorn-toss",
+      "scratch",
+      "bite",
+      "eat"
+    ],
+    "evolvesTo": {
+      "monster": "treetail",
+      "level": 18
+    },
+    "evolvesFrom": null,
+    "catchable": true,
+    "baseStats": {
+      "hp": 44,
+      "attack": 50,
+      "defense": 50,
+      "speed": 56
+    }
+  },
+  {
+    "id": "treetail",
+    "name": "Treetail",
+    "kind": "monster",
+    "biome": "forest",
+    "spawnWeight": null,
+    "sizeLabel": "Medium",
+    "scale": 2,
+    "look": "A big squirrel with a leafy branch tail and acorns hanging from it.",
+    "traits": [],
+    "ability": "quick",
+    "moves": [
+      "pinecone-blast",
+      "scratch",
+      "bite",
+      "eat"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "bushtail",
+    "catchable": true,
+    "baseStats": {
+      "hp": 70,
+      "attack": 70,
+      "defense": 70,
+      "speed": 70
+    }
+  },
+  {
+    "id": "hootle",
+    "name": "Hootle",
+    "kind": "monster",
+    "biome": "forest",
+    "spawnWeight": 40,
+    "sizeLabel": "Small-medium",
+    "scale": 1.5,
+    "look": "A round brown owl with giant yellow eyes and leafy ear tufts.",
+    "traits": [],
+    "ability": "wise",
+    "moves": [
+      "peck",
+      "wing-gust",
+      "hit",
+      "sleep"
+    ],
+    "evolvesTo": {
+      "monster": "grandhoot",
+      "level": 22
+    },
+    "evolvesFrom": null,
+    "catchable": true,
+    "baseStats": {
+      "hp": 47,
+      "attack": 50,
+      "defense": 50,
+      "speed": 53
+    }
+  },
+  {
+    "id": "grandhoot",
+    "name": "Grandhoot",
+    "kind": "monster",
+    "biome": "forest",
+    "spawnWeight": null,
+    "sizeLabel": "Medium (2.5x Dumble)",
+    "scale": 2.5,
+    "look": "A tall, wise owl with feathery eyebrows and leafy wing tips.",
+    "traits": [],
+    "ability": "wise",
+    "moves": [
+      "talon-strike",
+      "wing-gust",
+      "hit",
+      "sleep"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "hootle",
+    "catchable": true,
+    "baseStats": {
+      "hp": 74,
+      "attack": 70,
+      "defense": 70,
+      "speed": 66
+    }
+  },
+  {
+    "id": "dumble",
+    "name": "Dumble",
+    "kind": "monster",
+    "biome": "beach",
+    "spawnWeight": 20,
+    "sizeLabel": "Small",
+    "scale": 1,
+    "look": "A dumpling with chopsticks for arms.",
+    "traits": [],
+    "ability": "not-at-this-restaurant",
+    "moves": [
+      "bounce-attack",
+      "pinch",
+      "hit",
+      "eat"
+    ],
+    "evolvesTo": {
+      "monster": "rom",
+      "level": 35
+    },
+    "evolvesFrom": null,
+    "catchable": true,
+    "baseStats": {
+      "hp": 44,
+      "attack": 50,
+      "defense": 50,
+      "speed": 56
+    }
+  },
+  {
+    "id": "rom",
+    "name": "Rom",
+    "kind": "monster",
+    "biome": "beach",
+    "spawnWeight": null,
+    "sizeLabel": "Medium (2x Dumble)",
+    "scale": 2,
+    "look": "A ramen bowl with chopstick arms, noodle legs and egg shoes.",
+    "traits": [],
+    "ability": "not-at-this-restaurant",
+    "moves": [
+      "splash",
+      "pinch",
+      "hit",
+      "eat"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "dumble",
+    "catchable": true,
+    "baseStats": {
+      "hp": 70,
+      "attack": 70,
+      "defense": 70,
+      "speed": 70
+    }
+  },
+  {
+    "id": "sidesnap",
+    "name": "Sidesnap",
+    "kind": "monster",
+    "biome": "beach",
+    "spawnWeight": 45,
+    "sizeLabel": "Small",
+    "scale": 1,
+    "look": "A bright orange crab with one big claw and one small claw.",
+    "traits": [],
+    "ability": "wise",
+    "moves": [
+      "pinch",
+      "splash",
+      "shell-bash",
+      "bubble-blast"
+    ],
+    "evolvesTo": {
+      "monster": "boulderclaw",
+      "level": 24
+    },
+    "evolvesFrom": null,
+    "catchable": true,
+    "baseStats": {
+      "hp": 44,
+      "attack": 50,
+      "defense": 50,
+      "speed": 56
+    }
+  },
+  {
+    "id": "boulderclaw",
+    "name": "Boulderclaw",
+    "kind": "monster",
+    "biome": "beach",
+    "spawnWeight": null,
+    "sizeLabel": "Large (3x Dumble)",
+    "scale": 3,
+    "look": "A huge crab with a shell like a mossy boulder and a giant claw.",
+    "traits": [],
+    "ability": "wise",
+    "moves": [
+      "pinch",
+      "splash",
+      "shell-bash",
+      "tide-crash"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "sidesnap",
+    "catchable": true,
+    "baseStats": {
+      "hp": 78,
+      "attack": 70,
+      "defense": 70,
+      "speed": 62
+    }
+  },
+  {
+    "id": "squawkle",
+    "name": "Squawkle",
+    "kind": "monster",
+    "biome": "beach",
+    "spawnWeight": 35,
+    "sizeLabel": "Medium",
+    "scale": 2,
+    "look": "A white-and-gray seagull with a yellow beak, always squawking.",
+    "traits": [],
+    "ability": "snack-thief",
+    "moves": [
+      "peck",
+      "dive-bomb",
+      "eat",
+      "splash"
+    ],
+    "evolvesTo": {
+      "monster": "pouchbeak",
+      "level": 26
+    },
+    "evolvesFrom": null,
+    "catchable": true,
+    "baseStats": {
+      "hp": 50,
+      "attack": 50,
+      "defense": 50,
+      "speed": 50
+    }
+  },
+  {
+    "id": "pouchbeak",
+    "name": "Pouchbeak",
+    "kind": "monster",
+    "biome": "beach",
+    "spawnWeight": null,
+    "sizeLabel": "Large (3x Dumble)",
+    "scale": 3,
+    "look": "A pelican-like bird with a giant stretchy beak pouch.",
+    "traits": [],
+    "ability": "snack-thief",
+    "moves": [
+      "beak-slam",
+      "dive-bomb",
+      "eat",
+      "splash"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "squawkle",
+    "catchable": true,
+    "baseStats": {
+      "hp": 78,
+      "attack": 70,
+      "defense": 70,
+      "speed": 62
+    }
+  },
+  {
+    "id": "anti-ant",
+    "name": "Anti-Ant",
+    "kind": "monster",
+    "biome": "desert",
+    "spawnWeight": 40,
+    "sizeLabel": "Medium (2x Dumble)",
+    "scale": 2,
+    "look": "A big red ant.",
+    "traits": [
+      "red-ant"
+    ],
+    "ability": "colony-bond",
+    "moves": [
+      "protect-the-queen",
+      "bite",
+      "sting",
+      "dig"
+    ],
+    "evolvesTo": {
+      "monster": "queen-ant",
+      "level": 15
+    },
+    "evolvesFrom": null,
+    "catchable": true,
+    "baseStats": {
+      "hp": 50,
+      "attack": 50,
+      "defense": 50,
+      "speed": 50
+    }
+  },
+  {
+    "id": "queen-ant",
+    "name": "Queen Ant",
+    "kind": "monster",
+    "biome": "desert",
+    "spawnWeight": null,
+    "sizeLabel": "Medium (2x Dumble)",
+    "scale": 2,
+    "look": "A red queen ant wearing a crown.",
+    "traits": [
+      "red-ant"
+    ],
+    "ability": "colony-bond",
+    "moves": [
+      "protect-the-queen",
+      "bite",
+      "sting",
+      "dig"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "anti-ant",
+    "catchable": true,
+    "baseStats": {
+      "hp": 70,
+      "attack": 70,
+      "defense": 70,
+      "speed": 70
+    }
+  },
+  {
+    "id": "stingtail",
+    "name": "Stingtail",
+    "kind": "monster",
+    "biome": "desert",
+    "spawnWeight": 35,
+    "sizeLabel": "Medium",
+    "scale": 2,
+    "look": "A sandy-yellow scorpion with a curled tail and a purple stinger.",
+    "traits": [],
+    "ability": "quick",
+    "moves": [
+      "sting",
+      "pinch",
+      "dig",
+      "sand-spray"
+    ],
+    "evolvesTo": {
+      "monster": "dunestinger",
+      "level": 28
+    },
+    "evolvesFrom": null,
+    "catchable": true,
+    "baseStats": {
+      "hp": 50,
+      "attack": 50,
+      "defense": 50,
+      "speed": 50
+    }
+  },
+  {
+    "id": "dunestinger",
+    "name": "Dunestinger",
+    "kind": "monster",
+    "biome": "desert",
+    "spawnWeight": null,
+    "sizeLabel": "Large (3x Dumble)",
+    "scale": 3,
+    "look": "A giant scorpion with sandstone armor and two purple stingers.",
+    "traits": [],
+    "ability": "quick",
+    "moves": [
+      "sting",
+      "pinch",
+      "dig",
+      "sandstorm"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "stingtail",
+    "catchable": true,
+    "baseStats": {
+      "hp": 78,
+      "attack": 70,
+      "defense": 70,
+      "speed": 62
+    }
+  },
+  {
+    "id": "camelump",
+    "name": "Camelump",
+    "kind": "monster",
+    "biome": "desert",
+    "spawnWeight": 25,
+    "sizeLabel": "Large (3x Dumble)",
+    "scale": 3,
+    "look": "A tan camel with two wobbly humps and long eyelashes.",
+    "traits": [],
+    "ability": "water-storage",
+    "moves": [
+      "spit",
+      "stomp",
+      "hit",
+      "sleep"
+    ],
+    "evolvesTo": {
+      "monster": "triplump",
+      "level": 30
+    },
+    "evolvesFrom": null,
+    "catchable": true,
+    "baseStats": {
+      "hp": 56,
+      "attack": 50,
+      "defense": 50,
+      "speed": 44
+    }
+  },
+  {
+    "id": "triplump",
+    "name": "Triplump",
+    "kind": "monster",
+    "biome": "desert",
+    "spawnWeight": null,
+    "sizeLabel": "Huge (4x Dumble)",
+    "scale": 4,
+    "look": "A giant camel with three wobbly humps and longer eyelashes.",
+    "traits": [],
+    "ability": "water-storage",
+    "moves": [
+      "desert-charge",
+      "stomp",
+      "hit",
+      "sleep"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "camelump",
+    "catchable": true,
+    "baseStats": {
+      "hp": 87,
+      "attack": 70,
+      "defense": 70,
+      "speed": 53
+    }
+  },
+  {
+    "id": "yeti",
+    "name": "Yeti",
+    "kind": "monster",
+    "biome": "snowy",
+    "spawnWeight": 30,
+    "sizeLabel": "Bigger side (~3x Dumble)",
+    "scale": 3,
+    "look": "A white yeti with blue horns and a black face, furry all over.",
+    "traits": [],
+    "ability": "fur-coat",
+    "moves": [
+      "bite",
+      "scratch",
+      "belly-flop",
+      "freeze"
+    ],
+    "evolvesTo": {
+      "monster": "abominable-snowman",
+      "level": 40
+    },
+    "evolvesFrom": null,
+    "catchable": true,
+    "baseStats": {
+      "hp": 56,
+      "attack": 50,
+      "defense": 50,
+      "speed": 44
+    }
+  },
+  {
+    "id": "abominable-snowman",
+    "name": "Abominable Snowman",
+    "kind": "monster",
+    "biome": "snowy",
+    "spawnWeight": null,
+    "sizeLabel": "1.5x Yeti (~4.5x Dumble)",
+    "scale": 4.5,
+    "look": "A big snowman with a top hat, coal eyes and stick hands.",
+    "traits": [],
+    "ability": "fur-coat",
+    "moves": [
+      "snowball",
+      "freeze",
+      "ice-slap",
+      "popsicle"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "yeti",
+    "catchable": true,
+    "baseStats": {
+      "hp": 91,
+      "attack": 70,
+      "defense": 70,
+      "speed": 49
+    }
+  },
+  {
+    "id": "pengwiggle",
+    "name": "Pengwiggle",
+    "kind": "monster",
+    "biome": "snowy",
+    "spawnWeight": 40,
+    "sizeLabel": "Small",
+    "scale": 1,
+    "look": "A black-and-white penguin with tiny wings and orange feet.",
+    "traits": [],
+    "ability": "slippery",
+    "moves": [
+      "belly-flop",
+      "ice-slap",
+      "peck",
+      "snowball"
+    ],
+    "evolvesTo": {
+      "monster": "emperwaddle",
+      "level": 27
+    },
+    "evolvesFrom": null,
+    "catchable": true,
+    "baseStats": {
+      "hp": 44,
+      "attack": 50,
+      "defense": 50,
+      "speed": 56
+    }
+  },
+  {
+    "id": "emperwaddle",
+    "name": "Emperwaddle",
+    "kind": "monster",
+    "biome": "snowy",
+    "spawnWeight": null,
+    "sizeLabel": "Medium (2.5x Dumble)",
+    "scale": 2.5,
+    "look": "A tall penguin with a golden collar and an icy blue belly.",
+    "traits": [],
+    "ability": "slippery",
+    "moves": [
+      "belly-flop",
+      "ice-slap",
+      "iceberg-slide",
+      "snowball"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "pengwiggle",
+    "catchable": true,
+    "baseStats": {
+      "hp": 74,
+      "attack": 70,
+      "defense": 70,
+      "speed": 66
+    }
+  },
+  {
+    "id": "frostpaw",
+    "name": "Frostpaw",
+    "kind": "monster",
+    "biome": "snowy",
+    "spawnWeight": 30,
+    "sizeLabel": "Small-medium (1.5x Dumble)",
+    "scale": 1.5,
+    "look": "A white fox with pale blue paws and a fluffy tail.",
+    "traits": [],
+    "ability": "quick",
+    "moves": [
+      "bite",
+      "scratch",
+      "freeze",
+      "pounce"
+    ],
+    "evolvesTo": {
+      "monster": "glacitail",
+      "level": 32
+    },
+    "evolvesFrom": null,
+    "catchable": true,
+    "baseStats": {
+      "hp": 47,
+      "attack": 50,
+      "defense": 50,
+      "speed": 53
+    }
+  },
+  {
+    "id": "glacitail",
+    "name": "Glacitail",
+    "kind": "monster",
+    "biome": "snowy",
+    "spawnWeight": null,
+    "sizeLabel": "Medium-large (2.5x Dumble)",
+    "scale": 2.5,
+    "look": "A sleek white fox with a tail of glittering icicles.",
+    "traits": [],
+    "ability": "quick",
+    "moves": [
+      "bite",
+      "icicle-claw",
+      "freeze",
+      "pounce"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "frostpaw",
+    "catchable": true,
+    "baseStats": {
+      "hp": 74,
+      "attack": 70,
+      "defense": 70,
+      "speed": 66
+    }
+  },
+  {
+    "id": "blobbin",
+    "name": "Blobbin",
+    "kind": "monster",
+    "biome": "volcano",
+    "spawnWeight": 20,
+    "sizeLabel": "Tall",
+    "scale": 2.5,
+    "look": "A red blob with a goopy mouth.",
+    "traits": [],
+    "ability": "lava-skin",
+    "moves": [
+      "goop-throw",
+      "hit",
+      "bite",
+      "burn"
+    ],
+    "evolvesTo": {
+      "monster": "slimy",
+      "level": 25
+    },
+    "evolvesFrom": null,
+    "catchable": true,
+    "baseStats": {
+      "hp": 53,
+      "attack": 50,
+      "defense": 50,
+      "speed": 47
+    }
+  },
+  {
+    "id": "slimy",
+    "name": "Slimy",
+    "kind": "monster",
+    "biome": "volcano",
+    "spawnWeight": null,
+    "sizeLabel": "Tall (1.2x Blobbin)",
+    "scale": 3,
+    "look": "A bigger, darker red Blobbin with a goopy mouth.",
+    "traits": [],
+    "ability": "lava-skin",
+    "moves": [
+      "goop-throw",
+      "hit",
+      "bite",
+      "burn"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "blobbin",
+    "catchable": true,
+    "baseStats": {
+      "hp": 78,
+      "attack": 70,
+      "defense": 70,
+      "speed": 62
+    }
+  },
+  {
+    "id": "cinderscale",
+    "name": "Cinderscale",
+    "kind": "monster",
+    "biome": "volcano",
+    "spawnWeight": 50,
+    "sizeLabel": "Medium (2x Dumble)",
+    "scale": 2,
+    "look": "A dark gray lizard with glowing orange cracks in its scales.",
+    "traits": [],
+    "ability": "lava-skin",
+    "moves": [
+      "burn",
+      "lava-spit",
+      "bite",
+      "tail-smack"
+    ],
+    "evolvesTo": {
+      "monster": "moltenmaw",
+      "level": 34
+    },
+    "evolvesFrom": null,
+    "catchable": true,
+    "baseStats": {
+      "hp": 50,
+      "attack": 50,
+      "defense": 50,
+      "speed": 50
+    }
+  },
+  {
+    "id": "moltenmaw",
+    "name": "Moltenmaw",
+    "kind": "monster",
+    "biome": "volcano",
+    "spawnWeight": null,
+    "sizeLabel": "Large (3.5x Dumble)",
+    "scale": 3.5,
+    "look": "A huge lava lizard with glowing cracks and a magma-dripping mouth.",
+    "traits": [],
+    "ability": "lava-skin",
+    "moves": [
+      "burn",
+      "lava-spit",
+      "bite",
+      "magma-slam"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "cinderscale",
+    "catchable": true,
+    "baseStats": {
+      "hp": 83,
+      "attack": 70,
+      "defense": 70,
+      "speed": 57
+    }
+  },
+  {
+    "id": "ashflap",
+    "name": "Ashflap",
+    "kind": "monster",
+    "biome": "volcano",
+    "spawnWeight": 30,
+    "sizeLabel": "Small (1x Dumble)",
+    "scale": 1,
+    "look": "A charcoal-black bat with ember-red wing tips and smoke trails.",
+    "traits": [],
+    "ability": "wise",
+    "moves": [
+      "bite",
+      "ash-cloud",
+      "screech",
+      "hit"
+    ],
+    "evolvesTo": {
+      "monster": "smokewing",
+      "level": 30
+    },
+    "evolvesFrom": null,
+    "catchable": true,
+    "baseStats": {
+      "hp": 44,
+      "attack": 50,
+      "defense": 50,
+      "speed": 56
+    }
+  },
+  {
+    "id": "smokewing",
+    "name": "Smokewing",
+    "kind": "monster",
+    "biome": "volcano",
+    "spawnWeight": null,
+    "sizeLabel": "Medium (2x Dumble)",
+    "scale": 2,
+    "look": "A big bat with wings of swirling smoke and glowing red eyes.",
+    "traits": [],
+    "ability": "wise",
+    "moves": [
+      "bite",
+      "ash-cloud",
+      "screech",
+      "cinder-dive"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "ashflap",
+    "catchable": true,
+    "baseStats": {
+      "hp": 70,
+      "attack": 70,
+      "defense": 70,
+      "speed": 70
+    }
+  },
+  {
+    "id": "avatar",
+    "name": "Avatar",
+    "kind": "boss",
+    "biome": null,
+    "spawnWeight": null,
+    "sizeLabel": "10x Dumble",
+    "scale": 10,
+    "look": "A human shape with a body made of all 5 elements.",
+    "traits": [],
+    "ability": null,
+    "moves": [
+      "burn",
+      "splash",
+      "dig",
+      "freeze",
+      "fetch"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": null,
+    "catchable": false,
+    "baseStats": {
+      "hp": 177,
+      "attack": 130,
+      "defense": 130,
+      "speed": 83
+    }
+  }
+]

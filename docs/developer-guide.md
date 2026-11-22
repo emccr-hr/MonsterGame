@@ -56,11 +56,14 @@ keyboard and mouse, never through the hook. Smoke tests run one at a time, becau
 WebGL pages at once stalled on the dev laptop.
 
 ## How to add a monster
-From M1 on (no code change needed, ADR 0003):
+No code change needed (ADR 0003). Schemas: `src/data/schema.ts`; cross-checks: `src/data/validate.ts`.
 1. Write it in the design docs first (`04-Characters/`), with the designer's OK.
-2. Add an entry to `src/data/monsters.json` (moves must exist in `moves.json`, the ability in
-   `abilities.json`); add it to a biome's spawn table in `biomes.json` if it's wild.
-3. `npm run validate:data`, then `npm test`.
+2. Add one entry to `src/data/monsters.json`. Moves must exist in `moves.json` and the ability in
+   `abilities.json`. A wild first form gets a `spawnWeight` (weights, not percentages; the biome
+   rescales). An evolution gets `spawnWeight: null`, and both forms must point at each other
+   (`evolvesTo` / `evolvesFrom`). Base stats follow the rule in `02-Gameplay/Balance.md`.
+3. `npm run validate:data -- --list` (prints the monster table), then `npm test`. The unit test that
+   expects 30 monsters and 3 per biome will need its numbers updated; that's on purpose.
 4. Art (from M8): a placeholder is drawn automatically until a sprite exists in `public/assets/sprites/`.
 
 ## Commits, PRs and merging
