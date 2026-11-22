@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- SIDESNAP: orange crab, one big claw -->
+    <g stroke="#3a1a0a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#ff7a1a">
+      <path d="M30 80 L18 96 M38 84 L32 97 M62 84 L68 97 M70 80 L82 96" fill="none"/>
+      <path d="M28 70 L14 60 M72 66 L80 56" fill="none"/>
+      <path d="M6 58 Q4 46 14 46 Q20 50 14 56 Q20 60 14 64 Q6 66 6 58Z"/>
+      <path d="M70 52 Q66 22 90 22 Q100 30 92 40 L82 38 L92 46 Q88 58 70 52Z"/>
+      <ellipse cx="48" cy="74" rx="28" ry="16"/>
+      <line x1="40" y1="60" x2="36" y2="38" fill="none"/><line x1="56" y1="60" x2="60" y2="38" fill="none"/>
+      <circle cx="36" cy="34" r="7" fill="#fff"/><circle cx="60" cy="34" r="7" fill="#fff"/>
+      <circle cx="37" cy="35" r="3" fill="#111"/><circle cx="59" cy="35" r="3" fill="#111"/>
+      <path d="M40 78 Q48 84 56 78" fill="none"/>
+    </g>
+</svg>

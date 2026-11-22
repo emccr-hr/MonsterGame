@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- BOULDERCLAW: a huge crab with a shell like a mossy boulder and a giant claw (Sidesnap's evolution) -->
+  <g stroke="#2a1608" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M26 82 L12 96 M36 86 L28 98 M64 86 L72 98 M74 82 L88 96" fill="none" stroke-width="4"/>
+    <path d="M30 72 L14 66 M76 70 L82 56" fill="none" stroke-width="4"/>
+    <path d="M4 66 Q2 54 12 54 Q18 58 12 64 Q18 68 12 72 Q4 74 4 66Z" fill="#c8642a"/>
+    <path d="M66 50 Q58 10 92 8 Q104 20 94 34 L80 32 L94 42 Q90 58 66 50Z" fill="#c8642a"/>
+    <path d="M80 14 L84 20 M88 12 L90 18" stroke="#8a3a12" stroke-width="2"/>
+    <path d="M12 74 Q8 40 50 34 Q90 36 88 74 Q50 88 12 74 Z" fill="#8a8478"/>
+    <path d="M24 56 L34 60 L32 70 M52 44 L56 54 L66 56 M70 64 L76 70" fill="none" stroke="#5e5a52" stroke-width="2"/>
+    <path d="M18 56 Q22 40 40 38 Q34 46 38 50 Q30 48 26 56 Z M56 38 Q76 38 82 52 Q72 46 64 50 Q66 42 56 38 Z" fill="#6f8f5a" stroke="#4a6a3a" stroke-width="2"/>
+    <path d="M44 42 q4 -4 8 0" fill="none" stroke="#4a6a3a" stroke-width="2"/>
+    <ellipse cx="50" cy="80" rx="30" ry="9" fill="#c8642a"/>
+    <line x1="40" y1="74" x2="36" y2="58" fill="none"/><line x1="58" y1="74" x2="62" y2="58" fill="none"/>
+    <circle cx="36" cy="58" r="6" fill="#fff"/><circle cx="62" cy="58" r="6" fill="#fff"/>
+    <circle cx="35" cy="59" r="3" fill="#111"/><circle cx="61" cy="59" r="3" fill="#111"/>
+    <path d="M30 52 L42 55 M68 52 L56 55" stroke-width="2.5"/>
+    <path d="M42 83 Q50 87 58 83" fill="none"/>
+  </g>
+</svg>

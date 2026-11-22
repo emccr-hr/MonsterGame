@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- SLIMY: a bigger, darker red Blobbin with a goopy mouth (Blobbin's evolution) -->
+  <g stroke="#3a0606" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 96 Q20 94 30 96 M70 96 Q84 94 98 96" fill="none" stroke="#a31d1d" stroke-width="6" opacity=".5"/>
+    <path d="M14 97 C2 60 20 4 50 3 C80 4 98 60 86 97 Z" fill="#a31d1d"/>
+    <path d="M30 20 Q38 10 50 10" fill="none" stroke="#e05040" stroke-width="3.5"/>
+    <circle cx="70" cy="70" r="4" fill="#c42a2a" stroke="none"/><circle cx="26" cy="76" r="3" fill="#c42a2a" stroke="none"/><circle cx="76" cy="40" r="3" fill="#c42a2a" stroke="none"/>
+    <circle cx="38" cy="34" r="6.5" fill="#fff"/><circle cx="62" cy="34" r="6.5" fill="#fff"/>
+    <circle cx="39" cy="35" r="3.2" fill="#111"/><circle cx="61" cy="35" r="3.2" fill="#111"/>
+    <path d="M32 26 L44 29 M68 26 L56 29" stroke-width="2.5"/>
+    <path d="M28 50 Q50 44 72 50 Q70 68 50 68 Q30 68 28 50 Z" fill="#4a0808"/>
+    <path d="M34 52 L38 58 L42 52 M58 52 L62 58 L66 52" fill="#fff" stroke-width="1.5"/>
+    <path d="M38 66 Q37 76 40 80 Q43 76 42 66 M56 66 Q57 82 60 86 Q63 80 61 66 M48 68 Q48 74 50 76 Q52 74 51 68" fill="#ff7043" stroke-width="2"/>
+  </g>
+</svg>

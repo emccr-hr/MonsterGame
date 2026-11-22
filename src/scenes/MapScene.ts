@@ -9,6 +9,7 @@ import { gateProgress, useReviver } from '../logic/world';
 import { currentGame, freshSeed, getGame, saveGame, setGame } from '../state/game';
 import { getWorld, isBiomeOpen, markTipSeen, openAllBiomes, setPlayerPosition } from '../state/world';
 import { reportState } from '../testHook';
+import { addCharacter } from '../ui/sprites';
 import {
   add,
   besideTile,
@@ -60,7 +61,8 @@ export class MapScene extends Phaser.Scene {
   /** When the map last came back from a battle or menu; the key that closed it is ignored here. */
   private resumedAt = 0;
   private rng: Rng = createRng(1);
-  private player!: Phaser.GameObjects.Arc;
+  /** Centered on the player's tile (the sprite inside stands on the tile's bottom edge). */
+  private player!: Phaser.GameObjects.Container;
   private messageBox!: Phaser.GameObjects.Container;
   private messageText!: Phaser.GameObjects.Text;
   private wallet!: Phaser.GameObjects.Text;
@@ -91,10 +93,9 @@ export class MapScene extends Phaser.Scene {
   create(): void {
     this.drawMap();
 
-    this.player = this.add
-      .circle(this.tile.x * T + T / 2, this.tile.y * T + T / 2, T * 0.38, 0xff5d73)
-      .setStrokeStyle(3, 0x1b1b1b)
-      .setDepth(5);
+    // The player's vector sprite (M8), or the old red dot if the file is missing.
+    const look = addCharacter(this, 'player-map', 0, T / 2 + 2, T * 1.25) ?? this.add.circle(0, 0, T * 0.38, 0xff5d73).setStrokeStyle(3, 0x1b1b1b);
+    this.player = this.add.container(this.tile.x * T + T / 2, this.tile.y * T + T / 2, [look]).setDepth(5);
 
     const cam = this.cameras.main;
     cam.setBounds(0, 0, width(this.map) * T, height(this.map) * T);
@@ -380,8 +381,15 @@ export class MapScene extends Phaser.Scene {
     for (const t of findAll(this.map, '$')) label(t, 'Shop');
     for (const t of findAll(this.map, 'R')) label(t, 'Heal');
     for (const t of findAll(this.map, 'G')) {
-      g.fillStyle(0xf2b134).fillCircle(t.x * T + T / 2, t.y * T + T / 2, T * 0.4);
-      label(t, '?', 18);
+      // Papai stands on his spot (M8 sprite) with a "?" above him; the old yellow dot if the file is missing.
+      const papai = addCharacter(this, 'papai-map', t.x * T + T / 2, t.y * T + T + 2, T * 1.25);
+      if (papai) {
+        papai.setDepth(4);
+        label(add(t, 'up'), '?', 18).setY(t.y * T - 8);
+      } else {
+        g.fillStyle(0xf2b134).fillCircle(t.x * T + T / 2, t.y * T + T / 2, T * 0.4);
+        label(t, '?', 18);
+      }
     }
     for (const t of findAll(this.map, 'E')) label(add(t, 'up'), 'To Ansonville');
 

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- POUCHBEAK: a pelican-like bird with a giant stretchy beak pouch (Squawkle's evolution) -->
+  <g stroke="#2b2f36" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M58 82 L56 96 L48 97 M70 82 L72 96 L80 97" fill="none" stroke="#e0a020" stroke-width="3.5"/>
+    <path d="M80 54 L98 46 L94 62 Z" fill="#7c8794"/>
+    <ellipse cx="64" cy="64" rx="30" ry="22" fill="#cdd5de"/>
+    <path d="M52 58 Q72 44 92 58 Q74 72 54 68 Z" fill="#9aa5b1"/>
+    <path d="M38 50 Q40 30 46 22" fill="none" stroke="#2b2f36" stroke-width="12"/>
+    <path d="M38 50 Q40 30 46 22" fill="none" stroke="#cdd5de" stroke-width="7"/>
+    <circle cx="46" cy="18" r="11" fill="#cdd5de"/>
+    <path d="M38 16 L2 22 L36 24 Z" fill="#f2b134"/>
+    <path d="M36 23 Q4 24 6 30 Q12 52 32 46 Q40 40 38 28 Z" fill="#f7cf6a"/>
+    <path d="M14 32 Q20 40 30 38" fill="none" stroke="#d99a20" stroke-width="2"/>
+    <circle cx="45" cy="14" r="2.8" fill="#111" stroke="none"/>
+    <path d="M40 8 Q46 4 52 8" fill="none" stroke-width="2"/>
+  </g>
+</svg>

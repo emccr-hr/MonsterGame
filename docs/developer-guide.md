@@ -39,7 +39,9 @@ scenes, UI or saves.
 | `tests/unit/` | Vitest, mirroring `src/logic/` |
 | `tests/smoke/` | Playwright, about 5 flows |
 | `scripts/` | `ci-local`, spelling, data validation, hooks setup, `merge-if-green` |
-| `public/assets/` | Sprites, tiles, audio (later milestones) |
+| `src/assets/sprites/` | Vector sprites (M8): `monsters/<monster id>.svg`, `characters/*.svg`, found by file name |
+| `tools/sprite-gallery.html` | Dev-only page showing every sprite (`npm run dev`, then `/tools/sprite-gallery.html`) |
+| `public/assets/` | Tiles, audio (later milestones) |
 
 ## Randomness
 Every rule that rolls dice takes an `Rng` (`createRng(seed)`). Same seed, same results, so tests are
@@ -91,7 +93,8 @@ No code change needed (ADR 0003). Schemas: `src/data/schema.ts`; cross-checks: `
    (`evolvesTo` / `evolvesFrom`). Base stats follow the rule in `02-Gameplay/Balance.md`.
 3. `npm run validate:data -- --list` (prints the monster table), then `npm test`. The unit test that
    expects 30 monsters and 3 per biome will need its numbers updated; that's on purpose.
-4. Art (from M8): a placeholder is drawn automatically until a sprite exists in `public/assets/sprites/`.
+4. Art: add `src/assets/sprites/monsters/<id>.svg` (see "Vector sprites (M8)"). Until then the game
+   draws a placeholder from the monster's `art` look data.
 
 ## Commits, PRs and merging
 - Branch per task; parallel sessions use worktrees beside the clone (`..\MonsterGame-<name>`).
@@ -137,3 +140,21 @@ No code change needed (ADR 0003). Schemas: `src/data/schema.ts`; cross-checks: `
 - Backup: M menu → **Save to file** downloads the save as JSON; Title → **Load save file** loads one
   (`src/state/saveFile.ts`, using `serialize`/`deserialize` from `src/logic/save.ts`).
 
+## Vector sprites (M8)
+- **One SVG per monster**, named by its id: `src/assets/sprites/monsters/<id>.svg`. Dropping a file in
+  adds the sprite; no code change (ADR 0003). A monster without a file is drawn from its `art` look
+  data (`drawPlaceholder` in `src/ui/monsterArt.ts`), so nothing is ever missing.
+- **Characters:** `src/assets/sprites/characters/`: `player` and `papai` (full size, Ask Papai),
+  `player-map` and `papai-map` (32x40, one map tile wide).
+- **Drawing rules:** a `viewBox` (monsters `0 0 100 100`; the monster fills the square box that
+  "N x Dumble" scales), `xmlns`, no scripts, images or links to other files (filters like
+  `url(#glow)` must be defined in the same file). Monsters **face left** (or the front); the
+  player's side in battle mirrors them. Dark outlines, round line caps, flat colors, as in
+  `06-Art-and-Audio/Art-Mockups.html`.
+- **How they load:** `src/ui/sprites.ts` finds the files with Vite's `import.meta.glob` (as text),
+  and Boot rasterizes each monster at 64, 128 and 256 px (`SPRITE_TIERS`) with smooth filtering;
+  `drawMonster` picks the nearest size at least as big as the drawing. File-name and SVG rules are
+  in `src/ui/spriteManifest.ts` (no Phaser), tested by `tests/unit/ui/sprites.test.ts`, which also
+  fails if one of the 15 base monsters, the player or Papai loses its sprite.
+- **See them all:** `npm run dev`, then open `/tools/sprite-gallery.html`; pink cards have no sprite yet.
+- **The designer's drawings** can replace a file later (traced to SVG, same name).

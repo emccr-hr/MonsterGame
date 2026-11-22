@@ -1,18 +1,27 @@
-// Placeholder monster art (vector style, Art-Direction.md), shared by every scene that shows a
-// monster: battle, team, backpack, Monster Book, evolution. Swap this for real sprites later.
-// Colors and markings come from each monster's `art` in monsters.json, so a new monster needs no
-// code change here (ADR 0003). Shapes are sized as fractions of the sprite so they read at 40 px.
+// Monster art shared by every scene that shows a monster: battle, team, backpack, Monster Book,
+// evolution. A monster with a vector sprite (src/assets/sprites/monsters/<id>.svg, M8) is drawn
+// from it; any other monster falls back to a placeholder made from its `art` look in monsters.json
+// (colors and markings), so a new monster needs no code change either way (ADR 0003). Fallback
+// shapes are sized as fractions of the sprite so they read at 40 px.
 import * as Phaser from 'phaser';
 import { FONT } from '../config';
 import { content } from '../data';
 import type { MonsterArt } from '../data/schema';
 import { battleSpriteSize } from '../logic/battleUi';
 import { species } from '../logic/monster';
+import { fitBox, monsterKey, tierFor } from './spriteManifest';
+import { monsterSprites } from './sprites';
 
 export interface MonsterLookInput {
   species: string;
   big?: boolean;
 }
+
+export interface DrawMonsterOptions {
+  /** Mirror the sprite. Sprites face left (or the front), so the player's side in battle flips them. */
+  flip?: boolean;
+}
+
 
 const hex = (c: string): number => parseInt(c.slice(1), 16);
 const darker = (c: number, amount: number): number => Phaser.Display.Color.IntegerToColor(c).darken(amount).color;
@@ -105,14 +114,42 @@ function drawMarkings(g: Phaser.GameObjects.Graphics, art: MonsterArt, px: numbe
 
 /**
  * Draws a monster as a container centered on (x, y). `size` overrides the battle size rule
- * (`battleSpriteSize`), e.g. for small icons in menus. Big Monsters get 1.25x and a star.
+ * (`battleSpriteSize`), e.g. for small icons in menus: a sprite's longest side is that many px,
+ * like the placeholder's width. Big Monsters get 1.25x and a star.
  */
-export function drawMonster(scene: Phaser.Scene, m: MonsterLookInput, x: number, y: number, size?: number): Phaser.GameObjects.Container {
+export function drawMonster(
+  scene: Phaser.Scene,
+  m: MonsterLookInput,
+  x: number,
+  y: number,
+  size?: number,
+  opts: DrawMonsterOptions = {},
+): Phaser.GameObjects.Container {
   const s = species(content, m.species);
-  const art = s.art;
-  const body = hex(art.body);
   const px = (size ?? battleSpriteSize(s.scale)) * (m.big ? 1.25 : 1);
+  const sprite = monsterSprites[s.id];
+  const key = monsterKey(s.id, tierFor(px));
+  const parts: Phaser.GameObjects.GameObject[] = [];
+  let top: number;
+  // The vector sprite if its file exists and loaded; otherwise the look-data placeholder.
+  if (sprite && scene.textures.exists(key)) {
+    const box = fitBox(sprite.width, sprite.height, px);
+    parts.push(scene.add.image(0, 0, key).setDisplaySize(box.width, box.height).setFlipX(!!opts.flip));
+    top = -box.height / 2;
+  } else {
+    parts.push(...drawPlaceholder(scene, s.name, s.art, px));
+    top = s.art.markings === 'crown' ? -px * 0.62 : -px * 0.425;
+  }
+  if (m.big) {
+    const r = Math.max(6, Math.min(18, px * 0.18));
+    parts.push(scene.add.star(0, top - r * 0.6, 5, r * 0.45, r, 0xffd166).setStrokeStyle(2, 0x7a5c00));
+  }
+  return scene.add.container(x, y, parts);
+}
 
+/** The look-data placeholder (before M8): a colored body with markings, eyes and the name's first letter. */
+function drawPlaceholder(scene: Phaser.Scene, name: string, art: MonsterArt, px: number): Phaser.GameObjects.GameObject[] {
+  const body = hex(art.body);
   const g = scene.add.graphics();
   g.fillStyle(body);
   g.fillEllipse(0, 0, px, px * 0.85);
@@ -133,11 +170,11 @@ export function drawMonster(scene: Phaser.Scene, m: MonsterLookInput, x: number,
   g.fillCircle(-0.16 * px, -0.08 * px, 0.05 * px);
   g.fillCircle(0.2 * px, -0.08 * px, 0.05 * px);
 
-  const parts: Phaser.GameObjects.GameObject[] = [
+  return [
     g,
     // The name's first letter: a cue that doesn't rely on color.
     scene.add
-      .text(0, px * 0.18, s.name.charAt(0), {
+      .text(0, px * 0.18, name.charAt(0), {
         fontFamily: FONT,
         fontSize: `${Math.round(px * 0.28)}px`,
         color: '#ffffff',
@@ -146,10 +183,4 @@ export function drawMonster(scene: Phaser.Scene, m: MonsterLookInput, x: number,
       })
       .setOrigin(0.5),
   ];
-  if (m.big) {
-    const r = Math.max(6, Math.min(18, px * 0.18));
-    const starY = art.markings === 'crown' ? -px * 0.62 - r * 0.6 : -px * 0.55;
-    parts.push(scene.add.star(0, starY, 5, r * 0.45, r, 0xffd166).setStrokeStyle(2, 0x7a5c00));
-  }
-  return scene.add.container(x, y, parts);
 }

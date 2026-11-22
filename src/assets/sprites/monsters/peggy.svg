@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- PEGGY: brown bulldog with white spots on neck and head -->
+    <g stroke="#2a1a10" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="40" y="80" width="12" height="16" rx="4" fill="#8a5a35"/><rect x="76" y="80" width="12" height="16" rx="4" fill="#8a5a35"/>
+      <ellipse cx="62" cy="68" rx="34" ry="20" fill="#8a5a35"/>
+      <rect x="20" y="80" width="13" height="16" rx="4" fill="#8a5a35"/>
+      <path d="M94 60 Q100 54 98 50" fill="none"/>
+      <path d="M62 56 Q72 50 84 56 Q90 66 82 74 Q70 78 62 70 Q58 62 62 56 Z" fill="#fff" stroke="none"/>
+      <circle cx="34" cy="50" r="26" fill="#8a5a35"/>
+      <clipPath id="peggyHeadClip"><circle cx="34" cy="50" r="24.5"/></clipPath>
+      <path d="M4 18 H35 Q38 30 35 40 Q30 50 18 50 Q8 50 4 46 Z" fill="#fff" stroke="none" clip-path="url(#peggyHeadClip)"/>
+      <path d="M12 30 L8 18 L22 26 Z M56 30 L60 18 L46 26 Z" fill="#5e3a20"/>
+      <ellipse cx="34" cy="58" rx="16" ry="10" fill="#a8774f"/>
+      <ellipse cx="34" cy="52" rx="5" ry="3.5" fill="#1a1a1a"/>
+      <circle cx="24" cy="42" r="3.5" fill="#111"/><circle cx="44" cy="42" r="3.5" fill="#111"/>
+      <path d="M22 62 Q34 70 46 62" fill="none"/>
+      <path d="M27 63 L28 58 L30 64 M38 64 L40 58 L41 63" fill="#fff" stroke-width="1.5"/>
+    </g>
+</svg>

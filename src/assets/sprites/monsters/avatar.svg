@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 160" width="120" height="160">
+  <!-- AVATAR: human shape made of the 5 elements (original) -->
+  <defs><filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+    <g stroke="#2b2420" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <!-- water swirl, back half -->
+      <path d="M8 104 Q60 80 112 104" fill="none" stroke="#3b9be0" stroke-width="5" opacity=".7"/>
+      <!-- legs: rock + sand -->
+      <path d="M40 106 L34 132 L36 154 L52 154 L54 132 L56 108 Z" fill="#8a7a6a"/>
+      <path d="M36 132 L54 132 L52 154 L36 154 Z" fill="#d9bf85"/>
+      <path d="M64 108 L66 132 L68 154 L84 154 L86 132 L80 106 Z" fill="#d9bf85"/>
+      <path d="M66 112 L84 112 L86 132 L66 132 Z" fill="#8a7a6a"/>
+      <g fill="#b89a5c" stroke="none"><circle cx="40" cy="140" r="1"/><circle cx="46" cy="146" r="1"/><circle cx="72" cy="122" r="1"/><circle cx="78" cy="140" r="1"/><circle cx="74" cy="148" r="1"/></g>
+      <path d="M38 118 L46 122 M74 120 L80 126" stroke="#5e5248" stroke-width="1.5"/>
+      <!-- torso: packed stone (mockup guess) -->
+      <path d="M36 58 L84 58 L88 82 L80 110 L40 110 L32 82 Z" fill="#9c8c7a"/>
+      <path d="M44 70 L54 76 L52 88 M70 66 L66 80 L76 90 M48 98 L60 102" fill="none" stroke="#6a5c4e" stroke-width="1.5"/>
+      <!-- lava arm (viewer's left) -->
+      <path d="M36 60 L20 72 L10 100 L18 104 L28 80 L38 72 Z" fill="#c0392b"/>
+      <g fill="none" stroke="#ffb020" stroke-width="2" filter="url(#glow)"><path d="M30 68 L24 78 L20 92 M16 98 L22 86"/></g>
+      <circle cx="12" cy="104" r="7" fill="#e85a1a"/>
+      <!-- ice arm (viewer's right) -->
+      <path d="M84 60 L98 70 L110 98 L102 102 L92 80 L82 72 Z" fill="#bfe6ff"/>
+      <path d="M90 66 L96 84 M100 76 L106 94" stroke="#7fb8e0" stroke-width="1.5"/>
+      <path d="M102 100 L100 112 L106 106 L110 114 L110 100 Z" fill="#dff3ff"/>
+      <!-- head: stone, glowing eyes -->
+      <rect x="46" y="30" width="28" height="28" rx="8" fill="#9c8c7a"/>
+      <rect x="51" y="40" width="7" height="4" rx="2" fill="#fff6c0" stroke="none" filter="url(#glow)"/>
+      <rect x="62" y="40" width="7" height="4" rx="2" fill="#fff6c0" stroke="none" filter="url(#glow)"/>
+      <path d="M54 50 Q60 53 66 50" fill="none" stroke-width="1.8"/>
+      <!-- vine-and-leaf hair -->
+      <path d="M46 36 Q40 20 52 16 Q60 8 70 16 Q82 18 76 36" fill="none" stroke="#3f8f3a" stroke-width="4"/>
+      <path d="M46 36 Q36 46 38 60 M76 36 Q86 46 84 62" fill="none" stroke="#3f8f3a" stroke-width="3"/>
+      <g fill="#6cc04a" stroke="#2f6d2f" stroke-width="1.2">
+        <path d="M50 14 q-8 -6 -10 2 q6 4 10 -2Z"/><path d="M62 10 q2 -9 -6 -8 q-1 7 6 8Z"/><path d="M72 16 q8 -5 9 3 q-6 3 -9 -3Z"/>
+        <path d="M40 46 q-8 0 -6 7 q6 -1 6 -7Z"/><path d="M84 48 q8 0 6 7 q-6 -1 -6 -7Z"/><path d="M38 58 q-6 4 -2 9 q4 -4 2 -9Z"/><path d="M84 60 q6 4 2 9 q-4 -4 -2 -9Z"/>
+      </g>
+      <!-- water swirl, front half + drops -->
+      <path d="M8 104 Q60 128 112 104" fill="none" stroke="#3b9be0" stroke-width="5"/>
+      <g fill="#7cc4f2" stroke="#2a6fa8" stroke-width="1"><path d="M6 96 q3 -6 6 0 a3 3 0 1 1 -6 0Z"/><path d="M110 92 q3 -6 6 0 a3 3 0 1 1 -6 0Z"/><path d="M96 124 q3 -6 6 0 a3 3 0 1 1 -6 0Z"/></g>
+    </g>
+</svg>
