@@ -53,4 +53,4 @@
 
 ## G. Characters to design
 37. **Player character:** what do you look like? Can players pick a look and type a name? *(Working look from the owner, 2026-11-21: a boy with shoulder-length blonde hair, light skin, blue eyes. Still open: outfit, picking a look, typing a name.)*
-38. **Guide character** in Ansonville: name, look, personality. *(Owner, 2026-11-21: a bald man with a dark mustache who explains the game when needed and points you to quests and goals. Still open: name, outfit, personality.)*
+38. **Guide character** in Ansonville: name, look, personality. *(Owner, 2026-11-21: a bald man with a dark mustache who explains the game when needed and points you to quests and goals. Named **Papai**; the mockup look is approved. Still open: personality.)*

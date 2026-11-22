@@ -97,7 +97,7 @@ All in `src/logic/`, all unit-tested:
 - **Exit:** a new player reaches their first evolution without help from a grown-up.
 
 ### M8: Art and audio
-- **Base character art first** (Round 61): the 15 base-form monsters and the player character, as original sprites drawn from the monster docs (simple pixel art or vector), sized to the size rules (Dumble = 1×).
+- **Base character art first** (Round 61): the 15 base-form monsters and the player character, as original sprites drawn from the monster docs (**vector**, owner's pick 2026-11-21), sized to the size rules (Dumble = 1×).
 - **Placeholders** for evolved forms, Avatar, tiles and items: colored shapes with the name and an icon, the same size as the final art.
 - **Designer drawings pipeline:** scan or photograph → clean up → sprite sheet; a drawing replaces the placeholder whenever it arrives (`06-Art-and-Audio/Art-Direction.md`).
 - Audio: royalty-free or original music per biome, plus sound effects (cage throw, catch, level up, evolve). Volume and mute settings.

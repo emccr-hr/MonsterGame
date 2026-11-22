@@ -7,7 +7,8 @@
 
 ## The guide character (in-game helper)
 *Plan: ADR 0004 and Development Plan M7.*
-- **Look (owner, 2026-11-21):** a **bald man with a dark mustache**. Name, outfit and personality are still open.
+- **Name (owner, 2026-11-21): Papai.**
+- **Look (owner, 2026-11-21):** a **bald man with a dark mustache**; the mockup in `06-Art-and-Audio/Art-Mockups.html` is approved. Personality is still open.
 - **Job (owner, 2026-11-21):** explains the game **when needed** and gives **direction about quests and goals**.
 - Lives in **Ansonville**, next to the Reviver.
 - **"What should I do next?"** Scripted from game state: first catch → explore → buy a map part → evolve → catch them all → the Avatar gate.
