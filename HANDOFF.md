@@ -10,9 +10,12 @@ and `09-Production/Development-Plan.md`. Whoever orchestrates keeps this file cu
 - His exact words: `00-Raw-Input/Kid-Description.md` (61 rounds; voice-typing slips are noted under each round).
 - Repo: https://github.com/emccr-hr/MonsterGame (public, `main`). It may later move to another account the owner controls.
 
-## State (2026-11-21)
+## State (2026-11-22)
 - **Design complete. M0 Foundation merged (PR #3):** Phaser 4.2.1 + Vite 8 + TypeScript 6.0 skeleton that boots to a Title screen (New Game / Continue), seeded RNG (`src/logic/rng.ts`), `window.__TEST__` hook, ESLint/`tsc`/spelling/data checks, `npm run ci:local` (`--full` adds 3 Playwright smoke tests), pre-commit hook, one-job `ci.yml`. How-to: `docs/developer-guide.md`.
 - **M1 Content as data merged (PR #7):** all content in `src/data/*.json` (31 monsters incl. Avatar, 45 moves, 10 abilities, 5 biomes, 5 items, `rules.json`, `guide.json`), Zod schemas in `schema.ts`, cross-checks in `validate.ts`, loaded for the game by `src/data/index.ts`. Proposed numbers (base stats, power tiers, effect amounts) in `02-Gameplay/Balance.md`.
+- **M3 World merged (PR #9):** New Game → pick a biome → Ansonville hub (36x22 grid) with shop, Reviver and guide spots ("coming soon"), 5 biome gates (locked ones say "Map part needed") and the locked Avatar arena; 5 one-screen biome maps; arrow keys/WASD grid movement, camera, gate transitions. Maps are **character grids in `src/data/maps/index.ts`, not Tiled** (Decisions-Log). Step encounters on grass/sand/snow/ash fire `WILD_ENCOUNTER` on `game.events` (`src/scenes/events.ts`, payload `{ biomeId, sceneKey, tile }`) and show "A wild monster appears!"; the roll is `stepOnEncounterGround` in `src/logic/encounterRate.ts`. Scene keys: `Title`, `PickBiome`, `Ansonville`, `Forest`, `Beach`, `Desert`, `Snowy`, `Volcano` (one `MapScene` class). Minimal world state in `src/state/world.ts` (`openBiomes`, position, tips seen; `openBiome()` for M6) — fold it into the M2 game state and save. Dev builds: **U** opens every gate. How-to: `docs/developer-guide.md` "The world (M3)".
+- **Playable now:** walk Ansonville and your picked biome; encounters only show a message. Catching and battles arrive with M4.
+- **Art direction (PRs #10, #11):** **vector** placeholder art (not pixel); chosen palette (playful primaries, a theme per area) and approved looks for Ansonville, gates, arena, shop, Reviver and items; "N x Dumble" scales every dimension, battle sprites compressed (proposed `clamp(72*sqrt(N), 56, 240)` px, not yet OK'd). Player (working look): a boy with shoulder-length blonde hair, light skin, blue eyes. Guide: **Papai**, a bald man with a dark mustache who explains the game when needed and points to quests and goals. All in `06-Art-and-Audio/Art-Mockups.html` and Art-Direction.md. PR #11 (round 2) may still be open: check before relying on it.
 - **Owner's direction (2026-11-21):** get through M1–M4 as fast and efficiently as possible; fun and polish can wait. Build the simplest option where a design question is open, and ask the designer in parallel.
 - **Laptop memory is tight** (it ran out once with Firefox open). Keep parallel sessions to what fits.
 - **Merging:** owner's standing rule (ADR 0007, PR #2): merge only with `node scripts/merge-if-green.mjs <pr>` (`--docs-only` for docs PRs).
@@ -21,9 +24,9 @@ and `09-Production/Development-Plan.md`. Whoever orchestrates keeps this file cu
 - The `design-buddy` skill exists for talking with the designer.
 
 ## Next
-1. **M2 Core rules** in `src/logic/` with unit tests (use `Rng` from `rng.ts`; the lint rule blocks `Math.random` there). Logic takes `Content` as a parameter.
-2. **M3 World** can run in parallel (scenes only, its own worktree). Proposed: simple grid maps in code or JSON instead of Tiled, to go faster (log it in the Decisions-Log).
-3. **M4 Catching and battles** joins M2 and M3.
+1. **M2 Core rules: in progress, NOT committed.** The work is in the main clone on branch `feat/m2-core-rules` (still based on the pre-M3 `main`): `src/logic/` balance, battle, catching, encounter, game, growth, monster, save, spawning, world, plus their tests in `tests/unit/logic/` and `tests/unit/helpers.ts`, and edits to `02-Gameplay/Balance.md` and `src/data/monsters.json`. Don't lose or overwrite it: review it, merge `origin/main` into the branch (M3 added only `src/logic/encounterRate.ts` there, so no file overlap), finish, `ci:local`, PR.
+2. **M4 Catching and battles** joins M2 and M3: listen for `WILD_ENCOUNTER`, pause the map scene, run the catch/battle scenes on M2's rules, resume `sceneKey`; first catch with no team offers only "Throw cage"; losing wakes you at the last Reviver. Move `src/state/world.ts` into the M2 game state.
+3. Small follow-ups: switch the map colors in `src/data/maps/index.ts` to the chosen palette rows in `Art-Mockups.html`; merge PR #11 if still open.
 
 ## Orchestrator's job (lighter version of Pulse's)
 1. Start **one or two** focused work sessions at a time, each with a brief: files, exit criteria, "read HANDOFF.md first", worktree at `..\MonsterGame-<name>`.
@@ -57,7 +60,8 @@ and `09-Production/Development-Plan.md`. Whoever orchestrates keeps this file cu
 | Art | Base character art first, placeholders elsewhere, his drawings later | Art-Direction.md |
 
 ## Waiting on
-- **Designer (via design-buddy):** Open-Questions sections **F** (research ideas: visible wild monsters, catch streaks, partner, throw timing, tough trainers) and **G** (player character, guide character). Needed by M3–M7, not M0–M2.
+- **Designer (via design-buddy):** Open-Questions section **F** (research ideas: visible wild monsters, catch streaks, partner, throw timing, tough trainers) and what's left of **G** (player outfit, picking a look and a name; Papai's personality). Confirm Peggy's new big body spot (her doc says "white spots on her neck and head").
+- **Owner:** OK or change the proposed battle size rule.
 - **Owner:** confirm the section E defaults (C7, C8, X18, X19) when convenient; the final repo home and deploy host (ADR 0006).
 
 ## Folder map
