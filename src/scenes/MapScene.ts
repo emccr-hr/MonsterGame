@@ -200,7 +200,7 @@ export class MapScene extends Phaser.Scene {
   }
 
   /** Pauses the map and opens a screen on top (menu, shop); it resumes the map when it closes. */
-  private openOverlay(key: 'Menu' | 'Shop'): void {
+  private openOverlay(key: 'Menu' | 'Shop' | 'Papai'): void {
     if (this.paused || this.leaving || this.moving || this.justResumed()) return;
     this.paused = true;
     this.queued = null;
@@ -286,7 +286,7 @@ export class MapScene extends Phaser.Scene {
         return;
       }
       case 'guide':
-        this.showMessage(tipText('guide-spot'));
+        this.openOverlay('Papai');
         return;
       case 'arenaGate': {
         const gate = gateProgress(content, getGame());

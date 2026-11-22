@@ -124,3 +124,10 @@ No code change needed (ADR 0003). Schemas: `src/data/schema.ts`; cross-checks: `
   the player stands so the gate shows open.
 - The map HUD shows gems and cages; the Avatar arena gate says "Monsters caught: X / 15".
 
+## Papai, the game expert (ADR 0008)
+- Papai answers from `src/data/guide.json`: `tips` (first-time), `topics` (questions and answers, with
+  what each `covers`) and `goals` ("What should I do next?", first match wins). Conditions are in
+  `src/logic/guide.ts`. Players open him at his spot in Ansonville or with M → Ask Papai (`PapaiScene`).
+- `tests/unit/data/guideCoverage.test.ts` fails when a screen, key or item has no topic. Fix it in
+  `guide.json`. The `gameplay-expert` skill keeps the answers true when features change.
+

@@ -32,11 +32,20 @@ export function validateContent(raw: RawContent): ValidationResult {
       seen.add(id);
     }
   }
-  const tipIds = new Set<string>();
-  for (const { id } of c.guide.tips) {
-    if (tipIds.has(id)) errors.push(`guide.json: duplicate tip id "${id}"`);
-    tipIds.add(id);
+  for (const list of ['tips', 'topics', 'goals'] as const) {
+    const ids = new Set<string>();
+    for (const { id } of c.guide[list]) {
+      if (ids.has(id)) errors.push(`guide.json: duplicate ${list} id "${id}"`);
+      ids.add(id);
+    }
   }
+  const itemIds = new Set(c.items.map((i) => i.id));
+  for (const t of c.guide.topics) {
+    for (const cov of t.covers) {
+      if (cov.startsWith('item:') && !itemIds.has(cov.slice(5))) errors.push(`guide.json topic "${t.id}": no item "${cov.slice(5)}"`);
+    }
+  }
+  if (c.guide.goals.at(-1)?.when !== 'always') errors.push('guide.json: the last goal must be "always", so Papai always has an answer');
 
   const monsters = new Map(c.monsters.map((m) => [m.id, m]));
   const moves = new Set(c.moves.map((m) => m.id));
