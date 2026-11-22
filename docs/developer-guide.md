@@ -32,12 +32,14 @@ scenes, UI or saves.
 | `src/data/` | Content as JSON (monsters, moves, biomes, items, guide tips) plus Zod schemas (M1, ADR 0003) |
 | `src/scenes/` | Phaser scenes. They call logic; logic never calls them. |
 | `src/ui/`, `src/state/` | Shared widgets; game-state store and save glue (from M2) |
+| `src/data/maps/` | World maps as character grids (M3; legend at the top of `index.ts`) |
+| `src/world/` | Reading map grids (tiles, gates, reachability); no Phaser, unit tested |
 | `src/config.ts` | Screen size, colors, save key |
 | `src/testHook.ts` | `window.__TEST__` for smoke tests |
 | `tests/unit/` | Vitest, mirroring `src/logic/` |
 | `tests/smoke/` | Playwright, about 5 flows |
 | `scripts/` | `ci-local`, spelling, data validation, hooks setup, `merge-if-green` |
-| `public/assets/` | Sprites, tiles, maps, audio (from M3) |
+| `public/assets/` | Sprites, tiles, audio (later milestones) |
 
 ## Randomness
 Every rule that rolls dice takes an `Rng` (`createRng(seed)`). Same seed, same results, so tests are
@@ -54,6 +56,16 @@ Scenes call `reportState({...})` from `src/testHook.ts` whenever that changes. T
 builds, and in production builds only with `?test` in the address. Tests drive the game with the
 keyboard and mouse, never through the hook. Smoke tests run one at a time, because several headless
 WebGL pages at once stalled on the dev laptop.
+
+## The world (M3)
+- Scenes: `Title` → `PickBiome` (New Game) → `Ansonville`; biome scenes are named after the biome
+  (`Forest`, `Beach`, `Desert`, `Snowy`, `Volcano`). One `MapScene` class draws every map.
+- Maps are grids of characters in `src/data/maps/index.ts`, 32 px per tile. Edit a row, and
+  `tests/unit/world/maps.test.ts` checks it's still a rectangle with reachable gates, shop and Reviver.
+- Encounter ground fires `WILD_ENCOUNTER` on `game.events` (`src/scenes/events.ts`) with
+  `{ biomeId, sceneKey, tile }`, and shows "A wild monster appears!" (M4 builds the real encounter).
+- World state (open biomes, position, tips seen) is in `src/state/world.ts`.
+- Dev builds only: press **U** on a map to open every gate.
 
 ## How to add a monster
 No code change needed (ADR 0003). Schemas: `src/data/schema.ts`; cross-checks: `src/data/validate.ts`.

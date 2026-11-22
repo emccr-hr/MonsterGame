@@ -97,11 +97,10 @@ export class TitleScene extends Phaser.Scene {
     const item = this.items[this.selected];
     if (!item?.enabled) return;
     if (item.label === 'New Game') {
-      // The world arrives in M3. Until then, say so in kid-friendly words.
-      this.message?.setText('Your adventure is coming soon!');
-    } else {
-      this.message?.setText('Saved games are coming soon!');
+      this.scene.start('PickBiome');
+      return;
     }
+    this.message?.setText('Saved games are coming soon!');
     this.refresh();
   }
 
