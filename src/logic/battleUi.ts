@@ -2,12 +2,13 @@
 // Plain functions, no Phaser, so they are unit-tested; BattleScene only draws what these return.
 import type { Content } from '../data/schema.ts';
 import { activeOf, type Action, type BattleEvent, type BattleState, type SideId } from './battle.ts';
+import { itemTargetProblem } from './collection.ts';
 import { isKnockedOut, maxHp, species } from './monster.ts';
 
 export interface MenuChoice {
   label: string;
   /** The action to play, or a sub-menu to open. */
-  pick: Action | { kind: 'fight' } | { kind: 'bag' } | { kind: 'team' };
+  pick: Action | { kind: 'fight' } | { kind: 'bag' } | { kind: 'team' } | { kind: 'target'; item: string };
 }
 
 /**
@@ -34,20 +35,22 @@ export function moveMenu(content: Content, s: BattleState): MenuChoice[] {
   return me.m.moves.map((id) => ({ label: content.moves.find((m) => m.id === id)?.name ?? id, pick: { kind: 'move', move: id } }));
 }
 
-/** Healing items in the bag. A potion goes to the monster fighting; a Wake-Up Snack to the first knocked-out one. */
+/** Healing items in the bag that some team monster can use now. Picking one opens targetMenu. */
 export function bagMenu(content: Content, s: BattleState): MenuChoice[] {
-  const choices: MenuChoice[] = [];
-  for (const it of content.items) {
+  return content.items.flatMap((it) => {
     const have = s.bag[it.id] ?? 0;
-    if (have < 1) continue;
-    if (it.effect.kind === 'heal' && s.player.active >= 0) {
-      choices.push({ label: `${it.name} (${have})`, pick: { kind: 'item', item: it.id, target: s.player.active } });
-    } else if (it.effect.kind === 'revive') {
-      const target = s.player.team.findIndex((c) => isKnockedOut(c.m));
-      if (target >= 0) choices.push({ label: `${it.name} (${have})`, pick: { kind: 'item', item: it.id, target } });
-    }
-  }
-  return choices;
+    if (have < 1 || targetMenu(content, s, it.id).length === 0) return [];
+    return [{ label: `${it.name} (${have})`, pick: { kind: 'target', item: it.id } as const }];
+  });
+}
+
+/** "Who gets it?": the team monsters this item would help (Bag screen target picker). */
+export function targetMenu(content: Content, s: BattleState, itemId: string): MenuChoice[] {
+  return s.player.team.flatMap((c, i) =>
+    itemTargetProblem(content, itemId, c.m) === null
+      ? [{ label: `${species(content, c.m.species).name}  ${c.m.hp}/${maxHp(content, c.m)} HP`, pick: { kind: 'item', item: itemId, target: i } as Action }]
+      : [],
+  );
 }
 
 /** Team monsters you could switch to (awake and not already fighting). */

@@ -39,6 +39,31 @@
       "id": "reviver",
       "screen": "Biome",
       "text": "Walk into the Reviver to heal your team for free. If you lose a battle, you wake up there."
+    },
+    {
+      "id": "menu",
+      "screen": "Map",
+      "text": "Press M for the menu: your Team, Backpack, Bag and Monster Book. Press M or Esc to close it."
+    },
+    {
+      "id": "team",
+      "screen": "Team",
+      "text": "Pick a monster with Enter, then pick another to swap. The first one on your team fights first."
+    },
+    {
+      "id": "bag",
+      "screen": "Bag",
+      "text": "Pick a Potion or Wake-Up Snack, then pick who gets it. In battle, Bag works the same way."
+    },
+    {
+      "id": "book",
+      "screen": "Book",
+      "text": "Your Monster Book shows every monster you have seen and caught. Catch all the wild ones to open Avatar's arena!"
+    },
+    {
+      "id": "evolve",
+      "screen": "Evolve",
+      "text": "Each monster grows into a new form at its own level. Win battles to level up!"
     }
   ]
 }

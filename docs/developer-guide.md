@@ -99,3 +99,20 @@ No code change needed (ADR 0003). Schemas: `src/data/schema.ts`; cross-checks: `
   validates data files when they change.
 - Draft PR → `ci:local` → mark ready once → push once. CI is one job and skips drafts and docs-only changes.
 - Merge only with `node scripts/merge-if-green.mjs <pr>` (ADR 0007).
+
+## Team, Bag, Monster Book and evolving (M5)
+- **M** on any map (or the "M: Menu" button) pauses the map and opens `Menu` (`src/scenes/MenuScene.ts`):
+  Team and Backpack (`Team`), `Bag`, Monster Book (`Book`), Save. Each screen gets `{ map }` (the paused
+  map's scene key); Esc goes back to the menu, and closing the menu resumes the map.
+- The rules behind the screens are in `src/logic/collection.ts` (swapping, backpack sorting, the Book's
+  entries and counters, evolving, which item can go to which monster), with tests.
+- Menu screens use `ListMenu` and `bindMenuKeys` from `src/ui/listMenu.ts`. Keys bound with `onKey`
+  ignore the first 150 ms after a screen opens, because the key that opened the screen is otherwise
+  handled again by the new screen in the same frame. The map does the same after it resumes.
+- Monsters are drawn by `drawMonster` in `src/ui/monsterArt.ts`, shared by every screen.
+- **Evolving:** after a won battle, every team monster at its evolve level runs the `Evolve` scene
+  (`src/scenes/EvolveScene.ts`), then the map resumes.
+- In battle, **Bag** opens a target picker: pick the item, then who gets it.
+- Dev builds only: **L** on a map levels the team up to the next evolve level and evolves it (to
+  reach evolving fast in a play-test).
+
