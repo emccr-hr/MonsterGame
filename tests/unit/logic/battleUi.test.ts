@@ -50,6 +50,7 @@ describe('battle text', () => {
       if (e.type === 'damage') expect(lines[i]).toBeNull();
     });
     expect(eventText(content, state, { type: 'end', outcome: 'won' })).toBe('You won!');
+    expect(eventText(content, state, { type: 'miss', side: 'enemy', reason: 'colony' })).toBe("Red ants won't fight each other! Switch or run.");
     expect(eventText(content, state, { type: 'end', outcome: 'fled' })).toBe('The wild Pengwiggle ran away!');
     expect(eventText(content, state, { type: 'throw', throw: { result: 'caught', wobbles: 3 } })).toBe('Gotcha! You caught the wild Pengwiggle!');
   });
