@@ -75,3 +75,8 @@
 | 2026-11-21 | Avatar's body is **made of the elements**. | Designer (Round 61). |
 | 2026-11-21 | Art: **base character art first**, placeholders where needed. Scope: **build everything at once**. | Parent (Round 61). |
 | 2026-11-21 | Defaults chosen by Claude for new small conflicts: Avatar arena inside Ansonville (C7); start with 100 cages + 100 gems (C8); wild levels scale with team (X18); map part = 50 gems, one per biome (X19). | Claude, pending confirmation. |
+| 2026-11-21 | **Colors:** keep the M3 placeholder colors; lean toward playful primary colors with a cohesive theme per area. | Owner, after seeing the art mockups. |
+| 2026-11-21 | **Size rule:** "N x Dumble" scales **every dimension** (uniform), not just height. In battle, all monsters scale down (Dumble too) so a 10x Avatar fits, and bigger still looks bigger. | Owner. Resolves the height-vs-size question from the art mockups. |
+| 2026-11-21 | **Player character (working look):** a boy with shoulder-length blonde hair, light skin and blue eyes. To be defined further. | Owner. Open-Questions 37 stays open for the outfit, picking a look and naming. |
+| 2026-11-21 | Claude proposes looks for Ansonville, the Avatar arena, gates, shop, Reviver and items, and shows Peggy as vector and as pixel art, in `06-Art-and-Audio/Art-Mockups.html`. | Owner asked. Proposals need the owner's OK; the interim sprite style is still to pick. |
+| 2026-11-21 | **Guide character:** a bald man with a dark mustache. He explains the game when needed and gives direction about quests and goals. | Owner. Open-Questions 38 stays open for name, outfit and personality. |
