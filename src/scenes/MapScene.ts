@@ -195,6 +195,7 @@ export class MapScene extends Phaser.Scene {
         this.tile = next;
         this.moving = false;
         setPlayerPosition(this.map.id, next);
+        if (this.messageBox.visible) this.placeMessageBox();
         this.afterStep(kind);
         this.report();
       },
@@ -373,12 +374,16 @@ export class MapScene extends Phaser.Scene {
     if (this.messageBox.visible && this.messageText.text === text) return;
     this.messageTimer?.remove();
     this.messageText.setText(text);
-    // Keep the player in sight: near the bottom of the screen, show the box at the top instead.
-    const playerScreenY = this.player.y - this.cameras.main.scrollY;
-    this.messageBox.setY(playerScreenY > GAME_HEIGHT - 130 ? 56 : GAME_HEIGHT - 90);
+    this.placeMessageBox();
     this.messageBox.setVisible(true);
     this.messageTimer = this.time.delayedCall(ms, () => this.hideMessage());
     this.report();
+  }
+
+  /** Keep the player in sight: near the bottom of the screen, the box goes to the top instead. */
+  private placeMessageBox(): void {
+    const playerScreenY = this.player.y - this.cameras.main.scrollY;
+    this.messageBox.setY(playerScreenY > GAME_HEIGHT - 130 ? 56 : GAME_HEIGHT - 90);
   }
 
   private hideMessage(): void {
