@@ -2,27 +2,19 @@ import * as Phaser from 'phaser';
 import { COLORS, FONT, GAME_HEIGHT, GAME_WIDTH } from '../config';
 import { content } from '../data';
 import { mapById } from '../data/maps';
-import type { Element } from '../data/schema';
 import { activeOf, invalidReason, resolveTurn, type Action, type BattleEvent, type BattleState, type SideId } from '../logic/battle';
-import { bagMenu, battleSpriteSize, eventText, mainMenu, moveMenu, sideName, teamMenu, type MenuChoice } from '../logic/battleUi';
+import { bagMenu, eventText, mainMenu, moveMenu, sideName, teamMenu, type MenuChoice } from '../logic/battleUi';
 import { finishBattle, startWildEncounter } from '../logic/encounter';
-import { maxHp, species, type MonsterInstance } from '../logic/monster';
+import { maxHp, species } from '../logic/monster';
 import type { Rng } from '../logic/rng';
 import { gameRng, getGame, saveGame, setGame } from '../state/game';
 import { markTipSeen } from '../state/world';
 import { reportState } from '../testHook';
+import { drawMonster } from '../ui/monsterArt';
 import { besideTile, findAll, startTile } from '../world/grid';
 import type { WildEncounterEvent } from './events';
 
 type Phase = 'text' | 'menu' | 'fight' | 'bag' | 'team' | 'done';
-
-const ELEMENT_COLORS: Record<Element, number> = {
-  fire: 0xff6b35,
-  water: 0x3fa7f5,
-  earth: 0xb07d4f,
-  ice: 0x9fe3ff,
-  nature: 0x5cc85c,
-};
 
 const TEXT_MS = 1100;
 const ENEMY_AT = { x: GAME_WIDTH * 0.72, y: 170 };
@@ -94,7 +86,7 @@ export class BattleScene extends Phaser.Scene {
     this.drawBackground();
     this.enemyBar = this.makeBar(40, 40);
     this.playerBar = this.makeBar(GAME_WIDTH - 360, 300);
-    this.enemySprite = this.drawMonster(activeOf(this.battle.enemy)!.m, ENEMY_AT.x, ENEMY_AT.y);
+    this.enemySprite = drawMonster(this, activeOf(this.battle.enemy)!.m, ENEMY_AT.x, ENEMY_AT.y);
     this.refreshSide('enemy');
     this.refreshSide('player');
 
@@ -410,25 +402,6 @@ export class BattleScene extends Phaser.Scene {
     this.add.ellipse(PLAYER_AT.x, PLAYER_AT.y + 70, 300, 60, shadow);
   }
 
-  /** Placeholder monster: a rounded body in its biome's color, eyes, and its name's first letter. */
-  private drawMonster(m: MonsterInstance, x: number, y: number): Phaser.GameObjects.Container {
-    const s = species(content, m.species);
-    const biome = content.biomes.find((b) => b.id === s.biome);
-    const color = s.kind === 'boss' ? 0x8e5bd6 : ELEMENT_COLORS[biome?.element ?? 'nature'];
-    const size = battleSpriteSize(s.scale) * (m.big ? 1.25 : 1);
-    const dark = Phaser.Display.Color.IntegerToColor(color).darken(30).color;
-    const parts: Phaser.GameObjects.GameObject[] = [
-      this.add.ellipse(0, 0, size, size * 0.85, color).setStrokeStyle(4, dark),
-      this.add.circle(-size * 0.18, -size * 0.1, size * 0.1, 0xffffff),
-      this.add.circle(size * 0.18, -size * 0.1, size * 0.1, 0xffffff),
-      this.add.circle(-size * 0.16, -size * 0.08, size * 0.05, 0x1b1b1b),
-      this.add.circle(size * 0.2, -size * 0.08, size * 0.05, 0x1b1b1b),
-      this.add.text(0, size * 0.18, s.name.charAt(0), { fontFamily: FONT, fontSize: `${Math.round(size * 0.28)}px`, color: '#ffffff', stroke: '#000000', strokeThickness: 3 }).setOrigin(0.5),
-    ];
-    if (m.big) parts.push(this.add.star(0, -size * 0.55, 5, 8, 18, 0xffd166).setStrokeStyle(2, 0x7a5c00));
-    return this.add.container(x, y, parts);
-  }
-
   private makeBar(x: number, y: number): HpBar {
     const bg = this.add.rectangle(0, 0, 320, 78, 0x14112b, 0.85).setOrigin(0).setStrokeStyle(2, 0xffffff);
     const name = this.add.text(12, 8, '', { fontFamily: FONT, fontSize: '20px', color: COLORS.text });
@@ -452,7 +425,7 @@ export class BattleScene extends Phaser.Scene {
       const shown = this.playerSprite?.getData('uid') as number | undefined;
       if (shown !== c.m.uid) {
         this.playerSprite?.destroy();
-        this.playerSprite = this.drawMonster(c.m, PLAYER_AT.x, PLAYER_AT.y).setData('uid', c.m.uid);
+        this.playerSprite = drawMonster(this, c.m, PLAYER_AT.x, PLAYER_AT.y).setData('uid', c.m.uid);
       }
     }
     const max = maxHp(content, c.m);

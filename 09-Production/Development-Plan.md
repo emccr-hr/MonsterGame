@@ -109,6 +109,9 @@ All in `src/logic/`, all unit-tested:
 - Accessibility pass: keyboard only, text speed, nothing relies on color alone.
 - Release: tag `v1.0.0` → `deploy.yml` (ADR 0006).
 
+### Backlog (enhancements, not scheduled in a milestone yet)
+- **Dedicated catching scene (owner, 2026-11-22).** Today the Cage action plays the throw inside the battle. Proposal: when you pick Cage (or meet a wild monster with no team), cut to a short full-screen catching scene: the wild monster in the middle, the player's hand at the bottom, the tiny cage flies, grows big around the monster, wobbles 1–3 times, then a "Caught!" card with the monster's picture and "Team" or "Backpack", or it breaks open and you go back to the battle. Same rules (`src/logic/catching.ts`), only a new scene (`CatchScene`) that `BattleScene` runs and waits for. About half a day. Build after M5 and M6 if small; could pair with throw timing (Open-Questions 33) if the designer wants that.
+
 ## 5. How sessions run (Pulse-style, lighter)
 - **One orchestrator session** keeps `HANDOFF.md` and `STATUS.md` current, writes briefs, reviews PRs, and merges (docs-only after review; code when CI is green).
 - **One or two work sessions at a time**, each in its own worktree beside the main clone, each with a brief naming files, exit criteria and "read HANDOFF.md first". Keep writers off the same files. Suggested split: logic in one session, scenes and UI in another, once M2's interfaces exist.
