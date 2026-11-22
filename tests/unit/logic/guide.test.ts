@@ -33,7 +33,7 @@ describe("Papai's next goal", () => {
     let s = newGame(content, 'forest', 1);
     for (const m of content.monsters.filter((x) => x.spawnWeight !== null)) s = caught(s, m.id);
     expect(conditionHolds(content, s, 'arenaOpen')).toBe(true);
-    expect(nextGoal(content, s)).toMatch(/arena is open/);
+    expect(nextGoal(content, s)).toMatch(/caught every wild monster/);
     expect(conditionHolds(content, { ...s, avatarBeaten: true }, 'arenaOpen')).toBe(false);
   });
 });
