@@ -63,9 +63,24 @@ WebGL pages at once stalled on the dev laptop.
 - Maps are grids of characters in `src/data/maps/index.ts`, 32 px per tile. Edit a row, and
   `tests/unit/world/maps.test.ts` checks it's still a rectangle with reachable gates, shop and Reviver.
 - Encounter ground fires `WILD_ENCOUNTER` on `game.events` (`src/scenes/events.ts`) with
-  `{ biomeId, sceneKey, tile }`, and shows "A wild monster appears!" (M4 builds the real encounter).
-- World state (open biomes, position, tips seen) is in `src/state/world.ts`.
+  `{ biomeId, sceneKey, tile }`. `src/scenes/encounterFlow.ts` pauses that map and runs `Battle` (M4).
+- World state (open biomes, position, tips seen) is part of the game state; `src/state/world.ts` is
+  the map scenes' view of it.
 - Dev builds only: press **U** on a map to open every gate.
+
+## Catching and battles (M4)
+- The game in play is the M2 `GameState`, held in `src/state/game.ts` (`getGame`, `setGame`,
+  `saveGame`, `loadGame`). It saves to localStorage when you enter a map, use a Reviver, or finish a
+  battle. Title's **Continue** loads it.
+- `BattleScene` (key `Battle`) runs on top of the paused map: `startWildEncounter` → `resolveTurn`
+  each turn → `finishBattle`, then it resumes the map. If you lose, it starts the map of your last
+  Reviver instead, next to the Reviver. Catching is the Cage action inside the battle (the cage
+  grows as it flies, then wobbles).
+- What the screen says (menus, battle text, sprite sizes) is in `src/logic/battleUi.ts`, with tests.
+- Keys: arrows/WASD pick, Enter/Space choose or skip text, Esc goes back, **F** toggles 2x speed.
+- Test-only seed: `?seed=123` makes the dice repeat (map steps and battles). `tests/smoke/battle.spec.ts` uses it.
+- Placeholder art: a rounded vector body in the biome's element color, sized by
+  `battleSpriteSize(scale)` = `clamp(72·√scale, 56, 240)` px; Big Monsters are 1.25x with a star.
 
 ## How to add a monster
 No code change needed (ADR 0003). Schemas: `src/data/schema.ts`; cross-checks: `src/data/validate.ts`.

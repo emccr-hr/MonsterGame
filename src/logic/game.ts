@@ -31,6 +31,11 @@ export interface GameState {
   nextUid: number;
   /** Saved random-number state, so a loaded game continues the same sequence. */
   rngState: number;
+  /** Where the player is: a map id ("ansonville" or a biome id) and a tile (null = the map's start). */
+  area: string;
+  tile: { x: number; y: number } | null;
+  /** Guide tips already shown once. */
+  seenTips: string[];
 }
 
 export type Result<T> = { ok: true; state: T } | { ok: false; reason: string };
@@ -54,6 +59,9 @@ export function newGame(content: Content, firstBiome: string, rngState: number):
     avatarBeaten: false,
     nextUid: 1,
     rngState,
+    area: 'ansonville',
+    tile: null,
+    seenTips: [],
   };
 }
 

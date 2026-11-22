@@ -4,6 +4,8 @@ import { content } from '../data';
 import { ANSONVILLE, mapById, type GameMap } from '../data/maps';
 import { stepOnEncounterGround } from '../logic/encounterRate';
 import { createRng, type Rng } from '../logic/rng';
+import { useReviver } from '../logic/world';
+import { currentGame, freshSeed, getGame, saveGame, setGame } from '../state/game';
 import { getWorld, isBiomeOpen, markTipSeen, openAllBiomes, setPlayerPosition } from '../state/world';
 import { reportState } from '../testHook';
 import {
@@ -34,7 +36,6 @@ interface MapSceneData {
 
 const T = TILE_SIZE;
 const MESSAGE_MS = 3000;
-const ENCOUNTER_PAUSE_MS = 900;
 
 /** Number of naturally spawning monsters, for the Avatar arena sign (Final-Boss.md). */
 const wildCount = (): number => content.monsters.filter((m) => m.spawnWeight !== null).length;
@@ -77,8 +78,8 @@ export class MapScene extends Phaser.Scene {
     this.leaving = false;
     this.stepsSinceEncounter = 0;
     this.messageTimer = undefined;
-    // Scenes may use real time for the seed; the rules that matter take an Rng (ADR 0002).
-    this.rng = createRng(Date.now() >>> 0);
+    // Real time is the seed (or ?seed= in tests); the rules that matter take an Rng (ADR 0002).
+    this.rng = createRng(freshSeed());
 
     const gate = data.from ? gateTile(this.map, data.from) : undefined;
     this.tile = data.at ?? (gate ? besideTile(this.map, gate) : startTile(this.map));
@@ -100,6 +101,7 @@ export class MapScene extends Phaser.Scene {
     this.setupInput();
 
     setPlayerPosition(this.map.id, this.tile);
+    saveGame();
     this.report();
 
     // First visit: show this screen's guide tip once.
@@ -219,9 +221,14 @@ export class MapScene extends Phaser.Scene {
       case 'shop':
         this.showMessage('Shop: coming soon! You will buy cages and potions here.');
         return;
-      case 'reviver':
-        this.showMessage('Reviver: coming soon! It will heal your monsters for free.');
+      case 'reviver': {
+        // Free healing; losing a battle wakes you at the last Reviver you used.
+        setGame(useReviver(content, getGame(), this.map.id));
+        saveGame();
+        const anyone = getGame().team.length > 0;
+        this.showMessage(anyone ? 'Reviver: your monsters are all better!' : 'Reviver: it heals your monsters for free. Catch one first!');
         return;
+      }
       case 'guide':
         this.showMessage(tipText('guide-spot'));
         return;
@@ -241,16 +248,19 @@ export class MapScene extends Phaser.Scene {
     if (step.encounter) this.startEncounter(this.map.biome);
   }
 
-  /** M3 placeholder: announce the encounter and fire the event. M4 builds the real one. */
+  /** Fire the encounter: M4's encounter flow pauses this scene and runs the battle on top. */
   private startEncounter(biomeId: string): void {
     this.paused = true;
     this.queued = null;
-    this.showMessage('A wild monster appears!');
+    this.hideMessage();
+    this.events.once('resume', () => {
+      this.paused = false;
+      this.queued = null;
+      setPlayerPosition(this.map.id, this.tile);
+      this.report();
+    });
     const event: WildEncounterEvent = { biomeId, sceneKey: this.scene.key, tile: { ...this.tile } };
     this.game.events.emit(WILD_ENCOUNTER, event);
-    this.time.delayedCall(ENCOUNTER_PAUSE_MS, () => {
-      this.paused = false;
-    });
   }
 
   private goTo(sceneKey: string, data: MapSceneData): void {
@@ -403,6 +413,9 @@ export class MapScene extends Phaser.Scene {
       facing: this.facing,
       openBiomes: getWorld().openBiomes,
       message: this.messageBox?.visible ? this.messageText.text : '',
+      team: currentGame()?.team.map((m) => ({ species: m.species, level: m.level, hp: m.hp })) ?? [],
+      gems: currentGame()?.gems ?? 0,
+      cages: currentGame()?.bag.cage ?? 0,
     });
   }
 }

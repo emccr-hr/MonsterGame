@@ -152,13 +152,13 @@ export function invalidReason(content: Content, s: BattleState, a: Action): stri
   }
 }
 
-/** The enemy picks a move: random, but skips healing moves that would do nothing. */
+/** The enemy picks a move: random, but heals only below half HP and skips moves that would do nothing. */
 export function chooseEnemyMove(content: Content, s: BattleState, rng: Rng): string {
   const me = activeOf(s.enemy)!;
-  const full = me.m.hp >= maxHp(content, me.m);
+  const healthy = me.m.hp >= maxHp(content, me.m) / 2;
   const useful = me.m.moves.filter((id) => {
     const mv = moveDef(content, id);
-    if (has(mv, 'healSelf') && full) return false;
+    if (has(mv, 'healSelf') && healthy) return false;
     if (has(mv, 'healTeam') && s.enemy.team.length < 2) return false;
     if (has(mv, 'attackBoost') && me.boost >= has(mv, 'attackBoost')!.maxStacks) return false;
     return true;

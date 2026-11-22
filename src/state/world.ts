@@ -1,8 +1,10 @@
-// The little bit of world state the scenes need (M3): which biomes are open, where the player is,
-// and which first-time tips they've seen. No game rules here. The full game state and save file
-// come from M2 (src/logic/); when they land, this can move into that store.
+// The world part of the game state, for the map scenes: which biomes are open, where the player is,
+// and which first-time tips they've seen. Since M4 it lives in the M2 GameState (src/state/game.ts),
+// so it is saved with everything else. No game rules here.
 import { content } from '../data';
+import type { GameState } from '../logic/game';
 import type { Tile } from '../world/grid';
+import { currentGame, setGame, startGame } from './game';
 
 export interface WorldState {
   /** The biome picked on New Game, or null before a game starts. */
@@ -16,55 +18,65 @@ export interface WorldState {
   seenTips: string[];
 }
 
-const fresh = (): WorldState => ({ startBiome: null, openBiomes: [], area: null, tile: null, seenTips: [] });
-
-let state: WorldState = fresh();
-
 const biomeIds = (): string[] => content.biomes.map((b) => b.id);
 
 function assertBiome(id: string): void {
   if (!biomeIds().includes(id)) throw new Error(`Unknown biome "${id}"`);
 }
 
+/** Changes the game in play. Does nothing before a game starts. */
+function update(change: (g: GameState) => GameState): void {
+  const g = currentGame();
+  if (g) setGame(change(g));
+}
+
 /** A copy of the world state; changing it does nothing. */
 export function getWorld(): WorldState {
-  return structuredClone(state);
+  const g = currentGame();
+  if (!g) return { startBiome: null, openBiomes: [], area: null, tile: null, seenTips: [] };
+  return structuredClone({
+    startBiome: g.openBiomes[0] ?? null,
+    openBiomes: g.openBiomes,
+    area: g.area,
+    tile: g.tile,
+    seenTips: g.seenTips,
+  });
 }
 
 /** New Game: only Ansonville and the picked biome are open (Mechanics.md, Start of the game). */
 export function startNewGame(biomeId: string): void {
   assertBiome(biomeId);
-  state = { ...fresh(), startBiome: biomeId, openBiomes: [biomeId], area: 'ansonville' };
+  startGame(biomeId);
 }
 
 export function isBiomeOpen(biomeId: string): boolean {
-  return state.openBiomes.includes(biomeId);
+  return currentGame()?.openBiomes.includes(biomeId) ?? false;
 }
 
 /** Opens a biome (M6: after buying its map part). Opening an open biome does nothing. */
 export function openBiome(biomeId: string): void {
   assertBiome(biomeId);
-  if (!isBiomeOpen(biomeId)) state.openBiomes = [...state.openBiomes, biomeId];
+  update((g) => (g.openBiomes.includes(biomeId) ? g : { ...g, openBiomes: [...g.openBiomes, biomeId] }));
 }
 
 /** Debug only (dev builds): opens every biome. */
 export function openAllBiomes(): void {
-  state.openBiomes = biomeIds();
+  update((g) => ({ ...g, openBiomes: biomeIds() }));
 }
 
 export function setPlayerPosition(area: string, tile: Tile): void {
-  state.area = area;
-  state.tile = { x: tile.x, y: tile.y };
+  update((g) => ({ ...g, area, tile: { x: tile.x, y: tile.y } }));
 }
 
 /** Marks a tip as seen. Returns true the first time, so the caller shows it once. */
 export function markTipSeen(tipId: string): boolean {
-  if (state.seenTips.includes(tipId)) return false;
-  state.seenTips = [...state.seenTips, tipId];
+  const g = currentGame();
+  if (!g || g.seenTips.includes(tipId)) return false;
+  setGame({ ...g, seenTips: [...g.seenTips, tipId] });
   return true;
 }
 
 /** Back to "no game started" (tests, and Title in the future). */
 export function resetWorld(): void {
-  state = fresh();
+  setGame(null);
 }

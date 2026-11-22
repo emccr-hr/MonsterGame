@@ -24,6 +24,21 @@
       "id": "biome",
       "screen": "Biome",
       "text": "Wild monsters hide in the tall grass, sand, snow and ash. The shop and Reviver are by the exit."
+    },
+    {
+      "id": "first-catch",
+      "screen": "Battle",
+      "text": "No monster yet? Throw a cage! If it breaks free, try again. After 3 misses it runs away."
+    },
+    {
+      "id": "battle",
+      "screen": "Battle",
+      "text": "Pick Fight to attack. Lower HP means a better chance to catch it. Press F for 2x speed."
+    },
+    {
+      "id": "reviver",
+      "screen": "Biome",
+      "text": "Walk into the Reviver to heal your team for free. If you lose a battle, you wake up there."
     }
   ]
 }

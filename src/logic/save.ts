@@ -30,6 +30,9 @@ const gameState = z.object({
   avatarBeaten: z.boolean(),
   nextUid: z.number().int().min(1),
   rngState: z.number().int(),
+  area: z.string(),
+  tile: z.object({ x: z.number().int(), y: z.number().int() }).nullable(),
+  seenTips: z.array(z.string()),
 });
 
 /** Old save shape → next version. Add one step per version bump: MIGRATIONS[1] turns v1 into v2. */
