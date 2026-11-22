@@ -4,6 +4,26 @@
       "id": "title",
       "screen": "Title",
       "text": "Pick New Game to start! Use the arrow keys and press Enter, or click."
+    },
+    {
+      "id": "pick-biome",
+      "screen": "PickBiome",
+      "text": "Pick the place you want to explore first. You can open the others later with map parts."
+    },
+    {
+      "id": "ansonville",
+      "screen": "Ansonville",
+      "text": "Welcome to Ansonville! Walk with the arrow keys or WASD. Walk into your open gate to explore."
+    },
+    {
+      "id": "guide-spot",
+      "screen": "Ansonville",
+      "text": "Hi! Go through your open gate. Walk in tall grass, sand, snow or ash to find wild monsters."
+    },
+    {
+      "id": "biome",
+      "screen": "Biome",
+      "text": "Wild monsters hide in the tall grass, sand, snow and ash. The shop and Reviver are by the exit."
     }
   ]
 }

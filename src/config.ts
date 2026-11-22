@@ -13,3 +13,16 @@ export const COLORS = {
   selected: '#7bdff2',
   disabled: '#6c6a80',
 } as const;
+
+export const FONT = 'Trebuchet MS, Arial, sans-serif';
+
+/** World maps (M3): pixels per grid tile, and how long one step takes. */
+export const TILE_SIZE = 32;
+export const STEP_MS = 140;
+
+/**
+ * Step-based encounters on encounter ground (M3 placeholder; the designer hasn't picked visible
+ * wild monsters yet, Open-Questions F). Chance per step, after a few safe steps. M4 may tune these.
+ */
+export const ENCOUNTER_CHANCE = 0.1;
+export const SAFE_STEPS_AFTER_ENCOUNTER = 3;

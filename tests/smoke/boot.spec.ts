@@ -32,7 +32,7 @@ test('New Game can be chosen with the keyboard', async ({ page }) => {
   await page.keyboard.press('ArrowDown'); // Continue is off with no save, so the highlight stays put.
   expect((await state(page)).selected).toBe('New Game');
   await page.keyboard.press('Enter');
-  await expect.poll(async () => (await state(page)).message).toBe('Your adventure is coming soon!');
+  await expect.poll(async () => (await state(page)).scene).toBe('PickBiome');
 });
 
 test('the test hook is hidden from players', async ({ page }) => {
