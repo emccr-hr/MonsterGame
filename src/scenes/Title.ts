@@ -2,6 +2,7 @@ import * as Phaser from 'phaser';
 import { COLORS, GAME_HEIGHT, GAME_WIDTH } from '../config';
 import { mapById } from '../data/maps';
 import { getGame, hasSave, loadGame } from '../state/game';
+import { importSave, pickSaveFile } from '../state/saveFile';
 import { markReady, reportState } from '../testHook';
 
 interface MenuItem {
@@ -10,7 +11,7 @@ interface MenuItem {
   text?: Phaser.GameObjects.Text;
 }
 
-/** Title screen: the game's name, then New Game / Continue. Arrow keys or W/S, Enter or Space, or the mouse. */
+/** Title screen: the game's name, then New Game / Continue / Load save file. Arrow keys or W/S, Enter or Space, or the mouse. */
 export class TitleScene extends Phaser.Scene {
   private items: MenuItem[] = [];
   private selected = 0;
@@ -36,6 +37,7 @@ export class TitleScene extends Phaser.Scene {
     this.items = [
       { label: 'New Game', enabled: true },
       { label: 'Continue', enabled: hasSave() },
+      { label: 'Load save file', enabled: true },
     ];
     this.selected = 0;
 
@@ -102,12 +104,33 @@ export class TitleScene extends Phaser.Scene {
       this.scene.start('PickBiome');
       return;
     }
+    if (item.label === 'Load save file') {
+      void this.loadFile();
+      return;
+    }
     const problem = loadGame();
     if (problem) {
       this.message?.setText(problem);
       this.refresh();
       return;
     }
+    this.startSavedGame();
+  }
+
+  /** A save file from "Save to file" (M menu): a backup, or a game from another browser. */
+  private async loadFile(): Promise<void> {
+    const text = await pickSaveFile();
+    if (text === null) return;
+    const problem = importSave(text);
+    if (problem) {
+      this.message?.setText(problem);
+      this.refresh();
+      return;
+    }
+    this.startSavedGame();
+  }
+
+  private startSavedGame(): void {
     const g = getGame();
     this.scene.start(mapById(g.area).name, g.tile ? { at: g.tile } : {});
   }
