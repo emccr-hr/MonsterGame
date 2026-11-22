@@ -116,3 +116,11 @@ No code change needed (ADR 0003). Schemas: `src/data/schema.ts`; cross-checks: `
 - Dev builds only: **L** on a map levels the team up to the next evolve level and evolves it (to
   reach evolving fast in a play-test).
 
+## Shop and map parts (M6)
+- Walking into a shop tile opens `Shop` (`src/scenes/ShopScene.ts`) on top of the paused map. Rows
+  come from `shopRows` in `src/logic/shop.ts`: every item in `items.json` except the map part, then a
+  "Map Part: <biome>" row per locked biome. ←→ changes how many, Enter asks "Buy …?", Enter again buys.
+- Buying a map part opens the biome at once (`buyMapPart`); leaving the shop restarts the map where
+  the player stands so the gate shows open.
+- The map HUD shows gems and cages; the Avatar arena gate says "Monsters caught: X / 15".
+

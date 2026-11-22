@@ -5,7 +5,7 @@ import { ANSONVILLE, mapById, type GameMap } from '../data/maps';
 import { debugLevelTeam, readyToEvolve } from '../logic/collection';
 import { stepOnEncounterGround } from '../logic/encounterRate';
 import { createRng, type Rng } from '../logic/rng';
-import { useReviver } from '../logic/world';
+import { gateProgress, useReviver } from '../logic/world';
 import { currentGame, freshSeed, getGame, saveGame, setGame } from '../state/game';
 import { getWorld, isBiomeOpen, markTipSeen, openAllBiomes, setPlayerPosition } from '../state/world';
 import { reportState } from '../testHook';
@@ -40,9 +40,6 @@ interface MapSceneData {
 const T = TILE_SIZE;
 const MESSAGE_MS = 3000;
 
-/** Number of naturally spawning monsters, for the Avatar arena sign (Final-Boss.md). */
-const wildCount = (): number => content.monsters.filter((m) => m.spawnWeight !== null).length;
-
 const tipText = (id: string): string => content.guide.tips.find((t) => t.id === id)?.text ?? '';
 
 const biomeName = (id: string): string => content.biomes.find((b) => b.id === id)?.name ?? id;
@@ -66,6 +63,7 @@ export class MapScene extends Phaser.Scene {
   private player!: Phaser.GameObjects.Arc;
   private messageBox!: Phaser.GameObjects.Container;
   private messageText!: Phaser.GameObjects.Text;
+  private wallet!: Phaser.GameObjects.Text;
   private messageTimer?: Phaser.Time.TimerEvent;
   private cursors?: Phaser.Types.Input.Keyboard.CursorKeys;
   private wasd?: Record<'W' | 'A' | 'S' | 'D', Phaser.Input.Keyboard.Key>;
@@ -198,12 +196,17 @@ export class MapScene extends Phaser.Scene {
 
   /** M: Team, Bag, Monster Book, Save (M5). The map waits underneath. */
   private openMenu(): void {
+    this.openOverlay('Menu');
+  }
+
+  /** Pauses the map and opens a screen on top (menu, shop); it resumes the map when it closes. */
+  private openOverlay(key: 'Menu' | 'Shop'): void {
     if (this.paused || this.leaving || this.moving || this.justResumed()) return;
     this.paused = true;
     this.queued = null;
     this.hideMessage();
     this.scene.pause();
-    this.scene.run('Menu', { map: this.scene.key } satisfies MenuData);
+    this.scene.run(key, { map: this.scene.key } satisfies MenuData);
   }
 
   private justResumed(): boolean {
@@ -265,14 +268,14 @@ export class MapScene extends Phaser.Scene {
         const biome = gateBiome(this.map, charAt(this.map, at));
         if (!biome) return;
         if (isBiomeOpen(biome)) this.goTo(mapById(biome).name, {});
-        else this.showMessage(`${biomeName(biome)} is locked. Map part needed!`);
+        else this.showMessage(`${biomeName(biome)} is locked. Map part needed! Buy one at the shop.`);
         return;
       }
       case 'exit':
         if (this.map.biome) this.goTo(ANSONVILLE.name, { from: this.map.biome });
         return;
       case 'shop':
-        this.showMessage('Shop: coming soon! You will buy cages and potions here.');
+        this.openOverlay('Shop');
         return;
       case 'reviver': {
         // Free healing; losing a battle wakes you at the last Reviver you used.
@@ -285,9 +288,15 @@ export class MapScene extends Phaser.Scene {
       case 'guide':
         this.showMessage(tipText('guide-spot'));
         return;
-      case 'arenaGate':
-        this.showMessage(`Avatar's arena is locked. Catch all ${wildCount()} wild monsters to open it!`);
+      case 'arenaGate': {
+        const gate = gateProgress(content, getGame());
+        this.showMessage(
+          gate.open
+            ? "You caught every wild monster! Avatar's battle is coming soon."
+            : `Avatar's arena is locked. Monsters caught: ${gate.caught} / ${gate.needed}. Catch them all to open it!`,
+        );
         return;
+      }
       default:
         if (pressed) this.hideMessage();
     }
@@ -416,6 +425,12 @@ export class MapScene extends Phaser.Scene {
       .setDepth(20)
       .setInteractive({ useHandCursor: true })
       .on('pointerdown', () => this.openMenu());
+    // Top right, left of the menu button: Magic Gems and cages (UI-and-HUD.md).
+    this.wallet = this.add
+      .text(GAME_WIDTH - 120, 10, '', { fontFamily: FONT, fontSize: '18px', color: COLORS.title, backgroundColor: '#000000aa', padding: { x: 8, y: 4 } })
+      .setOrigin(1, 0)
+      .setScrollFactor(0)
+      .setDepth(20);
 
     const boxW = GAME_WIDTH - 40;
     const bg = this.add.rectangle(0, 0, boxW, 70, 0x14112b, 0.92).setStrokeStyle(3, 0xffd166).setOrigin(0);
@@ -459,6 +474,8 @@ export class MapScene extends Phaser.Scene {
   }
 
   private report(): void {
+    const g = currentGame();
+    this.wallet?.setText(g ? `${g.gems} gems   ${g.bag.cage ?? 0} cages` : '');
     reportState({
       scene: this.scene.key,
       area: this.map.id,

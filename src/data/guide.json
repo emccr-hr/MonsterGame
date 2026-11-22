@@ -64,6 +64,16 @@
       "id": "evolve",
       "screen": "Evolve",
       "text": "Each monster grows into a new form at its own level. Win battles to level up!"
+    },
+    {
+      "id": "shop",
+      "screen": "Shop",
+      "text": "Pick something, use left and right for how many, then Enter to buy. A map part opens a new gate!"
+    },
+    {
+      "id": "map-part",
+      "screen": "Map",
+      "text": "Locked gates need a map part. Buy one at the shop for 50 Magic Gems. Win battles to earn gems."
     }
   ]
 }
