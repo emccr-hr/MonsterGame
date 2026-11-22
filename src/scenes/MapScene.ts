@@ -63,6 +63,10 @@ export class MapScene extends Phaser.Scene {
   private rng: Rng = createRng(1);
   /** Centered on the player's tile (the sprite inside stands on the tile's bottom edge). */
   private player!: Phaser.GameObjects.Container;
+  /** The drawing inside `player`; it bobs and leans while walking. */
+  private look!: Phaser.GameObjects.Image | Phaser.GameObjects.Arc;
+  private lookY = 0;
+  private walkStep = 0;
   private messageBox!: Phaser.GameObjects.Container;
   private messageText!: Phaser.GameObjects.Text;
   private wallet!: Phaser.GameObjects.Text;
@@ -94,8 +98,10 @@ export class MapScene extends Phaser.Scene {
     this.drawMap();
 
     // The player's vector sprite (M8), or the old red dot if the file is missing.
-    const look = addCharacter(this, 'player-map', 0, T / 2 + 2, T * 1.25) ?? this.add.circle(0, 0, T * 0.38, 0xff5d73).setStrokeStyle(3, 0x1b1b1b);
-    this.player = this.add.container(this.tile.x * T + T / 2, this.tile.y * T + T / 2, [look]).setDepth(5);
+    this.look = addCharacter(this, 'player-map', 0, T / 2 + 2, T * 1.25) ?? this.add.circle(0, 0, T * 0.38, 0xff5d73).setStrokeStyle(3, 0x1b1b1b);
+    this.lookY = this.look.y;
+    this.walkStep = 0;
+    this.player = this.add.container(this.tile.x * T + T / 2, this.tile.y * T + T / 2, [this.look]).setDepth(5);
 
     const cam = this.cameras.main;
     cam.setBounds(0, 0, width(this.map) * T, height(this.map) * T);
@@ -246,6 +252,7 @@ export class MapScene extends Phaser.Scene {
       return;
     }
     this.moving = true;
+    this.walkAnimation(dir);
     this.tweens.add({
       targets: this.player,
       x: next.x * T + T / 2,
@@ -259,6 +266,28 @@ export class MapScene extends Phaser.Scene {
         this.afterStep(kind);
         this.report();
       },
+    });
+  }
+
+  /**
+   * One step of walking: a little hop with a lean to one side, then the other side on the next
+   * step, so the player looks like he's stepping left foot, right foot. He faces the way he walks.
+   */
+  private walkAnimation(dir: Dir): void {
+    if (this.look instanceof Phaser.GameObjects.Image) {
+      if (dir === 'left') this.look.setFlipX(true);
+      else if (dir === 'right') this.look.setFlipX(false);
+    }
+    this.walkStep++;
+    this.tweens.killTweensOf(this.look);
+    this.look.setY(this.lookY).setAngle(0);
+    this.tweens.add({
+      targets: this.look,
+      y: this.lookY - 3,
+      angle: this.walkStep % 2 ? 7 : -7,
+      duration: STEP_MS / 2,
+      yoyo: true,
+      ease: 'Sine.easeOut',
     });
   }
 
