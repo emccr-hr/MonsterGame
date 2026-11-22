@@ -5,6 +5,7 @@ One line per session: date, what shipped, what's next. Newest at the top.
 
 | Date | What happened | Next |
 |---|---|---|
+| 2026-11-22 | **Save file backup** (PR #24): Save to file (M menu) and Load save file (Title); bigger maps scheduled as M6c; owner feedback on maps and vector art recorded. | Play-test; M6b teleport, Avatar battle, ending; M6c bigger maps. |
 | 2026-11-22 | **A look for each monster** (PR #22): body, accent and markings per monster from `monsters.json` (Snowy whites, spots, a penguin tux...), drawn everywhere; brighter Desert, Snowy and Volcano map colors. | Play-test M5/M6 with the designer; M6b teleport, Avatar battle, ending. |
 | 2026-11-22 | **Papai is the game expert** (PR #21): Ask Papai at his spot or from the M menu, "What should I do next?" from the game state, 20 scripted questions and answers, a test that every screen, key and item has an answer, and the `gameplay-expert` skill (ADR 0008). | Per-monster looks and map palette; M6b teleport, Avatar battle, ending. |
 | 2026-11-22 | **M6a merged** (PR #20): shop with items and map parts (buying one opens the gate), gems and cages on the map, Avatar arena counter. | Papai; M6b. |
