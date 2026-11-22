@@ -290,7 +290,7 @@
     {
       "id": "fight-avatar",
       "when": "arenaOpen",
-      "text": "You caught every wild monster! Avatar's arena is open in the middle of Ansonville."
+      "text": "You caught every wild monster! Avatar's battle is coming soon. Keep training your team!"
     },
     {
       "id": "open-place",
