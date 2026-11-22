@@ -8,6 +8,11 @@
     "sizeLabel": "Medium (2x Dumble)",
     "scale": 2,
     "look": "A brown English bulldog with white spots on her neck and head.",
+    "art": {
+      "body": "#7a4a26",
+      "accent": "#ffffff",
+      "markings": "patch"
+    },
     "traits": [],
     "ability": "cute",
     "moves": [
@@ -38,6 +43,11 @@
     "sizeLabel": "4x Dumble, skinny",
     "scale": 4,
     "look": "A skinny yellow Labrador.",
+    "art": {
+      "body": "#f2cf6b",
+      "accent": "#fff4d6",
+      "markings": "patch"
+    },
     "traits": [],
     "ability": "cute",
     "moves": [
@@ -65,6 +75,11 @@
     "sizeLabel": "Small",
     "scale": 1,
     "look": "A gray-brown squirrel with a huge fluffy tail and acorn cheeks.",
+    "art": {
+      "body": "#8d8478",
+      "accent": "#eadcc4",
+      "markings": "belly"
+    },
     "traits": [],
     "ability": "quick",
     "moves": [
@@ -95,6 +110,11 @@
     "sizeLabel": "Medium",
     "scale": 2,
     "look": "A big squirrel with a leafy branch tail and acorns hanging from it.",
+    "art": {
+      "body": "#5b5040",
+      "accent": "#4caf50",
+      "markings": "spots"
+    },
     "traits": [],
     "ability": "quick",
     "moves": [
@@ -122,6 +142,11 @@
     "sizeLabel": "Small-medium",
     "scale": 1.5,
     "look": "A round brown owl with giant yellow eyes and leafy ear tufts.",
+    "art": {
+      "body": "#c08a4e",
+      "accent": "#f6e6c8",
+      "markings": "spots"
+    },
     "traits": [],
     "ability": "wise",
     "moves": [
@@ -152,6 +177,11 @@
     "sizeLabel": "Medium (2.5x Dumble)",
     "scale": 2.5,
     "look": "A tall, wise owl with feathery eyebrows and leafy wing tips.",
+    "art": {
+      "body": "#93633a",
+      "accent": "#f6e6c8",
+      "markings": "mask"
+    },
     "traits": [],
     "ability": "wise",
     "moves": [
@@ -179,6 +209,11 @@
     "sizeLabel": "Small",
     "scale": 1,
     "look": "A dumpling with chopsticks for arms.",
+    "art": {
+      "body": "#f7ecd8",
+      "accent": "#c98a4a",
+      "markings": "spots"
+    },
     "traits": [],
     "ability": "not-at-this-restaurant",
     "moves": [
@@ -209,6 +244,11 @@
     "sizeLabel": "Medium (2x Dumble)",
     "scale": 2,
     "look": "A ramen bowl with chopstick arms, noodle legs and egg shoes.",
+    "art": {
+      "body": "#c0392b",
+      "accent": "#f6d36b",
+      "markings": "belly"
+    },
     "traits": [],
     "ability": "not-at-this-restaurant",
     "moves": [
@@ -236,6 +276,11 @@
     "sizeLabel": "Small",
     "scale": 1,
     "look": "A bright orange crab with one big claw and one small claw.",
+    "art": {
+      "body": "#ff7a2f",
+      "accent": "#ffd9b8",
+      "markings": "belly"
+    },
     "traits": [],
     "ability": "wise",
     "moves": [
@@ -266,6 +311,11 @@
     "sizeLabel": "Large (3x Dumble)",
     "scale": 3,
     "look": "A huge crab with a shell like a mossy boulder and a giant claw.",
+    "art": {
+      "body": "#c8642a",
+      "accent": "#6f8f5a",
+      "markings": "spots"
+    },
     "traits": [],
     "ability": "wise",
     "moves": [
@@ -293,6 +343,11 @@
     "sizeLabel": "Medium",
     "scale": 2,
     "look": "A white-and-gray seagull with a yellow beak, always squawking.",
+    "art": {
+      "body": "#f4f6f8",
+      "accent": "#9aa5b1",
+      "markings": "stripes"
+    },
     "traits": [],
     "ability": "snack-thief",
     "moves": [
@@ -323,6 +378,11 @@
     "sizeLabel": "Large (3x Dumble)",
     "scale": 3,
     "look": "A pelican-like bird with a giant stretchy beak pouch.",
+    "art": {
+      "body": "#cdd5de",
+      "accent": "#f2b134",
+      "markings": "belly"
+    },
     "traits": [],
     "ability": "snack-thief",
     "moves": [
@@ -350,6 +410,11 @@
     "sizeLabel": "Medium (2x Dumble)",
     "scale": 2,
     "look": "A big red ant.",
+    "art": {
+      "body": "#e0332b",
+      "accent": "#7a1410",
+      "markings": "stripes"
+    },
     "traits": [
       "red-ant"
     ],
@@ -382,6 +447,11 @@
     "sizeLabel": "Medium (2x Dumble)",
     "scale": 2,
     "look": "A red queen ant wearing a crown.",
+    "art": {
+      "body": "#a81e1a",
+      "accent": "#ffd23f",
+      "markings": "crown"
+    },
     "traits": [
       "red-ant"
     ],
@@ -411,6 +481,11 @@
     "sizeLabel": "Medium",
     "scale": 2,
     "look": "A sandy-yellow scorpion with a curled tail and a purple stinger.",
+    "art": {
+      "body": "#f2d24a",
+      "accent": "#8e44ad",
+      "markings": "stripes"
+    },
     "traits": [],
     "ability": "quick",
     "moves": [
@@ -441,6 +516,11 @@
     "sizeLabel": "Large (3x Dumble)",
     "scale": 3,
     "look": "A giant scorpion with sandstone armor and two purple stingers.",
+    "art": {
+      "body": "#d39a3c",
+      "accent": "#8e44ad",
+      "markings": "spots"
+    },
     "traits": [],
     "ability": "quick",
     "moves": [
@@ -468,6 +548,11 @@
     "sizeLabel": "Large (3x Dumble)",
     "scale": 3,
     "look": "A tan camel with two wobbly humps and long eyelashes.",
+    "art": {
+      "body": "#c79a6b",
+      "accent": "#f3e2c4",
+      "markings": "belly"
+    },
     "traits": [],
     "ability": "water-storage",
     "moves": [
@@ -498,6 +583,11 @@
     "sizeLabel": "Huge (4x Dumble)",
     "scale": 4,
     "look": "A giant camel with three wobbly humps and longer eyelashes.",
+    "art": {
+      "body": "#a2744a",
+      "accent": "#f3e2c4",
+      "markings": "belly"
+    },
     "traits": [],
     "ability": "water-storage",
     "moves": [
@@ -525,6 +615,11 @@
     "sizeLabel": "Bigger side (~3x Dumble)",
     "scale": 3,
     "look": "A white yeti with blue horns and a black face, furry all over.",
+    "art": {
+      "body": "#efe6cf",
+      "accent": "#1f2430",
+      "markings": "mask"
+    },
     "traits": [],
     "ability": "fur-coat",
     "moves": [
@@ -555,6 +650,11 @@
     "sizeLabel": "1.5x Yeti (~4.5x Dumble)",
     "scale": 4.5,
     "look": "A big snowman with a top hat, coal eyes and stick hands.",
+    "art": {
+      "body": "#ffffff",
+      "accent": "#222222",
+      "markings": "spots"
+    },
     "traits": [],
     "ability": "fur-coat",
     "moves": [
@@ -582,6 +682,11 @@
     "sizeLabel": "Small",
     "scale": 1,
     "look": "A black-and-white penguin with tiny wings and orange feet.",
+    "art": {
+      "body": "#23272e",
+      "accent": "#ffffff",
+      "markings": "tux"
+    },
     "traits": [],
     "ability": "slippery",
     "moves": [
@@ -612,6 +717,11 @@
     "sizeLabel": "Medium (2.5x Dumble)",
     "scale": 2.5,
     "look": "A tall penguin with a golden collar and an icy blue belly.",
+    "art": {
+      "body": "#1e3a5f",
+      "accent": "#bfe6ff",
+      "markings": "tux"
+    },
     "traits": [],
     "ability": "slippery",
     "moves": [
@@ -639,6 +749,11 @@
     "sizeLabel": "Small-medium (1.5x Dumble)",
     "scale": 1.5,
     "look": "A white fox with pale blue paws and a fluffy tail.",
+    "art": {
+      "body": "#dfe7ee",
+      "accent": "#7fbfe8",
+      "markings": "spots"
+    },
     "traits": [],
     "ability": "quick",
     "moves": [
@@ -669,6 +784,11 @@
     "sizeLabel": "Medium-large (2.5x Dumble)",
     "scale": 2.5,
     "look": "A sleek white fox with a tail of glittering icicles.",
+    "art": {
+      "body": "#b8d8f0",
+      "accent": "#5fb0e6",
+      "markings": "stripes"
+    },
     "traits": [],
     "ability": "quick",
     "moves": [
@@ -696,6 +816,11 @@
     "sizeLabel": "Tall",
     "scale": 2.5,
     "look": "A red blob with a goopy mouth.",
+    "art": {
+      "body": "#e53935",
+      "accent": "#ff9e80",
+      "markings": "spots"
+    },
     "traits": [],
     "ability": "lava-skin",
     "moves": [
@@ -726,6 +851,11 @@
     "sizeLabel": "Tall (1.2x Blobbin)",
     "scale": 3,
     "look": "A bigger, darker red Blobbin with a goopy mouth.",
+    "art": {
+      "body": "#a31d1d",
+      "accent": "#ff7043",
+      "markings": "spots"
+    },
     "traits": [],
     "ability": "lava-skin",
     "moves": [
@@ -753,6 +883,11 @@
     "sizeLabel": "Medium (2x Dumble)",
     "scale": 2,
     "look": "A dark gray lizard with glowing orange cracks in its scales.",
+    "art": {
+      "body": "#4a4a4f",
+      "accent": "#ff8c1a",
+      "markings": "stripes"
+    },
     "traits": [],
     "ability": "lava-skin",
     "moves": [
@@ -783,6 +918,11 @@
     "sizeLabel": "Large (3.5x Dumble)",
     "scale": 3.5,
     "look": "A huge lava lizard with glowing cracks and a magma-dripping mouth.",
+    "art": {
+      "body": "#5c2a1e",
+      "accent": "#ffb020",
+      "markings": "stripes"
+    },
     "traits": [],
     "ability": "lava-skin",
     "moves": [
@@ -810,6 +950,11 @@
     "sizeLabel": "Small (1x Dumble)",
     "scale": 1,
     "look": "A charcoal-black bat with ember-red wing tips and smoke trails.",
+    "art": {
+      "body": "#2a2526",
+      "accent": "#e0452a",
+      "markings": "mask"
+    },
     "traits": [],
     "ability": "wise",
     "moves": [
@@ -840,6 +985,11 @@
     "sizeLabel": "Medium (2x Dumble)",
     "scale": 2,
     "look": "A big bat with wings of swirling smoke and glowing red eyes.",
+    "art": {
+      "body": "#7a6f80",
+      "accent": "#ff3b2f",
+      "markings": "mask"
+    },
     "traits": [],
     "ability": "wise",
     "moves": [
@@ -867,6 +1017,17 @@
     "sizeLabel": "10x Dumble",
     "scale": 10,
     "look": "A human shape with a body made of all 5 elements.",
+    "art": {
+      "body": "#ff6b35",
+      "accent": "#ffd166",
+      "markings": "segments",
+      "extra": [
+        "#3fa7f5",
+        "#b07d4f",
+        "#9fe3ff",
+        "#5cc85c"
+      ]
+    },
     "traits": [],
     "ability": null,
     "moves": [

@@ -18,5 +18,7 @@ Hand-drawn: the designer's own monster drawings, scanned or photographed.
 
 **Each monster looks different (owner, 2026-11-22).** Placeholders must not be one color per biome. Each monster gets its own body color, accent color and markings (spots, stripes, a belly patch, a mask), stored in `src/data/monsters.json`, while keeping its biome's theme. Snowy example: different whites and off-whites, spots and markings like real animals; a penguin-colored (black and white) one is fine. The drawing code lives in `src/ui/monsterArt.ts`.
 
+**How it's stored (2026-11-22):** each monster in `src/data/monsters.json` has `art: { body, accent, markings }` (colors as `#rrggbb`; markings one of `none`, `spots`, `stripes`, `belly`, `mask`, `patch`, `tux`, `crown`, `segments`; `segments` adds `extra` colors, used for Avatar's five-element body). Zod checks it, and `tests/unit/data/art.test.ts` makes sure no two monsters in a biome share a body color. The map colors in `src/data/maps/index.ts` now use the brighter Desert, Snowy and Volcano rows from `Art-Mockups.html`.
+
 ## Reference images (links / files in this folder)
 - `Art-Mockups.html`: placeholder art and proposals (all 15 base monsters, size lineup, Avatar, player character, guide Papai, Peggy vector vs. pixel, Ansonville, gates, arena, shop, Reviver and items, exploring and battle screens). **Approved by the owner (2026-11-21):** the palette, vector style, Papai's look, and the section 6 looks (Ansonville, gates, arena, shop, Reviver, items). Anything still tagged "mockup guess" or "proposed" needs an OK.
