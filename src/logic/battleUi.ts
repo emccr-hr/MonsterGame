@@ -89,7 +89,7 @@ export function eventText(content: Content, s: BattleState, e: BattleEvent): str
         case 'slippery':
           return `${who(e.side)} slipped away!`;
         case 'colony':
-          return 'Red ants never hurt each other!';
+          return "Red ants won't fight each other! Switch or run.";
         case 'lavaSkin':
           return `${who(e.side)}'s lava skin blocked it!`;
         case 'immune':
