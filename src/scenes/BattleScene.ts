@@ -3,7 +3,8 @@ import { COLORS, FONT, GAME_HEIGHT, GAME_WIDTH } from '../config';
 import { content } from '../data';
 import { mapById } from '../data/maps';
 import { activeOf, invalidReason, resolveTurn, type Action, type BattleEvent, type BattleState, type SideId } from '../logic/battle';
-import { bagMenu, eventText, mainMenu, moveMenu, sideName, teamMenu, type MenuChoice } from '../logic/battleUi';
+import { bagMenu, eventText, mainMenu, moveMenu, sideName, targetMenu, teamMenu, type MenuChoice } from '../logic/battleUi';
+import { readyToEvolve } from '../logic/collection';
 import { finishBattle, startWildEncounter } from '../logic/encounter';
 import { maxHp, species } from '../logic/monster';
 import type { Rng } from '../logic/rng';
@@ -12,9 +13,10 @@ import { markTipSeen } from '../state/world';
 import { reportState } from '../testHook';
 import { drawMonster } from '../ui/monsterArt';
 import { besideTile, findAll, startTile } from '../world/grid';
+import type { EvolveData } from './EvolveScene';
 import type { WildEncounterEvent } from './events';
 
-type Phase = 'text' | 'menu' | 'fight' | 'bag' | 'team' | 'done';
+type Phase = 'text' | 'menu' | 'fight' | 'bag' | 'target' | 'team' | 'done';
 
 const TEXT_MS = 1100;
 const ENEMY_AT = { x: GAME_WIDTH * 0.72, y: 170 };
@@ -157,11 +159,15 @@ export class BattleScene extends Phaser.Scene {
       this.nextBeat();
       return;
     }
+    if (this.phase === 'target') {
+      this.pick({ label: 'Bag', pick: { kind: 'bag' } });
+      return;
+    }
     if ((this.phase === 'fight' || this.phase === 'bag' || this.phase === 'team') && !this.battle.mustSwitch) this.openMenu();
   }
 
   private isMenu(): boolean {
-    return this.phase === 'menu' || this.phase === 'fight' || this.phase === 'bag' || this.phase === 'team';
+    return this.phase === 'menu' || this.phase === 'fight' || this.phase === 'bag' || this.phase === 'target' || this.phase === 'team';
   }
 
   // ---- Menus ---------------------------------------------------------------------------------
@@ -190,6 +196,7 @@ export class BattleScene extends Phaser.Scene {
       if (items.length === 0) return this.setMessage('Nothing in your bag can help right now.');
       return this.showChoices('bag', items, 'Pick an item. (Esc: back)');
     }
+    if (p.kind === 'target') return this.showChoices('target', targetMenu(content, this.battle, p.item), 'Who gets it? (Esc: back)');
     if (p.kind === 'team') {
       const team = teamMenu(content, this.battle);
       if (team.length === 0) return this.setMessage('No other monster can fight right now.');
@@ -325,10 +332,6 @@ export class BattleScene extends Phaser.Scene {
         const m = state.team.find((x) => x.uid === Number(uid));
         if (m) lines.push({ text: `${species(content, m.species).name} grew to level ${m.level}!${levels > 1 ? ` (+${levels})` : ''}` });
       }
-      for (const [uid, into] of Object.entries(rewards.evolutions)) {
-        const m = state.team.find((x) => x.uid === Number(uid));
-        if (m) lines.push({ text: `${species(content, m.species).name} is ready to grow into ${species(content, into).name}!` });
-      }
     }
     if (ended.outcome === 'lost') {
       const where = mapById(state.lastReviver).name;
@@ -351,8 +354,11 @@ export class BattleScene extends Phaser.Scene {
       this.scene.start(map.name, { at });
       return;
     }
+    // Anyone on the team at their evolve level grows now (M5), then the map carries on.
+    const ready = readyToEvolve(content, g).filter((m) => g.team.some((t) => t.uid === m.uid));
     this.scene.stop();
-    this.scene.resume(this.from.sceneKey);
+    if (ready.length > 0) this.scene.run('Evolve', { uids: ready.map((m) => m.uid), map: this.from.sceneKey } satisfies EvolveData);
+    else this.scene.resume(this.from.sceneKey);
   }
 
   // ---- Text beats ----------------------------------------------------------------------------

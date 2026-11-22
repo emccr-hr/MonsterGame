@@ -162,7 +162,43 @@ export const rules = z.object({
 });
 
 export const guideTip = z.object({ id, screen: z.string().min(1), text: z.string().min(1).max(140) });
-export const guide = z.object({ tips: z.array(guideTip) });
+
+/** Game-state checks the guide can use (src/logic/guide.ts says what each one means). */
+export const GUIDE_CONDITIONS = [
+  'always',
+  'noMonster',
+  'hasMonster',
+  'teamTired',
+  'teamHurt',
+  'lowOnCages',
+  'canBuyMapPart',
+  'needGemsForMapPart',
+  'allBiomesOpen',
+  'readyToEvolve',
+  'teamFull',
+  'canTeleport',
+  'arenaOpen',
+  'avatarBeaten',
+] as const;
+export const guideCondition = z.enum(GUIDE_CONDITIONS);
+
+/**
+ * A question Papai answers (ADR 0008). `covers` lists what it explains: `scene:<SceneKey>`,
+ * `key:<KEY>`, `item:<itemId>` or `rule:<name>`; a unit test checks every screen, key and item is covered.
+ */
+export const guideTopic = z.object({
+  id,
+  question: z.string().min(1).max(60),
+  answer: z.string().min(1).max(260),
+  covers: z.array(z.string().regex(/^(scene|key|item|rule):[A-Za-z0-9-]+$/)).min(1),
+  /** Hidden until this holds (e.g. teleporting from level 50). */
+  unlock: guideCondition.optional(),
+});
+
+/** "What should I do next?": the first goal whose `when` holds is Papai's answer. */
+export const guideGoal = z.object({ id, when: guideCondition, text: z.string().min(1).max(160) });
+
+export const guide = z.object({ tips: z.array(guideTip), topics: z.array(guideTopic), goals: z.array(guideGoal).min(1) });
 
 // ---- Files ----------------------------------------------------------------------------------
 export const contentFiles = {
@@ -189,6 +225,8 @@ export type Biome = z.infer<typeof biome>;
 export type Item = z.infer<typeof item>;
 export type Rules = z.infer<typeof rules>;
 export type Guide = z.infer<typeof guide>;
+export type GuideTopic = z.infer<typeof guideTopic>;
+export type GuideCondition = z.infer<typeof guideCondition>;
 
 export interface Content {
   monsters: Monster[];

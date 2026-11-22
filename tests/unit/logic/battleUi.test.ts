@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { resolveTurn, startBattle } from '../../../src/logic/battle';
-import { bagMenu, battleSpriteSize, eventText, mainMenu, moveMenu, sideName, teamMenu } from '../../../src/logic/battleUi';
+import { bagMenu, battleSpriteSize, eventText, mainMenu, moveMenu, sideName, targetMenu, teamMenu } from '../../../src/logic/battleUi';
 import { mon, realContent, scriptedRng } from '../helpers';
 
 const content = realContent();
@@ -24,11 +24,18 @@ describe('battle menus', () => {
     const tired = { ...mon(content, 'bushtail', 5), hp: 0 };
     const s = startBattle('wild', [mon(content, 'yeti', 5), tired, mon(content, 'pengwiggle', 5)], mon(content, 'yeti', 3), bag);
     expect(moveMenu(content, s)).toHaveLength(content.monsters.find((m) => m.id === 'yeti')!.moves.length);
-    expect(bagMenu(content, s).map((c) => c.pick)).toEqual([
-      { kind: 'item', item: 'potion', target: 0 },
-      { kind: 'item', item: 'wake-up-snack', target: 1 },
-    ]);
+    // Everyone awake is at full HP: no potion yet, but the snack can wake Bushtail.
+    expect(bagMenu(content, s).map((c) => c.pick)).toEqual([{ kind: 'target', item: 'wake-up-snack' }]);
+    expect(targetMenu(content, s, 'wake-up-snack').map((c) => c.pick)).toEqual([{ kind: 'item', item: 'wake-up-snack', target: 1 }]);
     expect(teamMenu(content, s).map((c) => c.pick)).toEqual([{ kind: 'switch', to: 2 }]);
+  });
+
+  it('a potion can go to any hurt, awake team monster, not just the one fighting', () => {
+    const hurt = { ...mon(content, 'pengwiggle', 5), hp: 3 };
+    const s = startBattle('wild', [mon(content, 'yeti', 5), hurt], mon(content, 'yeti', 3), bag);
+    expect(bagMenu(content, s).map((c) => c.pick)).toEqual([{ kind: 'target', item: 'potion' }]);
+    expect(targetMenu(content, s, 'potion').map((c) => c.pick)).toEqual([{ kind: 'item', item: 'potion', target: 1 }]);
+    expect(targetMenu(content, s, 'potion')[0]!.label).toMatch(/^Pengwiggle {2}3\/\d+ HP$/);
   });
 });
 

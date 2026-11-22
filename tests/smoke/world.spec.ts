@@ -79,5 +79,64 @@ test('a locked gate says a map part is needed', async ({ page }) => {
   await walkUntil(page, 'ArrowLeft', (s) => (s.message ?? '').includes('Map part needed'));
   const s = await state(page);
   expect(s.scene).toBe('Ansonville');
-  expect(s.message).toBe('Desert is locked. Map part needed!');
+  expect(s.message).toBe('Desert is locked. Map part needed! Buy one at the shop.');
+});
+
+test('M6: buy a map part at the shop, and the Desert gate opens', async ({ page }) => {
+  const errors: string[] = [];
+  page.on('pageerror', (e) => errors.push(e.message));
+  await newGame(page, 'forest');
+  await page.keyboard.press('Escape'); // Close the welcome tip.
+  // The shop is 8 tiles left of the start and one row up: stand below it and face up.
+  await steps(page, 'ArrowLeft', 8);
+  await expect.poll(async () => (await state(page)).tile).toEqual({ x: 9, y: 7 });
+  await page.keyboard.press('ArrowUp');
+  await expect.poll(async () => (await state(page)).scene).toBe('Shop');
+  await page.waitForTimeout(250); // Screens ignore keys for a moment after opening.
+
+  const shop = () => state(page) as Promise<WorldSnapshot & { gems: number; confirming: boolean; openBiomes: string[] }>;
+  await expect
+    .poll(
+      async () => {
+        const selected = (await state(page)).selected;
+        if (selected !== 'Map Part: Desert') await page.keyboard.press('ArrowDown');
+        return selected;
+      },
+      { intervals: [200] },
+    )
+    .toBe('Map Part: Desert');
+  await expect
+    .poll(
+      async () => {
+        if (!(await shop()).confirming) await page.keyboard.press('Enter');
+        return (await shop()).confirming;
+      },
+      { intervals: [200] },
+    )
+    .toBe(true);
+  await page.keyboard.press('Enter'); // Yes, buy it.
+  await expect.poll(async () => (await shop()).openBiomes).toEqual(['forest', 'desert']);
+  expect((await shop()).gems).toBe(50);
+
+  await page.keyboard.press('Escape'); // Leave the shop; the map redraws with the gate open.
+  await expect.poll(async () => (await state(page)).scene).toBe('Ansonville');
+  await page.waitForTimeout(250);
+  // The Desert gate is on the west wall, 4 rows above the start row (step past the shop first).
+  await steps(page, 'ArrowRight', 2);
+  await steps(page, 'ArrowUp', 4);
+  await walkUntil(page, 'ArrowLeft', (s) => s.scene === 'Desert');
+  expect(errors).toEqual([]);
+});
+
+test('Papai answers "What should I do next?" from the game state', async ({ page }) => {
+  await newGame(page, 'beach');
+  await page.keyboard.press('Escape'); // Close the welcome tip.
+  // Papai stands 7 tiles right of the start, one row up.
+  await steps(page, 'ArrowRight', 7);
+  await page.keyboard.press('ArrowUp');
+  await expect.poll(async () => (await state(page)).scene).toBe('Papai');
+  expect((await state(page)).message).toMatch(/^Catch your first monster/);
+  await page.waitForTimeout(250);
+  await page.keyboard.press('Escape');
+  await expect.poll(async () => (await state(page)).scene).toBe('Ansonville');
 });

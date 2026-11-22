@@ -120,6 +120,41 @@ test('first catch, then win a battle, then Continue after a reload', async ({ pa
   expect(won).toBe(true);
   expect((await state(page)).gems).toBeGreaterThan(100);
 
+  // M5: the M menu opens Team and the Monster Book; Esc goes back, then back to the map.
+  // Menu screens ignore keys for a moment after opening (the key that opened them), so wait a beat.
+  const sceneIs = async (name: string) => {
+    await expect.poll(async () => (await state(page)).scene).toBe(name);
+    await page.waitForTimeout(250);
+  };
+  await page.waitForTimeout(250);
+  await page.keyboard.press('m');
+  await sceneIs('Menu');
+  await page.keyboard.press('Enter');
+  await sceneIs('Team');
+  expect(((await state(page)) as unknown as { team: unknown[] }).team.length).toBe(team.length);
+  await page.keyboard.press('Escape');
+  await sceneIs('Menu');
+  // Headless Phaser can drop a quick key press, so press Down until the Book is picked.
+  await expect
+    .poll(
+      async () => {
+        const selected = (await state(page)).selected;
+        if (selected !== 'Monster Book') await page.keyboard.press('ArrowDown');
+        return selected;
+      },
+      { intervals: [200] },
+    )
+    .toBe('Monster Book');
+  await page.keyboard.press('Enter');
+  await sceneIs('Book');
+  const book = (await state(page)) as unknown as { summary: { caught: number; gate: { caught: number } } };
+  expect(book.summary.caught).toBeGreaterThanOrEqual(1);
+  expect(book.summary.gate.caught).toBeGreaterThanOrEqual(1);
+  await page.keyboard.press('Escape');
+  await sceneIs('Menu');
+  await page.keyboard.press('Escape');
+  await sceneIs('Snowy');
+
   // The game saved: reload, Continue, and the monster is still on the team.
   await boot(page);
   const title = await state(page);

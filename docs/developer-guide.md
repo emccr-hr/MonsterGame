@@ -99,3 +99,35 @@ No code change needed (ADR 0003). Schemas: `src/data/schema.ts`; cross-checks: `
   validates data files when they change.
 - Draft PR → `ci:local` → mark ready once → push once. CI is one job and skips drafts and docs-only changes.
 - Merge only with `node scripts/merge-if-green.mjs <pr>` (ADR 0007).
+
+## Team, Bag, Monster Book and evolving (M5)
+- **M** on any map (or the "M: Menu" button) pauses the map and opens `Menu` (`src/scenes/MenuScene.ts`):
+  Team and Backpack (`Team`), `Bag`, Monster Book (`Book`), Save. Each screen gets `{ map }` (the paused
+  map's scene key); Esc goes back to the menu, and closing the menu resumes the map.
+- The rules behind the screens are in `src/logic/collection.ts` (swapping, backpack sorting, the Book's
+  entries and counters, evolving, which item can go to which monster), with tests.
+- Menu screens use `ListMenu` and `bindMenuKeys` from `src/ui/listMenu.ts`. Keys bound with `onKey`
+  ignore the first 150 ms after a screen opens, because the key that opened the screen is otherwise
+  handled again by the new screen in the same frame. The map does the same after it resumes.
+- Monsters are drawn by `drawMonster` in `src/ui/monsterArt.ts`, shared by every screen.
+- **Evolving:** after a won battle, every team monster at its evolve level runs the `Evolve` scene
+  (`src/scenes/EvolveScene.ts`), then the map resumes.
+- In battle, **Bag** opens a target picker: pick the item, then who gets it.
+- Dev builds only: **L** on a map levels the team up to the next evolve level and evolves it (to
+  reach evolving fast in a play-test).
+
+## Shop and map parts (M6)
+- Walking into a shop tile opens `Shop` (`src/scenes/ShopScene.ts`) on top of the paused map. Rows
+  come from `shopRows` in `src/logic/shop.ts`: every item in `items.json` except the map part, then a
+  "Map Part: <biome>" row per locked biome. ←→ changes how many, Enter asks "Buy …?", Enter again buys.
+- Buying a map part opens the biome at once (`buyMapPart`); leaving the shop restarts the map where
+  the player stands so the gate shows open.
+- The map HUD shows gems and cages; the Avatar arena gate says "Monsters caught: X / 15".
+
+## Papai, the game expert (ADR 0008)
+- Papai answers from `src/data/guide.json`: `tips` (first-time), `topics` (questions and answers, with
+  what each `covers`) and `goals` ("What should I do next?", first match wins). Conditions are in
+  `src/logic/guide.ts`. Players open him at his spot in Ansonville or with M → Ask Papai (`PapaiScene`).
+- `tests/unit/data/guideCoverage.test.ts` fails when a screen, key or item has no topic. Fix it in
+  `guide.json`. The `gameplay-expert` skill keeps the answers true when features change.
+
