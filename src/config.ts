@@ -18,4 +18,5 @@ export const FONT = 'Trebuchet MS, Arial, sans-serif';
 
 /** World maps (M3): pixels per grid tile, and how long one step takes. */
 export const TILE_SIZE = 32;
-export const STEP_MS = 140;
+/** 187 ms is 75% of the first walking speed (140 ms), owner's pick 2026-11-22. */
+export const STEP_MS = 187;
