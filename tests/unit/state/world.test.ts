@@ -9,6 +9,7 @@ import {
   setPlayerPosition,
   startNewGame,
 } from '../../../src/state/world';
+import { currentGame } from '../../../src/state/game';
 
 describe('world state', () => {
   beforeEach(() => resetWorld());
@@ -47,6 +48,7 @@ describe('world state', () => {
   });
 
   it('tracks the player position and returns copies', () => {
+    startNewGame('beach');
     const tile = { x: 3, y: 4 };
     setPlayerPosition('desert', tile);
     tile.x = 99;
@@ -57,7 +59,21 @@ describe('world state', () => {
   });
 
   it('shows each tip once', () => {
+    startNewGame('beach');
     expect(markTipSeen('ansonville')).toBe(true);
     expect(markTipSeen('ansonville')).toBe(false);
+  });
+
+  it('lives in the game state, so it is saved with the game', () => {
+    startNewGame('desert');
+    setPlayerPosition('desert', { x: 5, y: 6 });
+    markTipSeen('biome');
+    expect(currentGame()).toMatchObject({ openBiomes: ['desert'], area: 'desert', tile: { x: 5, y: 6 }, seenTips: ['biome'], bag: { cage: 100 } });
+  });
+
+  it('does nothing before a game starts', () => {
+    setPlayerPosition('desert', { x: 1, y: 1 });
+    expect(markTipSeen('biome')).toBe(false);
+    expect(getWorld().area).toBeNull();
   });
 });

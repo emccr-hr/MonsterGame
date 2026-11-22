@@ -1,5 +1,7 @@
 import * as Phaser from 'phaser';
-import { COLORS, GAME_HEIGHT, GAME_WIDTH, SAVE_KEY } from '../config';
+import { COLORS, GAME_HEIGHT, GAME_WIDTH } from '../config';
+import { mapById } from '../data/maps';
+import { getGame, hasSave, loadGame } from '../state/game';
 import { markReady, reportState } from '../testHook';
 
 interface MenuItem {
@@ -100,8 +102,14 @@ export class TitleScene extends Phaser.Scene {
       this.scene.start('PickBiome');
       return;
     }
-    this.message?.setText('Saved games are coming soon!');
-    this.refresh();
+    const problem = loadGame();
+    if (problem) {
+      this.message?.setText(problem);
+      this.refresh();
+      return;
+    }
+    const g = getGame();
+    this.scene.start(mapById(g.area).name, g.tile ? { at: g.tile } : {});
   }
 
   private refresh(): void {
@@ -116,13 +124,5 @@ export class TitleScene extends Phaser.Scene {
       menu: this.items.map(({ label, enabled }) => ({ label, enabled })),
       message: this.message?.text ?? '',
     });
-  }
-}
-
-function hasSave(): boolean {
-  try {
-    return window.localStorage.getItem(SAVE_KEY) !== null;
-  } catch {
-    return false; // Private mode or storage blocked: act like there is no save.
   }
 }
