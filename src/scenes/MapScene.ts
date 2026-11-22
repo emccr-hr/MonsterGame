@@ -2,6 +2,7 @@ import * as Phaser from 'phaser';
 import { COLORS, FONT, GAME_HEIGHT, GAME_WIDTH, STEP_MS, TILE_SIZE } from '../config';
 import { content } from '../data';
 import { ANSONVILLE, mapById, type GameMap } from '../data/maps';
+import { debugLevelTeam, readyToEvolve } from '../logic/collection';
 import { stepOnEncounterGround } from '../logic/encounterRate';
 import { createRng, type Rng } from '../logic/rng';
 import { useReviver } from '../logic/world';
@@ -26,6 +27,8 @@ import {
   type TileKind,
 } from '../world/grid';
 import { WILD_ENCOUNTER, type WildEncounterEvent } from './events';
+import type { EvolveData } from './EvolveScene';
+import type { MenuData } from './MenuScene';
 
 interface MapSceneData {
   /** Arriving in Ansonville from this biome: stand beside its gate. */
@@ -57,6 +60,8 @@ export class MapScene extends Phaser.Scene {
   private paused = false;
   private leaving = false;
   private stepsSinceEncounter = 0;
+  /** When the map last came back from a battle or menu; the key that closed it is ignored here. */
+  private resumedAt = 0;
   private rng: Rng = createRng(1);
   private player!: Phaser.GameObjects.Arc;
   private messageBox!: Phaser.GameObjects.Container;
@@ -100,6 +105,19 @@ export class MapScene extends Phaser.Scene {
     this.drawHud();
     this.setupInput();
 
+    // Back from a battle, evolving or the menu (they pause this scene and resume it after).
+    const onResume = () => {
+      this.resumedAt = performance.now();
+      this.paused = false;
+      this.queued = null;
+      this.moving = false;
+      setPlayerPosition(this.map.id, this.tile);
+      this.report();
+      this.menuTip();
+    };
+    this.events.on('resume', onResume);
+    this.events.once('shutdown', () => this.events.off('resume', onResume));
+
     setPlayerPosition(this.map.id, this.tile);
     saveGame();
     this.report();
@@ -107,6 +125,12 @@ export class MapScene extends Phaser.Scene {
     // First visit: show this screen's guide tip once.
     const tip = this.map.biome ? 'biome' : 'ansonville';
     if (markTipSeen(tip)) this.showMessage(tipText(tip), 5000);
+    else this.menuTip();
+  }
+
+  /** Once you have a monster: tell about the M menu, once. */
+  private menuTip(): void {
+    if (getGame().team.length > 0 && markTipSeen('menu')) this.showMessage(tipText('menu'), 5000);
   }
 
   override update(): void {
@@ -144,6 +168,7 @@ export class MapScene extends Phaser.Scene {
     kb.on('keydown-SPACE', once(() => this.interact()));
     kb.on('keydown-ENTER', once(() => this.interact()));
     kb.on('keydown-ESC', () => this.hideMessage());
+    kb.on('keydown-M', once(() => this.openMenu()));
 
     if (import.meta.env.DEV) {
       // Debug only: U opens every gate (map parts and the shop arrive in M6).
@@ -154,7 +179,35 @@ export class MapScene extends Phaser.Scene {
           this.scene.restart({ at: this.tile });
         }),
       );
+      // Debug only: L levels the team up to its next evolve level, then evolves it.
+      kb.on(
+        'keydown-L',
+        once(() => {
+          if (this.paused || this.leaving || this.moving) return;
+          setGame(debugLevelTeam(content, getGame()));
+          const ready = readyToEvolve(content, getGame()).filter((m) => getGame().team.some((t) => t.uid === m.uid));
+          saveGame();
+          if (ready.length === 0) return;
+          this.paused = true;
+          this.scene.pause();
+          this.scene.run('Evolve', { uids: ready.map((m) => m.uid), map: this.scene.key } satisfies EvolveData);
+        }),
+      );
     }
+  }
+
+  /** M: Team, Bag, Monster Book, Save (M5). The map waits underneath. */
+  private openMenu(): void {
+    if (this.paused || this.leaving || this.moving || this.justResumed()) return;
+    this.paused = true;
+    this.queued = null;
+    this.hideMessage();
+    this.scene.pause();
+    this.scene.run('Menu', { map: this.scene.key } satisfies MenuData);
+  }
+
+  private justResumed(): boolean {
+    return performance.now() - this.resumedAt < 150;
   }
 
   private heldDir(): Dir | null {
@@ -169,7 +222,7 @@ export class MapScene extends Phaser.Scene {
 
   /** Space or Enter: close the message, or use whatever the player is facing. */
   private interact(): void {
-    if (this.paused || this.leaving) return;
+    if (this.paused || this.leaving || this.justResumed()) return;
     if (this.messageBox.visible) {
       this.hideMessage();
       return;
@@ -253,12 +306,6 @@ export class MapScene extends Phaser.Scene {
     this.paused = true;
     this.queued = null;
     this.hideMessage();
-    this.events.once('resume', () => {
-      this.paused = false;
-      this.queued = null;
-      setPlayerPosition(this.map.id, this.tile);
-      this.report();
-    });
     const event: WildEncounterEvent = { biomeId, sceneKey: this.scene.key, tile: { ...this.tile } };
     this.game.events.emit(WILD_ENCOUNTER, event);
   }
@@ -362,6 +409,13 @@ export class MapScene extends Phaser.Scene {
       .setScrollFactor(0)
       .setDepth(20);
     area.setName('area');
+    this.add
+      .text(GAME_WIDTH - 12, 10, 'M: Menu', { fontFamily: FONT, fontSize: '18px', color: COLORS.text, backgroundColor: '#000000aa', padding: { x: 8, y: 4 } })
+      .setOrigin(1, 0)
+      .setScrollFactor(0)
+      .setDepth(20)
+      .setInteractive({ useHandCursor: true })
+      .on('pointerdown', () => this.openMenu());
 
     const boxW = GAME_WIDTH - 40;
     const bg = this.add.rectangle(0, 0, boxW, 70, 0x14112b, 0.92).setStrokeStyle(3, 0xffd166).setOrigin(0);
