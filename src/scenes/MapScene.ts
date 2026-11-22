@@ -1,7 +1,8 @@
 import * as Phaser from 'phaser';
-import { COLORS, ENCOUNTER_CHANCE, FONT, GAME_HEIGHT, GAME_WIDTH, SAFE_STEPS_AFTER_ENCOUNTER, STEP_MS, TILE_SIZE } from '../config';
+import { COLORS, FONT, GAME_HEIGHT, GAME_WIDTH, STEP_MS, TILE_SIZE } from '../config';
 import { content } from '../data';
 import { ANSONVILLE, mapById, type GameMap } from '../data/maps';
+import { stepOnEncounterGround } from '../logic/encounterRate';
 import { createRng, type Rng } from '../logic/rng';
 import { getWorld, isBiomeOpen, markTipSeen, openAllBiomes, setPlayerPosition } from '../state/world';
 import { reportState } from '../testHook';
@@ -234,15 +235,14 @@ export class MapScene extends Phaser.Scene {
 
   private afterStep(kind: TileKind): void {
     if (kind !== 'encounter' || !this.map.biome) return;
-    this.stepsSinceEncounter++;
-    if (this.stepsSinceEncounter > SAFE_STEPS_AFTER_ENCOUNTER && this.rng.chance(ENCOUNTER_CHANCE)) {
-      this.startEncounter(this.map.biome);
-    }
+    // The rule is in src/logic (ADR 0002); the scene only supplies the Rng.
+    const step = stepOnEncounterGround(this.stepsSinceEncounter, this.rng);
+    this.stepsSinceEncounter = step.stepsSince;
+    if (step.encounter) this.startEncounter(this.map.biome);
   }
 
   /** M3 placeholder: announce the encounter and fire the event. M4 builds the real one. */
   private startEncounter(biomeId: string): void {
-    this.stepsSinceEncounter = 0;
     this.paused = true;
     this.queued = null;
     this.showMessage('A wild monster appears!');
