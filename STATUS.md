@@ -5,6 +5,7 @@ One line per session: date, what shipped, what's next. Newest at the top.
 
 | Date | What happened | Next |
 |---|---|---|
+| 2026-11-22 | **M8 round 2** (PR #28): item pictures (Shop, Bag, cage throw), map buildings, gates and a tree per area; original synthesized music per area (plus an Avatar battle song) and sound effects, with a Sound setting in the M menu; the designer's drawings how-to. | Listen to the music with the designer; M6b; M6c bigger maps; M8 ground tiles, arena, more sound effects. |
 | 2026-11-22 | **Vector art, first version (M8)** (PR #26): SVG sprites for all 31 monsters (approved mockup drawings for the base forms, Avatar, the player and Papai; new drawings for the evolved forms, approved by the owner), shown in battle, menus, the Monster Book and on the map; look-data fallback; sprite gallery dev page. | M8 round 2 (items, map art, audio); play-test; M6b; M6c bigger maps. |
 | 2026-11-22 | **Save file backup** (PR #24): Save to file (M menu) and Load save file (Title); bigger maps scheduled as M6c; owner feedback on maps and vector art recorded. | Play-test; M6b teleport, Avatar battle, ending; M6c bigger maps. |
 | 2026-11-22 | **A look for each monster** (PR #22): body, accent and markings per monster from `monsters.json` (Snowy whites, spots, a penguin tux...), drawn everywhere; brighter Desert, Snowy and Volcano map colors. | Play-test M5/M6 with the designer; M6b teleport, Avatar battle, ending. |
