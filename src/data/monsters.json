@@ -880,10 +880,10 @@
     "evolvesFrom": null,
     "catchable": false,
     "baseStats": {
-      "hp": 177,
-      "attack": 130,
-      "defense": 130,
-      "speed": 83
+      "hp": 116,
+      "attack": 85,
+      "defense": 85,
+      "speed": 54
     }
   }
 ]
