@@ -5,6 +5,7 @@ One line per session: date, what shipped, what's next. Newest at the top.
 
 | Date | What happened | Next |
 |---|---|---|
+| 2026-11-22 | **M4 Catching and battles merged** (PR #15): Battle scene on M2 rules (first catch is cage-only, cage throw animation, 2x speed), Reviver heals and is the wake-up spot after a loss, game saves to the browser and Continue works; vector placeholders; battle smoke test. | Play-test with the designer; M5 team, backpack, Monster Book, evolution. |
 | 2026-11-22 | **M2 Core rules merged** (PR #13): battle engine, catching, XP and evolution, spawning, economy, teleport, and save/load in `src/logic/` with 288 unit tests; Avatar stats tuned. | M4 catching and battles. |
 | 2026-11-21 | **M1 Content as data merged** (PR #7): Zod schemas and cross-checks, 31 monsters, 45 moves, 10 abilities, 5 biomes, items and rules as JSON; base stats proposed in `02-Gameplay/Balance.md`. | M2 core rules and M3 world. |
 | 2026-11-21 | M0 review leftovers (PR #5): pre-commit spell-checks staged files only; `guide.json` started with the title-screen tip. | M1: content as data. |
