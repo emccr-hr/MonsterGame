@@ -131,3 +131,9 @@ No code change needed (ADR 0003). Schemas: `src/data/schema.ts`; cross-checks: `
 - `tests/unit/data/guideCoverage.test.ts` fails when a screen, key or item has no topic. Fix it in
   `guide.json`. The `gameplay-expert` skill keeps the answers true when features change.
 
+## Save files
+- The game autosaves to localStorage (`src/state/game.ts`). That save is **per browser and per address**:
+  `npm run dev` (localhost:5173) and `npm run preview` (localhost:4173) keep separate saves.
+- Backup: M menu → **Save to file** downloads the save as JSON; Title → **Load save file** loads one
+  (`src/state/saveFile.ts`, using `serialize`/`deserialize` from `src/logic/save.ts`).
+

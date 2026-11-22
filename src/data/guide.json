@@ -252,7 +252,7 @@
     {
       "id": "saving",
       "question": "Does the game save?",
-      "answer": "Yes! It saves by itself when you go to a new place, heal, or finish a battle. You can also press M and pick Save. Pick Continue on the title screen.",
+      "answer": "Yes! It saves by itself when you go to a new place, heal, or finish a battle. Pick Continue on the title screen. For a backup, press M and pick Save to file, then Load save file on the title screen.",
       "covers": [
         "rule:saving"
       ]

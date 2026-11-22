@@ -22,6 +22,7 @@ test('the game boots to the title screen', async ({ page }) => {
   expect(s.menu).toEqual([
     { label: 'New Game', enabled: true },
     { label: 'Continue', enabled: false },
+    { label: 'Load save file', enabled: true },
   ]);
   expect(errors).toEqual([]);
 });
@@ -29,8 +30,15 @@ test('the game boots to the title screen', async ({ page }) => {
 test('New Game can be chosen with the keyboard', async ({ page }) => {
   await openGame(page);
   await page.locator('canvas').click(); // Focus the game.
-  await page.keyboard.press('ArrowDown'); // Continue is off with no save, so the highlight stays put.
-  expect((await state(page)).selected).toBe('New Game');
+  // Continue is off with no save, so Down skips it, and Up comes back to New Game.
+  await expect
+    .poll(async () => {
+      if ((await state(page)).selected === 'New Game') await page.keyboard.press('ArrowDown');
+      return (await state(page)).selected;
+    })
+    .toBe('Load save file');
+  await page.keyboard.press('ArrowUp');
+  await expect.poll(async () => (await state(page)).selected).toBe('New Game');
   await page.keyboard.press('Enter');
   await expect.poll(async () => (await state(page)).scene).toBe('PickBiome');
 });

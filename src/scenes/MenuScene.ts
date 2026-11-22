@@ -1,6 +1,7 @@
 import * as Phaser from 'phaser';
 import { COLORS, FONT, GAME_HEIGHT, GAME_WIDTH } from '../config';
 import { getGame, saveGame } from '../state/game';
+import { downloadSave } from '../state/saveFile';
 import { reportState } from '../testHook';
 import { bindMenuKeys, ListMenu, onKey } from '../ui/listMenu';
 
@@ -38,7 +39,7 @@ export class MenuScene extends Phaser.Scene {
 
   create(): void {
     const w = 300;
-    const h = 370;
+    const h = 410;
     const x = GAME_WIDTH - w - 20;
     this.add.rectangle(x, 20, w, h, 0x14112b, 0.95).setOrigin(0).setStrokeStyle(3, 0xffd166).setDepth(20);
     const g = getGame();
@@ -62,9 +63,17 @@ export class MenuScene extends Phaser.Scene {
           return 'Game saved!';
         },
       },
+      {
+        label: 'Save to file',
+        run: () => {
+          saveGame();
+          downloadSave();
+          return 'Saved a backup file!';
+        },
+      },
       { label: 'Close (Esc)' },
     ];
-    this.list = new ListMenu(this, x + 16, 80, { width: w - 32, fontSize: 20, rowHeight: 40, visibleRows: 7 });
+    this.list = new ListMenu(this, x + 16, 80, { width: w - 32, fontSize: 20, rowHeight: 40, visibleRows: 8 });
     this.list.onPick = (i) => this.choose(i);
     this.list.onChange = () => this.report();
     const start = this.args.select ? this.entries.findIndex((e) => e.open === this.args.select) : 0;

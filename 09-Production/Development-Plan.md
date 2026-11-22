@@ -89,6 +89,11 @@ All in `src/logic/`, all unit-tested:
 - **Exit:** full game playable start to finish (with fast-XP debug cheats behind a dev flag).
 - **Status (2026-11-22):** shop, map parts, gem/cage HUD and the arena counter are built (M6a). Left for **M6b:** teleport menu and pins, the Avatar battle, the ending and credits. Dev builds already have the L key (fast leveling).
 
+### M6c: World polish (owner feedback, 2026-11-22)
+- **Bigger maps or more sections:** each biome grows past one screen (larger grids, or 2–3 connected sections with exits between them), with more encounter ground, trees and water to explore; Ansonville grows to match. Maps stay character grids in `src/data/maps/index.ts` (each section its own map, joined by exits), so `tests/unit/world/maps.test.ts` keeps checking them.
+- Keep the shop and Reviver near each biome's entrance; layouts that change what the designer decided go to him first (design-buddy).
+- **Exit:** every biome takes a few minutes to explore; smoke tests still walk in and out.
+
 ### M7: Guide character and onboarding
 - Guide character in Ansonville (name and look from the designer). Scripted hints (ADR 0004):
   - "What should I do next?", answered from game state (e.g., "Catch your first monster! Walk into the tall grass in the Forest.").

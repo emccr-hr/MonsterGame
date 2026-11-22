@@ -140,3 +140,45 @@ test('Papai answers "What should I do next?" from the game state', async ({ page
   await page.keyboard.press('Escape');
   await expect.poll(async () => (await state(page)).scene).toBe('Ansonville');
 });
+
+test('save to a file from the menu, then load it in an empty browser', async ({ page }) => {
+  await newGame(page, 'volcano');
+  await page.keyboard.press('Escape'); // Close the welcome tip.
+  await page.waitForTimeout(250);
+  await page.keyboard.press('m');
+  await expect.poll(async () => (await state(page)).scene).toBe('Menu');
+  await page.waitForTimeout(250);
+  await expect
+    .poll(
+      async () => {
+        const selected = (await state(page)).selected;
+        if (selected !== 'Save to file') await page.keyboard.press('ArrowDown');
+        return selected;
+      },
+      { intervals: [200] },
+    )
+    .toBe('Save to file');
+  const [download] = await Promise.all([page.waitForEvent('download'), page.keyboard.press('Enter')]);
+  expect(download.suggestedFilename()).toMatch(/^magic-and-monsters-save-\d{4}-\d{2}-\d{2}\.json$/);
+  const file = await download.path();
+
+  // A browser with no save: Continue is off, but the file brings the game back.
+  await page.evaluate(() => localStorage.clear());
+  await page.goto('./?test');
+  await page.waitForFunction(() => window.__TEST__?.ready === true, undefined, { timeout: 15_000 });
+  await page.locator('canvas').click();
+  await expect
+    .poll(
+      async () => {
+        const selected = (await state(page)).selected;
+        if (selected !== 'Load save file') await page.keyboard.press('ArrowDown');
+        return selected;
+      },
+      { intervals: [200] },
+    )
+    .toBe('Load save file');
+  const [chooser] = await Promise.all([page.waitForEvent('filechooser'), page.keyboard.press('Enter')]);
+  await chooser.setFiles(file);
+  await expect.poll(async () => (await state(page)).scene).toBe('Ansonville');
+  expect((await state(page)).openBiomes).toEqual(['volcano']);
+});

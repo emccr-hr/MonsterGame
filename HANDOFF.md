@@ -32,8 +32,11 @@ and `09-Production/Development-Plan.md`. Whoever orchestrates keeps this file cu
 ## Next
 1. **Play-test M5/M6 with the designer** (catch, battle, evolve, shop, map part, Ask Papai) and capture his reactions as a new raw-input round (`00-Raw-Input/`, append only). Ask him (design-buddy) whether evolving should ask "Grow now?" and about Papai's personality (Open-Questions 38).
 2. **M6b:** level-50 teleport menu and pins (`world.ts` has `teleportSpots`/`placePin`/`removePin`), the Avatar battle (`startAvatarBattle` exists; `BattleScene` only starts wild battles today; the arena gate and Papai's goal say "coming soon"), ending and credits.
-3. **Backlog:** dedicated catching scene (Development-Plan "Backlog", owner may want it).
-4. Every feature PR: update Papai with the `gameplay-expert` skill (the coverage test will fail otherwise).
+3. **M6c world polish (owner feedback):** bigger maps or more sections per biome, and a bigger Ansonville (Development-Plan M6c).
+4. **Vector art (M8):** the owner is looking forward to it; per-monster looks are done, real vector sprites for the 15 base monsters and the player are next in M8.
+5. **Saves:** autosave plus Continue, and a backup file (M menu → Save to file; Title → Load save file). Saves are per browser and per address (5173 dev vs 4173 preview). Tell the family to save a file now and then.
+6. **Backlog:** dedicated catching scene (Development-Plan "Backlog", owner may want it).
+7. Every feature PR: update Papai with the `gameplay-expert` skill (the coverage test will fail otherwise).
 
 ## Orchestrator's job (lighter version of Pulse's)
 1. Start **one or two** focused work sessions at a time, each with a brief: files, exit criteria, "read HANDOFF.md first", worktree at `..\MonsterGame-<name>`.
