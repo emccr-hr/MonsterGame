@@ -12,15 +12,18 @@ and `09-Production/Development-Plan.md`. Whoever orchestrates keeps this file cu
 
 ## State (2026-11-21)
 - **Design complete. M0 Foundation merged (PR #3):** Phaser 4.2.1 + Vite 8 + TypeScript 6.0 skeleton that boots to a Title screen (New Game / Continue), seeded RNG (`src/logic/rng.ts`), `window.__TEST__` hook, ESLint/`tsc`/spelling/data checks, `npm run ci:local` (`--full` adds 3 Playwright smoke tests), pre-commit hook, one-job `ci.yml`. How-to: `docs/developer-guide.md`.
+- **M1 Content as data merged (PR #7):** all content in `src/data/*.json` (31 monsters incl. Avatar, 45 moves, 10 abilities, 5 biomes, 5 items, `rules.json`, `guide.json`), Zod schemas in `schema.ts`, cross-checks in `validate.ts`, loaded for the game by `src/data/index.ts`. Proposed numbers (base stats, power tiers, effect amounts) in `02-Gameplay/Balance.md`.
+- **Owner's direction (2026-11-21):** get through M1–M4 as fast and efficiently as possible; fun and polish can wait. Build the simplest option where a design question is open, and ask the designer in parallel.
+- **Laptop memory is tight** (it ran out once with Firefox open). Keep parallel sessions to what fits.
 - **Merging:** owner's standing rule (ADR 0007, PR #2): merge only with `node scripts/merge-if-green.mjs <pr>` (`--docs-only` for docs PRs).
 - TypeScript stays on 6.0 until typescript-eslint supports 7. Smoke tests run one at a time (parallel headless WebGL stalled on the laptop).
 - Planning docs: `09-Production/Development-Plan.md` (milestones M0–M9), `docs/ci-standards.md`, ADRs 0001–0007, `01-Vision/Genre-Research.md`, filled-in Controls, UI, Tech, Audio and Characters docs.
 - The `design-buddy` skill exists for talking with the designer.
 
 ## Next
-1. **M1 Content as data**: Zod schemas plus JSON converted from the design docs (subagent on a cheaper model, then verify); turn `scripts/validate-data.mjs` into real schema and cross-checks; give `src/data/guide.json` (started with a title-screen tip) a schema.
-2. **M2 Core rules** in `src/logic/` with unit tests (use `Rng` from `rng.ts`; the lint rule blocks `Math.random` there).
-From M2 on, two work sessions can run in parallel (logic and scenes), each in its own worktree beside the clone.
+1. **M2 Core rules** in `src/logic/` with unit tests (use `Rng` from `rng.ts`; the lint rule blocks `Math.random` there). Logic takes `Content` as a parameter.
+2. **M3 World** can run in parallel (scenes only, its own worktree). Proposed: simple grid maps in code or JSON instead of Tiled, to go faster (log it in the Decisions-Log).
+3. **M4 Catching and battles** joins M2 and M3.
 
 ## Orchestrator's job (lighter version of Pulse's)
 1. Start **one or two** focused work sessions at a time, each with a brief: files, exit criteria, "read HANDOFF.md first", worktree at `..\MonsterGame-<name>`.

@@ -5,6 +5,7 @@ One line per session: date, what shipped, what's next. Newest at the top.
 
 | Date | What happened | Next |
 |---|---|---|
+| 2026-11-21 | **M1 Content as data merged** (PR #7): Zod schemas and cross-checks, 31 monsters, 45 moves, 10 abilities, 5 biomes, items and rules as JSON; base stats proposed in `02-Gameplay/Balance.md`. | M2 core rules and M3 world. |
 | 2026-11-21 | M0 review leftovers (PR #5): pre-commit spell-checks staged files only; `guide.json` started with the title-screen tip. | M1: content as data. |
 | 2026-11-21 | **M0 Foundation merged** (PR #3): Phaser 4.2.1 + Vite + TS skeleton (Title screen), seeded RNG, test hook, lint/spelling/data checks, `ci:local --full`, pre-commit hook, one-job CI, developer guide. | M1: content as data (Zod schemas + JSON from the design docs). |
 | 2026-11-21 | Merge-on-green rule (ADR 0007, merge-if-green script; PR #2, merged by the owner). | M0 Foundation. |
