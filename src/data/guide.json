@@ -75,5 +75,237 @@
       "screen": "Map",
       "text": "Locked gates need a map part. Buy one at the shop for 50 Magic Gems. Win battles to earn gems."
     }
+  ],
+  "topics": [
+    {
+      "id": "controls",
+      "question": "What buttons do I use?",
+      "answer": "Arrow keys or WASD to walk and pick. Enter or Space to choose or talk. Esc or Backspace to go back. M opens the menu. You can also click with the mouse.",
+      "covers": [
+        "key:UP",
+        "key:DOWN",
+        "key:LEFT",
+        "key:RIGHT",
+        "key:W",
+        "key:A",
+        "key:S",
+        "key:D",
+        "key:ENTER",
+        "key:SPACE",
+        "key:ESC",
+        "key:BACKSPACE",
+        "scene:Title",
+        "scene:PickBiome"
+      ]
+    },
+    {
+      "id": "find-monsters",
+      "question": "Where are the wild monsters?",
+      "answer": "They hide in the tall grass, sand, snow and ash in each open place. Walk around there and one will jump out!",
+      "covers": [
+        "rule:encounters"
+      ]
+    },
+    {
+      "id": "catching",
+      "question": "How do I catch a monster?",
+      "answer": "In a battle, pick Cage. The tiny cage grows big around the monster. Lower HP means a better chance, so fight a little first. After 3 misses it runs away.",
+      "covers": [
+        "item:cage",
+        "rule:catching",
+        "scene:Battle"
+      ]
+    },
+    {
+      "id": "first-monster",
+      "question": "I have no monster. What now?",
+      "answer": "Throw cages! Your first monster has to be caught with a cage. You start with 100 cages.",
+      "covers": [
+        "rule:first-catch"
+      ]
+    },
+    {
+      "id": "battle",
+      "question": "How do battles work?",
+      "answer": "Pick Fight and a move. Your monster and the wild one take turns. Switch sends in another team monster. Run gets you out of a wild battle. Press F to make it go 2x fast.",
+      "covers": [
+        "key:F",
+        "rule:battles"
+      ]
+    },
+    {
+      "id": "burned-frozen",
+      "question": "What are Burned and Frozen?",
+      "answer": "Burned monsters lose a little HP each turn for a while. Frozen monsters miss their next turn. Those are the only two.",
+      "covers": [
+        "rule:statuses"
+      ]
+    },
+    {
+      "id": "big-monsters",
+      "question": "What is a Big Monster?",
+      "answer": "Sometimes a wild monster is BIG. It is stronger, harder to catch, and gets a star in your Monster Book. About 1 in 100!",
+      "covers": [
+        "rule:big"
+      ]
+    },
+    {
+      "id": "team",
+      "question": "How do I change my team?",
+      "answer": "Press M and pick Team and Backpack. Pick a monster with Enter, then pick another to swap. The first one on your team fights first. Tab sorts the backpack.",
+      "covers": [
+        "scene:Menu",
+        "scene:Team",
+        "key:M",
+        "key:TAB",
+        "rule:team"
+      ]
+    },
+    {
+      "id": "healing",
+      "question": "How do I heal my monsters?",
+      "answer": "Walk into the pink Reviver next to a shop. It heals everyone for free! You can also use a Healing Potion from your Bag.",
+      "covers": [
+        "rule:reviver",
+        "item:potion"
+      ]
+    },
+    {
+      "id": "bag",
+      "question": "How do I use a potion?",
+      "answer": "Press M, pick Bag, pick the potion, then pick who gets it. In a battle, pick Bag. A Wake-Up Snack wakes up a knocked-out monster.",
+      "covers": [
+        "scene:Bag",
+        "item:potion",
+        "item:wake-up-snack"
+      ]
+    },
+    {
+      "id": "losing",
+      "question": "What if all my monsters get knocked out?",
+      "answer": "You wake up at the last Reviver you used, and your monsters are all better. You don't lose anything!",
+      "covers": [
+        "rule:losing"
+      ]
+    },
+    {
+      "id": "growing",
+      "question": "How do monsters grow?",
+      "answer": "Win battles to get XP and level up. Each monster grows into a new form at its own level. It happens right after the battle!",
+      "covers": [
+        "scene:Evolve",
+        "rule:evolving"
+      ]
+    },
+    {
+      "id": "book",
+      "question": "What is the Monster Book?",
+      "answer": "Press M and pick Monster Book. It shows every monster you have seen and caught. A check means caught. A star means you caught a Big one.",
+      "covers": [
+        "scene:Book",
+        "rule:book"
+      ]
+    },
+    {
+      "id": "gems",
+      "question": "How do I get Magic Gems?",
+      "answer": "Win battles against wild monsters. Each win gives you some gems. Spend them at the shop.",
+      "covers": [
+        "rule:gems"
+      ]
+    },
+    {
+      "id": "shop",
+      "question": "What can I buy at the shop?",
+      "answer": "Cages, Healing Potions, Wake-Up Snacks, Teleport Pins, and map parts. Use left and right to pick how many, then Enter twice to buy.",
+      "covers": [
+        "scene:Shop",
+        "item:teleport-pin"
+      ]
+    },
+    {
+      "id": "map-parts",
+      "question": "How do I open the other places?",
+      "answer": "Buy a map part at the shop for 50 Magic Gems. The gate opens right away. There is one for each locked place.",
+      "covers": [
+        "item:map-part",
+        "rule:map-parts"
+      ]
+    },
+    {
+      "id": "teleport",
+      "question": "How does teleporting work?",
+      "answer": "Once a monster on your team is level 50, you can teleport to shops and to Teleport Pins you place. You can place 5 pins.",
+      "covers": [
+        "rule:teleport"
+      ],
+      "unlock": "canTeleport"
+    },
+    {
+      "id": "avatar",
+      "question": "Who is Avatar?",
+      "answer": "Avatar is the boss! Catch every wild monster from every place to open Avatar's arena in the middle of Ansonville.",
+      "covers": [
+        "rule:avatar"
+      ]
+    },
+    {
+      "id": "saving",
+      "question": "Does the game save?",
+      "answer": "Yes! It saves by itself when you go to a new place, heal, or finish a battle. You can also press M and pick Save. Pick Continue on the title screen.",
+      "covers": [
+        "rule:saving"
+      ]
+    },
+    {
+      "id": "papai",
+      "question": "Who are you?",
+      "answer": "I'm Papai! I know everything about this game. Talk to me in Ansonville, or press M and pick Ask Papai anytime.",
+      "covers": [
+        "scene:Papai"
+      ]
+    }
+  ],
+  "goals": [
+    {
+      "id": "catch-first",
+      "when": "noMonster",
+      "text": "Catch your first monster! Walk into the tall grass, sand, snow or ash and pick Throw cage."
+    },
+    {
+      "id": "heal-tired",
+      "when": "teamTired",
+      "text": "Your monsters are tired. Walk into a Reviver next to a shop to heal them for free."
+    },
+    {
+      "id": "buy-cages",
+      "when": "lowOnCages",
+      "text": "You are almost out of cages. Buy more at the shop!"
+    },
+    {
+      "id": "heal-hurt",
+      "when": "teamHurt",
+      "text": "Some of your monsters are knocked out. Heal at a Reviver, or use a Wake-Up Snack from your Bag."
+    },
+    {
+      "id": "fight-avatar",
+      "when": "arenaOpen",
+      "text": "You caught every wild monster! Avatar's arena is open in the middle of Ansonville."
+    },
+    {
+      "id": "open-place",
+      "when": "canBuyMapPart",
+      "text": "You have enough gems for a map part! Buy one at the shop to open a new place."
+    },
+    {
+      "id": "earn-gems",
+      "when": "needGemsForMapPart",
+      "text": "Win battles to earn Magic Gems. At 50 gems you can buy a map part and open a new place."
+    },
+    {
+      "id": "catch-all",
+      "when": "always",
+      "text": "Catch every wild monster to open Avatar's arena. You have {caught} of {needed}. Check your Monster Book!"
+    }
   ]
 }

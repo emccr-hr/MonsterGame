@@ -19,7 +19,7 @@ interface Entry {
 }
 
 /**
- * The game menu (M5, UI-and-HUD.md "Menu button (M)"): Team, Bag, Monster Book, Save. Opened with
+ * The game menu (M5, UI-and-HUD.md "Menu button (M)"): Team, Bag, Monster Book, Ask Papai, Save. Opened with
  * M on any map, which pauses the map; Esc or M closes it and the map carries on.
  */
 export class MenuScene extends Phaser.Scene {
@@ -38,7 +38,7 @@ export class MenuScene extends Phaser.Scene {
 
   create(): void {
     const w = 300;
-    const h = 330;
+    const h = 370;
     const x = GAME_WIDTH - w - 20;
     this.add.rectangle(x, 20, w, h, 0x14112b, 0.95).setOrigin(0).setStrokeStyle(3, 0xffd166).setDepth(20);
     const g = getGame();
@@ -54,6 +54,7 @@ export class MenuScene extends Phaser.Scene {
       { label: `Team (${g.team.length}) and Backpack (${g.backpack.length})`, open: 'Team' },
       { label: 'Bag', open: 'Bag' },
       { label: 'Monster Book', open: 'Book' },
+      { label: 'Ask Papai', open: 'Papai' },
       {
         label: 'Save',
         run: () => {
@@ -63,7 +64,7 @@ export class MenuScene extends Phaser.Scene {
       },
       { label: 'Close (Esc)' },
     ];
-    this.list = new ListMenu(this, x + 16, 80, { width: w - 32, fontSize: 20, rowHeight: 40, visibleRows: 6 });
+    this.list = new ListMenu(this, x + 16, 80, { width: w - 32, fontSize: 20, rowHeight: 40, visibleRows: 7 });
     this.list.onPick = (i) => this.choose(i);
     this.list.onChange = () => this.report();
     const start = this.args.select ? this.entries.findIndex((e) => e.open === this.args.select) : 0;
@@ -87,7 +88,7 @@ export class MenuScene extends Phaser.Scene {
     const e = this.entries[i];
     if (!e) return;
     if (e.open) {
-      this.scene.start(e.open, { map: this.args.map } satisfies MenuData);
+      this.scene.start(e.open, { map: this.args.map, fromMenu: true });
       return;
     }
     if (e.run) {

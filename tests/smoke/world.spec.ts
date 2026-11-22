@@ -127,3 +127,16 @@ test('M6: buy a map part at the shop, and the Desert gate opens', async ({ page 
   await walkUntil(page, 'ArrowLeft', (s) => s.scene === 'Desert');
   expect(errors).toEqual([]);
 });
+
+test('Papai answers "What should I do next?" from the game state', async ({ page }) => {
+  await newGame(page, 'beach');
+  await page.keyboard.press('Escape'); // Close the welcome tip.
+  // Papai stands 7 tiles right of the start, one row up.
+  await steps(page, 'ArrowRight', 7);
+  await page.keyboard.press('ArrowUp');
+  await expect.poll(async () => (await state(page)).scene).toBe('Papai');
+  expect((await state(page)).message).toMatch(/^Catch your first monster/);
+  await page.waitForTimeout(250);
+  await page.keyboard.press('Escape');
+  await expect.poll(async () => (await state(page)).scene).toBe('Ansonville');
+});

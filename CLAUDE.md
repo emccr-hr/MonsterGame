@@ -12,7 +12,7 @@ except the standards copied below.
 5. **American English** everywhere: code, UI text, docs (`npm run lint:spelling`).
 6. **CI costs minutes.** Draft PRs, `npm run ci:local` first, mark ready once, push once. Docs-only changes run no CI. See `docs/ci-standards.md`.
 7. **Everything original** (Flags N1, N2). No names, creatures, items, maps, art, music or characters from existing games or shows.
-8. **The designer is 10.** His words in `00-Raw-Input/` are the source of truth for *what* the game is. Never edit earlier rounds; only append. Ask before changing anything he decided. Exact numbers and engineering are ours to propose. When talking with him, use the `design-buddy` skill.
+8. **The designer is 10.** His words in `00-Raw-Input/` are the source of truth for *what* the game is. Never edit earlier rounds; only append. Ask before changing anything he decided. Exact numbers and engineering are ours to propose. When talking with him, use the `design-buddy` skill. For how the game plays (and Papai's answers), use the `gameplay-expert` skill.
 
 ## 1. Where things are
 | What | Where |
@@ -46,7 +46,7 @@ except the standards copied below.
 1. Works in the browser build with keyboard (and mouse where it makes sense).
 2. Logic covered by unit tests; `ci:local` green (`--full` if it touches a smoke-tested flow).
 3. Behavior matches the design docs. If the code had to differ, update the doc and log it in Decisions-Log.
-4. Any new player-facing feature has a line in the guide character's tips (`src/data/guide.json`).
+4. Papai knows it: any new player-facing screen, key, item or rule has a topic (and a first-time tip for a new screen) in `src/data/guide.json`; the guide coverage test enforces it (ADR 0008, `gameplay-expert` skill).
 5. STATUS line in the PR body.
 
 ## 5. Decisions (ADRs)
