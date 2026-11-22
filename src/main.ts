@@ -1,6 +1,9 @@
 import * as Phaser from 'phaser';
 import { COLORS, GAME_HEIGHT, GAME_WIDTH } from './config';
+import { MAPS } from './data/maps';
 import { BootScene } from './scenes/Boot';
+import { MapScene } from './scenes/MapScene';
+import { PickBiomeScene } from './scenes/PickBiome';
 import { TitleScene } from './scenes/Title';
 import { installTestHook } from './testHook';
 
@@ -14,5 +17,5 @@ new Phaser.Game({
   backgroundColor: COLORS.background,
   pixelArt: true,
   scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },
-  scene: [BootScene, TitleScene],
+  scene: [BootScene, TitleScene, PickBiomeScene, ...MAPS.map((m) => new MapScene(m))],
 });
