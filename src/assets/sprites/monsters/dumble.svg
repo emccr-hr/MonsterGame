@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- DUMBLE: dumpling with chopstick arms -->
+    <g stroke="#3a2a1a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="20" y1="70" x2="2" y2="44" stroke="#8b5a2b" stroke-width="5"/>
+      <line x1="80" y1="70" x2="98" y2="44" stroke="#8b5a2b" stroke-width="5"/>
+      <path d="M12 95 Q4 52 50 26 Q96 52 88 95 Z" fill="#f4e6c8"/>
+      <path d="M50 26 Q44 14 50 8 Q56 14 50 26" fill="#f4e6c8"/>
+      <path d="M36 36 Q40 30 44 33 M56 33 Q60 30 64 36 M28 48 Q32 42 36 45 M64 45 Q68 42 72 48" fill="none" stroke-width="2"/>
+      <circle cx="39" cy="68" r="4" fill="#3a2a1a"/><circle cx="61" cy="68" r="4" fill="#3a2a1a"/>
+      <path d="M42 79 Q50 86 58 79" fill="none"/>
+      <circle cx="32" cy="77" r="4" fill="#f2a7a0" stroke="none"/><circle cx="68" cy="77" r="4" fill="#f2a7a0" stroke="none"/>
+    </g>
+</svg>

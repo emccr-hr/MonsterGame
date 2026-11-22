@@ -431,7 +431,7 @@ export class BattleScene extends Phaser.Scene {
       const shown = this.playerSprite?.getData('uid') as number | undefined;
       if (shown !== c.m.uid) {
         this.playerSprite?.destroy();
-        this.playerSprite = drawMonster(this, c.m, PLAYER_AT.x, PLAYER_AT.y).setData('uid', c.m.uid);
+        this.playerSprite = drawMonster(this, c.m, PLAYER_AT.x, PLAYER_AT.y, undefined, { flip: true }).setData('uid', c.m.uid);
       }
     }
     const max = maxHp(content, c.m);

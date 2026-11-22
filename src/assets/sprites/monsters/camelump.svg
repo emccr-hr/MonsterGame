@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- CAMELUMP: tan camel, two wobbly humps, long eyelashes -->
+    <g stroke="#3a2a14" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M38 64 L36 97 M48 66 L48 97 M70 66 L72 97 M80 64 L84 97" fill="none" stroke-width="5" stroke="#a8804a"/>
+      <circle cx="46" cy="40" r="13" fill="#c8a06a"/><circle cx="70" cy="40" r="13" fill="#c8a06a"/>
+      <ellipse cx="60" cy="56" rx="32" ry="16" fill="#c8a06a"/>
+      <path d="M92 52 Q98 60 94 70" fill="none"/>
+      <path d="M32 56 Q22 40 22 26" fill="none" stroke-width="10" stroke="#c8a06a"/>
+      <path d="M30 58 Q19 42 18 26 M36 52 Q27 40 27 28" fill="none" stroke-width="2"/>
+      <ellipse cx="17" cy="22" rx="13" ry="9" fill="#c8a06a"/>
+      <path d="M18 12 L22 6 L24 13" fill="#c8a06a"/>
+      <circle cx="16" cy="19" r="2.5" fill="#111"/>
+      <path d="M13 16 L11 12 M16 15 L16 11 M19 16 L21 12" stroke-width="1.5"/>
+      <path d="M5 26 Q9 30 13 27" fill="none" stroke-width="2"/>
+    </g>
+</svg>

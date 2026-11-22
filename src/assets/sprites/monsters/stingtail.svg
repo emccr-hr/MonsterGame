@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- STINGTAIL: sandy-yellow scorpion, glowing purple stinger -->
+  <defs><filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+    <g stroke="#3a2e10" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M30 86 L22 96 M40 88 L36 97 M50 88 L54 97 M58 86 L66 96" fill="none"/>
+      <path d="M22 78 Q10 74 8 66" fill="none"/>
+      <path d="M2 64 Q2 54 10 56 L14 60 L8 62 L14 66 Q8 72 2 64Z" fill="#e2c35a"/>
+      <ellipse cx="42" cy="80" rx="26" ry="11" fill="#e2c35a"/>
+      <circle cx="70" cy="74" r="7" fill="#e2c35a"/><circle cx="80" cy="62" r="7" fill="#e2c35a"/>
+      <circle cx="84" cy="48" r="7" fill="#e2c35a"/><circle cx="80" cy="34" r="7" fill="#e2c35a"/>
+      <circle cx="70" cy="24" r="7" fill="#e2c35a"/>
+      <path d="M64 20 Q52 16 54 30 Q60 24 64 26 Z" fill="#a64dff" filter="url(#glow)"/>
+      <circle cx="30" cy="74" r="3" fill="#111"/><circle cx="38" cy="73" r="3" fill="#111"/>
+    </g>
+</svg>

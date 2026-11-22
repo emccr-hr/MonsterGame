@@ -6,6 +6,7 @@ import { nextGoal, topicsFor } from '../logic/guide';
 import { getGame } from '../state/game';
 import { reportState } from '../testHook';
 import { bindMenuKeys, drawPanel, ListMenu } from '../ui/listMenu';
+import { addCharacter } from '../ui/sprites';
 import { backToMenu, type MenuData } from './MenuScene';
 
 export interface PapaiData extends MenuData {
@@ -74,8 +75,19 @@ export class PapaiScene extends Phaser.Scene {
   }
 }
 
-/** Papai's placeholder look (owner-approved mockup): bald, dark mustache, friendly. */
+/** Papai (owner-approved look): bald, dark mustache, friendly. His vector sprite (M8), centered on (x, y). */
 export function drawPapai(scene: Phaser.Scene, x: number, y: number): void {
+  const sprite = addCharacter(scene, 'papai', x, y + 145, 280);
+  if (sprite) sprite.setDepth(26);
+  else drawPapaiPlaceholder(scene, x, y);
+  scene.add
+    .text(x, y + 160, 'Papai', { fontFamily: FONT, fontSize: '24px', color: COLORS.title, stroke: '#000000', strokeThickness: 4 })
+    .setOrigin(0.5)
+    .setDepth(30);
+}
+
+/** The shapes-only Papai from before M8, used if his sprite file is missing. */
+function drawPapaiPlaceholder(scene: Phaser.Scene, x: number, y: number): void {
   const skin = 0xe8b98a;
   const parts = [
     scene.add.rectangle(0, 95, 120, 110, 0x2f7d6b).setStrokeStyle(3, 0x1b1b1b), // shirt
@@ -92,8 +104,4 @@ export function drawPapai(scene: Phaser.Scene, x: number, y: number): void {
     scene.add.arc(0, 38, 12, 0, 180, false, 0x8a3b2e), // smile
   ];
   scene.add.container(x, y, parts).setDepth(26);
-  scene.add
-    .text(x, y + 160, 'Papai', { fontFamily: FONT, fontSize: '24px', color: COLORS.title, stroke: '#000000', strokeThickness: 4 })
-    .setOrigin(0.5)
-    .setDepth(30);
 }

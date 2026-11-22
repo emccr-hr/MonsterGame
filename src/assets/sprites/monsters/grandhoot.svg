@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- GRANDHOOT: a tall, wise owl with feathery eyebrows and leafy wing tips (Hootle's evolution) -->
+  <g stroke="#2a1a10" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M24 46 Q8 62 14 88 Q22 80 28 78 Z" fill="#7a5230"/>
+    <path d="M76 46 Q92 62 86 88 Q78 80 72 78 Z" fill="#7a5230"/>
+    <g fill="#6aa84f" stroke="#3f6f2f" stroke-width="2">
+      <path d="M14 88 q-10 2 -10 -8 q8 -2 10 8Z"/><path d="M14 88 q2 10 10 6 q-2 -8 -10 -6Z"/>
+      <path d="M86 88 q10 2 10 -8 q-8 -2 -10 8Z"/><path d="M86 88 q-2 10 -10 6 q2 -8 10 -6Z"/>
+    </g>
+    <path d="M26 30 Q22 8 50 6 Q78 8 74 30 L80 92 Q50 100 20 92 Z" fill="#93633a"/>
+    <path d="M36 56 Q50 50 64 56 L66 88 Q50 94 34 88 Z" fill="#f6e6c8" stroke="none"/>
+    <path d="M42 64 q3 3 6 0 M52 64 q3 3 6 0 M40 74 q3 3 6 0 M54 74 q3 3 6 0 M47 82 q3 3 6 0" fill="none" stroke="#93633a" stroke-width="1.5"/>
+    <ellipse cx="37" cy="32" rx="11" ry="10" fill="#f6e6c8"/><ellipse cx="63" cy="32" rx="11" ry="10" fill="#f6e6c8"/>
+    <circle cx="37" cy="33" r="7" fill="#ffd23f"/><circle cx="63" cy="33" r="7" fill="#ffd23f"/>
+    <circle cx="38" cy="34" r="3.5" fill="#111"/><circle cx="62" cy="34" r="3.5" fill="#111"/>
+    <path d="M24 22 Q30 12 46 22 Q36 20 30 26 Z" fill="#f6e6c8"/>
+    <path d="M76 22 Q70 12 54 22 Q64 20 70 26 Z" fill="#f6e6c8"/>
+    <path d="M28 16 L22 10 M34 14 L30 6 M72 16 L78 10 M66 14 L70 6" stroke="#f6e6c8" stroke-width="2.5"/>
+    <path d="M46 42 L54 42 L50 50 Z" fill="#f39c12" stroke-width="2"/>
+    <path d="M40 96 v-4 M46 96 v-4 M54 96 v-4 M60 96 v-4" stroke="#f39c12"/>
+  </g>
+</svg>

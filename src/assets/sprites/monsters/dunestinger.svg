@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- DUNESTINGER: a giant scorpion with sandstone armor and two purple stingers (Stingtail's evolution) -->
+  <defs><filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+  <g stroke="#3a2610" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M24 86 L14 97 M34 89 L28 98 M48 89 L52 98 M58 86 L66 97" fill="none" stroke-width="3.5"/>
+    <path d="M20 76 Q8 72 8 62" fill="none" stroke-width="4"/>
+    <path d="M0 60 Q0 46 10 50 L16 54 L8 58 L16 62 Q8 70 0 60Z" fill="#d39a3c"/>
+    <path d="M62 78 Q74 76 78 66" fill="none" stroke="#3a2610" stroke-width="10"/>
+    <path d="M62 78 Q74 76 78 66" fill="none" stroke="#d39a3c" stroke-width="5"/>
+    <rect x="72" y="54" width="14" height="12" rx="3" fill="#d39a3c"/>
+    <rect x="76" y="40" width="14" height="12" rx="3" fill="#d39a3c"/>
+    <rect x="74" y="26" width="14" height="12" rx="3" fill="#d39a3c"/>
+    <rect x="64" y="14" width="14" height="12" rx="3" fill="#d39a3c"/>
+    <path d="M64 16 Q50 8 50 26 Q58 18 64 22 Z" fill="#a64dff" filter="url(#glow)"/>
+    <path d="M76 14 Q78 0 92 4 Q84 8 80 16 Z" fill="#a64dff" filter="url(#glow)"/>
+    <path d="M14 82 Q12 64 40 62 Q66 64 66 82 Q40 92 14 82 Z" fill="#d39a3c"/>
+    <path d="M24 66 L26 86 M38 63 L38 89 M52 64 L52 88" fill="none" stroke="#9a6a24" stroke-width="2"/>
+    <path d="M18 72 h10 M30 70 h6 M42 72 h8 M56 74 h6" fill="none" stroke="#f0d08a" stroke-width="2"/>
+    <circle cx="22" cy="70" r="3" fill="#111"/><circle cx="30" cy="69" r="3" fill="#111"/>
+  </g>
+</svg>

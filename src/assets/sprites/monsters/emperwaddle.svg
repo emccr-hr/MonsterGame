@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- EMPERWADDLE: a tall penguin with a golden collar and an icy blue belly (Pengwiggle's evolution) -->
+  <g stroke="#0e1620" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="40" cy="96" rx="9" ry="3.5" fill="#ff8c1a"/><ellipse cx="60" cy="96" rx="9" ry="3.5" fill="#ff8c1a"/>
+    <path d="M30 44 L14 72 L30 70 Z M70 44 L86 72 L70 70 Z" fill="#1e3a5f"/>
+    <path d="M50 4 Q74 6 74 40 Q78 80 66 94 L34 94 Q22 80 26 40 Q26 6 50 4 Z" fill="#1e3a5f"/>
+    <path d="M50 30 Q64 34 64 56 Q66 80 58 92 L42 92 Q34 80 36 56 Q36 34 50 30 Z" fill="#bfe6ff" stroke="none"/>
+    <path d="M44 58 l4 4 M54 66 l4 4 M44 76 l4 4" stroke="#8fcaef" stroke-width="2"/>
+    <path d="M30 30 Q50 40 70 30 L70 36 Q50 46 30 36 Z" fill="#ffd23f" stroke="#a07800" stroke-width="2"/>
+    <circle cx="50" cy="41" r="3" fill="#ffd23f" stroke="#a07800" stroke-width="1.5"/>
+    <circle cx="42" cy="16" r="4" fill="#fff" stroke="none"/><circle cx="58" cy="16" r="4" fill="#fff" stroke="none"/>
+    <circle cx="42" cy="16" r="2" fill="#111" stroke="none"/><circle cx="58" cy="16" r="2" fill="#111" stroke="none"/>
+    <path d="M45 22 L55 22 L50 28 Z" fill="#ff8c1a" stroke-width="2"/>
+  </g>
+</svg>

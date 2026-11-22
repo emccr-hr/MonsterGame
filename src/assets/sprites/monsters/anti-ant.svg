@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- ANTI-ANT: big red ant -->
+    <g stroke="#2a0a0a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M40 66 L30 86 L24 96 M46 68 L46 96 M52 66 L62 86 L68 96 M44 62 L26 76 M50 62 L72 80" fill="none"/>
+      <path d="M16 46 Q10 26 2 22 M24 44 Q26 24 20 14" fill="none"/>
+      <ellipse cx="74" cy="62" rx="23" ry="17" fill="#d42a2a"/>
+      <path d="M62 52 Q74 48 86 54 M60 62 Q74 58 90 64" fill="none" stroke="#9a1a1a" stroke-width="2"/>
+      <ellipse cx="46" cy="62" rx="12" ry="9" fill="#d42a2a"/>
+      <circle cx="22" cy="56" r="14" fill="#d42a2a"/>
+      <circle cx="18" cy="52" r="5" fill="#fff"/><circle cx="17" cy="52" r="2.5" fill="#111"/>
+      <path d="M10 64 Q4 68 8 72 M16 68 Q14 74 18 76" fill="none"/>
+    </g>
+</svg>
