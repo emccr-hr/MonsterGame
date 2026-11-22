@@ -1,0 +1,92 @@
+[
+  {
+    "id": "lava-skin",
+    "name": "Lava Skin",
+    "description": "Half the time, fire moves do nothing to it.",
+    "effect": {
+      "kind": "ignoreElement",
+      "element": "fire",
+      "chance": 0.5
+    }
+  },
+  {
+    "id": "not-at-this-restaurant",
+    "name": "Not at this restaurant",
+    "description": "Eat does nothing to it.",
+    "effect": {
+      "kind": "immuneToMove",
+      "move": "eat"
+    }
+  },
+  {
+    "id": "cute",
+    "name": "Cute",
+    "description": "So cute that sometimes the other monster forgets to attack.",
+    "effect": {
+      "kind": "opponentSkipChance",
+      "chance": 0.05
+    }
+  },
+  {
+    "id": "colony-bond",
+    "name": "Colony Bond",
+    "description": "Other red ants will not attack it.",
+    "effect": {
+      "kind": "untargetableByTrait",
+      "trait": "red-ant"
+    }
+  },
+  {
+    "id": "fur-coat",
+    "name": "Fur Coat",
+    "description": "Its thick fur means it never gets frozen.",
+    "effect": {
+      "kind": "immuneToStatus",
+      "status": "frozen"
+    }
+  },
+  {
+    "id": "quick",
+    "name": "Quick",
+    "description": "Always attacks first.",
+    "effect": {
+      "kind": "alwaysFirst"
+    }
+  },
+  {
+    "id": "wise",
+    "name": "Wise",
+    "description": "Takes a little less damage.",
+    "effect": {
+      "kind": "damageReduction",
+      "fraction": 0.1
+    }
+  },
+  {
+    "id": "slippery",
+    "name": "Slippery",
+    "description": "Sometimes attacks slide right off it.",
+    "effect": {
+      "kind": "evadeChance",
+      "chance": 0.1
+    }
+  },
+  {
+    "id": "snack-thief",
+    "name": "Snack Thief",
+    "description": "Its Eat heals twice as much.",
+    "effect": {
+      "kind": "drainMultiplier",
+      "multiplier": 2
+    }
+  },
+  {
+    "id": "water-storage",
+    "name": "Water Storage",
+    "description": "Heals a little every turn.",
+    "effect": {
+      "kind": "regenPerTurn",
+      "fraction": 0.05
+    }
+  }
+]

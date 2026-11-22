@@ -19,6 +19,11 @@ export default tseslint.config(
     languageOptions: { globals: { ...globals.node } },
   },
   {
+    // Tests build broken data on purpose to prove the checks catch it.
+    files: ['tests/**/*.ts'],
+    rules: { '@typescript-eslint/no-explicit-any': 'off' },
+  },
+  {
     // ADR 0002: game rules are plain TypeScript. No Phaser, no scenes, no browser globals.
     files: ['src/logic/**/*.ts'],
     languageOptions: { globals: {} },

@@ -1,0 +1,36 @@
+{
+  "start": {
+    "cages": 100,
+    "gems": 100
+  },
+  "levelCap": 100,
+  "teamSize": 6,
+  "gemsPerWin": {
+    "wild": {
+      "min": 5,
+      "max": 10
+    },
+    "trainer": 30
+  },
+  "big": {
+    "chance": 0.01,
+    "statBoost": 0.1,
+    "scale": 1.5,
+    "catchMultiplier": 0.8
+  },
+  "catch": {
+    "base": 0.3,
+    "missingHpBonus": 0.6,
+    "cap": 0.95,
+    "maxFailedThrows": 3
+  },
+  "bossMovePowerBonus": 0.3,
+  "powerTiers": {
+    "none": 0,
+    "low": 30,
+    "low-medium": 40,
+    "medium": 50,
+    "medium-high": 65,
+    "high": 80
+  }
+}

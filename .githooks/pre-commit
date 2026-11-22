@@ -27,7 +27,7 @@ fi
 # 3. American English, in the staged files only.
 npm run --silent lint:spelling -- --staged
 
-# 4. Data files, when any changed.
-if git diff --cached --name-only --diff-filter=ACMR | grep -qE '^src/data/.*\.json$'; then
+# 4. Data files and their schemas, when any changed.
+if git diff --cached --name-only --diff-filter=ACMR | grep -qE '^src/data/'; then
   npm run --silent validate:data
 fi

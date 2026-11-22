@@ -1,0 +1,32 @@
+[
+  {
+    "id": "forest",
+    "name": "Forest",
+    "element": "nature",
+    "look": "Trees, grass and flowers."
+  },
+  {
+    "id": "beach",
+    "name": "Beach",
+    "element": "water",
+    "look": "Sand, waves and palm trees."
+  },
+  {
+    "id": "desert",
+    "name": "Desert",
+    "element": "earth",
+    "look": "Dunes, cactus and ruins."
+  },
+  {
+    "id": "snowy",
+    "name": "Snowy",
+    "element": "ice",
+    "look": "Snow, ice and pine trees."
+  },
+  {
+    "id": "volcano",
+    "name": "Volcano",
+    "element": "fire",
+    "look": "Lava, rocks and smoke."
+  }
+]
