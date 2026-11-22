@@ -1,6 +1,6 @@
 # Final Boss: Avatar
 
-*Designed in Round 43. Beat it to see the ending (Decisions-Log: win goal).*
+*Designed in Round 43. Beat it to see the ending (Decisions-Log: win goal). After the ending the game keeps going: back in Ansonville, keep catching (Round 63).*
 
 | Field | Value |
 |---|---|

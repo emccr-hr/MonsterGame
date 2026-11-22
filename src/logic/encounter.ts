@@ -7,12 +7,21 @@ import { addCaught, markSeen, replaceMonster, type GameState } from './game.ts';
 import { addXp, xpYield } from './growth.ts';
 import { createMonster, isKnockedOut, type MonsterInstance } from './monster.ts';
 import type { Rng } from './rng.ts';
-import { rollSpawn } from './spawning.ts';
+import { rollSpawn, type Spawn } from './spawning.ts';
 import { addGems, useReviver, wildBattleGems } from './world.ts';
 
-/** A wild monster appears in a biome: spawn it, mark it seen, and start the battle. */
-export function startWildEncounter(content: Content, state: GameState, biome: string, rng: Rng): { state: GameState; battle: BattleState } {
-  const spawn = rollSpawn(content, biome, state.team.map((m) => m.level), rng);
+/**
+ * A wild monster appears in a biome: spawn it, mark it seen, and start the battle. `seen` is a
+ * monster the player walked into on the map (Round 62); without it, a hidden one is rolled.
+ */
+export function startWildEncounter(
+  content: Content,
+  state: GameState,
+  biome: string,
+  rng: Rng,
+  seen?: Spawn,
+): { state: GameState; battle: BattleState } {
+  const spawn = seen ?? rollSpawn(content, biome, state.team.map((m) => m.level), rng);
   const wild = createMonster(content, spawn.species, spawn.level, spawn.big, 0);
   return { state: markSeen(state, wild.species), battle: startBattle('wild', state.team, wild, state.bag) };
 }

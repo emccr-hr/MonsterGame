@@ -83,7 +83,7 @@ export class BattleScene extends Phaser.Scene {
 
   create(): void {
     this.rng = gameRng();
-    const started = startWildEncounter(content, getGame(), this.from.biomeId, this.rng);
+    const started = startWildEncounter(content, getGame(), this.from.biomeId, this.rng, this.from.spawn);
     setGame(started.state);
     this.battle = started.battle;
 

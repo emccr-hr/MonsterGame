@@ -12,6 +12,9 @@ import { reportState } from '../testHook';
 import { playMusic } from '../ui/audio';
 import { drawMapArt } from '../ui/mapArt';
 import { addCharacter } from '../ui/sprites';
+import { WildWalkers } from '../ui/wildWalkers';
+import { SURPRISE_ENCOUNTER_RATE } from '../logic/wildWalkers';
+import type { Spawn } from '../logic/spawning';
 import {
   add,
   besideTile,
@@ -58,6 +61,8 @@ export class MapScene extends Phaser.Scene {
   private queued: Dir | null = null;
   private moving = false;
   private paused = false;
+  /** Visible wild monsters on a biome map (Round 62). */
+  private walkers?: WildWalkers;
   private leaving = false;
   private stepsSinceEncounter = 0;
   /** When the map last came back from a battle or menu; the key that closed it is ignored here. */
@@ -104,6 +109,7 @@ export class MapScene extends Phaser.Scene {
     this.lookY = this.look.y;
     this.walkStep = 0;
     this.player = this.add.container(this.tile.x * T + T / 2, this.tile.y * T + T / 2, [this.look]).setDepth(5);
+    if (this.map.biome) this.walkers = this.makeWalkers(this.map.biome);
 
     const cam = this.cameras.main;
     cam.setBounds(0, 0, width(this.map) * T, height(this.map) * T);
@@ -252,6 +258,13 @@ export class MapScene extends Phaser.Scene {
     this.facing = dir;
     const next = add(this.tile, dir);
     const kind = kindAt(this.map, next);
+    // Walking into a visible wild monster battles exactly that one (Round 62).
+    const wild = this.walkers?.at(next);
+    if (wild && this.map.biome) {
+      this.walkers!.remove(wild.id);
+      this.startEncounter(this.map.biome, wild.spawn);
+      return;
+    }
     if (!isWalkable(kind)) {
       this.bump(next, kind, false);
       return;
@@ -340,18 +353,32 @@ export class MapScene extends Phaser.Scene {
   private afterStep(kind: TileKind): void {
     if (kind !== 'encounter' || !this.map.biome) return;
     // The rule is in src/logic (ADR 0002); the scene only supplies the Rng.
-    const step = stepOnEncounterGround(this.stepsSinceEncounter, this.rng);
+    // With visible monsters around, hidden surprises are rarer (Round 62: "some surprises").
+    const step = stepOnEncounterGround(this.stepsSinceEncounter, this.rng, this.walkers ? SURPRISE_ENCOUNTER_RATE : undefined);
     this.stepsSinceEncounter = step.stepsSince;
     if (step.encounter) this.startEncounter(this.map.biome);
   }
 
   /** Fire the encounter: M4's encounter flow pauses this scene and runs the battle on top. */
-  private startEncounter(biomeId: string): void {
+  private startEncounter(biomeId: string, spawn?: Spawn): void {
     this.paused = true;
     this.queued = null;
     this.hideMessage();
-    const event: WildEncounterEvent = { biomeId, sceneKey: this.scene.key, tile: { ...this.tile } };
+    const event: WildEncounterEvent = { biomeId, sceneKey: this.scene.key, tile: { ...this.tile }, spawn };
     this.game.events.emit(WILD_ENCOUNTER, event);
+  }
+
+  /** Wild monsters wander on this map's encounter ground, never onto the tiles the player is on or walking into. */
+  private makeWalkers(biome: string): WildWalkers {
+    const ground: Tile[] = [];
+    this.map.rows.forEach((row, y) => [...row].forEach((ch, x) => kindOf(ch) === 'encounter' && ground.push({ x, y })));
+    const playerTiles = (): Tile[] => {
+      const fx = (this.player.x - T / 2) / T;
+      const fy = (this.player.y - T / 2) / T;
+      const tiles = [{ x: Math.floor(fx), y: Math.floor(fy) }, { x: Math.ceil(fx), y: Math.ceil(fy) }, { ...this.tile }];
+      return tiles;
+    };
+    return new WildWalkers(this, { biome, tileSize: T, ground, playerTiles, teamLevels: () => getGame().team.map((m) => m.level), rng: this.rng });
   }
 
   private goTo(sceneKey: string, data: MapSceneData): void {
@@ -533,6 +560,7 @@ export class MapScene extends Phaser.Scene {
       team: currentGame()?.team.map((m) => ({ species: m.species, level: m.level, hp: m.hp })) ?? [],
       gems: currentGame()?.gems ?? 0,
       cages: currentGame()?.bag.cage ?? 0,
+      wild: this.walkers?.list() ?? [],
     });
   }
 }

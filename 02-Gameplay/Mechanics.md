@@ -3,6 +3,7 @@
 | Mechanic | Description | Supports pillar | Status |
 |---|---|---|---|
 | Cages | Throw a tiny cage. It grows into a big cage mid-air and closes around the monster. It may hold or the monster may escape. Can be thrown at the start of an encounter or during a battle. | 1 | From designer |
+| Visible wild monsters | Wild monsters wander on the grass, sand, snow and ash, so you can see them (and spot a Big one, which looks bigger) before you battle. Walk into one to start a battle with it. Some hidden ones can still jump out of the grass. | 62 | From designer |
 | Wild encounter choice | When a wild monster appears: **Throw cage** right away, or **Battle** to lower its HP and then throw. | 1, 4 | ✅ Agreed (C1) |
 | Big Monsters | Very rare (1 in 100) version of any monster: 1.5x size, small stat boost (+10%), same moves, star in the collection. Slightly harder to catch. | 4 | ✅ Agreed |
 | Battles | Turn-based. Each side picks 1 of its 4 moves; the faster monster goes first. A monster loses when its HP reaches 0. **No types** and no card drawing. | 3 | ✅ Agreed |
