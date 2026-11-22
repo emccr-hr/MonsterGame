@@ -13,3 +13,9 @@ export const COLORS = {
   selected: '#7bdff2',
   disabled: '#6c6a80',
 } as const;
+
+export const FONT = 'Trebuchet MS, Arial, sans-serif';
+
+/** World maps (M3): pixels per grid tile, and how long one step takes. */
+export const TILE_SIZE = 32;
+export const STEP_MS = 140;
