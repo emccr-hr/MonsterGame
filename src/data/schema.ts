@@ -71,6 +71,29 @@ export const baseStats = z.object({
   speed: z.number().int().positive(),
 });
 
+/** A color as "#rrggbb". */
+export const hexColor = z.string().regex(/^#[0-9a-fA-F]{6}$/, 'colors are "#rrggbb"');
+
+/**
+ * Placeholder markings drawn in the accent color (src/ui/monsterArt.ts). "patch" is one big spot on
+ * the body and one over the upper-left of the face; "tux" is a penguin front; "segments" splits the
+ * body into bands of `body` plus the `extra` colors.
+ */
+export const MARKINGS = ['none', 'spots', 'stripes', 'belly', 'mask', 'patch', 'tux', 'crown', 'segments'] as const;
+
+/** Each monster's own placeholder look (Art-Direction.md "Interim sprite style"). */
+export const monsterArt = z
+  .object({
+    body: hexColor,
+    accent: hexColor,
+    markings: z.enum(MARKINGS),
+    /** More body colors, only for "segments". */
+    extra: z.array(hexColor).min(1).max(6).optional(),
+  })
+  .refine((a) => (a.markings === 'segments') === (a.extra !== undefined), {
+    message: '"extra" colors go with "segments" markings, and only with them',
+  });
+
 export const monster = z.object({
   id,
   name: z.string().min(1),
@@ -86,6 +109,8 @@ export const monster = z.object({
   scale: z.number().positive(),
   /** One short line for placeholder art and the Monster Book. */
   look: z.string().min(1),
+  /** Placeholder colors and markings, so every monster looks different. */
+  art: monsterArt,
   /** Tags other rules can check, e.g. "red-ant" for Colony Bond. */
   traits: z.array(id),
   ability: id.nullable(),
@@ -193,6 +218,8 @@ export type MoveEffect = z.infer<typeof moveEffect>;
 export type Ability = z.infer<typeof ability>;
 export type AbilityEffect = z.infer<typeof abilityEffect>;
 export type Monster = z.infer<typeof monster>;
+export type MonsterArt = z.infer<typeof monsterArt>;
+export type Markings = MonsterArt['markings'];
 export type BaseStats = z.infer<typeof baseStats>;
 export type Biome = z.infer<typeof biome>;
 export type Item = z.infer<typeof item>;

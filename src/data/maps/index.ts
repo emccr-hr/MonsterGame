@@ -86,17 +86,19 @@ const BIOME_ROWS = [
 
 const biome = (id: string, name: string, palette: Palette): GameMap => ({ id, name, biome: id, rows: BIOME_ROWS, palette });
 
+// Colors: the chosen palette rows in 06-Art-and-Audio/Art-Mockups.html section 5 (owner, 2026-11-21).
+// Forest and Beach kept their colors; Desert, Snowy and Volcano use the brighter rows.
 export const BIOME_MAPS: readonly GameMap[] = [
   // Tall grass, trees, a pond.
   biome('forest', 'Forest', { ground: 0x7cb35a, path: 0xb89c6a, encounter: 0x3f8f3a, wall: 0x2f4f2f, blocker: 0x1f5a24, water: 0x3b7dd8 }),
   // Soft sand, palm trees, tide pools.
   biome('beach', 'Beach', { ground: 0xf1e7c6, path: 0xd8c08c, encounter: 0xe2c16a, wall: 0x8a6d3b, blocker: 0x4f9a4a, water: 0x2e86c1 }),
   // Dunes, cactus, quicksand.
-  biome('desert', 'Desert', { ground: 0xead9ad, path: 0xc9a46a, encounter: 0xd09a45, wall: 0x9b6b3a, blocker: 0x5d8a3a, water: 0xa07850 }),
+  biome('desert', 'Desert', { ground: 0xf6d77e, path: 0xd9a24e, encounter: 0xf0a830, wall: 0xb5652a, blocker: 0x3fae4a, water: 0xc88a4a }),
   // Deep snow, pine trees, ice.
-  biome('snowy', 'Snowy', { ground: 0xf4f8fb, path: 0xc7cfd8, encounter: 0xbcd3ea, wall: 0x5b6b80, blocker: 0x2f5d4a, water: 0x8fd0f2 }),
+  biome('snowy', 'Snowy', { ground: 0xf4f8fb, path: 0xb9d4f0, encounter: 0x8fc3f2, wall: 0x2f5f9e, blocker: 0x1f7a4f, water: 0x4fb3f5 }),
   // Ash, rocks, lava.
-  biome('volcano', 'Volcano', { ground: 0x6a5853, path: 0x8a6e5c, encounter: 0x9b9590, wall: 0x2b1d1a, blocker: 0x3c302c, water: 0xe2531d }),
+  biome('volcano', 'Volcano', { ground: 0x5a3430, path: 0x8f4f36, encounter: 0xa8746a, wall: 0x2a1414, blocker: 0x3a2020, water: 0xff4a1a }),
 ];
 
 export const MAPS: readonly GameMap[] = [ANSONVILLE, ...BIOME_MAPS];

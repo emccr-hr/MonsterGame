@@ -80,6 +80,15 @@ describe('world maps', () => {
     expect(findAll(ANSONVILLE, ',')).toHaveLength(0); // No wild monsters in town.
   });
 
+  it('encounter ground looks different from plain ground and paths in every biome', () => {
+    const rgb = (c: number) => [(c >> 16) & 0xff, (c >> 8) & 0xff, c & 0xff];
+    const distance = (a: number, b: number) => Math.hypot(...rgb(a).map((v, i) => v - rgb(b)[i]!));
+    for (const { id, palette } of BIOME_MAPS) {
+      expect(distance(palette.encounter, palette.ground), id).toBeGreaterThanOrEqual(40);
+      expect(distance(palette.encounter, palette.path), id).toBeGreaterThanOrEqual(20);
+    }
+  });
+
   it('mapById finds maps and rejects unknown ids', () => {
     expect(mapById('forest').name).toBe('Forest');
     expect(() => mapById('moon')).toThrow();
