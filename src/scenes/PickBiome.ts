@@ -54,8 +54,9 @@ export class PickBiomeScene extends Phaser.Scene {
     keys?.on('keydown-W', () => this.move(-1));
     keys?.on('keydown-DOWN', () => this.move(1));
     keys?.on('keydown-S', () => this.move(1));
-    keys?.on('keydown-ENTER', () => this.choose());
-    keys?.on('keydown-SPACE', () => this.choose());
+    // Ignore auto-repeat, so an Enter held down on the Title screen doesn't pick a biome for you.
+    keys?.on('keydown-ENTER', (e: KeyboardEvent) => !e.repeat && this.choose());
+    keys?.on('keydown-SPACE', (e: KeyboardEvent) => !e.repeat && this.choose());
     keys?.on('keydown-ESC', () => this.scene.start('Title'));
     keys?.on('keydown-BACKSPACE', () => this.scene.start('Title'));
 

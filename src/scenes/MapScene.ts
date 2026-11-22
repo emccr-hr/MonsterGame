@@ -121,9 +121,14 @@ export class MapScene extends Phaser.Scene {
     this.cursors = kb.createCursorKeys();
     this.wasd = kb.addKeys('W,A,S,D') as Record<'W' | 'A' | 'S' | 'D', Phaser.Input.Keyboard.Key>;
 
-    // A quick tap queues one step, so short key presses never get lost between frames.
-    const tap = (dir: Dir) => () => {
-      if (!this.paused && !this.leaving) this.queued = dir;
+    // A quick tap queues one step, so short key presses never get lost between frames. Auto-repeat
+    // events are ignored: holding a key is handled by heldDir(), and a queued repeat would add an
+    // extra step after the key is let go.
+    const tap = (dir: Dir) => (e: KeyboardEvent) => {
+      if (!e.repeat && !this.paused && !this.leaving) this.queued = dir;
+    };
+    const once = (fn: () => void) => (e: KeyboardEvent) => {
+      if (!e.repeat) fn();
     };
     kb.on('keydown-UP', tap('up'));
     kb.on('keydown-W', tap('up'));
@@ -133,16 +138,19 @@ export class MapScene extends Phaser.Scene {
     kb.on('keydown-A', tap('left'));
     kb.on('keydown-RIGHT', tap('right'));
     kb.on('keydown-D', tap('right'));
-    kb.on('keydown-SPACE', () => this.interact());
-    kb.on('keydown-ENTER', () => this.interact());
+    kb.on('keydown-SPACE', once(() => this.interact()));
+    kb.on('keydown-ENTER', once(() => this.interact()));
     kb.on('keydown-ESC', () => this.hideMessage());
 
     if (import.meta.env.DEV) {
       // Debug only: U opens every gate (map parts and the shop arrive in M6).
-      kb.on('keydown-U', () => {
-        openAllBiomes();
-        this.scene.restart({ at: this.tile });
-      });
+      kb.on(
+        'keydown-U',
+        once(() => {
+          openAllBiomes();
+          this.scene.restart({ at: this.tile });
+        }),
+      );
     }
   }
 
@@ -361,6 +369,8 @@ export class MapScene extends Phaser.Scene {
 
   private showMessage(text: string, ms = MESSAGE_MS): void {
     if (!text) return;
+    // Already showing (e.g. holding a key against the shop): leave the box and its timer alone.
+    if (this.messageBox.visible && this.messageText.text === text) return;
     this.messageTimer?.remove();
     this.messageText.setText(text);
     // Keep the player in sight: near the bottom of the screen, show the box at the top instead.
