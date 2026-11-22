@@ -5,6 +5,7 @@ import { buyRow, maxAffordable, shopRows, type ShopRow } from '../logic/shop';
 import { getGame, saveGame, setGame } from '../state/game';
 import { markTipSeen } from '../state/world';
 import { reportState } from '../testHook';
+import { ItemPicture } from '../ui/itemArt';
 import { bindMenuKeys, drawPanel, ListMenu } from '../ui/listMenu';
 
 export interface ShopData {
@@ -25,6 +26,7 @@ export class ShopScene extends Phaser.Scene {
   private opened: string[] = [];
   private gemsText!: Phaser.GameObjects.Text;
   private info!: Phaser.GameObjects.Text;
+  private picture!: ItemPicture;
   private message!: Phaser.GameObjects.Text;
 
   constructor() {
@@ -52,8 +54,9 @@ export class ShopScene extends Phaser.Scene {
     };
     this.list.onPick = () => this.buy();
     this.info = this.add
-      .text(520, 90, '', { fontFamily: FONT, fontSize: '20px', color: COLORS.text, lineSpacing: 8, wordWrap: { width: 410 } })
+      .text(520, 90, '', { fontFamily: FONT, fontSize: '20px', color: COLORS.text, lineSpacing: 8, wordWrap: { width: 330 } })
       .setDepth(30);
+    this.picture = new ItemPicture(this, GAME_WIDTH - 70, 130, 80);
     this.message = this.add
       .text(30, GAME_HEIGHT - 64, '', { fontFamily: FONT, fontSize: '19px', color: COLORS.selected, wordWrap: { width: GAME_WIDTH - 60 } })
       .setDepth(30);
@@ -96,6 +99,7 @@ export class ShopScene extends Phaser.Scene {
       this.info.setText('');
       return;
     }
+    this.picture.show(r.kind === 'mapPart' ? 'map-part' : r.id);
     const total = r.price * this.qty;
     const how = r.kind === 'mapPart' ? 'Buy it and the gate opens right away!' : `How many: ◀ ${this.qty} ▶   Total: ${total} gems`;
     const ask = this.confirming ? `\n\nBuy ${r.kind === 'mapPart' ? r.name : `${this.qty} ${r.name}`} for ${total} gems?\nEnter: yes   Esc: no` : '';

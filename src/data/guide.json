@@ -258,6 +258,14 @@
       ]
     },
     {
+      "id": "sound",
+      "question": "How do I turn the sound down?",
+      "answer": "Press M and pick Sound. Each time you press Enter it changes: Off, Low, Medium, High. Off means no music and no sounds. Every place has its own song!",
+      "covers": [
+        "rule:sound"
+      ]
+    },
+    {
       "id": "papai",
       "question": "Who are you?",
       "answer": "I'm Papai! I know everything about this game. Talk to me in Ansonville, or press M and pick Ask Papai anytime.",

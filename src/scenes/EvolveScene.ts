@@ -6,6 +6,7 @@ import { species } from '../logic/monster';
 import { getGame, saveGame, setGame } from '../state/game';
 import { reportState } from '../testHook';
 import { onKey } from '../ui/listMenu';
+import { playSfx } from '../ui/audio';
 import { drawMonster } from '../ui/monsterArt';
 
 export interface EvolveData {
@@ -96,6 +97,7 @@ export class EvolveScene extends Phaser.Scene {
     this.wait(2200, () => {
       this.sprite?.destroy();
       this.sprite = drawMonster(this, result.to, CX, CY).setScale(0.3);
+      playSfx('evolve');
       this.tweens.add({ targets: this.sprite, scale: 1, duration: 500, ease: 'Back.easeOut' });
       this.say(`${from} grew into ${to}!`);
       this.wait(2200, () => this.evolveNext());

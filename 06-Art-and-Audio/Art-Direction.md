@@ -26,6 +26,8 @@ Hand-drawn: the designer's own monster drawings, scanned or photographed.
 - Monsters face left (or the front); in battle the player's monster is mirrored to face the wild one. Sizes follow the rules above: a sprite's longest side is its "N x Dumble" box, `clamp(72·√N, 56, 240)` px in battle; Big Monsters are 1.25x with a star.
 - A monster without a sprite file falls back to the look-data placeholder, so a new monster always shows something. The designer's drawings can replace any file later (same name).
 - How to add or change one: `docs/developer-guide.md` "Vector sprites (M8)".
+- **Items and map art (M8 round 2):** item pictures (cage, potion, Wake-Up Snack, map part, Teleport Pin, Magic Gem) from the approved section 6 icons, shown in the Shop, the Bag and the battle cage throw; on the map, the Shop and Reviver buildings, the 5 gates (open: the element sign; locked: gray, barred, padlock) and a tree per area (forest tree, palm, cactus, snowy pine, volcanic rock), from the approved Ansonville mockup. Files in `src/assets/sprites/items/` and `tiles/`. Not yet: ground tiles, the arena, the HUD icons.
+- **The designer's drawings:** how to turn them into sprites is in `Designer-Drawings-How-To.md`.
 
 ## Reference images (links / files in this folder)
 - `Art-Mockups.html`: placeholder art and proposals (all 15 base monsters, size lineup, Avatar, player character, guide Papai, Peggy vector vs. pixel, Ansonville, gates, arena, shop, Reviver and items, exploring and battle screens). **Approved by the owner (2026-11-21):** the palette, vector style, Papai's look, and the section 6 looks (Ansonville, gates, arena, shop, Reviver, items). Anything still tagged "mockup guess" or "proposed" needs an OK.

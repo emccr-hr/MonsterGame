@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- volcano blocker: tree, cactus, pine or rock (approved Ansonville mockup) -->
+  <defs><filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+  <path d="M3 29 L8 12 L18 6 L28 14 L29 29Z" fill="#3a2222" stroke="#140a0a"/><path d="M12 16 l4 6 -2 5 M20 12 l2 7" stroke="#ff7a1a" stroke-width="2" fill="none" filter="url(#glow)"/>
+</svg>

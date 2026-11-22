@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- desert blocker: tree, cactus, pine or rock (approved Ansonville mockup) -->
+  <path d="M16 30 V8 M16 18 H8 V12 M16 14 H24 V8" stroke="#2f8a3a" stroke-width="5" fill="none" stroke-linecap="round"/>
+</svg>

@@ -12,6 +12,8 @@ import { gameRng, getGame, saveGame, setGame } from '../state/game';
 import { markTipSeen } from '../state/world';
 import { reportState } from '../testHook';
 import { drawMonster } from '../ui/monsterArt';
+import { playMusic, playSfx } from '../ui/audio';
+import { addSprite } from '../ui/sprites';
 import { besideTile, findAll, startTile } from '../world/grid';
 import type { EvolveData } from './EvolveScene';
 import type { WildEncounterEvent } from './events';
@@ -86,6 +88,7 @@ export class BattleScene extends Phaser.Scene {
     this.battle = started.battle;
 
     this.drawBackground();
+    playMusic('battle');
     this.enemyBar = this.makeBar(40, 40);
     this.playerBar = this.makeBar(GAME_WIDTH - 360, 300);
     this.enemySprite = drawMonster(this, activeOf(this.battle.enemy)!.m, ENEMY_AT.x, ENEMY_AT.y);
@@ -330,7 +333,7 @@ export class BattleScene extends Phaser.Scene {
       lines.push({ text: `Your team got ${rewards.xp} XP and ${rewards.gems} Magic Gems!` });
       for (const [uid, levels] of Object.entries(rewards.levelUps)) {
         const m = state.team.find((x) => x.uid === Number(uid));
-        if (m) lines.push({ text: `${species(content, m.species).name} grew to level ${m.level}!${levels > 1 ? ` (+${levels})` : ''}` });
+        if (m) lines.push({ text: `${species(content, m.species).name} grew to level ${m.level}!${levels > 1 ? ` (+${levels})` : ''}`, show: () => playSfx('level-up') });
       }
     }
     if (ended.outcome === 'lost') {
@@ -451,13 +454,22 @@ export class BattleScene extends Phaser.Scene {
 
   /** The tiny cage flies at the wild monster, grows big, wobbles, then holds or breaks. */
   private throwCage(wobbles: number, caught: boolean): void {
-    const cage = this.add.container(PLAYER_AT.x, PLAYER_AT.y - 40, [
-      this.add.rectangle(0, 0, 60, 60, 0xffffff, 0.15).setStrokeStyle(4, 0xc9a227),
-      this.add.rectangle(-15, 0, 4, 60, 0xc9a227),
-      this.add.rectangle(0, 0, 4, 60, 0xc9a227),
-      this.add.rectangle(15, 0, 4, 60, 0xc9a227),
-    ]);
+    // The golden cage sprite (M8), or the old bars if its file is missing.
+    const look = addSprite(this, 'item', 'cage', 0, 0, 64);
+    const cage = this.add.container(
+      PLAYER_AT.x,
+      PLAYER_AT.y - 40,
+      look
+        ? [look]
+        : [
+            this.add.rectangle(0, 0, 60, 60, 0xffffff, 0.15).setStrokeStyle(4, 0xc9a227),
+            this.add.rectangle(-15, 0, 4, 60, 0xc9a227),
+            this.add.rectangle(0, 0, 4, 60, 0xc9a227),
+            this.add.rectangle(15, 0, 4, 60, 0xc9a227),
+          ],
+    );
     cage.setScale(0.2);
+    playSfx('cage-throw');
     const wild = this.enemySprite;
     this.tweens.chain({
       targets: cage,
@@ -466,6 +478,7 @@ export class BattleScene extends Phaser.Scene {
         ...Array.from({ length: wobbles }, () => ({ angle: 15, duration: 110, yoyo: true, repeat: 1, delay: 100 })),
       ],
       onComplete: () => {
+        playSfx(caught ? 'catch' : 'break-free');
         if (caught) {
           wild?.setVisible(false);
           this.tweens.add({ targets: cage, scale: 1, duration: 200 });

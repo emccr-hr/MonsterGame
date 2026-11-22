@@ -158,3 +158,10 @@ No code change needed (ADR 0003). Schemas: `src/data/schema.ts`; cross-checks: `
   fails if one of the 15 base monsters, the player or Papai loses its sprite.
 - **See them all:** `npm run dev`, then open `/tools/sprite-gallery.html`; pink cards have no sprite yet.
 - **The designer's drawings** can replace a file later (traced to SVG, same name).
+
+## Items, map art and audio (M8)
+- **Items:** `src/assets/sprites/items/<item id>.svg` (plus `gem.svg`). `ItemPicture` (`src/ui/itemArt.ts`) shows the highlighted item in the Shop and Bag; the battle cage throw uses `cage.svg`.
+- **Map art:** `src/assets/sprites/tiles/`: `shop`, `reviver`, `gate-<biome>-open`, `gate-<biome>-locked`, `tree-<area>` (`ansonville` or a biome id). `drawMapArt` (`src/ui/mapArt.ts`) places them; MapScene keeps its old shapes for anything without a file. All sprite groups load in Boot (`queueSprites`) and are drawn with `addSprite(scene, group, id, x, y, size)`.
+- **Audio:** songs and sound effects are notes in `src/data/audio.json` (schema `audioFile` in `schema.ts`; note rules in `src/logic/music.ts`). `src/ui/audio.ts` plays them: `playMusic(areaId)` (MapScene and BattleScene; the same song keeps playing), `playSfx(id)`, and the Sound setting (`cycleVolume`, saved under `magic-and-monsters.sound`). Sound starts after the first key press or click (browser rule). `playMusic('avatar')` is ready for the Avatar battle.
+- **Licenses:** `06-Art-and-Audio/Audio-Credits.md`. Everything today is original.
+- **The designer's drawings:** `06-Art-and-Audio/Designer-Drawings-How-To.md`.

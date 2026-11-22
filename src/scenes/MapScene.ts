@@ -9,6 +9,8 @@ import { gateProgress, useReviver } from '../logic/world';
 import { currentGame, freshSeed, getGame, saveGame, setGame } from '../state/game';
 import { getWorld, isBiomeOpen, markTipSeen, openAllBiomes, setPlayerPosition } from '../state/world';
 import { reportState } from '../testHook';
+import { playMusic } from '../ui/audio';
+import { drawMapArt } from '../ui/mapArt';
 import { addCharacter } from '../ui/sprites';
 import {
   add,
@@ -103,10 +105,13 @@ export class MapScene extends Phaser.Scene {
 
     this.drawHud();
     this.setupInput();
+    const music = () => playMusic(this.map.biome ?? 'ansonville'); // M8: each area has its own song
+    music();
 
     // Back from a battle, evolving or the menu (they pause this scene and resume it after).
     const onResume = () => {
       this.resumedAt = performance.now();
+      music();
       this.paused = false;
       this.queued = null;
       this.moving = false;
@@ -330,6 +335,7 @@ export class MapScene extends Phaser.Scene {
   private drawMap(): void {
     const p = this.map.palette;
     const g = this.add.graphics();
+    const art = drawMapArt(this, this.map, T, isBiomeOpen); // M8 sprites; old shapes below where a file is missing
     const label = (t: Tile, text: string, size = 12) =>
       this.add
         .text(t.x * T + T / 2, t.y * T + T / 2, text, {
@@ -362,7 +368,9 @@ export class MapScene extends Phaser.Scene {
     this.map.rows.forEach((row, y) => {
       for (let x = 0; x < row.length; x++) {
         const kind = kindOf(row[x] ?? '#') ?? 'wall';
-        let color = colors[kind] ?? p.ground;
+        // Under M8 tree and building sprites the ground shows, not the old placeholder color.
+        const onSprite = (kind === 'blocker' && art.trees) || ((kind === 'shop' || kind === 'reviver') && art.buildings);
+        let color = onSprite ? p.ground : (colors[kind] ?? p.ground);
         if (kind === 'gate') {
           const biome = gateBiome(this.map, row[x] ?? '');
           color = biome && isBiomeOpen(biome) ? 0xffd166 : 0x6c6a80;
@@ -372,14 +380,15 @@ export class MapScene extends Phaser.Scene {
           // Little tufts, so encounter ground doesn't rely on color alone.
           g.fillStyle(darker(color));
           g.fillRect(x * T + 6, y * T + 10, 3, 9).fillRect(x * T + 14, y * T + 6, 3, 9).fillRect(x * T + 22, y * T + 12, 3, 9);
-        } else if (kind === 'blocker') {
+        } else if (kind === 'blocker' && !art.trees) {
           g.fillStyle(darker(color)).fillCircle(x * T + T / 2, y * T + T / 2, T * 0.36);
         }
       }
     });
 
-    for (const t of findAll(this.map, '$')) label(t, 'Shop');
-    for (const t of findAll(this.map, 'R')) label(t, 'Heal');
+    const under = (t: Tile, text: string) => (art.buildings ? label(t, text, 11).setY(t.y * T + T + 6) : label(t, text));
+    for (const t of findAll(this.map, '$')) under(t, 'Shop');
+    for (const t of findAll(this.map, 'R')) under(t, 'Heal');
     for (const t of findAll(this.map, 'G')) {
       // Papai stands on his spot (M8 sprite) with a "?" above him; the old yellow dot if the file is missing.
       const papai = addCharacter(this, 'papai-map', t.x * T + T / 2, t.y * T + T + 2, T * 1.25);
@@ -397,7 +406,7 @@ export class MapScene extends Phaser.Scene {
       const gate = findAll(this.map, ch)[0];
       if (!gate) continue;
       const open = isBiomeOpen(biome);
-      label(gate, open ? 'Go' : '🔒', open ? 12 : 16);
+      if (!art.gates) label(gate, open ? 'Go' : '🔒', open ? 12 : 16);
       const sign = label(besideTile(this.map, gate), open ? biomeName(biome) : `${biomeName(biome)}\nMap part needed`, 11);
       // Gates on the side walls: grow the sign inward so it isn't cut off at the map edge.
       if (gate.x === 0) sign.setOrigin(0, 0.5).setX(sign.x - T / 2);
