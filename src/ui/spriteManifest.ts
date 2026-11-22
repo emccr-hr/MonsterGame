@@ -83,3 +83,13 @@ export function fitBox(width: number, height: number, px: number): { width: numb
 
 export const monsterKey = (id: string, tier: number): string => `monster:${id}@${tier}`;
 export const characterKey = (id: string): string => `character:${id}`;
+
+/** Sprite folders other than monsters, each loaded at one size. */
+export type SpriteGroup = 'character' | 'item' | 'tile';
+export const spriteKey = (group: SpriteGroup, id: string): string => `${group}:${id}`;
+
+/** How many times its viewBox size a sprite is rasterized: tiny drawings get more, to stay sharp. */
+export const rasterScale = (s: { width: number; height: number }): number => {
+  const longest = Math.max(s.width, s.height);
+  return longest <= 24 ? 4 : longest <= 64 ? 3 : 2;
+};

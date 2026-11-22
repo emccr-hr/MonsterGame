@@ -3,6 +3,7 @@ import { COLORS, FONT, GAME_HEIGHT, GAME_WIDTH } from '../config';
 import { getGame, saveGame } from '../state/game';
 import { downloadSave } from '../state/saveFile';
 import { reportState } from '../testHook';
+import { cycleVolume, soundLabel } from '../ui/audio';
 import { bindMenuKeys, ListMenu, onKey } from '../ui/listMenu';
 
 /** Every menu screen gets the paused map's scene key, so it can go back to it. */
@@ -39,7 +40,7 @@ export class MenuScene extends Phaser.Scene {
 
   create(): void {
     const w = 300;
-    const h = 410;
+    const h = 450;
     const x = GAME_WIDTH - w - 20;
     this.add.rectangle(x, 20, w, h, 0x14112b, 0.95).setOrigin(0).setStrokeStyle(3, 0xffd166).setDepth(20);
     const g = getGame();
@@ -71,9 +72,19 @@ export class MenuScene extends Phaser.Scene {
           return 'Saved a backup file!';
         },
       },
+      {
+        // M8: Off, Low, Medium, High. Enter changes it; the label shows the new setting.
+        label: soundLabel(),
+        run: () => {
+          const label = cycleVolume();
+          this.entries[this.list.index]!.label = label;
+          this.list.setItems(this.entries.map((e) => e.label));
+          return label === 'Sound: Off' ? 'Music and sounds are off.' : `${label.slice(7)} sound.`;
+        },
+      },
       { label: 'Close (Esc)' },
     ];
-    this.list = new ListMenu(this, x + 16, 80, { width: w - 32, fontSize: 20, rowHeight: 40, visibleRows: 8 });
+    this.list = new ListMenu(this, x + 16, 80, { width: w - 32, fontSize: 20, rowHeight: 37, visibleRows: 9 });
     this.list.onPick = (i) => this.choose(i);
     this.list.onChange = () => this.report();
     const start = this.args.select ? this.entries.findIndex((e) => e.open === this.args.select) : 0;
