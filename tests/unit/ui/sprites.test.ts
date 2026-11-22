@@ -10,6 +10,8 @@ import {
   fitBox,
   idFromPath,
   monsterKey,
+  rasterScale,
+  spriteKey,
   SPRITE_TIERS,
   svgDataUrl,
   svgProblems,
@@ -106,5 +108,31 @@ describe('the sprite files', () => {
 
   it('the player and Papai have full-size and map sprites', () => {
     for (const id of ['player', 'player-map', 'papai', 'papai-map']) expect(characters[id], id).toBeDefined();
+  });
+});
+
+describe('item and map sprites', () => {
+  const items = buildManifest(readDir('items'), () => 'url');
+  const tiles = buildManifest(readDir('tiles'), () => 'url');
+
+  it('every item in items.json has a picture, plus the Magic Gem', () => {
+    for (const id of [...content.items.map((i) => i.id), 'gem']) expect(items[id], `src/assets/sprites/items/${id}.svg`).toBeDefined();
+  });
+
+  it('the map has a shop, a Reviver, both gate looks for every biome, and a tree for every area', () => {
+    const need = ['shop', 'reviver', 'tree-ansonville'];
+    for (const b of content.biomes) need.push(`gate-${b.id}-open`, `gate-${b.id}-locked`, `tree-${b.id}`);
+    for (const id of need) expect(tiles[id], `src/assets/sprites/tiles/${id}.svg`).toBeDefined();
+  });
+
+  it('item and map SVGs are safe to rasterize', () => {
+    for (const [path, svg] of Object.entries({ ...readDir('items'), ...readDir('tiles') })) expect(svgProblems(svg), path).toEqual([]);
+  });
+
+  it('tiny drawings are rasterized at more times their size', () => {
+    expect(rasterScale({ width: 24, height: 24 })).toBe(4);
+    expect(rasterScale({ width: 32, height: 40 })).toBe(3);
+    expect(rasterScale({ width: 100, height: 160 })).toBe(2);
+    expect(spriteKey('item', 'cage')).toBe('item:cage');
   });
 });

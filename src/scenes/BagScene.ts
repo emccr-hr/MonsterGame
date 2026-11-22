@@ -5,6 +5,7 @@ import { itemTargetProblem, monsterLine } from '../logic/collection';
 import { useHealingItem } from '../logic/world';
 import { getGame, saveGame, setGame } from '../state/game';
 import { reportState } from '../testHook';
+import { ItemPicture } from '../ui/itemArt';
 import { bindMenuKeys, drawPanel, ListMenu } from '../ui/listMenu';
 import { backToMenu, type MenuData } from './MenuScene';
 
@@ -19,6 +20,7 @@ export class BagScene extends Phaser.Scene {
   private itemIds: string[] = [];
   private using: string | null = null;
   private info!: Phaser.GameObjects.Text;
+  private picture!: ItemPicture;
   private message!: Phaser.GameObjects.Text;
 
   constructor() {
@@ -38,8 +40,9 @@ export class BagScene extends Phaser.Scene {
     this.items.onPick = (i) => this.pickItem(i);
     this.targets.onPick = (i) => this.useOn(i);
     this.info = this.add
-      .text(494, 80, '', { fontFamily: FONT, fontSize: '18px', color: COLORS.text, wordWrap: { width: 440 } })
+      .text(494, 80, '', { fontFamily: FONT, fontSize: '18px', color: COLORS.text, wordWrap: { width: 360 } })
       .setDepth(30);
+    this.picture = new ItemPicture(this, GAME_WIDTH - 60, 110, 64);
     this.message = this.add
       .text(30, GAME_HEIGHT - 60, '', { fontFamily: FONT, fontSize: '18px', color: COLORS.selected })
       .setDepth(30);
@@ -63,6 +66,7 @@ export class BagScene extends Phaser.Scene {
 
   private showInfo(): void {
     const it = content.items.find((x) => x.id === this.itemIds[this.items.index]);
+    this.picture.show(this.using ? undefined : it?.id);
     if (this.using) {
       this.info.setText(`Who gets the ${content.items.find((x) => x.id === this.using)!.name}?`);
     } else {

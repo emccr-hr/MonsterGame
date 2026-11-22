@@ -108,7 +108,7 @@ All in `src/logic/`, all unit-tested:
 - **Designer drawings pipeline:** scan or photograph → clean up → sprite sheet; a drawing replaces the placeholder whenever it arrives (`06-Art-and-Audio/Art-Direction.md`).
 - Audio: royalty-free or original music per biome, plus sound effects (cage throw, catch, level up, evolve). Volume and mute settings.
 - **Exit:** no missing-art errors; every monster shows something.
-- **First version built (2026-11-22):** vector sprites for all 31 monsters, the player and Papai (`src/assets/sprites/`, Art-Direction.md "Vector sprites (M8)"), with the look-data drawing as the fallback. Still to do: tiles and items, the designer's drawings pipeline, audio.
+- **First version built (2026-11-22):** vector sprites for all 31 monsters, the player and Papai (`src/assets/sprites/`, Art-Direction.md "Vector sprites (M8)"), with the look-data drawing as the fallback. **Round 2:** item pictures, map buildings, gates and trees; original music per area and sound effects with a Sound setting (`src/data/audio.json`); the designer's drawings how-to (`06-Art-and-Audio/Designer-Drawings-How-To.md`). Still to do: ground tiles and the arena, more sound effects (hit, buy, heal), the owner's OK on the evolved forms.
 
 ### M9: Tuning, play-test, release
 - Designer play-tests every milestone build. The final round focuses on: too hard or too easy? where did you get stuck? what's boring?

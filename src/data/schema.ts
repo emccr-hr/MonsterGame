@@ -237,3 +237,38 @@ export interface Content {
   rules: Rules;
   guide: Guide;
 }
+
+// ---- Audio (M8): original music and sound effects, written as notes and played by a small synth.
+// Notes are space-separated tokens, one per step: "C5", "F#4", "Bb3", "-" (rest) or "_" (hold).
+// src/logic/music.ts reads them; tests/unit/logic/music.test.ts checks every song parses and loops.
+export const WAVES = ['sine', 'square', 'triangle', 'sawtooth'] as const;
+const wave = z.enum(WAVES);
+
+export const song = z.object({
+  /** Beats per minute; each step is an eighth note. */
+  tempo: z.number().int().min(40).max(240),
+  melodyWave: wave,
+  melodyGain: fraction,
+  melody: z.string().min(1),
+  bassWave: wave,
+  bassGain: fraction,
+  bass: z.string().min(1),
+});
+
+export const soundEffect = z.object({
+  /** Seconds per step. */
+  step: z.number().positive().max(0.5),
+  wave,
+  gain: fraction,
+  notes: z.string().min(1),
+});
+
+/** audio.json: songs by area id ("ansonville", a biome id, "battle") and sound effects by id. */
+export const audioFile = z.object({
+  songs: z.record(id, song),
+  sfx: z.record(id, soundEffect),
+});
+
+export type Song = z.infer<typeof song>;
+export type SoundEffect = z.infer<typeof soundEffect>;
+export type AudioData = z.infer<typeof audioFile>;

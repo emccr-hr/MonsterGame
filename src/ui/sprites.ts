@@ -1,7 +1,7 @@
 // Loads the vector sprites (M8) found in src/assets/sprites/ and tells scenes whether one exists.
 // The file-name rules are in spriteManifest.ts (no Phaser, unit-tested).
 import * as Phaser from 'phaser';
-import { buildManifest, characterKey, monsterKey, SPRITE_TIERS, svgDataUrl, type SpriteSource } from './spriteManifest';
+import { buildManifest, monsterKey, rasterScale, SPRITE_TIERS, spriteKey, svgDataUrl, type SpriteGroup, type SpriteSource } from './spriteManifest';
 
 export const monsterSprites: Record<string, SpriteSource> = buildManifest(
   import.meta.glob<string>('../assets/sprites/monsters/*.svg', { query: '?raw', import: 'default', eager: true }),
@@ -13,8 +13,19 @@ export const characterSprites: Record<string, SpriteSource> = buildManifest(
   svgDataUrl,
 );
 
-/** Characters are rasterized this many times their viewBox size (map sprites are tiny, so more). */
-const characterScale = (s: SpriteSource): number => (Math.max(s.width, s.height) <= 64 ? 3 : 2);
+/** Items (cage, potion, ...) by item id from items.json, plus "gem". */
+export const itemSprites: Record<string, SpriteSource> = buildManifest(
+  import.meta.glob<string>('../assets/sprites/items/*.svg', { query: '?raw', import: 'default', eager: true }),
+  svgDataUrl,
+);
+
+/** Map art: shop, reviver, gate-<biome>-open/-locked, tree-<area>. */
+export const tileSprites: Record<string, SpriteSource> = buildManifest(
+  import.meta.glob<string>('../assets/sprites/tiles/*.svg', { query: '?raw', import: 'default', eager: true }),
+  svgDataUrl,
+);
+
+const GROUPS: Record<SpriteGroup, Record<string, SpriteSource>> = { character: characterSprites, item: itemSprites, tile: tileSprites };
 
 /** Queues every sprite in a scene's loader (Boot's preload); textures then live for the whole game. */
 export function queueSprites(scene: Phaser.Scene): void {
@@ -24,10 +35,11 @@ export function queueSprites(scene: Phaser.Scene): void {
       scene.load.svg(monsterKey(s.id, tier), s.url, { width: Math.round(s.width * k), height: Math.round(s.height * k) });
     }
   }
-  for (const s of Object.values(characterSprites)) scene.load.svg(characterKey(s.id), s.url, { scale: characterScale(s) });
+  for (const [group, list] of Object.entries(GROUPS) as [SpriteGroup, Record<string, SpriteSource>][])
+    for (const s of Object.values(list)) scene.load.svg(spriteKey(group, s.id), s.url, { scale: rasterScale(s) });
   // The game runs with pixelArt (crisp text and tiles); smooth filtering suits shrunken vector art better.
   scene.load.on(Phaser.Loader.Events.FILE_COMPLETE, (key: string) => {
-    if (key.startsWith('monster:') || key.startsWith('character:')) scene.textures.get(key).setFilter(Phaser.Textures.FilterMode.LINEAR);
+    if (/^(monster|character|item|tile):/.test(key)) scene.textures.get(key).setFilter(Phaser.Textures.FilterMode.LINEAR);
   });
 }
 
@@ -36,10 +48,17 @@ export function queueSprites(scene: Phaser.Scene): void {
  * when the file is missing (callers keep their old drawing then).
  */
 export function addCharacter(scene: Phaser.Scene, id: string, x: number, y: number, height: number): Phaser.GameObjects.Image | undefined {
-  const s = characterSprites[id];
-  if (!s || !scene.textures.exists(characterKey(id))) return undefined;
-  return scene.add
-    .image(x, y, characterKey(id))
-    .setOrigin(0.5, 1)
-    .setDisplaySize((height * s.width) / s.height, height);
+  return addSprite(scene, 'character', id, x, y, height)?.setOrigin(0.5, 1);
+}
+
+/**
+ * Any non-monster sprite as an image centered on (x, y) with its longest side `size` px, or
+ * undefined when the file is missing (callers keep their old drawing then).
+ */
+export function addSprite(scene: Phaser.Scene, group: SpriteGroup, id: string, x: number, y: number, size: number): Phaser.GameObjects.Image | undefined {
+  const s = GROUPS[group][id];
+  const key = spriteKey(group, id);
+  if (!s || !scene.textures.exists(key)) return undefined;
+  const k = size / Math.max(s.width, s.height);
+  return scene.add.image(x, y, key).setDisplaySize(s.width * k, s.height * k);
 }

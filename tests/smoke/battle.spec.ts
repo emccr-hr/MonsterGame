@@ -159,7 +159,18 @@ test('first catch, then win a battle, then Continue after a reload', async ({ pa
   await boot(page);
   const title = await state(page);
   expect(title.menu as unknown).toContainEqual({ label: 'Continue', enabled: true });
-  await page.keyboard.press('ArrowDown');
+  // Headless Phaser can drop a quick key press right after the title appears, so press Down until
+  // Continue is picked (the same pattern as the Monster Book step above).
+  await expect
+    .poll(
+      async () => {
+        const selected = (await state(page)).selected;
+        if (selected !== 'Continue') await page.keyboard.press('ArrowDown');
+        return selected;
+      },
+      { intervals: [200] },
+    )
+    .toBe('Continue');
   await page.keyboard.press('Enter');
   await expect.poll(async () => (await state(page)).scene).toBe('Snowy');
   expect((await teamOf(page)).length).toBeGreaterThanOrEqual(1);
