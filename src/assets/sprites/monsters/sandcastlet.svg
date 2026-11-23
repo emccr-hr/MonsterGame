@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- SANDCASTLET: a small sandcastle with one tower, a red flag, shell windows and a sandy smile (Claude-made, Round 67) -->
+  <g stroke="#6a4a1a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="50" cy="95" rx="40" ry="4" fill="#000" opacity=".15" stroke="none"/>
+    <path d="M50 8 V30" stroke="#5a3a1a" stroke-width="2.5"/>
+    <path d="M51 8 L68 13 L51 18 Z" fill="#d63a2f" stroke="#7a1a10" stroke-width="2"/>
+    <path d="M36 52 V36 H40 V30 H46 V36 H54 V30 H60 V36 H64 V52 Z" fill="#e8c27a"/>
+    <path d="M12 94 V62 H18 V56 H26 V62 H34 V56 H42 V62 H58 V56 H66 V62 H74 V56 H82 V62 H88 V94 Z" fill="#e8c27a"/>
+    <path d="M30 52 H70 V62" fill="none" stroke-width="2"/>
+    <g fill="#d9a85a" stroke="none"><circle cx="22" cy="86" r="2"/><circle cx="78" cy="88" r="2"/><circle cx="44" cy="44" r="1.6"/><circle cx="70" cy="76" r="1.6"/><circle cx="30" cy="72" r="1.6"/></g>
+    <path d="M46 46 C46 40 54 40 54 46 Z" fill="#ffd9e6" stroke-width="1.6"/>
+    <circle cx="38" cy="72" r="5" fill="#ffffff"/><circle cx="62" cy="72" r="5" fill="#ffffff"/>
+    <circle cx="38" cy="73" r="2.6" fill="#2a1a08" stroke="none"/><circle cx="62" cy="73" r="2.6" fill="#2a1a08" stroke="none"/>
+    <path d="M42 84 Q50 90 58 84" fill="none" stroke-width="2.4"/>
+    <path d="M18 76 c-2 -6 6 -6 4 0 z M82 78 c2 -6 -6 -6 -4 0 z" fill="#ffc8d8" stroke-width="1.4"/>
+  </g>
+</svg>

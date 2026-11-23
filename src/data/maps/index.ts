@@ -26,6 +26,16 @@ export interface GameMap {
   /** Gate character to biome id. */
   gates?: Readonly<Record<string, string>>;
   palette: Palette;
+  /** Pictures on top of the tiles (Round 65): sprite id in src/assets/sprites/tiles/, top-left tile, size in tiles. */
+  decor?: readonly MapDecor[];
+}
+
+export interface MapDecor {
+  sprite: string;
+  x: number;
+  y: number;
+  w: number;
+  h: number;
 }
 
 export const ANSONVILLE: GameMap = {
@@ -64,27 +74,69 @@ export const ANSONVILLE: GameMap = {
 
 // All five biomes share one layout for now (about one screen each): shop and Reviver by the
 // entrance at the bottom, encounter ground around the edges. Different looks come with real art.
+// 38x17 since Round 65 ("4 more grassy patches in each biome"): the first layout plus 4 columns on each
+// side, each strip with 2 new grass patches.
 const BIOME_ROWS = [
-  '##############################',
-  '#TT,,,,,,,,,,TTTT,,,,,,,,,,TT#',
-  '#T,,,,,,,,,,,,TT,,,,,,,,,,,,T#',
-  '#,,,,,,,,,,,,,..,,,,,,,,,,,,,#',
-  '#,,,,~~~,,,,,,..,,,,,,~~~,,,,#',
-  '#,,,,~~~,,,,,,..,,,,,,~~~,,,,#',
-  '#,,,,,,,,,,,,,..,,,,,,,,,,,,,#',
-  '#............................#',
-  '#....TT..............TT......#',
-  '#............................#',
-  '#,,,,,,,,,,,..........,,,,,,,#',
-  '#,,,,,,,,,,,..........,,,,,,,#',
-  '#,,,,,,TT,,,..........,,,TT,,#',
-  '#,,,,,,,,,,,...$R.....,,,,,,,#',
-  '#..............@.............#',
-  '#..............=.............#',
-  '###############E##############',
+  '######################################',
+  '#,,,.TT,,,,,,,,,,TTTT,,,,,,,,,,TT.,,,#',
+  '#,,,.T,,,,,,,,,,,,TT,,,,,,,,,,,,T.,,,#',
+  '#,,,.,,,,,,,,,,,,,..,,,,,,,,,,,,,.,,,#',
+  '#....,,,,~~~,,,,,,..,,,,,,~~~,,,,....#',
+  '#....,,,,~~~,,,,,,..,,,,,,~~~,,,,....#',
+  '#....,,,,,,,,,,,,,..,,,,,,,,,,,,,....#',
+  '#....................................#',
+  '#,,,.....TT..............TT.......,,,#',
+  '#,,,..............................,,,#',
+  '#,,,.,,,,,,,,,,,..........,,,,,,,.,,,#',
+  '#....,,,,,,,,,,,..........,,,,,,,....#',
+  '#....,,,,,,TT,,,..........,,,TT,,....#',
+  '#....,,,,,,,,,,,...$R.....,,,,,,,....#',
+  '#..................@.................#',
+  '#..................=.................#',
+  '###################E##################',
 ] as const;
 
-const biome = (id: string, name: string, palette: Palette): GameMap => ({ id, name, biome: id, rows: BIOME_ROWS, palette });
+// The Beach: the same layout, plus a big palm tree on the left and right (Round 65).
+const BEACH_ROWS = [
+  '######################################',
+  '#,,,.TT,,,,,,,,,,TTTT,,,,,,,,,,TT.,,,#',
+  '#,,,.T,,,,,,,,,,,,TT,,,,,,,,,,,,T.,,,#',
+  '#,,,.,,,,,,,,,,,,,..,,,,,,,,,,,,,.,,,#',
+  '#....,,,,~~~,,,,,,..,,,,,,~~~,,,,....#',
+  '#.TT.,,,,~~~,,,,,,..,,,,,,~~~,,,,.TT.#',
+  '#.TT.,,,,,,,,,,,,,..,,,,,,,,,,,,,.TT.#',
+  '#....................................#',
+  '#,,,.....TT..............TT.......,,,#',
+  '#,,,..............................,,,#',
+  '#,,,.,,,,,,,,,,,..........,,,,,,,.,,,#',
+  '#....,,,,,,,,,,,..........,,,,,,,....#',
+  '#....,,,,,,TT,,,..........,,,TT,,....#',
+  '#....,,,,,,,,,,,...$R.....,,,,,,,....#',
+  '#..................@.................#',
+  '#..................=.................#',
+  '###################E##################',
+] as const;
+
+const biome = (id: string, name: string, palette: Palette, rows: readonly string[] = BIOME_ROWS, decor?: readonly MapDecor[]): GameMap => ({
+  id,
+  name,
+  biome: id,
+  rows,
+  palette,
+  decor,
+});
+
+/** Big palm trees and fallen coconuts on the Beach (Round 65). */
+const BEACH_DECOR: readonly MapDecor[] = [
+  { sprite: 'palm-big', x: 2, y: 5, w: 2, h: 2 },
+  { sprite: 'palm-big', x: 34, y: 5, w: 2, h: 2 },
+  { sprite: 'coconut', x: 1, y: 7, w: 1, h: 1 },
+  { sprite: 'coconut', x: 4, y: 6, w: 1, h: 1 },
+  { sprite: 'coconut', x: 3, y: 7, w: 1, h: 1 },
+  { sprite: 'coconut', x: 36, y: 7, w: 1, h: 1 },
+  { sprite: 'coconut', x: 33, y: 6, w: 1, h: 1 },
+  { sprite: 'coconut', x: 34, y: 7, w: 1, h: 1 },
+];
 
 // Colors: the chosen palette rows in 06-Art-and-Audio/Art-Mockups.html section 5 (owner, 2026-11-21).
 // Forest and Beach kept their colors; Desert, Snowy and Volcano use the brighter rows.
@@ -92,7 +144,7 @@ export const BIOME_MAPS: readonly GameMap[] = [
   // Tall grass, trees, a pond.
   biome('forest', 'Forest', { ground: 0x7cb35a, path: 0xb89c6a, encounter: 0x3f8f3a, wall: 0x2f4f2f, blocker: 0x1f5a24, water: 0x3b7dd8 }),
   // Soft sand, palm trees, tide pools.
-  biome('beach', 'Beach', { ground: 0xf1e7c6, path: 0xd8c08c, encounter: 0xe2c16a, wall: 0x8a6d3b, blocker: 0x4f9a4a, water: 0x2e86c1 }),
+  biome('beach', 'Beach', { ground: 0xf1e7c6, path: 0xd8c08c, encounter: 0xe2c16a, wall: 0x8a6d3b, blocker: 0x4f9a4a, water: 0x2e86c1 }, BEACH_ROWS, BEACH_DECOR),
   // Dunes, cactus, quicksand.
   biome('desert', 'Desert', { ground: 0xf6d77e, path: 0xd9a24e, encounter: 0xf0a830, wall: 0xb5652a, blocker: 0x3fae4a, water: 0xc88a4a }),
   // Deep snow, pine trees, ice.

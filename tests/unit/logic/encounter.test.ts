@@ -22,7 +22,7 @@ describe('wild encounters', () => {
     const s = withTeam(['dumble'], 10);
     const { state, battle } = startWildEncounter(content, s, 'volcano', createRng(3));
     const wild = battle.enemy.team[0]!.m;
-    expect(['blobbin', 'cinderscale', 'ashflap']).toContain(wild.species);
+    expect(content.monsters.filter((m) => m.biome === 'volcano' && m.spawnWeight !== null).map((m) => m.id)).toContain(wild.species);
     expect(state.seen).toContain(wild.species);
     expect(battle.kind).toBe('wild');
     expect(battle.bag.cage).toBe(100);

@@ -96,9 +96,9 @@ describe('the sprite files', () => {
     for (const id of Object.keys(monsters)) expect(ids.has(id), `${id}.svg has no monster in monsters.json`).toBe(true);
   });
 
-  it('the 15 base monsters have sprites (Round 61: base character art first)', () => {
+  it('every base monster has a sprite (Round 61: base character art first)', () => {
     const base = content.monsters.filter((m) => m.evolvesFrom === null && m.kind === 'monster');
-    expect(base).toHaveLength(15);
+    expect(base).toHaveLength(21);
     for (const m of base) expect(monsters[m.id], `${m.id} needs src/assets/sprites/monsters/${m.id}.svg`).toBeDefined();
   });
 
@@ -134,5 +134,13 @@ describe('item and map sprites', () => {
     expect(rasterScale({ width: 32, height: 40 })).toBe(3);
     expect(rasterScale({ width: 100, height: 160 })).toBe(2);
     expect(spriteKey('item', 'cage')).toBe('item:cage');
+  });
+});
+
+describe('map decor sprites', () => {
+  it('every decor picture on a map has a file in tiles/', async () => {
+    const { MAPS } = await import('../../../src/data/maps');
+    const tiles = buildManifest(readDir('tiles'), () => 'url');
+    for (const m of MAPS) for (const d of m.decor ?? []) expect(tiles[d.sprite], `${m.id}: ${d.sprite}.svg`).toBeDefined();
   });
 });

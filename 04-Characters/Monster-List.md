@@ -20,6 +20,18 @@ One file per monster in `Monsters/` (copy `_Monster-Template.md`). Goal: 2–3 w
 | [Grandhoot](Monsters/Grandhoot.md) | Forest | Evolve only | Medium | Final form | ✅ Claude-made evolution |
 | [Sidesnap](Monsters/Sidesnap.md) | Beach | 45 | Small | Boulderclaw (level 24) | ✅ Approved (Claude-made) |
 | [Boulderclaw](Monsters/Boulderclaw.md) | Beach | Evolve only | Large | Final form | ✅ Claude-made evolution |
+| [Sandcastlet](Monsters/Sandcastlet.md) | Beach | 20 | 1x Dumble | Sandfortress (level 20) | Claude-made (Round 67), needs his OK |
+| [Sandfortress](Monsters/Sandfortress.md) | Beach | Evolve only | 3x Dumble | Final form | Claude-made (Round 67), needs his OK |
+| [Tumbleball](Monsters/Tumbleball.md) | Desert | 20 | 1x Dumble | Dustwhirl (level 18) | Claude-made (Round 67), needs his OK |
+| [Dustwhirl](Monsters/Dustwhirl.md) | Desert | Evolve only | 2.5x Dumble | Final form | Claude-made (Round 67), needs his OK |
+| [Lavamug](Monsters/Lavamug.md) | Volcano | 20 | 1x Dumble | Lavakettle (level 26) | Claude-made (Round 67), needs his OK |
+| [Lavakettle](Monsters/Lavakettle.md) | Volcano | Evolve only | 2x Dumble | Final form | Claude-made (Round 67), needs his OK |
+| [Crystalump](Monsters/Crystalump.md) | Desert | 20 | 1.5x Dumble | Crystower (level 22) | Claude-made (Round 66), needs his OK |
+| [Crystower](Monsters/Crystower.md) | Desert | Evolve only | 3x Dumble | Final form | Claude-made (Round 66), needs his OK |
+| [Lanternpuff](Monsters/Lanternpuff.md) | Volcano | 20 | 1x Dumble | Blazelantern (level 24) | Claude-made (Round 66), needs his OK |
+| [Blazelantern](Monsters/Blazelantern.md) | Volcano | Evolve only | 2.5x Dumble | Final form | Claude-made (Round 66), needs his OK |
+| [Mr. Toothache](Monsters/Mr-Toothache.md) | Beach | 20 | Large (3x Dumble) | Megalodon (level 10) | ✅ Designer (Round 64) |
+| [Megalodon](Monsters/Megalodon.md) | Beach | Evolve only | Huge (5x Dumble, proposal) | Final form | ✅ Designer (Round 64); look proposed |
 | [Squawkle](Monsters/Squawkle.md) | Beach | 35 | Medium | Pouchbeak (level 26) | ✅ Approved (Claude-made) |
 | [Pouchbeak](Monsters/Pouchbeak.md) | Beach | Evolve only | Large | Final form | ✅ Claude-made evolution |
 | [Stingtail](Monsters/Stingtail.md) | Desert | 35 | Medium | Dunestinger (level 28) | ✅ Approved (Claude-made) |
@@ -37,7 +49,7 @@ One file per monster in `Monsters/` (copy `_Monster-Template.md`). Goal: 2–3 w
 
 ## Per biome
 - **Forest:** Peggy → Scout, Bushtail → Treetail, Hootle → Grandhoot
-- **Beach:** Dumble → Rom, Sidesnap → Boulderclaw, Squawkle → Pouchbeak
+- **Beach:** Dumble → Rom, Sidesnap → Boulderclaw, Squawkle → Pouchbeak, Mr. Toothache → Megalodon
 - **Desert:** Anti-Ant → Queen Ant, Stingtail → Dunestinger, Camelump → Triplump
 - **Snowy:** Yeti → Abominable Snowman, Pengwiggle → Emperwaddle, Frostpaw → Glacitail
 - **Volcano:** Blobbin → Slimy, Cinderscale → Moltenmaw, Ashflap → Smokewing
@@ -46,12 +58,12 @@ One file per monster in `Monsters/` (copy `_Monster-Template.md`). Goal: 2–3 w
 Most monster families have **2 forms**: base, then one evolution (final). The designer will say which families get a **3rd form**. Default: assume 2 forms unless told otherwise.
 
 ## Center gate (designer, Round 52)
-To open the gate to Avatar, catch **one of every monster that spawns naturally** (base forms). Current list: Peggy, Dumble, Anti-Ant, Yeti, Blobbin, Bushtail, Hootle, Sidesnap, Squawkle, Stingtail, Camelump, Pengwiggle, Frostpaw, Cinderscale, Ashflap (**15**). Evolved forms don't spawn and don't count.
+To open the gate to Avatar, catch **one of every monster that spawns naturally** (base forms). Current list: Peggy, Dumble, Anti-Ant, Yeti, Blobbin, Bushtail, Hootle, Sidesnap, Squawkle, Stingtail, Camelump, Pengwiggle, Frostpaw, Cinderscale, Ashflap, Mr. Toothache, Crystalump, Lanternpuff, Sandcastlet, Tumbleball, Lavamug (**21**, since Round 67). Evolved forms don't spawn and don't count.
 
 ## Spawn chances
 Each monster has a spawn number (bigger = more common). Within a biome, the numbers are shared out fairly. Today each biome happens to total 100, so the numbers read as percentages.
 - **Forest:** Peggy 5, Bushtail 55, Hootle 40 (total 100)
-- **Beach:** Dumble 20, Sidesnap 45, Squawkle 35 (total 100)
+- **Beach:** Dumble 20, Sidesnap 45, Squawkle 35, Mr. Toothache 20 (total 120; Round 64 kept the others the same)
 - **Desert:** Anti-Ant 40, Stingtail 35, Camelump 25 (total 100)
 - **Snowy:** Yeti 30, Pengwiggle 40, Frostpaw 30 (total 100)
 - **Volcano:** Blobbin 20, Cinderscale 50, Ashflap 30 (total 100)

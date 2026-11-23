@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- LAVAKETTLE: a big blue-gray iron kettle with a glowing lava belly, a spout puffing steam, and a face (Claude-made, Round 67) -->
+  <defs><filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+  <g stroke="#14232e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="54" cy="96" rx="34" ry="3.5" fill="#000" opacity=".18" stroke="none"/>
+    <g fill="#bfc8d0" stroke="none" opacity=".85"><circle cx="8" cy="22" r="6"/><circle cx="4" cy="12" r="4.5"/><circle cx="14" cy="8" r="3.6"/></g>
+    <path d="M30 56 C18 54 12 44 10 30 L18 30 C20 40 24 46 32 48 Z" fill="#2f5f7a"/>
+    <path d="M38 24 C40 10 72 10 74 24" fill="none" stroke="#14232e" stroke-width="8"/>
+    <path d="M38 24 C40 10 72 10 74 24" fill="none" stroke="#5a7f96" stroke-width="4"/>
+    <path d="M26 46 C26 28 86 28 86 46 C92 60 90 82 80 88 L32 88 C22 82 20 60 26 46 Z" fill="#2f5f7a"/>
+    <ellipse cx="56" cy="30" rx="24" ry="5" fill="#244b62"/>
+    <circle cx="56" cy="24" r="4" fill="#5a7f96"/>
+    <path d="M34 70 C40 62 72 62 78 70 C78 80 34 80 34 70 Z" fill="#ff9a1f" stroke="#c04a0a" stroke-width="2" filter="url(#glow)"/>
+    <g fill="#ffe07a" stroke="none"><circle cx="46" cy="70" r="2.4"/><circle cx="60" cy="72" r="2"/><circle cx="68" cy="69" r="1.8"/></g>
+    <path d="M36 88 L32 96 M56 88 V96 M76 88 L80 96" stroke-width="4"/>
+    <circle cx="46" cy="48" r="4.6" fill="#fff"/><circle cx="66" cy="48" r="4.6" fill="#fff"/>
+    <circle cx="47" cy="49" r="2.4" fill="#14232e" stroke="none"/><circle cx="65" cy="49" r="2.4" fill="#14232e" stroke="none"/>
+    <path d="M40 41 L50 43 M72 41 L62 43" stroke-width="2.6"/>
+    <path d="M48 58 Q56 62 64 58" fill="none" stroke-width="2.4"/>
+    <path d="M34 40 C40 36 44 36 48 38" fill="none" stroke="#7fa4bb" stroke-width="2"/>
+  </g>
+</svg>

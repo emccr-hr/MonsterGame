@@ -402,6 +402,140 @@
     }
   },
   {
+    "id": "mr-toothache",
+    "name": "Mr. Toothache",
+    "kind": "monster",
+    "biome": "beach",
+    "spawnWeight": 20,
+    "sizeLabel": "Large (3x Dumble)",
+    "scale": 3,
+    "look": "A blue shark with a white belly who walks on his back fins, mouth open with lots of sharp teeth.",
+    "art": {
+      "body": "#2f7fd6",
+      "accent": "#ffffff",
+      "markings": "belly"
+    },
+    "traits": [],
+    "ability": "apex-predator",
+    "moves": [
+      "bite",
+      "slash",
+      "splash",
+      "tsunami"
+    ],
+    "evolvesTo": {
+      "monster": "megalodon",
+      "level": 10
+    },
+    "evolvesFrom": null,
+    "catchable": true,
+    "baseStats": {
+      "hp": 56,
+      "attack": 50,
+      "defense": 50,
+      "speed": 44
+    }
+  },
+  {
+    "id": "megalodon",
+    "name": "Megalodon",
+    "kind": "monster",
+    "biome": "beach",
+    "spawnWeight": null,
+    "sizeLabel": "Huge (5x Dumble)",
+    "scale": 5,
+    "look": "A giant dark blue shark with a white belly and an even bigger mouth full of teeth, stomping on his back fins.",
+    "art": {
+      "body": "#1d4f9a",
+      "accent": "#f4f8ff",
+      "markings": "belly"
+    },
+    "traits": [],
+    "ability": "apex-predator-mega",
+    "moves": [
+      "bite",
+      "slash",
+      "splash",
+      "tsunami"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "mr-toothache",
+    "catchable": true,
+    "baseStats": {
+      "hp": 102,
+      "attack": 63,
+      "defense": 70,
+      "speed": 45
+    }
+  },
+  {
+    "kind": "monster",
+    "traits": [],
+    "catchable": true,
+    "id": "sandcastlet",
+    "name": "Sandcastlet",
+    "biome": "beach",
+    "spawnWeight": 20,
+    "sizeLabel": "Small",
+    "scale": 1,
+    "look": "A small sandcastle with one tower, a red flag on top, shell windows and a sandy smile.",
+    "art": {
+      "body": "#e8c27a",
+      "accent": "#c0392b",
+      "markings": "crown"
+    },
+    "ability": "wise",
+    "moves": [
+      "sand-spray",
+      "shell-toss",
+      "moat-splash",
+      "hit"
+    ],
+    "evolvesTo": {
+      "monster": "sandfortress",
+      "level": 20
+    },
+    "evolvesFrom": null,
+    "baseStats": {
+      "hp": 44,
+      "attack": 50,
+      "defense": 50,
+      "speed": 56
+    }
+  },
+  {
+    "kind": "monster",
+    "traits": [],
+    "catchable": true,
+    "id": "sandfortress",
+    "name": "Sandfortress",
+    "biome": "beach",
+    "spawnWeight": null,
+    "sizeLabel": "Large (3x Dumble)",
+    "scale": 3,
+    "look": "A big sand fortress with three towers and flags, a moat of water around its base, and a face on the gate.",
+    "art": {
+      "body": "#d4a056",
+      "accent": "#2e86c1",
+      "markings": "crown"
+    },
+    "ability": "wise",
+    "moves": [
+      "sand-spray",
+      "shell-toss",
+      "moat-splash",
+      "tower-topple"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "sandcastlet",
+    "baseStats": {
+      "hp": 78,
+      "attack": 70,
+      "defense": 70,
+      "speed": 62
+    }
+  },
+  {
     "id": "anti-ant",
     "name": "Anti-Ant",
     "kind": "monster",
@@ -537,6 +671,140 @@
       "attack": 70,
       "defense": 70,
       "speed": 62
+    }
+  },
+  {
+    "kind": "monster",
+    "traits": [],
+    "catchable": true,
+    "id": "crystalump",
+    "name": "Crystalump",
+    "biome": "desert",
+    "spawnWeight": 20,
+    "sizeLabel": "Small-medium (1.5x Dumble)",
+    "scale": 1.5,
+    "look": "A lumpy purple crystal rock with little crystal spikes on top and two glowing eyes.",
+    "art": {
+      "body": "#9b59d6",
+      "accent": "#e8d4ff",
+      "markings": "spots"
+    },
+    "ability": "wise",
+    "moves": [
+      "shard-shot",
+      "gem-glare",
+      "sparkle-beam",
+      "hit"
+    ],
+    "evolvesTo": {
+      "monster": "crystower",
+      "level": 22
+    },
+    "evolvesFrom": null,
+    "baseStats": {
+      "hp": 47,
+      "attack": 50,
+      "defense": 50,
+      "speed": 53
+    }
+  },
+  {
+    "kind": "monster",
+    "traits": [],
+    "catchable": true,
+    "id": "crystower",
+    "name": "Crystower",
+    "biome": "desert",
+    "spawnWeight": null,
+    "sizeLabel": "Large (3x Dumble)",
+    "scale": 3,
+    "look": "A tall tower of sparkling purple crystals, with glowing eyes in the middle crystal.",
+    "art": {
+      "body": "#6c3fb0",
+      "accent": "#e8d4ff",
+      "markings": "crown"
+    },
+    "ability": "wise",
+    "moves": [
+      "shard-shot",
+      "gem-glare",
+      "sparkle-beam",
+      "sandstorm"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "crystalump",
+    "baseStats": {
+      "hp": 78,
+      "attack": 70,
+      "defense": 70,
+      "speed": 62
+    }
+  },
+  {
+    "kind": "monster",
+    "traits": [],
+    "catchable": true,
+    "id": "tumbleball",
+    "name": "Tumbleball",
+    "biome": "desert",
+    "spawnWeight": 20,
+    "sizeLabel": "Small",
+    "scale": 1,
+    "look": "A round ball of dry, tangled twigs with two big eyes peeking out and a few tiny thorns.",
+    "art": {
+      "body": "#a89a4a",
+      "accent": "#5e4a20",
+      "markings": "stripes"
+    },
+    "ability": "quick",
+    "moves": [
+      "tumble-roll",
+      "prickle-poke",
+      "sand-spray",
+      "hit"
+    ],
+    "evolvesTo": {
+      "monster": "dustwhirl",
+      "level": 18
+    },
+    "evolvesFrom": null,
+    "baseStats": {
+      "hp": 44,
+      "attack": 50,
+      "defense": 50,
+      "speed": 56
+    }
+  },
+  {
+    "kind": "monster",
+    "traits": [],
+    "catchable": true,
+    "id": "dustwhirl",
+    "name": "Dustwhirl",
+    "biome": "desert",
+    "spawnWeight": null,
+    "sizeLabel": "Medium-large (2.5x Dumble)",
+    "scale": 2.5,
+    "look": "A tall spinning whirlwind of sand with twigs flying around it and a grinning face in the swirl.",
+    "art": {
+      "body": "#e8c98a",
+      "accent": "#8a6a2a",
+      "markings": "stripes"
+    },
+    "ability": "quick",
+    "moves": [
+      "tumble-roll",
+      "prickle-poke",
+      "sand-spray",
+      "sandstorm"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "tumbleball",
+    "baseStats": {
+      "hp": 74,
+      "attack": 70,
+      "defense": 70,
+      "speed": 66
     }
   },
   {
@@ -1001,6 +1269,140 @@
     "evolvesTo": null,
     "evolvesFrom": "ashflap",
     "catchable": true,
+    "baseStats": {
+      "hp": 70,
+      "attack": 70,
+      "defense": 70,
+      "speed": 70
+    }
+  },
+  {
+    "kind": "monster",
+    "traits": [],
+    "catchable": true,
+    "id": "lanternpuff",
+    "name": "Lanternpuff",
+    "biome": "volcano",
+    "spawnWeight": 20,
+    "sizeLabel": "Small",
+    "scale": 1,
+    "look": "A round orange paper lantern with a little flame inside, a smiley face, and a tassel hanging below.",
+    "art": {
+      "body": "#ffb347",
+      "accent": "#fff3b0",
+      "markings": "belly"
+    },
+    "ability": "lava-skin",
+    "moves": [
+      "ember-puff",
+      "flicker-flash",
+      "glow-bonk",
+      "hit"
+    ],
+    "evolvesTo": {
+      "monster": "blazelantern",
+      "level": 24
+    },
+    "evolvesFrom": null,
+    "baseStats": {
+      "hp": 44,
+      "attack": 50,
+      "defense": 50,
+      "speed": 56
+    }
+  },
+  {
+    "kind": "monster",
+    "traits": [],
+    "catchable": true,
+    "id": "blazelantern",
+    "name": "Blazelantern",
+    "biome": "volcano",
+    "spawnWeight": null,
+    "sizeLabel": "Medium-large (2.5x Dumble)",
+    "scale": 2.5,
+    "look": "A big stone lantern with a roaring fire inside its windows and a curly stone roof.",
+    "art": {
+      "body": "#8d8a84",
+      "accent": "#ff9a1f",
+      "markings": "mask"
+    },
+    "ability": "lava-skin",
+    "moves": [
+      "ember-puff",
+      "flicker-flash",
+      "glow-bonk",
+      "magma-slam"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "lanternpuff",
+    "baseStats": {
+      "hp": 74,
+      "attack": 70,
+      "defense": 70,
+      "speed": 66
+    }
+  },
+  {
+    "kind": "monster",
+    "traits": [],
+    "catchable": true,
+    "id": "lavamug",
+    "name": "Lavamug",
+    "biome": "volcano",
+    "spawnWeight": 20,
+    "sizeLabel": "Small",
+    "scale": 1,
+    "look": "A white mug with a handle, full of bubbling orange lava, and a happy face on the front.",
+    "art": {
+      "body": "#f2efe8",
+      "accent": "#ff7a1a",
+      "markings": "crown"
+    },
+    "ability": "lava-skin",
+    "moves": [
+      "hot-splash",
+      "steam-whistle",
+      "lava-spit",
+      "hit"
+    ],
+    "evolvesTo": {
+      "monster": "lavakettle",
+      "level": 26
+    },
+    "evolvesFrom": null,
+    "baseStats": {
+      "hp": 44,
+      "attack": 50,
+      "defense": 50,
+      "speed": 56
+    }
+  },
+  {
+    "kind": "monster",
+    "traits": [],
+    "catchable": true,
+    "id": "lavakettle",
+    "name": "Lavakettle",
+    "biome": "volcano",
+    "spawnWeight": null,
+    "sizeLabel": "Medium (2x Dumble)",
+    "scale": 2,
+    "look": "A big blue-gray iron kettle with a glowing lava belly, a spout puffing steam, and a face.",
+    "art": {
+      "body": "#2f5f7a",
+      "accent": "#ff9a1f",
+      "markings": "belly"
+    },
+    "ability": "lava-skin",
+    "moves": [
+      "hot-splash",
+      "steam-whistle",
+      "lava-spit",
+      "magma-slam"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "lavamug",
     "baseStats": {
       "hp": 70,
       "attack": 70,

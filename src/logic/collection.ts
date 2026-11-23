@@ -110,7 +110,7 @@ export function bookEntries(content: Content, state: GameState): BookEntry[] {
     });
 }
 
-/** The Book's counters: species seen and caught, and the Avatar gate ("Wild monsters caught: X / 15"). */
+/** The Book's counters: species seen and caught, and the Avatar gate ("Wild monsters caught: X / N", N = every wild species). */
 export function bookSummary(content: Content, state: GameState): { seen: number; caught: number; total: number; gate: { caught: number; needed: number; open: boolean } } {
   const entries = bookEntries(content, state);
   return {

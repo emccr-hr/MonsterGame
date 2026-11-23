@@ -7,8 +7,8 @@ const content = realContent();
 const biomes = ['forest', 'beach', 'desert', 'snowy', 'volcano'];
 
 describe('spawnTable', () => {
-  it('has 3 wild species in every biome', () => {
-    for (const b of biomes) expect(spawnTable(content, b)).toHaveLength(3);
+  it('has 3 wild species in Forest and Snowy, 5 in Beach, Desert and Volcano (Rounds 64, 66, 67)', () => {
+    for (const b of biomes) expect(spawnTable(content, b)).toHaveLength(['beach', 'desert', 'volcano'].includes(b) ? 5 : 3);
   });
 
   it('uses the weights from monsters.json', () => {

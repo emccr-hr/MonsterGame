@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- MR. TOOTHACHE: a blue shark with a white belly who walks on his back fins, mouth open with lots of sharp teeth (designer, Round 64) -->
+  <g stroke="#0f2a4a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M28 97 L40 78 L52 97 Z" fill="#2563b8"/>
+    <path d="M52 97 L62 78 L78 97 Z" fill="#2563b8"/>
+    <path d="M76 28 L97 16 L84 46 Z" fill="#2563b8"/>
+    <path d="M42 86 C22 74 16 36 34 18 C48 4 72 6 80 26 C88 48 80 74 62 88 Z" fill="#2f7fd6"/>
+    <path d="M46 84 C32 72 28 52 34 40 L52 46 C48 60 52 74 60 86 Z" fill="#ffffff" stroke="none"/>
+    <path d="M36 56 L12 70 L38 66 Z" fill="#2563b8"/>
+    <path d="M74 58 L92 74 L72 68 Z" fill="#2563b8"/>
+    <path d="M16 24 L48 34 L18 50 Q6 37 16 24 Z" fill="#7a1424"/>
+    <g fill="#ffffff" stroke="#0f2a4a" stroke-width="1.2">
+      <path d="M18 25 L22 31 L24 26.6 Z"/><path d="M25 27 L28 33 L31 28.8 Z"/><path d="M32 29 L35 35 L38 31 Z"/><path d="M39 31.2 L41 36 L44 32.6 Z"/>
+      <path d="M19 49 L22 43 L25 47.6 Z"/><path d="M26 46 L29 40.6 L32 44 Z"/><path d="M33 42.4 L36 37.6 L39 40.6 Z"/><path d="M40 39 L42 35 L45 37 Z"/>
+    </g>
+    <circle cx="46" cy="21" r="3.6" fill="#111"/><circle cx="47" cy="20" r="1.1" fill="#fff" stroke="none"/>
+    <path d="M40 15 L51 18" stroke-width="2.6"/>
+    <path d="M58 34 q3 5 0 10 M64 33 q3 5 0 10 M70 33 q3 5 0 10" fill="none" stroke="#163f73" stroke-width="2"/>
+  </g>
+</svg>
