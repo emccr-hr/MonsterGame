@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- DUSTWHIRL: a tall spinning whirlwind of sand with twigs flying around it and a grinning face in the swirl (Claude-made, Round 67) -->
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="50" cy="96" rx="22" ry="3" fill="#000" opacity=".15"/>
+    <path d="M6 10 C30 2 70 2 94 10 C88 26 74 30 70 40 C66 54 62 66 58 80 C56 88 52 94 50 96 C48 94 44 88 42 80 C38 66 34 54 30 40 C26 30 12 26 6 10 Z" fill="#e8c98a" stroke="#8a6a2a" stroke-width="3"/>
+    <g fill="none" stroke="#c9a45a" stroke-width="3">
+      <path d="M12 14 C36 22 64 22 88 14"/><path d="M22 28 C40 34 60 34 78 28"/><path d="M32 46 C44 50 56 50 68 46"/><path d="M40 64 C46 66 54 66 60 64"/><path d="M45 80 C48 81 52 81 55 80"/>
+    </g>
+    <g fill="none" stroke="#fff3d0" stroke-width="1.6"><path d="M18 20 C40 26 60 26 82 20"/><path d="M36 56 C46 58 54 58 64 56"/></g>
+    <g stroke="#6a5020" stroke-width="2.6"><path d="M2 36 l10 -4 M90 30 l8 6 M14 56 l6 -8 M84 52 l6 6 M8 74 l8 -2 M88 72 l6 -4"/></g>
+    <g stroke="#6a5020" stroke-width="1.6"><path d="M7 34 l1 -4 M94 33 l-2 -3 M86 55 l-3 2"/></g>
+    <ellipse cx="40" cy="34" rx="6" ry="6.5" fill="#fff" stroke="#3a2a10" stroke-width="2.2"/>
+    <ellipse cx="60" cy="34" rx="6" ry="6.5" fill="#fff" stroke="#3a2a10" stroke-width="2.2"/>
+    <circle cx="41" cy="35" r="3" fill="#1a1208"/><circle cx="59" cy="35" r="3" fill="#1a1208"/>
+    <path d="M36 26 L45 29 M64 26 L55 29" stroke="#3a2a10" stroke-width="2.4"/>
+    <path d="M38 44 Q50 54 62 44 Q50 50 38 44 Z" fill="#fff" stroke="#3a2a10" stroke-width="2.4"/>
+  </g>
+</svg>

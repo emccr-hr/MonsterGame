@@ -62,16 +62,27 @@ Build each move **once** and give it to any monster that knows it. Element tags:
 | Flicker Flash | 🔥 | Damage | Low–Medium | Lanternpuff, Blazelantern |
 | Glow Bonk | | Damage | Medium | Lanternpuff, Blazelantern |
 
+### New moves (Round 67, Claude-made)
+| Move | Tag | Effect | Power | Known by |
+|---|---|---|---|---|
+| Shell Toss | | Damage | Low–Medium | Sandcastlet, Sandfortress |
+| Moat Splash | 💧 | Damage | Medium | Sandcastlet, Sandfortress |
+| Tower Topple | 🪨 | Damage | High | Sandfortress |
+| Tumble Roll | | Damage | Medium | Tumbleball, Dustwhirl |
+| Prickle Poke | 🌿 | Damage | Low–Medium | Tumbleball, Dustwhirl |
+| Hot Splash | 🔥 | Damage, can burn (like Burn) | Medium | Lavamug, Lavakettle |
+| Steam Whistle | | Next attack against it is weaker (like Screech) | — | Lavamug, Lavakettle |
+
 ## Abilities in use
 | Ability | Effect | Monsters |
 |---|---|---|
-| Lava Skin | 50% chance to ignore 🔥 moves | Blobbin, Slimy, Cinderscale, Moltenmaw, Lanternpuff, Blazelantern |
+| Lava Skin | 50% chance to ignore 🔥 moves | Blobbin, Slimy, Cinderscale, Moltenmaw, Lanternpuff, Blazelantern, Lavamug, Lavakettle |
 | Not at this restaurant | Eat does nothing to it | Dumble, Rom |
 | Cute | 5% chance per turn the opponent doesn't attack | Peggy, Scout |
 | Colony Bond | Can't be attacked by red ants | Anti-Ant, Queen Ant |
 | Fur Coat | Immune to Frozen | Yeti, Abominable Snowman |
-| Quick | Always attacks first | Bushtail, Stingtail, Frostpaw, Treetail, Dunestinger, Glacitail |
-| Wise | Takes 10% less damage | Hootle, Sidesnap, Ashflap, Grandhoot, Boulderclaw, Smokewing, Crystalump, Crystower |
+| Quick | Always attacks first | Bushtail, Stingtail, Frostpaw, Treetail, Dunestinger, Glacitail, Tumbleball, Dustwhirl |
+| Wise | Takes 10% less damage | Hootle, Sidesnap, Ashflap, Grandhoot, Boulderclaw, Smokewing, Crystalump, Crystower, Sandcastlet, Sandfortress |
 | Slippery | 10% chance attacks on it miss | Pengwiggle, Emperwaddle |
 | Snack Thief | Its Eat heals double | Squawkle, Pouchbeak |
 | Water Storage | Heals 5% each turn | Camelump, Triplump |

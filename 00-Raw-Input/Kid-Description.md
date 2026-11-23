@@ -358,3 +358,10 @@ Then:
 > I want you to make two different random monsters. I want them not to look like animals. Name them randomly, but make them named how they look. Give them random attacks. They don't have to be the ones that I've listed so far. Random abilities. They do have to be the ones that I've listed so far. And make their evolutions.
 
 *(note: read as: new moves are fine, but the abilities must be ones he already made.)*
+
+## 2026-11-22 — Round 67 (more monsters)
+
+> more monsters?
+
+His answers (picked from options):
+> **Yes, you make them up.** Where: **Beach, Desert, Volcano.** What kind: **Not animals.**

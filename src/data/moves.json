@@ -494,5 +494,71 @@
     "power": "medium",
     "description": "Bonks with its glowing head.",
     "effects": []
+  },
+  {
+    "id": "shell-toss",
+    "name": "Shell Toss",
+    "element": null,
+    "power": "low-medium",
+    "description": "Throws a seashell.",
+    "effects": []
+  },
+  {
+    "id": "moat-splash",
+    "name": "Moat Splash",
+    "element": "water",
+    "power": "medium",
+    "description": "Splashes water from its moat.",
+    "effects": []
+  },
+  {
+    "id": "tower-topple",
+    "name": "Tower Topple",
+    "element": "earth",
+    "power": "high",
+    "description": "Drops a whole tower on the other monster.",
+    "effects": []
+  },
+  {
+    "id": "tumble-roll",
+    "name": "Tumble Roll",
+    "element": null,
+    "power": "medium",
+    "description": "Rolls into the other monster.",
+    "effects": []
+  },
+  {
+    "id": "prickle-poke",
+    "name": "Prickle Poke",
+    "element": "nature",
+    "power": "low-medium",
+    "description": "Pokes with tiny thorns.",
+    "effects": []
+  },
+  {
+    "id": "hot-splash",
+    "name": "Hot Splash",
+    "element": "fire",
+    "power": "medium",
+    "description": "Splashes hot lava that can burn.",
+    "effects": [
+      {
+        "kind": "burn",
+        "turns": 2
+      }
+    ]
+  },
+  {
+    "id": "steam-whistle",
+    "name": "Steam Whistle",
+    "element": null,
+    "power": "none",
+    "description": "A loud whistle makes the other monster's next attack weaker.",
+    "effects": [
+      {
+        "kind": "weakenNextAttack",
+        "amount": 0.3
+      }
+    ]
   }
 ]
