@@ -13,7 +13,24 @@ import { markTipSeen } from '../state/world';
 import { reportState } from '../testHook';
 import { drawMonster } from '../ui/monsterArt';
 import { playMusic, playSfx } from '../ui/audio';
-import { breakFreePuff, cageTrail, caughtBurst, healEffect, hitEffect, moveShot, statusEffect, type FxElement } from '../ui/battleFx';
+import {
+  breakFreePuff,
+  cageTrail,
+  caughtBurst,
+  defeat,
+  dodge,
+  faintPuff,
+  floatingNumber,
+  healEffect,
+  hitEffect,
+  knockBack,
+  moveShot,
+  runAway,
+  statusEffect,
+  victory,
+  windUpLunge,
+  type FxElement,
+} from '../ui/battleFx';
 import { addSprite } from '../ui/sprites';
 import { besideTile, findAll, startTile } from '../world/grid';
 import type { EvolveData } from './EvolveScene';
@@ -217,12 +234,16 @@ export class BattleScene extends Phaser.Scene {
     const x = GAME_WIDTH * 0.62;
     const top = GAME_HEIGHT - 124;
     const many = this.choices.length > 4;
+    // Long rows ("Blizzard Boy  Lv 10  100/100 HP"): two wide columns under the question, so they
+    // don't run into each other (owner, 2026-11-23). Short ones (Fight, Cage...) stay on the right.
+    const long = this.choices.some((c) => c.label.length > 14);
     this.menuTexts = this.choices.map((c, i) => {
-      const col = many ? Math.floor(i / 3) : Math.floor(i / 4);
-      const row = many ? i % 3 : i % 4;
-      const size = many ? 22 : this.choices.length > 3 ? 20 : 24;
+      const col = long ? Math.floor(i / 3) : many ? Math.floor(i / 3) : Math.floor(i / 4);
+      const row = long ? i % 3 : many ? i % 3 : i % 4;
+      const size = long ? 19 : many ? 22 : this.choices.length > 3 ? 20 : 24;
+      const at = long ? { x: 36 + col * 450, y: GAME_HEIGHT - 90 + row * 23 } : { x: x + col * 170, y: top + row * (many ? 32 : 25) };
       const t = this.add
-        .text(x + col * 170, top + row * (many ? 32 : 25), `${i === this.selected ? '> ' : '  '}${c.label}`, {
+        .text(at.x, at.y, `${i === this.selected ? '> ' : '  '}${c.label}`, {
           fontFamily: FONT,
           fontSize: `${size}px`,
           color: i === this.selected ? COLORS.selected : COLORS.text,
@@ -297,7 +318,12 @@ export class BattleScene extends Phaser.Scene {
           // The burst lands just after the shot (owner, 2026-11-23): in the attacker's move element, or fire for a burn.
           const el: FxElement = e.type === 'burnHurt' ? 'fire' : this.lastElement[e.side === 'player' ? 'enemy' : 'player'];
           const at = this.spotOf(e.side);
-          this.time.delayedCall(e.type === 'burnHurt' ? 0 : 180, () => hitEffect(this, at.x, at.y, el, e.type === 'burnHurt' ? 70 : 110));
+          this.time.delayedCall(e.type === 'burnHurt' ? 0 : 180, () => {
+            hitEffect(this, at.x, at.y, el, e.type === 'burnHurt' ? 70 : 110);
+            floatingNumber(this, at.x, at.y - 40, `-${e.amount}`, '#ff6b6b');
+            const hit = e.side === 'enemy' ? this.enemySprite : this.playerSprite;
+            if (hit && e.type === 'damage') knockBack(this, hit, e.side === 'enemy' ? 1 : -1);
+          });
         };
       case 'status':
         return () => {
@@ -311,12 +337,21 @@ export class BattleScene extends Phaser.Scene {
           if (onScreen) {
             const at = this.spotOf(e.side);
             healEffect(this, at.x, at.y);
+            if (e.amount > 0) floatingNumber(this, at.x, at.y - 40, `+${e.amount}`, '#7dff9a');
           }
         };
       case 'faint':
         return () => {
           const sprite = e.side === 'enemy' ? this.enemySprite : this.playerSprite;
-          if (sprite) this.tweens.add({ targets: sprite, alpha: 0, y: sprite.y + 30, duration: 300 });
+          const at = this.spotOf(e.side);
+          faintPuff(this, at.x, at.y);
+          if (sprite) this.tweens.add({ targets: sprite, alpha: 0, y: sprite.y + 30, angle: e.side === 'enemy' ? 20 : -20, duration: 450 });
+        };
+      case 'miss':
+        return () => {
+          const at = this.spotOf(e.side);
+          // Dodges (Slippery, dug underground) hop aside; blocks (Lava Skin, immune, red ants) just shimmer.
+          dodge(this, e.side === 'enemy' ? this.enemySprite : this.playerSprite, at.x, at.y, e.reason !== 'slippery' && e.reason !== 'underground');
         };
       case 'switch':
         return () => this.refreshSide('player');
@@ -329,7 +364,7 @@ export class BattleScene extends Phaser.Scene {
         return () => {
           const sprite = e.side === 'enemy' ? this.enemySprite : this.playerSprite;
           sprite?.setAlpha(1);
-          if (sprite) this.tweens.add({ targets: sprite, x: sprite.x + (e.side === 'player' ? 24 : -24), duration: 90, yoyo: true });
+          if (sprite) windUpLunge(this, sprite, e.side === 'player' ? 1 : -1);
           const mv = content.moves.find((m) => m.id === e.move);
           this.lastElement[e.side] = mv?.element ?? null;
           moveShot(this, this.spotOf(e.side), this.spotOf(e.side === 'player' ? 'enemy' : 'player'), mv?.element ?? null, mv?.power !== 'none');
@@ -346,6 +381,12 @@ export class BattleScene extends Phaser.Scene {
     const { state, rewards } = finishBattle(content, getGame(), ended, this.rng);
     setGame(state);
     saveGame();
+
+    // How it ended, as a picture (owner, 2026-11-23). A catch already had its gold burst.
+    if (ended.outcome === 'won') victory(this, this.playerSprite);
+    else if (ended.outcome === 'lost') defeat(this);
+    else if (ended.outcome === 'ran') runAway(this, this.playerSprite, PLAYER_AT.x, PLAYER_AT.y);
+    else if (ended.outcome === 'fled' && this.enemySprite) this.tweens.add({ targets: this.enemySprite, x: GAME_WIDTH + 200, duration: 500, ease: 'Quad.easeIn' });
 
     const lines: Beat[] = [];
     if (rewards.caught) {
