@@ -9,8 +9,8 @@ import { content } from '../data';
 import type { MonsterArt } from '../data/schema';
 import { battleSpriteSize } from '../logic/battleUi';
 import { species } from '../logic/monster';
-import { fitBox, monsterKey, tierFor } from './spriteManifest';
-import { monsterSprites } from './sprites';
+import { fitBox, monsterKey } from './spriteManifest';
+import { monsterSprites, monsterTier } from './sprites';
 
 export interface MonsterLookInput {
   species: string;
@@ -128,7 +128,8 @@ export function drawMonster(
   const s = species(content, m.species);
   const px = (size ?? battleSpriteSize(s.scale)) * (m.big ? 1.25 : 1);
   const sprite = monsterSprites[s.id];
-  const key = monsterKey(s.id, tierFor(px));
+  // The texture size that matches the drawn size on the (bigger, sharper) canvas.
+  const key = monsterKey(s.id, monsterTier(s.id, px));
   const parts: Phaser.GameObjects.GameObject[] = [];
   let top: number;
   // The vector sprite if its file exists and loaded; otherwise the look-data placeholder.

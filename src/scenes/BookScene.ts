@@ -13,6 +13,8 @@ const COLS = 6;
 const CELL = 68;
 const LEFT = 30;
 const TOP = 96;
+/** Rows on screen at once; the grid scrolls with the cursor (64 monsters since Round 69). */
+const VISIBLE_ROWS = 6;
 
 /**
  * The Monster Book (M5, UI-and-HUD.md): every monster in a grid. A "?" until you see it, its
@@ -25,6 +27,11 @@ export class BookScene extends Phaser.Scene {
   private cursor!: Phaser.GameObjects.Rectangle;
   private info!: Phaser.GameObjects.Text;
   private picture?: Phaser.GameObjects.Container;
+  /** The top row on screen, and the objects drawn for the rows on screen. */
+  private firstRow = 0;
+  private cells: Phaser.GameObjects.GameObject[] = [];
+  private moreUp!: Phaser.GameObjects.Text;
+  private moreDown!: Phaser.GameObjects.Text;
 
   constructor() {
     super('Book');
@@ -33,6 +40,8 @@ export class BookScene extends Phaser.Scene {
   init(data: MenuData): void {
     this.args = data;
     this.index = 0;
+    this.firstRow = 0;
+    this.cells = [];
     this.picture = undefined;
   }
 
@@ -61,7 +70,10 @@ export class BookScene extends Phaser.Scene {
       .setOrigin(1, 0)
       .setDepth(30);
 
-    this.entries.forEach((e, i) => this.drawCell(e, i));
+    const hint = { fontFamily: FONT, fontSize: '14px', color: COLORS.disabled };
+    this.moreUp = this.add.text(LEFT + (COLS * CELL) / 2, TOP - 4, '▲ more', hint).setOrigin(0.5, 1).setDepth(30);
+    this.moreDown = this.add.text(LEFT + (COLS * CELL) / 2, TOP + VISIBLE_ROWS * CELL + 2, '▼ more', hint).setOrigin(0.5, 0).setDepth(30);
+    this.drawPage();
     this.cursor = this.add.rectangle(0, 0, CELL - 4, CELL - 4).setStrokeStyle(3, 0x7bdff2).setDepth(32);
     this.info = this.add
       .text(LEFT + COLS * CELL + 40, 200, '', { fontFamily: FONT, fontSize: '19px', color: COLORS.text, lineSpacing: 6, wordWrap: { width: 400 } })
@@ -80,28 +92,44 @@ export class BookScene extends Phaser.Scene {
   }
 
   private cellCenter(i: number): { x: number; y: number } {
-    return { x: LEFT + (i % COLS) * CELL + CELL / 2, y: TOP + Math.floor(i / COLS) * CELL + CELL / 2 };
+    return { x: LEFT + (i % COLS) * CELL + CELL / 2, y: TOP + (Math.floor(i / COLS) - this.firstRow) * CELL + CELL / 2 };
+  }
+
+  /** Draws the rows on screen (and only those), plus the "more" hints. */
+  private drawPage(): void {
+    for (const o of this.cells) o.destroy();
+    this.cells = [];
+    const end = Math.min(this.entries.length, (this.firstRow + VISIBLE_ROWS) * COLS);
+    for (let i = this.firstRow * COLS; i < end; i++) this.drawCell(this.entries[i]!, i);
+    this.moreUp.setVisible(this.firstRow > 0);
+    this.moreDown.setVisible(end < this.entries.length);
   }
 
   private drawCell(e: BookEntry, i: number): void {
     const { x, y } = this.cellCenter(i);
-    const bg = this.add.rectangle(x, y, CELL - 6, CELL - 6, 0x262046).setDepth(25).setInteractive({ useHandCursor: true });
+    const keep = <T extends Phaser.GameObjects.GameObject>(o: T): T => {
+      this.cells.push(o);
+      return o;
+    };
+    const bg = keep(this.add.rectangle(x, y, CELL - 6, CELL - 6, 0x262046).setDepth(25).setInteractive({ useHandCursor: true }));
     bg.on('pointermove', () => {
       this.index = i;
       this.show();
     });
     if (e.status === 'unseen') {
-      this.add.circle(x, y, 20, 0x3a3550).setDepth(26);
-      this.add.text(x, y, '?', { fontFamily: FONT, fontSize: '22px', color: COLORS.disabled }).setOrigin(0.5).setDepth(27);
+      keep(this.add.circle(x, y, 20, 0x3a3550).setDepth(26));
+      keep(this.add.text(x, y, '?', { fontFamily: FONT, fontSize: '22px', color: COLORS.disabled }).setOrigin(0.5).setDepth(27));
     } else {
-      drawMonster(this, { species: e.id }, x, y, 46)
-        .setDepth(26)
-        .setAlpha(e.status === 'caught' ? 1 : 0.45);
+      keep(
+        drawMonster(this, { species: e.id }, x, y, 46)
+          .setDepth(26)
+          .setAlpha(e.status === 'caught' ? 1 : 0.45),
+      );
     }
     if (e.status === 'caught') {
-      this.add.text(x + CELL / 2 - 8, y + CELL / 2 - 8, '✓', { fontFamily: FONT, fontSize: '16px', color: '#5cd65c' }).setOrigin(1).setDepth(28);
+      keep(this.add.text(x + CELL / 2 - 8, y + CELL / 2 - 8, '✓', { fontFamily: FONT, fontSize: '16px', color: '#5cd65c' }).setOrigin(1).setDepth(28));
     }
-    if (e.big) this.add.text(x - CELL / 2 + 6, y - CELL / 2 + 4, '★', { fontFamily: FONT, fontSize: '16px', color: COLORS.title }).setDepth(28);
+    if (e.big) keep(this.add.text(x - CELL / 2 + 6, y - CELL / 2 + 4, '★', { fontFamily: FONT, fontSize: '16px', color: COLORS.title }).setDepth(28));
   }
 
   private move(step: number): void {
@@ -114,6 +142,15 @@ export class BookScene extends Phaser.Scene {
   private show(): void {
     const e = this.entries[this.index];
     if (!e) return;
+    // Scroll so the cursor's row is on screen.
+    const row = Math.floor(this.index / COLS);
+    let top = this.firstRow;
+    if (row < top) top = row;
+    else if (row >= top + VISIBLE_ROWS) top = row - VISIBLE_ROWS + 1;
+    if (top !== this.firstRow) {
+      this.firstRow = top;
+      this.drawPage();
+    }
     const c = this.cellCenter(this.index);
     this.cursor.setPosition(c.x, c.y);
     this.picture?.destroy();

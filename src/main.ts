@@ -15,18 +15,22 @@ import { TeamScene } from './scenes/TeamScene';
 import { PickBiomeScene } from './scenes/PickBiome';
 import { TitleScene } from './scenes/Title';
 import { installTestHook } from './testHook';
+import { installSharpRendering, RENDER_SCALE } from './ui/display';
 
 installTestHook(__APP_VERSION__);
 
 const game = new Phaser.Game({
   type: Phaser.AUTO,
   parent: 'game',
-  width: GAME_WIDTH,
-  height: GAME_HEIGHT,
+  // A bigger canvas, zoomed back to the 960x640 layout, so text and art stay sharp (src/ui/display.ts).
+  width: GAME_WIDTH * RENDER_SCALE,
+  height: GAME_HEIGHT * RENDER_SCALE,
   backgroundColor: COLORS.background,
-  pixelArt: true,
+  antialias: true,
+  roundPixels: true,
   scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },
   scene: [BootScene, TitleScene, PickBiomeScene, ...MAPS.map((m) => new MapScene(m)), BattleScene, EvolveScene, MenuScene, TeamScene, BagScene, BookScene, ShopScene, PapaiScene],
 });
 
+installSharpRendering(game);
 installEncounterFlow(game);

@@ -4,7 +4,8 @@
 // with no code change (ADR 0003). A monster without a file is drawn from its `art` look data.
 
 /** Each sprite is rasterized at these sizes (longest side, px); a drawing uses the nearest one at least as big. */
-export const SPRITE_TIERS = [64, 128, 256] as const;
+/** 512 is only made for monsters drawn that big (big monsters in battle on a sharp screen). */
+export const SPRITE_TIERS = [64, 128, 256, 512] as const;
 
 export interface SpriteSource {
   id: string;
@@ -70,9 +71,16 @@ export function svgDataUrl(svg: string): string {
   return `data:image/svg+xml;base64,${btoa(bin)}`;
 }
 
-/** The smallest tier at least `px` big (the biggest tier if none is). */
-export function tierFor(px: number): number {
-  return SPRITE_TIERS.find((t) => t >= px) ?? SPRITE_TIERS[SPRITE_TIERS.length - 1]!;
+/** The smallest tier at least `px` big, no bigger than `max` (the biggest allowed tier if none is). */
+export function tierFor(px: number, max: number = SPRITE_TIERS[SPRITE_TIERS.length - 1]!): number {
+  const allowed = SPRITE_TIERS.filter((t) => t <= max);
+  return allowed.find((t) => t >= px) ?? allowed[allowed.length - 1]!;
+}
+
+/** The tiers to make for a monster whose biggest drawing is `maxPx` canvas pixels. */
+export function tiersUpTo(maxPx: number): number[] {
+  const top = tierFor(maxPx);
+  return SPRITE_TIERS.filter((t) => t <= top);
 }
 
 /** Width and height that keep the sprite's shape with its longest side `px`. */

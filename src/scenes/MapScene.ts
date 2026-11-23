@@ -11,6 +11,7 @@ import { getWorld, isBiomeOpen, markTipSeen, openAllBiomes, setPlayerPosition } 
 import { reportState } from '../testHook';
 import { playMusic } from '../ui/audio';
 import { drawMapArt } from '../ui/mapArt';
+import { cameraScrollFor } from '../ui/displayMath';
 import { addCharacter } from '../ui/sprites';
 import { WildWalkers } from '../ui/wildWalkers';
 import { SURPRISE_ENCOUNTER_RATE } from '../logic/wildWalkers';
@@ -112,9 +113,8 @@ export class MapScene extends Phaser.Scene {
     const pool = this.wildPool();
     if (pool) this.walkers = this.makeWalkers(pool);
 
-    const cam = this.cameras.main;
-    cam.setBounds(0, 0, width(this.map) * T, height(this.map) * T);
-    cam.startFollow(this.player, true);
+    // The camera follows the player inside the map (done by hand: see cameraScrollFor in src/ui/display.ts).
+    this.followPlayer();
 
     this.drawHud();
     this.setupInput();
@@ -150,7 +150,15 @@ export class MapScene extends Phaser.Scene {
     if (getGame().team.length > 0 && markTipSeen('menu')) this.showMessage(tipText('menu'), 5000);
   }
 
+  /** Keep the player in the middle of the view, without showing past the map's edges. */
+  private followPlayer(): void {
+    const cam = this.cameras.main;
+    cam.scrollX = cameraScrollFor(this.player.x, GAME_WIDTH, width(this.map) * T);
+    cam.scrollY = cameraScrollFor(this.player.y, GAME_HEIGHT, height(this.map) * T);
+  }
+
   override update(): void {
+    this.followPlayer();
     if (this.moving || this.paused || this.leaving) return;
     const dir = this.queued ?? this.heldDir();
     this.queued = null;
