@@ -1,0 +1,19 @@
+{
+  "story": [
+    "Avatar falls to its knees...",
+    "The fire, water, rock, ice and leaves stop swirling.",
+    "\"You and your monsters are a real team,\" Avatar says.",
+    "All five places around Ansonville are safe and happy again.",
+    "You did it! You beat Avatar!"
+  ],
+  "credits": [
+    { "role": "Game idea and design", "names": ["Our 10-year-old game designer"] },
+    { "role": "Grown-up helper", "names": ["The designer's family"] },
+    { "role": "Code, art and music help", "names": ["Claude (an AI helper)"] },
+    { "role": "Monsters", "names": ["Every monster in this game is new and original"] },
+    { "role": "Music and sounds", "names": ["Made just for this game"] },
+    { "role": "Made with", "names": ["Phaser", "TypeScript", "Vite"] },
+    { "role": "Special thanks", "names": ["You, for playing!"] }
+  ],
+  "after": "The game keeps going! Catch Big Monsters, fill your Monster Book, and grow your team to level 100."
+}

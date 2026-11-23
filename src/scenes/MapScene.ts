@@ -5,12 +5,13 @@ import { ANSONVILLE, mapById, type GameMap } from '../data/maps';
 import { debugLevelTeam, readyToEvolve } from '../logic/collection';
 import { stepOnEncounterGround } from '../logic/encounterRate';
 import { createRng, type Rng } from '../logic/rng';
+import { arenaGate } from '../logic/ending';
 import { gateProgress, useReviver } from '../logic/world';
 import { currentGame, freshSeed, getGame, saveGame, setGame } from '../state/game';
 import { getWorld, isBiomeOpen, markTipSeen, openAllBiomes, setPlayerPosition } from '../state/world';
 import { reportState } from '../testHook';
 import { playMusic } from '../ui/audio';
-import { drawMapArt } from '../ui/mapArt';
+import { drawMapArt, drawPin, teleportSparkle } from '../ui/mapArt';
 import { cameraScrollFor } from '../ui/displayMath';
 import { addCharacter } from '../ui/sprites';
 import { WildWalkers } from '../ui/wildWalkers';
@@ -40,8 +41,10 @@ import type { MenuData } from './MenuScene';
 interface MapSceneData {
   /** Arriving in Ansonville from this biome: stand beside its gate. */
   from?: string;
-  /** Restarting in place (debug unlock). */
+  /** Restarting in place (debug unlock), teleporting, or back from the ending. */
   at?: Tile;
+  /** A message to show on arrival (teleporting, after the credits). */
+  arrive?: string;
 }
 
 const T = TILE_SIZE;
@@ -69,6 +72,7 @@ export class MapScene extends Phaser.Scene {
   /** When the map last came back from a battle or menu; the key that closed it is ignored here. */
   private resumedAt = 0;
   private rng: Rng = createRng(1);
+  private arrive?: string;
   /** Centered on the player's tile (the sprite inside stands on the tile's bottom edge). */
   private player!: Phaser.GameObjects.Container;
   /** The drawing inside `player`; it bobs and leans while walking. */
@@ -95,6 +99,7 @@ export class MapScene extends Phaser.Scene {
     this.leaving = false;
     this.stepsSinceEncounter = 0;
     this.messageTimer = undefined;
+    this.arrive = data.arrive;
     // Real time is the seed (or ?seed= in tests); the rules that matter take an Rng (ADR 0002).
     this.rng = createRng(freshSeed());
 
@@ -141,7 +146,10 @@ export class MapScene extends Phaser.Scene {
 
     // First visit: show this screen's guide tip once.
     const tip = this.map.biome ? 'biome' : 'ansonville';
-    if (markTipSeen(tip)) this.showMessage(tipText(tip), 5000);
+    if (this.arrive) {
+      teleportSparkle(this, this.player.x, this.player.y);
+      this.showMessage(this.arrive, 5000);
+    } else if (markTipSeen(tip)) this.showMessage(tipText(tip), 5000);
     else this.menuTip();
   }
 
@@ -346,12 +354,10 @@ export class MapScene extends Phaser.Scene {
         this.openOverlay('Papai');
         return;
       case 'arenaGate': {
-        const gate = gateProgress(content, getGame());
-        this.showMessage(
-          gate.open
-            ? "You caught every wild monster! Avatar's battle is coming soon."
-            : `Avatar's arena is locked. Monsters caught: ${gate.caught} / ${gate.needed}. Catch them all to open it!`,
-        );
+        // M6b: the open gate starts Avatar's battle (rules in src/logic/ending.ts).
+        const gate = arenaGate(content, getGame());
+        if (gate.battle) this.startEncounter(this.map.id, undefined, true);
+        else this.showMessage(gate.text);
         return;
       }
       default:
@@ -375,11 +381,11 @@ export class MapScene extends Phaser.Scene {
   }
 
   /** Fire the encounter: M4's encounter flow pauses this scene and runs the battle on top. */
-  private startEncounter(biomeId: string, spawn?: Spawn): void {
+  private startEncounter(biomeId: string, spawn?: Spawn, boss = false): void {
     this.paused = true;
     this.queued = null;
     this.hideMessage();
-    const event: WildEncounterEvent = { biomeId, sceneKey: this.scene.key, tile: { ...this.tile }, spawn };
+    const event: WildEncounterEvent = { biomeId, sceneKey: this.scene.key, tile: { ...this.tile }, spawn, boss };
     this.game.events.emit(WILD_ENCOUNTER, event);
   }
 
@@ -493,6 +499,8 @@ export class MapScene extends Phaser.Scene {
       label(center, "Avatar's\nArena", 16);
     }
     if (!art.arena) for (const t of findAll(this.map, 'A')) label(t, '🔒', 16);
+    // Teleport Pins placed on this map (M6b).
+    for (const pin of getGame().pins.filter((p) => p.scene === this.map.id)) drawPin(this, pin.x * T + T / 2, pin.y * T + T / 2);
   }
 
   private drawHud(): void {

@@ -51,6 +51,9 @@
 35. **Battle speed-up button** (planned; confirm)?
 36. **Optional strong trainers** in each biome for extra challenge?
 
+39. **After Avatar (M6b, built with defaults):** should Avatar be battled again after you beat it (built: yes, a rematch, no credits the second time)? Should beating it give XP or gems (built: no)?
+40. **Credits name (owner):** the credits say "Our 10-year-old game designer" and "The designer's family". Which names should they show? (`src/data/ending.json`)
+
 ## G. Characters to design
 37. **Player character:** what do you look like? Can players pick a look and type a name? *(Working look from the owner, 2026-11-21: a boy with shoulder-length blonde hair, light skin, blue eyes. Still open: outfit, picking a look, typing a name.)*
 38. **Guide character** in Ansonville: name, look, personality. *(Owner, 2026-11-21: a bald man with a dark mustache who explains the game when needed and points you to quests and goals. Named **Papai**; the mockup look is approved. Still open: personality.)*

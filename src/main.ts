@@ -12,6 +12,8 @@ import { MenuScene } from './scenes/MenuScene';
 import { PapaiScene } from './scenes/PapaiScene';
 import { ShopScene } from './scenes/ShopScene';
 import { TeamScene } from './scenes/TeamScene';
+import { TeleportScene } from './scenes/TeleportScene';
+import { EndingScene } from './scenes/EndingScene';
 import { PickBiomeScene } from './scenes/PickBiome';
 import { TitleScene } from './scenes/Title';
 import { installTestHook } from './testHook';
@@ -29,7 +31,7 @@ const game = new Phaser.Game({
   antialias: true,
   roundPixels: true,
   scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },
-  scene: [BootScene, TitleScene, PickBiomeScene, ...MAPS.map((m) => new MapScene(m)), BattleScene, EvolveScene, MenuScene, TeamScene, BagScene, BookScene, ShopScene, PapaiScene],
+  scene: [BootScene, TitleScene, PickBiomeScene, ...MAPS.map((m) => new MapScene(m)), BattleScene, EvolveScene, MenuScene, TeamScene, BagScene, BookScene, ShopScene, PapaiScene, TeleportScene, EndingScene],
 });
 
 installSharpRendering(game);

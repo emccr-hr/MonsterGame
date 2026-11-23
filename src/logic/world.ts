@@ -123,3 +123,27 @@ export function removePin(content: Content, state: GameState, pinId: number): Re
   if (!state.pins.some((p) => p.id === pinId)) return fail('There is no pin there.');
   return ok(withBag({ ...state, pins: state.pins.filter((p) => p.id !== pinId) }, pinItem(content).id, 1));
 }
+
+/** One row of the teleport menu: a shop (Ansonville or an open biome) or a placed pin. */
+export interface TeleportChoice {
+  kind: 'shop' | 'pin';
+  /** Map id: "ansonville" or a biome id. */
+  area: string;
+  label: string;
+  pin?: Pin;
+}
+
+const areaName = (content: Content, area: string): string =>
+  area === 'ansonville' ? 'Ansonville' : (content.biomes.find((b) => b.id === area)?.name ?? area);
+
+/** The teleport menu (Mechanics.md "Teleporting"): every shop first, then the pins in the order placed. */
+export function teleportChoices(content: Content, state: GameState): TeleportChoice[] {
+  const spots = teleportSpots(content, state);
+  return [
+    ...spots.shops.map((area): TeleportChoice => ({ kind: 'shop', area, label: `${areaName(content, area)} shop` })),
+    ...spots.pins.map((pin, i): TeleportChoice => ({ kind: 'pin', area: pin.scene, label: `Pin ${i + 1}: ${areaName(content, pin.scene)}`, pin })),
+  ];
+}
+
+/** Pins in the bag (not placed yet). */
+export const pinsInBag = (content: Content, state: GameState): number => count(state, pinItem(content).id);
