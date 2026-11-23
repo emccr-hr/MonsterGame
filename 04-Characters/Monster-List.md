@@ -26,6 +26,26 @@ One file per monster in `Monsters/` (copy `_Monster-Template.md`). Goal: 2–3 w
 | [Dustwhirl](Monsters/Dustwhirl.md) | Desert | Evolve only | 2.5x Dumble | Final form | Claude-made (Round 67), needs his OK |
 | [Lavamug](Monsters/Lavamug.md) | Volcano | 20 | 1x Dumble | Lavakettle (level 26) | Claude-made (Round 67), needs his OK |
 | [Lavakettle](Monsters/Lavakettle.md) | Volcano | Evolve only | 2x Dumble | Final form | Claude-made (Round 67), needs his OK |
+| [Mosspebble](Monsters/Mosspebble.md) | Forest | 20 | 0.75x Dumble | Mossboulder (level 21) | Claude-made (Round 69), needs his OK |
+| [Mossboulder](Monsters/Mossboulder.md) | Forest | Evolve only | 2.5x Dumble | Final form | Claude-made (Round 69), needs his OK |
+| [Leafkite](Monsters/Leafkite.md) | Forest | 20 | 1.5x Dumble | Stormkite (level 19) | Claude-made (Round 69), needs his OK |
+| [Stormkite](Monsters/Stormkite.md) | Forest | Evolve only | 3x Dumble | Final form | Claude-made (Round 69), needs his OK |
+| [Bubblebop](Monsters/Bubblebop.md) | Beach | 20 | 1x Dumble | Bubblecloud (level 23) | Claude-made (Round 69), needs his OK |
+| [Bubblecloud](Monsters/Bubblecloud.md) | Beach | Evolve only | 3.5x Dumble | Final form | Claude-made (Round 69), needs his OK |
+| [Driftlog](Monsters/Driftlog.md) | Beach | 20 | 1.5x Dumble | Wreckmast (level 28) | Claude-made (Round 69), needs his OK |
+| [Wreckmast](Monsters/Wreckmast.md) | Beach | Evolve only | 5x Dumble | Final form | Claude-made (Round 69), needs his OK |
+| [Pricklepot](Monsters/Pricklepot.md) | Desert | 20 | 1x Dumble | Blossomspike (level 22) | Claude-made (Round 69), needs his OK |
+| [Blossomspike](Monsters/Blossomspike.md) | Desert | Evolve only | 2.5x Dumble | Final form | Claude-made (Round 69), needs his OK |
+| [Dialstone](Monsters/Dialstone.md) | Desert | 20 | 2x Dumble | Sunspire (level 30) | Claude-made (Round 69), needs his OK |
+| [Sunspire](Monsters/Sunspire.md) | Desert | Evolve only | 4.5x Dumble | Final form | Claude-made (Round 69), needs his OK |
+| [Snowglobby](Monsters/Snowglobby.md) | Snowy | 20 | 1x Dumble | Stormglobe (level 25) | Claude-made (Round 69), needs his OK |
+| [Stormglobe](Monsters/Stormglobe.md) | Snowy | Evolve only | 3x Dumble | Final form | Claude-made (Round 69), needs his OK |
+| [Mittenpuff](Monsters/Mittenpuff.md) | Snowy | 20 | 0.5x Dumble | Snowsuit (level 17) | Claude-made (Round 69), needs his OK |
+| [Snowsuit](Monsters/Snowsuit.md) | Snowy | Evolve only | 2x Dumble | Final form | Claude-made (Round 69), needs his OK |
+| [Candlewick](Monsters/Candlewick.md) | Volcano | 20 | 1x Dumble | Candelabra (level 24) | Claude-made (Round 69), needs his OK |
+| [Candelabra](Monsters/Candelabra.md) | Volcano | Evolve only | 2.5x Dumble | Final form | Claude-made (Round 69), needs his OK |
+| [Puffcone](Monsters/Puffcone.md) | Volcano | 20 | 2x Dumble | Erupticone (level 34) | Claude-made (Round 69), needs his OK |
+| [Erupticone](Monsters/Erupticone.md) | Volcano | Evolve only | 7x Dumble | Final form | Claude-made (Round 69), needs his OK |
 | [Blizzard Boy](Monsters/Blizzard-Boy.md) | Snowy | 10 | 4x Dumble | Rock Crystal (level 20) | ✅ Designer (Round 68) |
 | [Rock Crystal](Monsters/Rock-Crystal.md) | Snowy | Evolve only | 6x Dumble | Final form | ✅ Designer (Round 68); moves and ability Claude-picked |
 | [Crystalump](Monsters/Crystalump.md) | Desert | 20 | 1.5x Dumble | Crystower (level 22) | Claude-made (Round 66), needs his OK |
@@ -60,7 +80,7 @@ One file per monster in `Monsters/` (copy `_Monster-Template.md`). Goal: 2–3 w
 Most monster families have **2 forms**: base, then one evolution (final). The designer will say which families get a **3rd form**. Default: assume 2 forms unless told otherwise.
 
 ## Center gate (designer, Round 52)
-To open the gate to Avatar, catch **one of every monster that spawns naturally** (base forms). Current list: Peggy, Dumble, Anti-Ant, Yeti, Blobbin, Bushtail, Hootle, Sidesnap, Squawkle, Stingtail, Camelump, Pengwiggle, Frostpaw, Cinderscale, Ashflap, Mr. Toothache, Crystalump, Lanternpuff, Sandcastlet, Tumbleball, Lavamug, Blizzard Boy (**22**, since Round 68). Evolved forms don't spawn and don't count.
+To open the gate to Avatar, catch **one of every monster that spawns naturally** (base forms). Current list: Peggy, Dumble, Anti-Ant, Yeti, Blobbin, Bushtail, Hootle, Sidesnap, Squawkle, Stingtail, Camelump, Pengwiggle, Frostpaw, Cinderscale, Ashflap, Mr. Toothache, Crystalump, Lanternpuff, Sandcastlet, Tumbleball, Lavamug, Blizzard Boy, Mosspebble, Leafkite, Bubblebop, Driftlog, Pricklepot, Dialstone, Snowglobby, Mittenpuff, Candlewick, Puffcone (**32**, since Round 69). Evolved forms don't spawn and don't count.
 
 ## Spawn chances
 Each monster has a spawn number (bigger = more common). Within a biome, the numbers are shared out fairly. Today each biome happens to total 100, so the numbers read as percentages.

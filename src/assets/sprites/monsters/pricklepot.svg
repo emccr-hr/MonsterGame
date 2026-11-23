@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- PRICKLEPOT: a round little cactus with prickles and a pink flower in an orange clay pot with a painted face (Claude-made, Round 69) -->
+  <g stroke="#2a4a20" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="50" cy="95" rx="30" ry="3.5" fill="#000" opacity=".15" stroke="none"/>
+    <path d="M22 38 C20 20 34 12 50 12 C66 12 80 20 78 38 C78 48 70 54 50 54 C30 54 22 48 22 38 Z" fill="#5cae5c"/>
+    <path d="M40 15 C36 26 36 40 40 52 M60 15 C64 26 64 40 60 52 M50 14 V54" fill="none" stroke="#3a8a3e" stroke-width="1.8"/>
+    <path d="M24 30 l-5 -2 M28 20 l-4 -4 M76 30 l5 -2 M72 20 l4 -4 M30 44 l-5 1 M70 44 l5 1 M44 26 l-3 -2 M56 32 l3 -2 M44 40 l-3 2" stroke-width="1.8"/>
+    <g stroke="#a0306a" stroke-width="2"><circle cx="43" cy="12" r="4.5" fill="#ff7ab8"/><circle cx="57" cy="12" r="4.5" fill="#ff7ab8"/><circle cx="50" cy="8" r="5" fill="#ff7ab8"/></g>
+    <circle cx="50" cy="10" r="2.6" fill="#ffe066" stroke="none"/>
+    <path d="M20 60 H80 L74 92 H26 Z" fill="#d9773a" stroke="#6a3010"/>
+    <path d="M16 50 H84 V60 H16 Z" fill="#d9773a" stroke="#6a3010"/>
+    <circle cx="40" cy="72" r="5" fill="#ffffff" stroke="#6a3010"/><circle cx="60" cy="72" r="5" fill="#ffffff" stroke="#6a3010"/>
+    <circle cx="39" cy="73" r="2.6" fill="#3a1a08" stroke="none"/><circle cx="59" cy="73" r="2.6" fill="#3a1a08" stroke="none"/>
+    <path d="M43 82 Q50 88 57 82" fill="none" stroke="#6a3010" stroke-width="2.4"/>
+    <circle cx="31" cy="80" r="3" fill="#ff9a7a" stroke="none"/><circle cx="69" cy="80" r="3" fill="#ff9a7a" stroke="none"/>
+  </g>
+</svg>

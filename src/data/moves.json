@@ -602,5 +602,351 @@
     "power": "high",
     "description": "Stomps so hard the ground freezes and shakes.",
     "effects": []
+  },
+  {
+    "id": "pebble-pelt",
+    "name": "Pebble Pelt",
+    "element": "earth",
+    "power": "low-medium",
+    "description": "Throws a handful of pebbles.",
+    "effects": []
+  },
+  {
+    "id": "moss-hug",
+    "name": "Moss Hug",
+    "element": "nature",
+    "power": "medium",
+    "description": "A soft mossy hug that takes some HP back.",
+    "effects": [
+      {
+        "kind": "drain",
+        "fraction": 0.5
+      }
+    ]
+  },
+  {
+    "id": "sprout-spin",
+    "name": "Sprout Spin",
+    "element": "nature",
+    "power": "medium",
+    "description": "Spins the sprout on its head like a fan.",
+    "effects": []
+  },
+  {
+    "id": "boulder-bash",
+    "name": "Boulder Bash",
+    "element": "earth",
+    "power": "high",
+    "description": "Rolls its whole mossy boulder body into the other monster.",
+    "effects": []
+  },
+  {
+    "id": "leaf-flutter",
+    "name": "Leaf Flutter",
+    "element": "nature",
+    "power": "low-medium",
+    "description": "A flurry of fluttering leaves.",
+    "effects": []
+  },
+  {
+    "id": "string-snap",
+    "name": "String Snap",
+    "element": null,
+    "power": "medium",
+    "description": "Snaps its kite string like a whip.",
+    "effects": []
+  },
+  {
+    "id": "gust-dive",
+    "name": "Gust Dive",
+    "element": "nature",
+    "power": "medium-high",
+    "description": "Rides the wind up high and dives down.",
+    "effects": []
+  },
+  {
+    "id": "storm-swoop",
+    "name": "Storm Swoop",
+    "element": "nature",
+    "power": "high",
+    "description": "Swoops down with a howling storm wind.",
+    "effects": []
+  },
+  {
+    "id": "bubble-pop",
+    "name": "Bubble Pop",
+    "element": "water",
+    "power": "medium",
+    "description": "Pops a big bubble right in its face.",
+    "effects": []
+  },
+  {
+    "id": "foam-spray",
+    "name": "Foam Spray",
+    "element": "water",
+    "power": "none",
+    "description": "Sprays foam in the other monster's eyes, so its next attack is weaker.",
+    "effects": [
+      {
+        "kind": "weakenNextAttack",
+        "amount": 0.3
+      }
+    ]
+  },
+  {
+    "id": "bounce-bash",
+    "name": "Bounce Bash",
+    "element": null,
+    "power": "medium",
+    "description": "Bounces off the ground and bonks the other monster.",
+    "effects": []
+  },
+  {
+    "id": "bubble-storm",
+    "name": "Bubble Storm",
+    "element": "water",
+    "power": "high",
+    "description": "A storm of a hundred bubbles.",
+    "effects": []
+  },
+  {
+    "id": "splinter-shot",
+    "name": "Splinter Shot",
+    "element": null,
+    "power": "low-medium",
+    "description": "Shoots little wooden splinters.",
+    "effects": []
+  },
+  {
+    "id": "seaweed-snare",
+    "name": "Seaweed Snare",
+    "element": "nature",
+    "power": "none",
+    "description": "Wraps the other monster in seaweed, so its next attack is weaker.",
+    "effects": [
+      {
+        "kind": "weakenNextAttack",
+        "amount": 0.3
+      }
+    ]
+  },
+  {
+    "id": "log-roll",
+    "name": "Log Roll",
+    "element": "earth",
+    "power": "medium",
+    "description": "Rolls over the other monster like a log.",
+    "effects": []
+  },
+  {
+    "id": "root-sip",
+    "name": "Root Sip",
+    "element": "nature",
+    "power": "medium",
+    "description": "Sips water from the other monster and heals.",
+    "effects": [
+      {
+        "kind": "drain",
+        "fraction": 0.5
+      }
+    ]
+  },
+  {
+    "id": "pot-smash",
+    "name": "Pot Smash",
+    "element": "earth",
+    "power": "medium-high",
+    "description": "Smashes down with its clay pot.",
+    "effects": []
+  },
+  {
+    "id": "petal-storm",
+    "name": "Petal Storm",
+    "element": "nature",
+    "power": "high",
+    "description": "A whirling storm of desert flower petals.",
+    "effects": []
+  },
+  {
+    "id": "shadow-poke",
+    "name": "Shadow Poke",
+    "element": null,
+    "power": "low-medium",
+    "description": "Pokes with the sharp tip of its shadow.",
+    "effects": []
+  },
+  {
+    "id": "glare-flash",
+    "name": "Glare Flash",
+    "element": null,
+    "power": "none",
+    "description": "Flashes the sun in the other monster's eyes, so its next attack is weaker.",
+    "effects": [
+      {
+        "kind": "weakenNextAttack",
+        "amount": 0.3
+      }
+    ]
+  },
+  {
+    "id": "noon-blast",
+    "name": "Noon Blast",
+    "element": "fire",
+    "power": "medium-high",
+    "description": "A blast of hot midday sunlight.",
+    "effects": []
+  },
+  {
+    "id": "sun-pillar",
+    "name": "Sun Pillar",
+    "element": "fire",
+    "power": "high",
+    "description": "A pillar of blazing sunlight comes down from the sky.",
+    "effects": []
+  },
+  {
+    "id": "snow-swirl",
+    "name": "Snow Swirl",
+    "element": "ice",
+    "power": "medium",
+    "description": "A swirl of snow from inside its globe. Can freeze.",
+    "effects": [
+      {
+        "kind": "freeze",
+        "chance": 0.1
+      }
+    ]
+  },
+  {
+    "id": "glass-bonk",
+    "name": "Glass Bonk",
+    "element": null,
+    "power": "medium",
+    "description": "Bonks with its round glass head.",
+    "effects": []
+  },
+  {
+    "id": "shake-up",
+    "name": "Shake Up",
+    "element": "ice",
+    "power": "low-medium",
+    "description": "Shakes itself and throws snowflakes.",
+    "effects": []
+  },
+  {
+    "id": "whiteout",
+    "name": "Whiteout",
+    "element": "ice",
+    "power": "high",
+    "description": "A blizzard so thick nobody can see. Can freeze.",
+    "effects": [
+      {
+        "kind": "freeze",
+        "chance": 0.15
+      }
+    ]
+  },
+  {
+    "id": "pom-pom-bop",
+    "name": "Pom-Pom Bop",
+    "element": null,
+    "power": "low-medium",
+    "description": "Bops with its fluffy pom-pom.",
+    "effects": []
+  },
+  {
+    "id": "yarn-tangle",
+    "name": "Yarn Tangle",
+    "element": null,
+    "power": "none",
+    "description": "Tangles the other monster in yarn, so its next attack is weaker.",
+    "effects": [
+      {
+        "kind": "weakenNextAttack",
+        "amount": 0.3
+      }
+    ]
+  },
+  {
+    "id": "snow-pat",
+    "name": "Snow Pat",
+    "element": "ice",
+    "power": "medium",
+    "description": "Pats a snowball right onto the other monster.",
+    "effects": []
+  },
+  {
+    "id": "avalanche-flop",
+    "name": "Avalanche Flop",
+    "element": "ice",
+    "power": "high",
+    "description": "Flops down like an avalanche.",
+    "effects": []
+  },
+  {
+    "id": "wax-drip",
+    "name": "Wax Drip",
+    "element": "fire",
+    "power": "low-medium",
+    "description": "Drips hot wax. Can burn.",
+    "effects": [
+      {
+        "kind": "burn",
+        "turns": 2
+      }
+    ]
+  },
+  {
+    "id": "wick-whip",
+    "name": "Wick Whip",
+    "element": "fire",
+    "power": "medium",
+    "description": "Whips with its burning wick.",
+    "effects": []
+  },
+  {
+    "id": "melt-down",
+    "name": "Melt Down",
+    "element": "fire",
+    "power": "medium-high",
+    "description": "Melts into a hot puddle and splashes up.",
+    "effects": []
+  },
+  {
+    "id": "triple-flame",
+    "name": "Triple Flame",
+    "element": "fire",
+    "power": "high",
+    "description": "All three flames shoot at once.",
+    "effects": []
+  },
+  {
+    "id": "smoke-puff",
+    "name": "Smoke Puff",
+    "element": "fire",
+    "power": "none",
+    "description": "Puffs smoke in the other monster's face, so its next attack is weaker.",
+    "effects": [
+      {
+        "kind": "weakenNextAttack",
+        "amount": 0.3
+      }
+    ]
+  },
+  {
+    "id": "rock-spit",
+    "name": "Rock Spit",
+    "element": "earth",
+    "power": "medium",
+    "description": "Spits a hot rock.",
+    "effects": []
+  },
+  {
+    "id": "volcano-burst",
+    "name": "Volcano Burst",
+    "element": "fire",
+    "power": "high",
+    "description": "Its top blows off in a giant burst of lava.",
+    "effects": []
   }
 ]

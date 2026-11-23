@@ -72,3 +72,23 @@ describe('battle sprite size', () => {
     expect(battleSpriteSize(4)).toBeGreaterThan(battleSpriteSize(2));
   });
 });
+
+describe('battle text names the real ability (Round 69)', () => {
+  const content = realContent();
+  const bag = { cage: 1 };
+  const s = (player: string, enemy: string) => startBattle('wild', [mon(content, player, 10)], mon(content, enemy, 10), bag);
+
+  it('a skip caused by Apex Predator names it; Cute keeps its own line', () => {
+    expect(eventText(content, s('mr-toothache', 'dumble'), { type: 'skip', side: 'enemy', reason: 'cute' })).toBe(
+      "The wild Dumble won't attack! Mr. Toothache's Apex Predator stopped it.",
+    );
+    expect(eventText(content, s('peggy', 'dumble'), { type: 'skip', side: 'enemy', reason: 'cute' })).toBe("The wild Dumble can't attack something so cute!");
+  });
+
+  it('an element block and a dodge name the ability', () => {
+    expect(eventText(content, s('dumble', 'driftlog'), { type: 'miss', side: 'enemy', reason: 'lavaSkin' })).toBe("The wild Driftlog's salt crust blocked it!");
+    expect(eventText(content, s('dumble', 'cinderscale'), { type: 'miss', side: 'enemy', reason: 'lavaSkin' })).toBe("The wild Cinderscale's lava skin blocked it!");
+    expect(eventText(content, s('dumble', 'leafkite'), { type: 'miss', side: 'enemy', reason: 'slippery' })).toBe("The wild Leafkite's Updraft made it miss!");
+    expect(eventText(content, s('dumble', 'pengwiggle'), { type: 'miss', side: 'enemy', reason: 'slippery' })).toBe('The wild Pengwiggle slipped away!');
+  });
+});

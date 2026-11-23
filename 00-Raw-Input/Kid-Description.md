@@ -374,3 +374,9 @@ His answers (picked from options):
 
 "Iceman" is already a famous comic-book superhero, so (Flags N3) he picked a new name from options:
 > Name: **Blizzard Boy**. Evolves at: **level 20**. Spawn: **10, rarer** (the other Snowy weights stay the same).
+
+## 2026-11-22 — Round 69 (ten random monsters)
+
+> 10 random monsters that are not based off of animals. Give them 10 names. Give random attacks. It doesn't have to be the ones that I've listed. Write a new ability for each one. Make their evolved forms. Give them a biome. And make sure they're good. And give them a random size.
+
+*(note: Claude-made, two per biome. New abilities this time, as he asked.)*

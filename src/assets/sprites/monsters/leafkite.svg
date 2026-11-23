@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- LEAFKITE: a diamond kite of stitched green leaves with a face and a long string tail tied with red bows (Claude-made, Round 69) -->
+  <g stroke="#4a5a10" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="50" cy="95" rx="26" ry="3" fill="#000" opacity=".15" stroke="none"/>
+    <path d="M52 72 C60 78 50 82 56 86 C62 90 54 94 60 96" fill="none" stroke-width="2"/>
+    <path d="M54 80 L46 75 L46 85 Z M54 80 L62 75 L62 85 Z" fill="#d63a2f" stroke="#7a1a10" stroke-width="1.8"/>
+    <path d="M56 90 L49 86 L49 94 Z M56 90 L63 86 L63 94 Z" fill="#d63a2f" stroke="#7a1a10" stroke-width="1.8"/>
+    <path d="M50 4 L84 38 L52 74 L16 38 Z" fill="#d6e84a"/>
+    <path d="M50 4 L16 38 L50 38 Z M52 74 L84 38 L50 38 Z" fill="#b8d03a" stroke-width="2"/>
+    <path d="M50 4 V74 M16 38 H84" fill="none" stroke-width="2"/>
+    <path d="M30 26 l3 2 M38 18 l3 2 M64 22 l-3 2 M72 30 l-3 2 M28 50 l3 -2 M70 50 l-3 -2" stroke="#6a7a20" stroke-width="1.6"/>
+    <circle cx="40" cy="38" r="5.5" fill="#ffffff"/><circle cx="60" cy="38" r="5.5" fill="#ffffff"/>
+    <circle cx="39" cy="39" r="2.8" fill="#2a3008" stroke="none"/><circle cx="59" cy="39" r="2.8" fill="#2a3008" stroke="none"/>
+    <path d="M43 50 Q50 56 57 50" fill="none" stroke-width="2.4"/>
+    <circle cx="32" cy="46" r="2.6" fill="#ff8a7a" stroke="none"/><circle cx="68" cy="46" r="2.6" fill="#ff8a7a" stroke="none"/>
+  </g>
+</svg>

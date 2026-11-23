@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- BLOSSOMSPIKE: a tall three-armed cactus with a crown of big pink flowers and roots bursting from a cracked pot (Claude-made, Round 69) -->
+  <g stroke="#173a1c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="50" cy="95" rx="38" ry="4" fill="#000" opacity=".15" stroke="none"/>
+    <path d="M36 58 H16 C10 58 8 52 8 46 V30 C8 24 18 24 18 30 V48 H36 Z" fill="#3f8a4a"/>
+    <path d="M64 50 H82 C88 50 92 46 92 40 V26 C92 20 82 20 82 26 V40 H64 Z" fill="#3f8a4a"/>
+    <path d="M64 70 H76 C80 70 82 66 82 62 V58 C82 54 76 54 76 58 V62 H64 Z" fill="#3f8a4a"/>
+    <rect x="34" y="18" width="32" height="62" rx="16" fill="#3f8a4a"/>
+    <path d="M42 26 V76 M58 26 V76" fill="none" stroke="#2a6a34" stroke-width="1.8"/>
+    <path d="M34 36 l-4 -2 M66 40 l4 -2 M34 66 l-4 1 M8 38 l-4 -1 M92 34 l4 -1" stroke-width="1.8"/>
+    <g stroke="#a0306a" stroke-width="2" fill="#ff7ab8">
+      <circle cx="38" cy="14" r="7"/><circle cx="62" cy="14" r="7"/><circle cx="50" cy="10" r="7.5"/>
+      <circle cx="13" cy="24" r="5"/><circle cx="87" cy="20" r="5"/>
+    </g>
+    <g fill="#ffe066" stroke="none"><circle cx="38" cy="14" r="2.6"/><circle cx="62" cy="14" r="2.6"/><circle cx="50" cy="10" r="2.8"/><circle cx="13" cy="24" r="2"/><circle cx="87" cy="20" r="2"/></g>
+    <circle cx="43" cy="42" r="5.5" fill="#ffffff"/><circle cx="57" cy="42" r="5.5" fill="#ffffff"/>
+    <circle cx="42" cy="43" r="2.8" fill="#102a14" stroke="none"/><circle cx="56" cy="43" r="2.8" fill="#102a14" stroke="none"/>
+    <path d="M44 54 Q50 59 56 54" fill="none" stroke-width="2.4"/>
+    <path d="M30 86 C24 88 20 92 12 92 M70 86 C76 88 80 90 88 90 M36 92 C32 94 28 96 22 96" fill="none" stroke="#8a5a2a" stroke-width="3"/>
+    <path d="M24 74 H76 L70 94 H30 Z" fill="#d9773a" stroke="#6a3010"/>
+    <path d="M44 74 L48 82 L44 88 M60 80 L56 86 L60 92" fill="none" stroke="#6a3010" stroke-width="2"/>
+  </g>
+</svg>

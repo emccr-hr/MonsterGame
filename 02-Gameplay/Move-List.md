@@ -81,6 +81,47 @@ Build each move **once** and give it to any monster that knows it. Element tags:
 | Freeze Breath | 🧊 | Damage, 25% Frozen | Medium–High | Blizzard Boy |
 | Frost Quake | 🧊 | Damage | High | Rock Crystal |
 
+### New moves (Round 69, Claude-made)
+| Move | Tag | Effect | Power | Known by |
+|---|---|---|---|---|
+| Pebble Pelt | 🪨 | Damage | Low–Medium | Mosspebble, Mossboulder |
+| Moss Hug | 🌿 | Damage, heals half | Medium | Mosspebble, Mossboulder |
+| Sprout Spin | 🌿 | Damage | Medium | Mosspebble, Mossboulder |
+| Boulder Bash | 🪨 | Damage | High | Mossboulder |
+| Leaf Flutter | 🌿 | Damage | Low–Medium | Leafkite, Stormkite |
+| String Snap |  | Damage | Medium | Leafkite, Stormkite |
+| Gust Dive | 🌿 | Damage | Medium–High | Leafkite, Stormkite |
+| Storm Swoop | 🌿 | Damage | High | Stormkite |
+| Bubble Pop | 💧 | Damage | Medium | Bubblebop, Bubblecloud |
+| Foam Spray | 💧 | Next attack against it is weaker | — | Bubblebop, Bubblecloud |
+| Bounce Bash |  | Damage | Medium | Bubblebop, Bubblecloud |
+| Bubble Storm | 💧 | Damage | High | Bubblecloud |
+| Splinter Shot |  | Damage | Low–Medium | Driftlog, Wreckmast |
+| Seaweed Snare | 🌿 | Next attack against it is weaker | — | Driftlog, Wreckmast |
+| Log Roll | 🪨 | Damage | Medium | Driftlog, Wreckmast |
+| Root Sip | 🌿 | Damage, heals half | Medium | Pricklepot, Blossomspike |
+| Pot Smash | 🪨 | Damage | Medium–High | Pricklepot, Blossomspike |
+| Petal Storm | 🌿 | Damage | High | Blossomspike |
+| Shadow Poke |  | Damage | Low–Medium | Dialstone, Sunspire |
+| Glare Flash |  | Next attack against it is weaker | — | Dialstone, Sunspire |
+| Noon Blast | 🔥 | Damage | Medium–High | Dialstone, Sunspire |
+| Sun Pillar | 🔥 | Damage | High | Sunspire |
+| Snow Swirl | 🧊 | Damage, 10% Frozen | Medium | Snowglobby, Stormglobe |
+| Glass Bonk |  | Damage | Medium | Snowglobby, Stormglobe |
+| Shake Up | 🧊 | Damage | Low–Medium | Snowglobby, Stormglobe |
+| Whiteout | 🧊 | Damage, 15% Frozen | High | Stormglobe |
+| Pom-Pom Bop |  | Damage | Low–Medium | Mittenpuff, Snowsuit |
+| Yarn Tangle |  | Next attack against it is weaker | — | Mittenpuff, Snowsuit |
+| Snow Pat | 🧊 | Damage | Medium | Mittenpuff, Snowsuit |
+| Avalanche Flop | 🧊 | Damage | High | Snowsuit |
+| Wax Drip | 🔥 | Damage, can burn | Low–Medium | Candlewick, Candelabra |
+| Wick Whip | 🔥 | Damage | Medium | Candlewick, Candelabra |
+| Melt Down | 🔥 | Damage | Medium–High | Candlewick, Candelabra |
+| Triple Flame | 🔥 | Damage | High | Candelabra |
+| Smoke Puff | 🔥 | Next attack against it is weaker | — | Puffcone, Erupticone |
+| Rock Spit | 🪨 | Damage | Medium | Puffcone, Erupticone |
+| Volcano Burst | 🔥 | Damage | High | Erupticone |
+
 ## Abilities in use
 | Ability | Effect | Monsters |
 |---|---|---|
@@ -97,3 +138,13 @@ Build each move **once** and give it to any monster that knows it. Element tags:
 | Apex Predator | 5% chance per turn the opponent is intimidated and doesn't attack (same rule as Cute) | Mr. Toothache |
 | Apex Predator (Megalodon) | The same, at 10% | Megalodon |
 | Deep Freeze | +15% chance that its freezing moves freeze (new rule, Round 68) | Blizzard Boy |
+| Overgrowth | Moss grows back on it: heals 6% each turn. *(new, Round 69)* | Mosspebble, Mossboulder |
+| Updraft | Floats up on the wind: 12% chance attacks on it miss. *(new, Round 69)* | Leafkite, Stormkite |
+| Bouncy Skin | Attacks bounce off: takes 12% less damage. *(new, Round 69)* | Bubblebop, Bubblecloud |
+| Salt Crust | Salty and soaked already: 50% chance to ignore water moves. *(new, Round 69)* | Driftlog, Wreckmast |
+| Thirsty Roots | Its draining moves heal 1.5 times as much. *(new, Round 69)* | Pricklepot, Blossomspike |
+| First Light | The sun hits it first: always attacks first. *(new, Round 69)* | Dialstone, Sunspire |
+| Chill Aura | Its freezing moves are 10% more likely to freeze. *(new, Round 69)* | Snowglobby, Stormglobe |
+| Toasty | Warm and woolly: can never be Frozen. *(new, Round 69)* | Mittenpuff, Snowsuit |
+| Hypnoflame | The other monster stares at its flame: 7% chance each turn it forgets to attack. *(new, Round 69)* | Candlewick, Candelabra |
+| Molten Core | Too hot to cool down: 50% chance to ignore ice moves. *(new, Round 69)* | Puffcone, Erupticone |

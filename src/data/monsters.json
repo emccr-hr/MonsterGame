@@ -201,6 +201,140 @@
     }
   },
   {
+    "id": "mosspebble",
+    "name": "Mosspebble",
+    "kind": "monster",
+    "biome": "forest",
+    "spawnWeight": 20,
+    "sizeLabel": "Tiny (0.75x Dumble)",
+    "scale": 0.75,
+    "look": "A small round gray-green stone covered in soft moss, with a tiny sprout on top and sleepy eyes.",
+    "art": {
+      "body": "#6f8a5a",
+      "accent": "#c7e89a",
+      "markings": "spots"
+    },
+    "traits": [],
+    "ability": "overgrowth",
+    "moves": [
+      "pebble-pelt",
+      "moss-hug",
+      "sprout-spin",
+      "hit"
+    ],
+    "evolvesTo": {
+      "monster": "mossboulder",
+      "level": 21
+    },
+    "evolvesFrom": null,
+    "catchable": true,
+    "baseStats": {
+      "hp": 43,
+      "attack": 50,
+      "defense": 50,
+      "speed": 57
+    }
+  },
+  {
+    "id": "mossboulder",
+    "name": "Mossboulder",
+    "kind": "monster",
+    "biome": "forest",
+    "spawnWeight": null,
+    "sizeLabel": "Large (2.5x Dumble)",
+    "scale": 2.5,
+    "look": "A big round boulder covered in thick moss and little flowers, with a young tree growing on top.",
+    "art": {
+      "body": "#3f7a3a",
+      "accent": "#a8e070",
+      "markings": "spots"
+    },
+    "traits": [],
+    "ability": "overgrowth",
+    "moves": [
+      "pebble-pelt",
+      "moss-hug",
+      "sprout-spin",
+      "boulder-bash"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "mosspebble",
+    "catchable": true,
+    "baseStats": {
+      "hp": 74,
+      "attack": 70,
+      "defense": 70,
+      "speed": 66
+    }
+  },
+  {
+    "id": "leafkite",
+    "name": "Leafkite",
+    "kind": "monster",
+    "biome": "forest",
+    "spawnWeight": 20,
+    "sizeLabel": "Medium (1.5x Dumble)",
+    "scale": 1.5,
+    "look": "A diamond-shaped kite made of stitched green leaves, with a face and a long string tail tied with red bows.",
+    "art": {
+      "body": "#d6e84a",
+      "accent": "#d63a2f",
+      "markings": "stripes"
+    },
+    "traits": [],
+    "ability": "updraft",
+    "moves": [
+      "leaf-flutter",
+      "string-snap",
+      "gust-dive",
+      "wing-gust"
+    ],
+    "evolvesTo": {
+      "monster": "stormkite",
+      "level": 19
+    },
+    "evolvesFrom": null,
+    "catchable": true,
+    "baseStats": {
+      "hp": 47,
+      "attack": 50,
+      "defense": 50,
+      "speed": 53
+    }
+  },
+  {
+    "id": "stormkite",
+    "name": "Stormkite",
+    "kind": "monster",
+    "biome": "forest",
+    "spawnWeight": null,
+    "sizeLabel": "Large (3x Dumble)",
+    "scale": 3,
+    "look": "A huge kite of dark leaves with glowing yellow stitches, a long tail of leaves, and little storm clouds around it.",
+    "art": {
+      "body": "#2f7a5a",
+      "accent": "#ffe066",
+      "markings": "stripes"
+    },
+    "traits": [],
+    "ability": "updraft",
+    "moves": [
+      "leaf-flutter",
+      "string-snap",
+      "gust-dive",
+      "storm-swoop"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "leafkite",
+    "catchable": true,
+    "baseStats": {
+      "hp": 78,
+      "attack": 70,
+      "defense": 70,
+      "speed": 62
+    }
+  },
+  {
     "id": "dumble",
     "name": "Dumble",
     "kind": "monster",
@@ -536,6 +670,140 @@
     }
   },
   {
+    "id": "bubblebop",
+    "name": "Bubblebop",
+    "kind": "monster",
+    "biome": "beach",
+    "spawnWeight": 20,
+    "sizeLabel": "Small (1x Dumble)",
+    "scale": 1,
+    "look": "A big shiny see-through bubble with rainbow swirls and a cheerful face.",
+    "art": {
+      "body": "#a8e6ff",
+      "accent": "#ff7ab8",
+      "markings": "spots"
+    },
+    "traits": [],
+    "ability": "bouncy-skin",
+    "moves": [
+      "bubble-pop",
+      "foam-spray",
+      "bounce-bash",
+      "bubble-blast"
+    ],
+    "evolvesTo": {
+      "monster": "bubblecloud",
+      "level": 23
+    },
+    "evolvesFrom": null,
+    "catchable": true,
+    "baseStats": {
+      "hp": 44,
+      "attack": 50,
+      "defense": 50,
+      "speed": 56
+    }
+  },
+  {
+    "id": "bubblecloud",
+    "name": "Bubblecloud",
+    "kind": "monster",
+    "biome": "beach",
+    "spawnWeight": null,
+    "sizeLabel": "Large (3.5x Dumble)",
+    "scale": 3.5,
+    "look": "A big puffy cloud made of many shiny bubbles stuck together, with one big face in the middle.",
+    "art": {
+      "body": "#7fc8f0",
+      "accent": "#ffffff",
+      "markings": "spots"
+    },
+    "traits": [],
+    "ability": "bouncy-skin",
+    "moves": [
+      "bubble-pop",
+      "foam-spray",
+      "bounce-bash",
+      "bubble-storm"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "bubblebop",
+    "catchable": true,
+    "baseStats": {
+      "hp": 83,
+      "attack": 70,
+      "defense": 70,
+      "speed": 57
+    }
+  },
+  {
+    "id": "driftlog",
+    "name": "Driftlog",
+    "kind": "monster",
+    "biome": "beach",
+    "spawnWeight": 20,
+    "sizeLabel": "Medium (1.5x Dumble)",
+    "scale": 1.5,
+    "look": "A bleached piece of driftwood with knot-hole eyes, a seaweed tuft on top, and a barnacle or two.",
+    "art": {
+      "body": "#a8916e",
+      "accent": "#2f8a4a",
+      "markings": "stripes"
+    },
+    "traits": [],
+    "ability": "salt-crust",
+    "moves": [
+      "splinter-shot",
+      "seaweed-snare",
+      "log-roll",
+      "splash"
+    ],
+    "evolvesTo": {
+      "monster": "wreckmast",
+      "level": 28
+    },
+    "evolvesFrom": null,
+    "catchable": true,
+    "baseStats": {
+      "hp": 47,
+      "attack": 50,
+      "defense": 50,
+      "speed": 53
+    }
+  },
+  {
+    "id": "wreckmast",
+    "name": "Wreckmast",
+    "kind": "monster",
+    "biome": "beach",
+    "spawnWeight": null,
+    "sizeLabel": "Huge (5x Dumble)",
+    "scale": 5,
+    "look": "A tall old ship mast with a torn sail for a cape, ropes for arms, seaweed hanging off it, and a face carved into the wood.",
+    "art": {
+      "body": "#6e5236",
+      "accent": "#e8e0c8",
+      "markings": "stripes"
+    },
+    "traits": [],
+    "ability": "salt-crust",
+    "moves": [
+      "splinter-shot",
+      "seaweed-snare",
+      "log-roll",
+      "tide-crash"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "driftlog",
+    "catchable": true,
+    "baseStats": {
+      "hp": 95,
+      "attack": 70,
+      "defense": 70,
+      "speed": 45
+    }
+  },
+  {
     "id": "anti-ant",
     "name": "Anti-Ant",
     "kind": "monster",
@@ -805,6 +1073,140 @@
       "attack": 70,
       "defense": 70,
       "speed": 66
+    }
+  },
+  {
+    "id": "pricklepot",
+    "name": "Pricklepot",
+    "kind": "monster",
+    "biome": "desert",
+    "spawnWeight": 20,
+    "sizeLabel": "Small (1x Dumble)",
+    "scale": 1,
+    "look": "A round little cactus with prickles and a pink flower, sitting in an orange clay pot that has a face painted on it.",
+    "art": {
+      "body": "#5cae5c",
+      "accent": "#d9773a",
+      "markings": "belly"
+    },
+    "traits": [],
+    "ability": "thirsty-roots",
+    "moves": [
+      "prickle-poke",
+      "root-sip",
+      "pot-smash",
+      "sand-spray"
+    ],
+    "evolvesTo": {
+      "monster": "blossomspike",
+      "level": 22
+    },
+    "evolvesFrom": null,
+    "catchable": true,
+    "baseStats": {
+      "hp": 44,
+      "attack": 50,
+      "defense": 50,
+      "speed": 56
+    }
+  },
+  {
+    "id": "blossomspike",
+    "name": "Blossomspike",
+    "kind": "monster",
+    "biome": "desert",
+    "spawnWeight": null,
+    "sizeLabel": "Large (2.5x Dumble)",
+    "scale": 2.5,
+    "look": "A tall cactus with three arms, a crown of big pink desert flowers, and its roots bursting out of a cracked pot.",
+    "art": {
+      "body": "#3f8a4a",
+      "accent": "#ff7ab8",
+      "markings": "crown"
+    },
+    "traits": [],
+    "ability": "thirsty-roots",
+    "moves": [
+      "prickle-poke",
+      "root-sip",
+      "pot-smash",
+      "petal-storm"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "pricklepot",
+    "catchable": true,
+    "baseStats": {
+      "hp": 74,
+      "attack": 70,
+      "defense": 70,
+      "speed": 66
+    }
+  },
+  {
+    "id": "dialstone",
+    "name": "Dialstone",
+    "kind": "monster",
+    "biome": "desert",
+    "spawnWeight": 20,
+    "sizeLabel": "Medium (2x Dumble)",
+    "scale": 2,
+    "look": "A round flat stone sundial on a short stand, with sun markings around the edge, a triangle shadow fin on top, and a face.",
+    "art": {
+      "body": "#bfb39a",
+      "accent": "#3a3226",
+      "markings": "mask"
+    },
+    "traits": [],
+    "ability": "first-light",
+    "moves": [
+      "shadow-poke",
+      "glare-flash",
+      "noon-blast",
+      "sand-spray"
+    ],
+    "evolvesTo": {
+      "monster": "sunspire",
+      "level": 30
+    },
+    "evolvesFrom": null,
+    "catchable": true,
+    "baseStats": {
+      "hp": 50,
+      "attack": 50,
+      "defense": 50,
+      "speed": 50
+    }
+  },
+  {
+    "id": "sunspire",
+    "name": "Sunspire",
+    "kind": "monster",
+    "biome": "desert",
+    "spawnWeight": null,
+    "sizeLabel": "Huge (4.5x Dumble)",
+    "scale": 4.5,
+    "look": "A tall golden stone tower with sun carvings and a glowing sun on top, and a stern face.",
+    "art": {
+      "body": "#e0c060",
+      "accent": "#7a4a1a",
+      "markings": "crown"
+    },
+    "traits": [],
+    "ability": "first-light",
+    "moves": [
+      "shadow-poke",
+      "glare-flash",
+      "noon-blast",
+      "sun-pillar"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "dialstone",
+    "catchable": true,
+    "baseStats": {
+      "hp": 91,
+      "attack": 70,
+      "defense": 70,
+      "speed": 49
     }
   },
   {
@@ -1143,6 +1545,140 @@
     }
   },
   {
+    "id": "snowglobby",
+    "name": "Snowglobby",
+    "kind": "monster",
+    "biome": "snowy",
+    "spawnWeight": 20,
+    "sizeLabel": "Small (1x Dumble)",
+    "scale": 1,
+    "look": "A round glass snow globe on a small wooden base, with a tiny swirling snowstorm inside and a face on the glass.",
+    "art": {
+      "body": "#b0b8f0",
+      "accent": "#2f6fdc",
+      "markings": "spots"
+    },
+    "traits": [],
+    "ability": "chill-aura",
+    "moves": [
+      "snow-swirl",
+      "glass-bonk",
+      "shake-up",
+      "snowball"
+    ],
+    "evolvesTo": {
+      "monster": "stormglobe",
+      "level": 25
+    },
+    "evolvesFrom": null,
+    "catchable": true,
+    "baseStats": {
+      "hp": 44,
+      "attack": 50,
+      "defense": 50,
+      "speed": 56
+    }
+  },
+  {
+    "id": "stormglobe",
+    "name": "Stormglobe",
+    "kind": "monster",
+    "biome": "snowy",
+    "spawnWeight": null,
+    "sizeLabel": "Large (3x Dumble)",
+    "scale": 3,
+    "look": "A huge glass globe with a raging blizzard and lightning-white snow inside, on a carved stone base.",
+    "art": {
+      "body": "#5aa8e0",
+      "accent": "#ffffff",
+      "markings": "spots"
+    },
+    "traits": [],
+    "ability": "chill-aura",
+    "moves": [
+      "snow-swirl",
+      "glass-bonk",
+      "shake-up",
+      "whiteout"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "snowglobby",
+    "catchable": true,
+    "baseStats": {
+      "hp": 78,
+      "attack": 70,
+      "defense": 70,
+      "speed": 62
+    }
+  },
+  {
+    "id": "mittenpuff",
+    "name": "Mittenpuff",
+    "kind": "monster",
+    "biome": "snowy",
+    "spawnWeight": 20,
+    "sizeLabel": "Tiny (0.5x Dumble)",
+    "scale": 0.5,
+    "look": "A red knitted mitten with white stripes, a fluffy pom-pom, and two button eyes.",
+    "art": {
+      "body": "#e05a5a",
+      "accent": "#ffffff",
+      "markings": "stripes"
+    },
+    "traits": [],
+    "ability": "toasty",
+    "moves": [
+      "pom-pom-bop",
+      "yarn-tangle",
+      "snow-pat",
+      "hit"
+    ],
+    "evolvesTo": {
+      "monster": "snowsuit",
+      "level": 17
+    },
+    "evolvesFrom": null,
+    "catchable": true,
+    "baseStats": {
+      "hp": 41,
+      "attack": 50,
+      "defense": 50,
+      "speed": 59
+    }
+  },
+  {
+    "id": "snowsuit",
+    "name": "Snowsuit",
+    "kind": "monster",
+    "biome": "snowy",
+    "spawnWeight": null,
+    "sizeLabel": "Medium (2x Dumble)",
+    "scale": 2,
+    "look": "A puffy blue snowsuit walking by itself, with red mittens, a striped scarf, a bobble hat, and a face inside the hood.",
+    "art": {
+      "body": "#3a7fd6",
+      "accent": "#ffd23f",
+      "markings": "belly"
+    },
+    "traits": [],
+    "ability": "toasty",
+    "moves": [
+      "pom-pom-bop",
+      "yarn-tangle",
+      "snow-pat",
+      "avalanche-flop"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "mittenpuff",
+    "catchable": true,
+    "baseStats": {
+      "hp": 70,
+      "attack": 70,
+      "defense": 70,
+      "speed": 70
+    }
+  },
+  {
     "id": "blobbin",
     "name": "Blobbin",
     "kind": "monster",
@@ -1475,6 +2011,140 @@
       "attack": 70,
       "defense": 70,
       "speed": 70
+    }
+  },
+  {
+    "id": "candlewick",
+    "name": "Candlewick",
+    "kind": "monster",
+    "biome": "volcano",
+    "spawnWeight": 20,
+    "sizeLabel": "Small (1x Dumble)",
+    "scale": 1,
+    "look": "A short cream-colored candle with drips of melted wax, a flickering flame on its wick, and a sleepy face.",
+    "art": {
+      "body": "#f6e3b0",
+      "accent": "#ff7a1a",
+      "markings": "belly"
+    },
+    "traits": [],
+    "ability": "hypnoflame",
+    "moves": [
+      "wax-drip",
+      "wick-whip",
+      "melt-down",
+      "hit"
+    ],
+    "evolvesTo": {
+      "monster": "candelabra",
+      "level": 24
+    },
+    "evolvesFrom": null,
+    "catchable": true,
+    "baseStats": {
+      "hp": 44,
+      "attack": 50,
+      "defense": 50,
+      "speed": 56
+    }
+  },
+  {
+    "id": "candelabra",
+    "name": "Candelabra",
+    "kind": "monster",
+    "biome": "volcano",
+    "spawnWeight": null,
+    "sizeLabel": "Large (2.5x Dumble)",
+    "scale": 2.5,
+    "look": "A fancy golden candle stand with three arms, a burning candle on each, and a face in the middle.",
+    "art": {
+      "body": "#c9a227",
+      "accent": "#ff5a1a",
+      "markings": "crown"
+    },
+    "traits": [],
+    "ability": "hypnoflame",
+    "moves": [
+      "wax-drip",
+      "wick-whip",
+      "melt-down",
+      "triple-flame"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "candlewick",
+    "catchable": true,
+    "baseStats": {
+      "hp": 74,
+      "attack": 70,
+      "defense": 70,
+      "speed": 66
+    }
+  },
+  {
+    "id": "puffcone",
+    "name": "Puffcone",
+    "kind": "monster",
+    "biome": "volcano",
+    "spawnWeight": 20,
+    "sizeLabel": "Medium (2x Dumble)",
+    "scale": 2,
+    "look": "A small brown volcano cone with a glowing orange top, little smoke puffs, and a grumpy face.",
+    "art": {
+      "body": "#7a4a3a",
+      "accent": "#ff8a1a",
+      "markings": "crown"
+    },
+    "traits": [],
+    "ability": "molten-core",
+    "moves": [
+      "smoke-puff",
+      "rock-spit",
+      "ash-cloud",
+      "lava-spit"
+    ],
+    "evolvesTo": {
+      "monster": "erupticone",
+      "level": 34
+    },
+    "evolvesFrom": null,
+    "catchable": true,
+    "baseStats": {
+      "hp": 50,
+      "attack": 50,
+      "defense": 50,
+      "speed": 50
+    }
+  },
+  {
+    "id": "erupticone",
+    "name": "Erupticone",
+    "kind": "monster",
+    "biome": "volcano",
+    "spawnWeight": null,
+    "sizeLabel": "Huge (7x Dumble)",
+    "scale": 7,
+    "look": "A giant dark volcano with lava pouring down its sides, a fiery top, and a big angry face.",
+    "art": {
+      "body": "#2f2f45",
+      "accent": "#ffb020",
+      "markings": "crown"
+    },
+    "traits": [],
+    "ability": "molten-core",
+    "moves": [
+      "smoke-puff",
+      "rock-spit",
+      "ash-cloud",
+      "volcano-burst"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "puffcone",
+    "catchable": true,
+    "baseStats": {
+      "hp": 112,
+      "attack": 70,
+      "defense": 70,
+      "speed": 28
     }
   },
   {

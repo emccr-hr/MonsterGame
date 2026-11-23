@@ -7,13 +7,13 @@ const content = realContent();
 const biomes = ['forest', 'beach', 'desert', 'snowy', 'volcano'];
 
 describe('spawnTable', () => {
-  it('has 3 wild species in the Forest, 4 in Snowy, 5 in Beach, Desert and Volcano (Rounds 64-68)', () => {
-    for (const b of biomes) expect(spawnTable(content, b)).toHaveLength(['beach', 'desert', 'volcano'].includes(b) ? 5 : b === 'snowy' ? 4 : 3);
+  it('has 5 wild species in the Forest, 6 in Snowy, 7 in Beach, Desert and Volcano (Rounds 64-69)', () => {
+    for (const b of biomes) expect(spawnTable(content, b)).toHaveLength(['beach', 'desert', 'volcano'].includes(b) ? 7 : b === 'snowy' ? 6 : 5);
   });
 
   it('uses the weights from monsters.json', () => {
     const forest = Object.fromEntries(spawnTable(content, 'forest').map((e) => [e.item, e.weight]));
-    expect(forest).toEqual({ peggy: 5, bushtail: 55, hootle: 40 });
+    expect(forest).toEqual({ peggy: 5, bushtail: 55, hootle: 40, mosspebble: 20, leafkite: 20 });
   });
 
   it('has no evolved forms and no Avatar', () => {
@@ -39,12 +39,12 @@ describe('rollSpawn', () => {
       const s = rollSpawn(content, 'forest', [], rng);
       counts[s.species] = (counts[s.species] ?? 0) + 1;
     }
-    expect(counts.bushtail! / n).toBeGreaterThan(0.49);
-    expect(counts.bushtail! / n).toBeLessThan(0.61);
-    expect(counts.hootle! / n).toBeGreaterThan(0.34);
-    expect(counts.hootle! / n).toBeLessThan(0.46);
-    expect(counts.peggy! / n).toBeGreaterThan(0.02);
-    expect(counts.peggy! / n).toBeLessThan(0.09);
+    expect(counts.bushtail! / n).toBeGreaterThan(0.33);
+    expect(counts.bushtail! / n).toBeLessThan(0.46);
+    expect(counts.hootle! / n).toBeGreaterThan(0.23);
+    expect(counts.hootle! / n).toBeLessThan(0.34);
+    expect(counts.peggy! / n).toBeGreaterThan(0.015);
+    expect(counts.peggy! / n).toBeLessThan(0.07);
   });
 
   it('only gives species from that biome', () => {

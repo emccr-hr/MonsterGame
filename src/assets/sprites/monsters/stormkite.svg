@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- STORMKITE: a huge kite of dark leaves with glowing yellow stitches, a long leafy tail and little storm clouds (Claude-made, Round 69) -->
+  <defs><filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+  <g stroke="#123a28" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="50" cy="95" rx="30" ry="3" fill="#000" opacity=".15" stroke="none"/>
+    <path d="M6 22 C4 16 10 12 14 14 C16 8 26 8 26 16 C30 16 30 24 24 24 H10 C6 24 5 23 6 22 Z" fill="#7a8494" stroke="#2a3040" stroke-width="2.2"/>
+    <path d="M76 12 C74 6 82 2 86 6 C90 2 98 6 96 12 C99 14 98 20 92 20 H80 C76 20 74 16 76 12 Z" fill="#7a8494" stroke="#2a3040" stroke-width="2.2"/>
+    <path d="M18 24 L14 32 L18 32 L14 40 M88 20 L84 28 L88 28 L84 36" fill="none" stroke="#ffe066" stroke-width="2" filter="url(#glow)"/>
+    <path d="M50 76 C58 80 48 84 56 88 C62 91 56 94 62 96" fill="none" stroke-width="2"/>
+    <path d="M52 81 C44 76 40 82 42 86 C46 86 50 84 52 81 Z M54 88 C62 82 66 88 64 92 C60 92 56 90 54 88 Z" fill="#2f7a5a" stroke-width="2"/>
+    <path d="M50 4 L90 40 L50 78 L10 40 Z" fill="#2f7a5a"/>
+    <path d="M50 4 L10 40 L50 40 Z M50 78 L90 40 L50 40 Z" fill="#256a4c" stroke-width="2"/>
+    <path d="M50 8 V74 M14 40 H86 M30 22 l4 4 M70 22 l-4 4 M30 58 l4 -4 M70 58 l-4 -4" fill="none" stroke="#ffe066" stroke-width="2" stroke-dasharray="4 4" filter="url(#glow)"/>
+    <path d="M32 32 L46 36 M68 32 L54 36" fill="none" stroke-width="2.6"/>
+    <circle cx="40" cy="42" r="6" fill="#ffffff"/><circle cx="60" cy="42" r="6" fill="#ffffff"/>
+    <circle cx="39" cy="43" r="3" fill="#123a28" stroke="none"/><circle cx="59" cy="43" r="3" fill="#123a28" stroke="none"/>
+    <path d="M42 56 Q50 61 58 56" fill="none" stroke-width="2.4"/>
+  </g>
+</svg>
