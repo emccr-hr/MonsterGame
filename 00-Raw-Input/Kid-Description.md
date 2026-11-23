@@ -390,6 +390,7 @@ Then, about recording it:
 > Down. Write it down.
 
 *(note: "Down. Write it down." read as "write it down".)*
+
 ## 2026-11-23 — Round 71 (monsters around Avatar's arena)
 
 > I want monsters to spawn in the area around the avatars thing, and I want there to be a chance for anyone can spawn that's a lower evolution.
