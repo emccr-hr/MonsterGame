@@ -381,6 +381,15 @@ His answers (picked from options):
 
 *(note: Claude-made, two per biome. New abilities this time, as he asked.)*
 
+## 2026-11-23 — Round 70 (32 wild monsters to open Avatar's arena is fine)
+
+Asked whether catching all 32 wild monsters to open Avatar's arena is too many:
+> I don't think that's too many monsters.
+
+Then, about recording it:
+> Down. Write it down.
+
+*(note: "Down. Write it down." read as "write it down".)*
 ## 2026-11-23 — Round 71 (monsters around Avatar's arena)
 
 > I want monsters to spawn in the area around the avatars thing, and I want there to be a chance for anyone can spawn that's a lower evolution.
