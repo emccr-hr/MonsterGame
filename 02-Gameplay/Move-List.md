@@ -5,7 +5,8 @@ Build each move **once** and give it to any monster that knows it. Element tags:
 | Move | Tag | Effect | Power | Known by |
 |---|---|---|---|---|
 | Hit | | Always hits | Low | Blobbin, Slimy, Dumble, Rom, Hootle, Camelump, Ashflap, Grandhoot, Triplump |
-| Bite | | Damage | Medium | Blobbin, Slimy, Peggy, Scout, Anti-Ant, Queen Ant, Yeti, Bushtail, Frostpaw, Cinderscale, Ashflap, Treetail, Glacitail, Moltenmaw, Smokewing |
+| Bite | | Damage | Medium | Blobbin, Slimy, Peggy, Scout, Anti-Ant, Queen Ant, Yeti, Bushtail, Frostpaw, Cinderscale, Ashflap, Treetail, Glacitail, Moltenmaw, Smokewing, Mr. Toothache, Megalodon |
+| Slash | | Damage | Medium | Mr. Toothache, Megalodon |
 | Scratch | | Damage | Low–Medium | Yeti, Bushtail, Frostpaw, Treetail |
 | Pinch | | Damage | Low–Medium | Dumble, Rom, Sidesnap, Stingtail, Boulderclaw, Dunestinger |
 | Peck | | Damage | Low | Hootle, Squawkle, Pengwiggle |
@@ -20,7 +21,8 @@ Build each move **once** and give it to any monster that knows it. Element tags:
 | Burn | 🔥 | Damage + **Burned** (small damage for 2 turns) | Medium | Blobbin, Slimy, Cinderscale, **Avatar**, Moltenmaw |
 | Lava Spit | 🔥 | Damage | Medium–High | Cinderscale, Moltenmaw |
 | Ash Cloud | 🔥 | Damage | Medium | Ashflap, Smokewing |
-| Splash | 💧 | Damage | Medium–High | Rom, Sidesnap, Squawkle, **Avatar**, Boulderclaw, Pouchbeak |
+| Splash | 💧 | Damage | Medium–High | Rom, Sidesnap, Squawkle, **Avatar**, Boulderclaw, Pouchbeak, Mr. Toothache, Megalodon |
+| Tsunami | 💧 | Damage | High | Mr. Toothache, Megalodon |
 | Bubble Blast | 💧 | Damage | Low–Medium | Sidesnap |
 | Dig | 🪨 | Underground 1 turn (can't be hit), then attacks | High | Anti-Ant, Queen Ant, Stingtail, **Avatar**, Dunestinger |
 | Sand Spray | 🪨 | Damage | Low–Medium | Stingtail |
@@ -50,16 +52,28 @@ Build each move **once** and give it to any monster that knows it. Element tags:
 | Popsicle | | Heal 25% | — | Abominable Snowman |
 | Protect the Queen | | Heal your other team monsters | — | Anti-Ant, Queen Ant |
 
+### New moves (Round 66, Claude-made)
+| Move | Tag | Effect | Power | Known by |
+|---|---|---|---|---|
+| Shard Shot | 🪨 | Damage | Medium | Crystalump, Crystower |
+| Gem Glare | | Next attack against it is weaker (like Screech) | — | Crystalump, Crystower |
+| Sparkle Beam | | Damage | Medium–High | Crystalump, Crystower |
+| Ember Puff | 🔥 | Damage, can burn (like Burn) | Medium | Lanternpuff, Blazelantern |
+| Flicker Flash | 🔥 | Damage | Low–Medium | Lanternpuff, Blazelantern |
+| Glow Bonk | | Damage | Medium | Lanternpuff, Blazelantern |
+
 ## Abilities in use
 | Ability | Effect | Monsters |
 |---|---|---|
-| Lava Skin | 50% chance to ignore 🔥 moves | Blobbin, Slimy, Cinderscale, Moltenmaw |
+| Lava Skin | 50% chance to ignore 🔥 moves | Blobbin, Slimy, Cinderscale, Moltenmaw, Lanternpuff, Blazelantern |
 | Not at this restaurant | Eat does nothing to it | Dumble, Rom |
 | Cute | 5% chance per turn the opponent doesn't attack | Peggy, Scout |
 | Colony Bond | Can't be attacked by red ants | Anti-Ant, Queen Ant |
 | Fur Coat | Immune to Frozen | Yeti, Abominable Snowman |
 | Quick | Always attacks first | Bushtail, Stingtail, Frostpaw, Treetail, Dunestinger, Glacitail |
-| Wise | Takes 10% less damage | Hootle, Sidesnap, Ashflap, Grandhoot, Boulderclaw, Smokewing |
+| Wise | Takes 10% less damage | Hootle, Sidesnap, Ashflap, Grandhoot, Boulderclaw, Smokewing, Crystalump, Crystower |
 | Slippery | 10% chance attacks on it miss | Pengwiggle, Emperwaddle |
 | Snack Thief | Its Eat heals double | Squawkle, Pouchbeak |
 | Water Storage | Heals 5% each turn | Camelump, Triplump |
+| Apex Predator | 5% chance per turn the opponent is intimidated and doesn't attack (same rule as Cute) | Mr. Toothache |
+| Apex Predator (Megalodon) | The same, at 10% | Megalodon |

@@ -420,5 +420,79 @@
         "fraction": 0.25
       }
     ]
+  },
+  {
+    "id": "slash",
+    "name": "Slash",
+    "element": null,
+    "power": "medium",
+    "description": "A fast swipe with sharp fins.",
+    "effects": []
+  },
+  {
+    "id": "tsunami",
+    "name": "Tsunami",
+    "element": "water",
+    "power": "high",
+    "description": "A giant wave crashes down.",
+    "effects": []
+  },
+  {
+    "id": "shard-shot",
+    "name": "Shard Shot",
+    "element": "earth",
+    "power": "medium",
+    "description": "Shoots sharp crystal shards.",
+    "effects": []
+  },
+  {
+    "id": "gem-glare",
+    "name": "Gem Glare",
+    "element": null,
+    "power": "none",
+    "description": "A bright flash makes the other monster's next attack weaker.",
+    "effects": [
+      {
+        "kind": "weakenNextAttack",
+        "amount": 0.3
+      }
+    ]
+  },
+  {
+    "id": "sparkle-beam",
+    "name": "Sparkle Beam",
+    "element": null,
+    "power": "medium-high",
+    "description": "A beam of rainbow sparkles.",
+    "effects": []
+  },
+  {
+    "id": "ember-puff",
+    "name": "Ember Puff",
+    "element": "fire",
+    "power": "medium",
+    "description": "Puffs hot embers that can burn.",
+    "effects": [
+      {
+        "kind": "burn",
+        "turns": 2
+      }
+    ]
+  },
+  {
+    "id": "flicker-flash",
+    "name": "Flicker Flash",
+    "element": "fire",
+    "power": "low-medium",
+    "description": "A quick flash of flame.",
+    "effects": []
+  },
+  {
+    "id": "glow-bonk",
+    "name": "Glow Bonk",
+    "element": null,
+    "power": "medium",
+    "description": "Bonks with its glowing head.",
+    "effects": []
   }
 ]

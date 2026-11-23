@@ -88,5 +88,23 @@
       "kind": "regenPerTurn",
       "fraction": 0.05
     }
+  },
+  {
+    "id": "apex-predator",
+    "name": "Apex Predator",
+    "description": "So scary that sometimes the other monster is too scared to attack.",
+    "effect": {
+      "kind": "opponentSkipChance",
+      "chance": 0.05
+    }
+  },
+  {
+    "id": "apex-predator-mega",
+    "name": "Apex Predator",
+    "description": "So scary that the other monster is often too scared to attack.",
+    "effect": {
+      "kind": "opponentSkipChance",
+      "chance": 0.1
+    }
   }
 ]

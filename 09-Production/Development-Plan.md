@@ -87,7 +87,7 @@ All in `src/logic/`, all unit-tested:
 - Level 50 unlock: teleport menu (shops and pins; place, delete and return pins; max 5).
 - Avatar arena gate counter ("Monsters caught: 12 / 15"); Avatar fight (5 moves, no ability, can't be caught); ending scene and credits ("Designed by …", with the name the parent chooses to show).
 - **Exit:** full game playable start to finish (with fast-XP debug cheats behind a dev flag).
-- **Status (2026-11-22):** shop, map parts, gem/cage HUD and the arena counter are built (M6a). Left for **M6b:** teleport menu and pins, the Avatar battle, the ending and credits. **After the credits the game keeps going** (back in Ansonville, keep catching; designer, Round 63). Dev builds already have the L key (fast leveling).
+- **Status (2026-11-22):** shop, map parts, gem/cage HUD and the arena counter are built (M6a). Left for **M6b:** teleport menu and pins, the Avatar battle, the ending and credits. **Bigger biome maps started (Round 65):** 38 wide with 8 grass patches; Beach palms and coconuts. **After the credits the game keeps going** (back in Ansonville, keep catching; designer, Round 63). Dev builds already have the L key (fast leveling).
 
 ### M6c: World polish (owner feedback, 2026-11-22)
 - **Bigger maps or more sections:** each biome grows past one screen (larger grids, or 2–3 connected sections with exits between them), with more encounter ground, trees and water to explore; Ansonville grows to match. Maps stay character grids in `src/data/maps/index.ts` (each section its own map, joined by exits), so `tests/unit/world/maps.test.ts` keeps checking them.

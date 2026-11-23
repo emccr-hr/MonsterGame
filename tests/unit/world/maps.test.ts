@@ -94,3 +94,44 @@ describe('world maps', () => {
     expect(() => mapById('moon')).toThrow();
   });
 });
+
+// Round 65: "4 more grassy patches in each biome", and big palm trees with coconuts at the Beach.
+describe('bigger biome maps (Round 65)', () => {
+  /** Separate patches of encounter ground (tiles touching up, down, left or right count as one). */
+  const patches = (rows: readonly string[]): number => {
+    const seen = new Set<string>();
+    let count = 0;
+    rows.forEach((row, y) =>
+      [...row].forEach((ch, x) => {
+        if (ch !== ',' || seen.has(`${x},${y}`)) return;
+        count++;
+        const stack = [[x, y]];
+        while (stack.length) {
+          const [cx, cy] = stack.pop()!;
+          const key = `${cx},${cy}`;
+          if (seen.has(key) || rows[cy!]?.[cx!] !== ',') continue;
+          seen.add(key);
+          stack.push([cx! + 1, cy!], [cx! - 1, cy!], [cx!, cy! + 1], [cx!, cy! - 1]);
+        }
+      }),
+    );
+    return count;
+  };
+
+  it('every biome map has at least 4 more grass patches than the first layout (4, so 8 or more)', () => {
+    for (const m of BIOME_MAPS) expect(patches(m.rows), m.id).toBeGreaterThanOrEqual(8);
+  });
+
+  it('the Beach has a big palm tree on the left and the right, over blocker tiles, with coconuts on open sand', () => {
+    const beach = mapById('beach');
+    const palms = (beach.decor ?? []).filter((d) => d.sprite === 'palm-big');
+    expect(palms).toHaveLength(2);
+    const w = beach.rows[0]!.length;
+    expect(palms.some((p) => p.x < w / 2) && palms.some((p) => p.x > w / 2)).toBe(true);
+    for (const p of palms)
+      for (let dy = 0; dy < p.h; dy++) for (let dx = 0; dx < p.w; dx++) expect(beach.rows[p.y + dy]![p.x + dx], `palm at ${p.x},${p.y}`).toBe('T');
+    const coconuts = (beach.decor ?? []).filter((d) => d.sprite === 'coconut');
+    expect(coconuts.length).toBeGreaterThanOrEqual(4);
+    for (const c of coconuts) expect(beach.rows[c.y]![c.x], `coconut at ${c.x},${c.y}`).toBe('.');
+  });
+});

@@ -171,3 +171,7 @@ No code change needed (ADR 0003). Schemas: `src/data/schema.ts`; cross-checks: `
 - Big Monsters are 1.5x bigger on the map, with no star (his choice). Map size: `mapSpriteSize` (`clamp(26·√N, 22, 64)` px).
 - Some hidden surprises stay: `SURPRISE_ENCOUNTER_RATE` (4% a step after 5 safe steps) replaces the old rate on maps with walkers.
 - The test hook's map state has `wild: [{ species, big, tile }]`.
+
+## Map decor (Round 65)
+- A map can list `decor` in `src/data/maps/index.ts`: `{ sprite, x, y, w, h }` in tiles, drawn from `src/assets/sprites/tiles/<sprite>.svg` by `drawMapArt`. Big pictures stand on their tiles and grow 1.5x upward; `coconut` is drawn small on the ground. Put blocker tiles (`T`) under anything the player shouldn't walk through; they get no small tree of their own.
+- Biome maps are 38x17 (Round 65); the Beach has its own rows (`BEACH_ROWS`) for its two big palms.

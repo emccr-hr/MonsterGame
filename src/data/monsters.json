@@ -402,6 +402,73 @@
     }
   },
   {
+    "id": "mr-toothache",
+    "name": "Mr. Toothache",
+    "kind": "monster",
+    "biome": "beach",
+    "spawnWeight": 20,
+    "sizeLabel": "Large (3x Dumble)",
+    "scale": 3,
+    "look": "A blue shark with a white belly who walks on his back fins, mouth open with lots of sharp teeth.",
+    "art": {
+      "body": "#2f7fd6",
+      "accent": "#ffffff",
+      "markings": "belly"
+    },
+    "traits": [],
+    "ability": "apex-predator",
+    "moves": [
+      "bite",
+      "slash",
+      "splash",
+      "tsunami"
+    ],
+    "evolvesTo": {
+      "monster": "megalodon",
+      "level": 10
+    },
+    "evolvesFrom": null,
+    "catchable": true,
+    "baseStats": {
+      "hp": 56,
+      "attack": 50,
+      "defense": 50,
+      "speed": 44
+    }
+  },
+  {
+    "id": "megalodon",
+    "name": "Megalodon",
+    "kind": "monster",
+    "biome": "beach",
+    "spawnWeight": null,
+    "sizeLabel": "Huge (5x Dumble)",
+    "scale": 5,
+    "look": "A giant dark blue shark with a white belly and an even bigger mouth full of teeth, stomping on his back fins.",
+    "art": {
+      "body": "#1d4f9a",
+      "accent": "#f4f8ff",
+      "markings": "belly"
+    },
+    "traits": [],
+    "ability": "apex-predator-mega",
+    "moves": [
+      "bite",
+      "slash",
+      "splash",
+      "tsunami"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "mr-toothache",
+    "catchable": true,
+    "baseStats": {
+      "hp": 102,
+      "attack": 63,
+      "defense": 70,
+      "speed": 45
+    }
+  },
+  {
     "id": "anti-ant",
     "name": "Anti-Ant",
     "kind": "monster",
@@ -532,6 +599,73 @@
     "evolvesTo": null,
     "evolvesFrom": "stingtail",
     "catchable": true,
+    "baseStats": {
+      "hp": 78,
+      "attack": 70,
+      "defense": 70,
+      "speed": 62
+    }
+  },
+  {
+    "kind": "monster",
+    "traits": [],
+    "catchable": true,
+    "id": "crystalump",
+    "name": "Crystalump",
+    "biome": "desert",
+    "spawnWeight": 20,
+    "sizeLabel": "Small-medium (1.5x Dumble)",
+    "scale": 1.5,
+    "look": "A lumpy purple crystal rock with little crystal spikes on top and two glowing eyes.",
+    "art": {
+      "body": "#9b59d6",
+      "accent": "#e8d4ff",
+      "markings": "spots"
+    },
+    "ability": "wise",
+    "moves": [
+      "shard-shot",
+      "gem-glare",
+      "sparkle-beam",
+      "hit"
+    ],
+    "evolvesTo": {
+      "monster": "crystower",
+      "level": 22
+    },
+    "evolvesFrom": null,
+    "baseStats": {
+      "hp": 47,
+      "attack": 50,
+      "defense": 50,
+      "speed": 53
+    }
+  },
+  {
+    "kind": "monster",
+    "traits": [],
+    "catchable": true,
+    "id": "crystower",
+    "name": "Crystower",
+    "biome": "desert",
+    "spawnWeight": null,
+    "sizeLabel": "Large (3x Dumble)",
+    "scale": 3,
+    "look": "A tall tower of sparkling purple crystals, with glowing eyes in the middle crystal.",
+    "art": {
+      "body": "#6c3fb0",
+      "accent": "#e8d4ff",
+      "markings": "crown"
+    },
+    "ability": "wise",
+    "moves": [
+      "shard-shot",
+      "gem-glare",
+      "sparkle-beam",
+      "sandstorm"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "crystalump",
     "baseStats": {
       "hp": 78,
       "attack": 70,
@@ -1006,6 +1140,73 @@
       "attack": 70,
       "defense": 70,
       "speed": 70
+    }
+  },
+  {
+    "kind": "monster",
+    "traits": [],
+    "catchable": true,
+    "id": "lanternpuff",
+    "name": "Lanternpuff",
+    "biome": "volcano",
+    "spawnWeight": 20,
+    "sizeLabel": "Small",
+    "scale": 1,
+    "look": "A round orange paper lantern with a little flame inside, a smiley face, and a tassel hanging below.",
+    "art": {
+      "body": "#ffb347",
+      "accent": "#fff3b0",
+      "markings": "belly"
+    },
+    "ability": "lava-skin",
+    "moves": [
+      "ember-puff",
+      "flicker-flash",
+      "glow-bonk",
+      "hit"
+    ],
+    "evolvesTo": {
+      "monster": "blazelantern",
+      "level": 24
+    },
+    "evolvesFrom": null,
+    "baseStats": {
+      "hp": 44,
+      "attack": 50,
+      "defense": 50,
+      "speed": 56
+    }
+  },
+  {
+    "kind": "monster",
+    "traits": [],
+    "catchable": true,
+    "id": "blazelantern",
+    "name": "Blazelantern",
+    "biome": "volcano",
+    "spawnWeight": null,
+    "sizeLabel": "Medium-large (2.5x Dumble)",
+    "scale": 2.5,
+    "look": "A big stone lantern with a roaring fire inside its windows and a curly stone roof.",
+    "art": {
+      "body": "#8d8a84",
+      "accent": "#ff9a1f",
+      "markings": "mask"
+    },
+    "ability": "lava-skin",
+    "moves": [
+      "ember-puff",
+      "flicker-flash",
+      "glow-bonk",
+      "magma-slam"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "lanternpuff",
+    "baseStats": {
+      "hp": 74,
+      "attack": 70,
+      "defense": 70,
+      "speed": 66
     }
   },
   {

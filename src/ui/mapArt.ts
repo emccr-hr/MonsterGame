@@ -20,8 +20,21 @@ export function drawMapArt(scene: Phaser.Scene, map: GameMap, T: number, gateOpe
   const at = (x: number, y: number) => ({ cx: x * T + T / 2, cy: y * T + T / 2 });
   const drawn: MapArtDrawn = { buildings: false, gates: false, trees: false };
 
+  // Decor (Round 65): big pictures over several tiles, like the Beach's big palm trees and coconuts.
+  // Blocker tiles under a decor picture don't get their own small tree.
+  const decor = map.decor ?? [];
+  const underDecor = (x: number, y: number) => decor.some((d) => x >= d.x && x < d.x + d.w && y >= d.y && y < d.y + d.h);
+  for (const d of decor) {
+    const small = d.sprite === 'coconut';
+    // Big pictures stand on their tiles and grow 1.5x upward, so a big palm towers over the small ones.
+    const size = Math.max(d.w, d.h) * T * (small ? 0.7 : 1.5);
+    const y = small ? (d.y + d.h / 2) * T : (d.y + d.h) * T - size / 2;
+    addSprite(scene, 'tile', d.sprite, (d.x + d.w / 2) * T, y, size)?.setDepth(small ? 1 : 4.6);
+  }
+
   const tree = `tree-${map.biome ?? 'ansonville'}`;
   for (const t of findAll(map, 'T')) {
+    if (underDecor(t.x, t.y)) continue;
     const { cx, cy } = at(t.x, t.y);
     drawn.trees = !!addSprite(scene, 'tile', tree, cx, cy, T)?.setDepth(1) || drawn.trees;
   }

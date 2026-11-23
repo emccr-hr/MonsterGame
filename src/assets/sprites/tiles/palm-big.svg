@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Big palm tree on the Beach (designer, Round 65): two tiles wide, a curved trunk and big fronds -->
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="32" cy="61" rx="16" ry="3" fill="#000" opacity=".18"/>
+    <path d="M30 62 C26 46 30 30 36 20" fill="none" stroke="#5a3a1a" stroke-width="9"/>
+    <path d="M30 62 C26 46 30 30 36 20" fill="none" stroke="#a0703a" stroke-width="6"/>
+    <path d="M27 54 h6 M27 46 h6 M28 38 h6 M31 30 h5" stroke="#6b4422" stroke-width="1.6"/>
+    <g fill="#3fae4a" stroke="#1f6a2a" stroke-width="1.5">
+      <path d="M36 20 C26 10 12 12 4 22 C14 18 24 18 36 22 Z"/>
+      <path d="M36 20 C46 10 58 12 62 24 C52 18 44 18 36 22 Z"/>
+      <path d="M36 20 C30 8 34 2 42 2 C40 8 40 14 37 21 Z"/>
+      <path d="M36 20 C24 22 14 30 12 40 C20 32 28 26 37 22 Z"/>
+      <path d="M36 20 C48 22 56 30 58 40 C50 32 44 26 35 22 Z"/>
+    </g>
+    <g fill="#7a4a1a" stroke="#3a2008" stroke-width="1.2">
+      <circle cx="33" cy="24" r="3"/><circle cx="38" cy="25" r="3"/><circle cx="36" cy="28" r="2.8"/>
+    </g>
+  </g>
+</svg>
