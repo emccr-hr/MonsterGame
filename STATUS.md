@@ -5,6 +5,7 @@ One line per session: date, what shipped, what's next. Newest at the top.
 
 | Date | What happened | Next |
 |---|---|---|
+| 2026-11-23 | **Battle and capture effects, better water, arena art** (PR #42, owner): element bursts, status and heal effects, cage sparkles; waves, lava and quicksand; Avatar's arena drawn sealed or open. | Play-test; M6b (the arena's open look is ready for the Avatar battle). |
 | 2026-11-23 | **Wild monsters in Ansonville** (PR #40, designer Round 71): grassy spots all around town and a ring around Avatar's arena, where any first form from any biome can appear. Round 70: the Avatar gate stays at every wild monster (32). | Battle and capture effects, better water, arena art (owner, 2026-11-23); M6b. |
 | 2026-11-22 | **Ten new monster families** (PR #37, designer Round 69): Claude-made, not animals, each with a new ability (Overgrowth, Updraft, Bouncy Skin, Salt Crust, Thirsty Roots, First Light, Chill Aura, Toasty, Hypnoflame, Molten Core); battle text now names the real ability (it called Mr. Toothache "cute"). 65 monsters; the Avatar gate needs 32. | Play-test with the designer; ask whether 32 to open the arena is too many; M6b. |
 | 2026-11-22 | **Blizzard Boy → Rock Crystal** (PR #35, designer Round 68): an ice superhero (renamed from "Iceman", Flags N3) with the new Deep Freeze ability (`freezeChanceBonus`). | |
