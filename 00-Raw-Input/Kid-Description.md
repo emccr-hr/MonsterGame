@@ -380,3 +380,13 @@ His answers (picked from options):
 > 10 random monsters that are not based off of animals. Give them 10 names. Give random attacks. It doesn't have to be the ones that I've listed. Write a new ability for each one. Make their evolved forms. Give them a biome. And make sure they're good. And give them a random size.
 
 *(note: Claude-made, two per biome. New abilities this time, as he asked.)*
+
+## 2026-11-23 — Round 70 (32 wild monsters to open Avatar's arena is fine)
+
+Asked whether catching all 32 wild monsters to open Avatar's arena is too many:
+> I don't think that's too many monsters.
+
+Then, about recording it:
+> Down. Write it down.
+
+*(note: "Down. Write it down." read as "write it down".)*
