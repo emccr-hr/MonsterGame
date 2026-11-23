@@ -175,3 +175,8 @@ No code change needed (ADR 0003). Schemas: `src/data/schema.ts`; cross-checks: `
 ## Map decor (Round 65)
 - A map can list `decor` in `src/data/maps/index.ts`: `{ sprite, x, y, w, h }` in tiles, drawn from `src/assets/sprites/tiles/<sprite>.svg` by `drawMapArt`. Big pictures stand on their tiles and grow 1.5x upward; `coconut` is drawn small on the ground. Put blocker tiles (`T`) under anything the player shouldn't walk through; they get no small tree of their own.
 - Biome maps are 38x17 (Round 65); the Beach has its own rows (`BEACH_ROWS`) for its two big palms.
+
+## Battle effects, water and the arena (2026-11-23)
+- `src/ui/battleFx.ts`: `moveShot`, `hitEffect` (by element), `statusEffect`, `healEffect`, `cageTrail`, `caughtBurst`, `breakFreePuff`. BattleScene calls them from `showFor` and `throwCage`; the hit burst uses the element of the attacker's last move.
+- Water: `drawWater` in `src/ui/mapArt.ts` draws over `~` tiles (waves; lava in the Volcano, quicksand in the Desert).
+- Arena: `drawMapArt` puts `arena-sealed` or `arena-open` over all `a`/`A` tiles; MapScene passes whether the Avatar gate is open.

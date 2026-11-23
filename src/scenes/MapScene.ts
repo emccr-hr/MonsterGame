@@ -398,7 +398,8 @@ export class MapScene extends Phaser.Scene {
   private drawMap(): void {
     const p = this.map.palette;
     const g = this.add.graphics();
-    const art = drawMapArt(this, this.map, T, isBiomeOpen); // M8 sprites; old shapes below where a file is missing
+    // M8 sprites (and the arena, open or sealed); old shapes below where a file is missing.
+    const art = drawMapArt(this, this.map, T, isBiomeOpen, this.map.id === ANSONVILLE.id && gateProgress(content, getGame()).open);
     const label = (t: Tile, text: string, size = 12) =>
       this.add
         .text(t.x * T + T / 2, t.y * T + T / 2, text, {
@@ -483,7 +484,7 @@ export class MapScene extends Phaser.Scene {
       const center = { x: (Math.min(...xs) + Math.max(...xs)) / 2, y: (Math.min(...ys) + Math.max(...ys)) / 2 };
       label(center, "Avatar's\nArena", 16);
     }
-    for (const t of findAll(this.map, 'A')) label(t, '🔒', 16);
+    if (!art.arena) for (const t of findAll(this.map, 'A')) label(t, '🔒', 16);
   }
 
   private drawHud(): void {
