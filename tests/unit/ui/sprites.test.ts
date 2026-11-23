@@ -16,6 +16,7 @@ import {
   svgDataUrl,
   svgProblems,
   tierFor,
+  tiersUpTo,
   viewBoxSize,
 } from '../../../src/ui/spriteManifest';
 import { realContent } from '../helpers';
@@ -75,7 +76,11 @@ describe('sprite manifest rules', () => {
     expect(tierFor(64)).toBe(64);
     expect(tierFor(90)).toBe(128);
     expect(tierFor(240)).toBe(256);
-    expect(tierFor(500)).toBe(SPRITE_TIERS[SPRITE_TIERS.length - 1]);
+    expect(tierFor(500)).toBe(512);
+    expect(tierFor(900)).toBe(SPRITE_TIERS[SPRITE_TIERS.length - 1]);
+    expect(tierFor(480, 256)).toBe(256); // never bigger than what was loaded
+    expect(tiersUpTo(100)).toEqual([64, 128]);
+    expect(tiersUpTo(600)).toEqual([64, 128, 256, 512]);
   });
 
   it('fits the longest side to the size, keeping the shape', () => {

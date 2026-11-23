@@ -180,3 +180,8 @@ No code change needed (ADR 0003). Schemas: `src/data/schema.ts`; cross-checks: `
 - `src/ui/battleFx.ts`: `moveShot`, `hitEffect` (by element), `statusEffect`, `healEffect`, `cageTrail`, `caughtBurst`, `breakFreePuff`. BattleScene calls them from `showFor` and `throwCage`; the hit burst uses the element of the attacker's last move.
 - Water: `drawWater` in `src/ui/mapArt.ts` draws over `~` tiles (waves; lava in the Volcano, quicksand in the Desert).
 - Arena: `drawMapArt` puts `arena-sealed` or `arena-open` over all `a`/`A` tiles; MapScene passes whether the Avatar gate is open.
+
+## Sharp rendering (2026-11-23)
+- The world is still laid out in 960x640 (`GAME_WIDTH`, `GAME_HEIGHT`). The canvas is `RENDER_SCALE` (1 or 2) times bigger and every scene's camera zooms by it from the top-left (`src/ui/display.ts`, hooked on each scene's CREATE). Text gets `setResolution(RENDER_SCALE)` automatically.
+- Don't use `camera.startFollow`/`setBounds`: Phaser's follow assumes a middle-origin camera. MapScene scrolls with `cameraScrollFor` (`src/ui/displayMath.ts`).
+- `?test` keeps `RENDER_SCALE` 1 (headless WebGL is slow at 2x).
