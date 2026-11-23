@@ -1076,6 +1076,73 @@
     }
   },
   {
+    "id": "blizzard-boy",
+    "name": "Blizzard Boy",
+    "kind": "monster",
+    "biome": "snowy",
+    "spawnWeight": 10,
+    "sizeLabel": "Large (4x Dumble)",
+    "scale": 4,
+    "look": "A superhero made of ice, with a dark blue mask and cape, a snowflake on his chest, and frosty fists.",
+    "art": {
+      "body": "#6fc3f0",
+      "accent": "#1e5fbf",
+      "markings": "mask"
+    },
+    "traits": [],
+    "ability": "deep-freeze",
+    "moves": [
+      "freeze-punch",
+      "kick",
+      "freeze-breath",
+      "bite"
+    ],
+    "evolvesTo": {
+      "monster": "rock-crystal",
+      "level": 20
+    },
+    "evolvesFrom": null,
+    "catchable": true,
+    "baseStats": {
+      "hp": 62,
+      "attack": 50,
+      "defense": 50,
+      "speed": 38
+    }
+  },
+  {
+    "id": "rock-crystal",
+    "name": "Rock Crystal",
+    "kind": "monster",
+    "biome": "snowy",
+    "spawnWeight": null,
+    "sizeLabel": "Huge (6x Dumble)",
+    "scale": 6,
+    "look": "A giant boulder of blue ice with sharp crystal points on top, glowing eyes and two rocky arms.",
+    "art": {
+      "body": "#8fb8d8",
+      "accent": "#e8f8ff",
+      "markings": "spots"
+    },
+    "traits": [],
+    "ability": "wise",
+    "moves": [
+      "ice-slap",
+      "iceberg-slide",
+      "frost-quake",
+      "freeze"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "blizzard-boy",
+    "catchable": true,
+    "baseStats": {
+      "hp": 104,
+      "attack": 70,
+      "defense": 70,
+      "speed": 36
+    }
+  },
+  {
     "id": "blobbin",
     "name": "Blobbin",
     "kind": "monster",

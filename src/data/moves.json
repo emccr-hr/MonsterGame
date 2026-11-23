@@ -560,5 +560,47 @@
         "amount": 0.3
       }
     ]
+  },
+  {
+    "id": "freeze-punch",
+    "name": "Freeze Punch",
+    "element": "ice",
+    "power": "medium",
+    "description": "An icy punch that can freeze.",
+    "effects": [
+      {
+        "kind": "freeze",
+        "chance": 0.1
+      }
+    ]
+  },
+  {
+    "id": "kick",
+    "name": "Kick",
+    "element": null,
+    "power": "medium",
+    "description": "A hero kick.",
+    "effects": []
+  },
+  {
+    "id": "freeze-breath",
+    "name": "Freeze Breath",
+    "element": "ice",
+    "power": "medium-high",
+    "description": "Breathes freezing air that can freeze.",
+    "effects": [
+      {
+        "kind": "freeze",
+        "chance": 0.25
+      }
+    ]
+  },
+  {
+    "id": "frost-quake",
+    "name": "Frost Quake",
+    "element": "ice",
+    "power": "high",
+    "description": "Stomps so hard the ground freezes and shakes.",
+    "effects": []
   }
 ]

@@ -311,7 +311,9 @@ class Turn {
       this.events.push({ type: 'status', side: foeId, status: 'burned' });
     }
     const freeze = has(mv, 'freeze');
-    if (freeze && !this.immuneTo(foe, 'frozen') && this.rng.chance(freeze.chance)) {
+    const mineFx = abilityOf(this.content, me)?.effect;
+    const freezeBonus = mineFx?.kind === 'freezeChanceBonus' ? mineFx.bonus : 0; // Deep Freeze (Round 68)
+    if (freeze && !this.immuneTo(foe, 'frozen') && this.rng.chance(Math.min(1, freeze.chance + freezeBonus))) {
       foe.frozen = true;
       this.events.push({ type: 'status', side: foeId, status: 'frozen' });
     }
