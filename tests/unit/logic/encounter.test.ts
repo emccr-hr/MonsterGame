@@ -71,7 +71,8 @@ describe('finishing a battle', () => {
   it('a win can make a monster ready to evolve', () => {
     const s = withTeam(['anti-ant'], 14);
     const ready = { ...s, team: [{ ...s.team[0]!, xp: 139 }] }; // 1 XP short of level 15
-    const { battle } = startWildEncounter(content, ready, 'forest', createRng(4));
+    // A set wild Bushtail (the forest has more species since Round 69), so the fight is the same every time.
+    const { battle } = startWildEncounter(content, ready, 'forest', createRng(4), { species: 'bushtail', level: 12, big: false });
     let b = battle;
     for (let i = 0; i < 40 && !b.outcome; i++) b = play(b, { kind: 'move', move: 'sting' });
     expect(b.outcome).toBe('won');

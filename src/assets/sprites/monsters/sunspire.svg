@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- SUNSPIRE: a tall golden stone tower with sun carvings, a glowing sun on top and a stern face (Claude-made, Round 69) -->
+  <defs><filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+  <g stroke="#5a3a10" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="50" cy="95" rx="32" ry="4" fill="#000" opacity=".15" stroke="none"/>
+    <path d="M50 3 V7 M35 8 L38 11 M65 8 L62 11 M31 20 H35 M65 20 H69" stroke="#ff9a10" stroke-width="3"/>
+    <circle cx="50" cy="20" r="10" fill="#ffd84a" filter="url(#glow)"/>
+    <path d="M40 30 L60 30 L64 36 H36 Z" fill="#7a4a1a"/>
+    <path d="M34 36 H66 L74 88 H26 Z" fill="#e0c060"/>
+    <rect x="20" y="86" width="60" height="8" rx="2" fill="#c9a548"/>
+    <path d="M38 36 V44 M62 36 V44" stroke="#7a4a1a" stroke-width="2"/>
+    <circle cx="50" cy="75" r="5" fill="none" stroke="#7a4a1a" stroke-width="2.2"/>
+    <path d="M50 66 V68 M50 82 V84 M41 75 H43 M57 75 H59 M44 69 L45 70 M56 69 L55 70 M44 81 L45 80 M56 81 L55 80" stroke="#7a4a1a" stroke-width="2"/>
+    <path d="M30 70 H38 M62 70 H70 M29 80 H37 M63 80 H71" stroke="#b8963a" stroke-width="1.6"/>
+    <circle cx="41" cy="53" r="5" fill="#fff" stroke-width="2"/><circle cx="59" cy="53" r="5" fill="#fff" stroke-width="2"/>
+    <circle cx="40" cy="54" r="2.4" fill="#5a3a10" stroke="none"/><circle cx="58" cy="54" r="2.4" fill="#5a3a10" stroke="none"/>
+    <path d="M34 45 L46 48 M66 45 L54 48" fill="none" stroke-width="2.6"/>
+    <path d="M44 63 H56" fill="none" stroke-width="2.4"/>
+  </g>
+</svg>

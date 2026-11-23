@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- PUFFCONE: a small brown volcano cone with a glowing orange top, little smoke puffs and a grumpy face (Claude-made, Round 69) -->
+  <defs><filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+  <g stroke="#3a1f16" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="50" cy="94" rx="40" ry="4" fill="#000" opacity=".15" stroke="none"/>
+    <g fill="#c8c0bc" stroke="#7a7470" stroke-width="2"><circle cx="42" cy="20" r="6"/><circle cx="54" cy="13" r="7"/><circle cx="65" cy="21" r="5"/></g>
+    <path d="M10 90 C18 72 30 46 36 36 C44 32 56 32 64 36 C70 46 82 72 90 90 Z" fill="#7a4a3a"/>
+    <ellipse cx="50" cy="36" rx="14" ry="4.5" fill="#ff8a1a" filter="url(#glow)"/>
+    <path d="M38 38 C38 46 44 46 43 39 M58 38 C58 48 64 46 62 39" fill="#ff8a1a" stroke="#a04010" stroke-width="1.6"/>
+    <path d="M22 80 L30 74 M76 78 L70 72" stroke="#5a3428" stroke-width="2"/>
+    <circle cx="40" cy="62" r="5" fill="#fff" stroke-width="2"/><circle cx="60" cy="62" r="5" fill="#fff" stroke-width="2"/>
+    <circle cx="40" cy="63.5" r="2.4" fill="#3a1f16" stroke="none"/><circle cx="60" cy="63.5" r="2.4" fill="#3a1f16" stroke="none"/>
+    <path d="M33 54 L45 58 M67 54 L55 58" fill="none" stroke-width="2.6"/>
+    <path d="M42 77 Q50 71 58 77" fill="none" stroke-width="2.6"/>
+  </g>
+</svg>

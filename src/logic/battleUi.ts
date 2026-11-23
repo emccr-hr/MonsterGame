@@ -74,12 +74,20 @@ export function sideName(content: Content, s: BattleState, side: SideId, index?:
 
 const capital = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
 
+/** The ability name of a side's active monster ("Cute", "Apex Predator"), or null. */
+function abilityName(content: Content, s: BattleState, side: SideId): string | null {
+  const c = activeOf(side === 'player' ? s.player : s.enemy);
+  const id = c ? species(content, c.m.species).ability : null;
+  return content.abilities.find((a) => a.id === id)?.name ?? null;
+}
+
 /**
  * One short line of battle text for an event, or null when the screen shows it another way
  * (damage moves the HP bar). `s` is the battle state after the turn, for names.
  */
 export function eventText(content: Content, s: BattleState, e: BattleEvent): string | null {
   const who = (side: SideId, index?: number) => capital(sideName(content, s, side, index));
+  const other = (side: SideId): SideId => (side === 'player' ? 'enemy' : 'player');
   switch (e.type) {
     case 'move':
       return `${who(e.side)} used ${content.moves.find((m) => m.id === e.move)?.name ?? e.move}!`;
@@ -89,12 +97,15 @@ export function eventText(content: Content, s: BattleState, e: BattleEvent): str
       switch (e.reason) {
         case 'underground':
           return `It missed! ${who(e.side)} is underground.`;
-        case 'slippery':
-          return `${who(e.side)} slipped away!`;
+        case 'slippery': {
+          // Slippery and other dodging abilities (Round 69): name the ability that did it.
+          const name = abilityName(content, s, e.side);
+          return name && name !== 'Slippery' ? `${who(e.side)}'s ${name} made it miss!` : `${who(e.side)} slipped away!`;
+        }
         case 'colony':
           return "Red ants won't fight each other! Switch or run.";
         case 'lavaSkin':
-          return `${who(e.side)}'s lava skin blocked it!`;
+          return `${who(e.side)}'s ${(abilityName(content, s, e.side) ?? 'lava skin').toLowerCase()} blocked it!`;
         case 'immune':
           return `It didn't work on ${sideName(content, s, e.side)}!`;
       }
@@ -108,7 +119,12 @@ export function eventText(content: Content, s: BattleState, e: BattleEvent): str
     case 'skip':
       if (e.reason === 'frozen') return `${who(e.side)} is frozen and can't move!`;
       if (e.reason === 'sleeping') return `${who(e.side)} is sleeping.`;
-      return `${who(e.side)} can't attack something so cute!`;
+      {
+        // Cute, Apex Predator and the like: the other monster's ability stops this one.
+        const name = abilityName(content, s, other(e.side));
+        if (!name || name === 'Cute') return `${who(e.side)} can't attack something so cute!`;
+        return `${who(e.side)} won't attack! ${capital(sideName(content, s, other(e.side)))}'s ${name} stopped it.`;
+      }
     case 'dig':
       return `${who(e.side)} dug underground!`;
     case 'boost':

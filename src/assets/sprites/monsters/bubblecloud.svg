@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- BUBBLECLOUD: a big puffy cloud of shiny bubbles stuck together, with one big face in the middle (Claude-made, Round 69) -->
+  <g stroke="#1e5a80" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="50" cy="95" rx="42" ry="4" fill="#000" opacity=".15" stroke="none"/>
+    <g fill="#7fc8f0">
+      <circle cx="30" cy="30" r="16"/><circle cx="58" cy="22" r="18"/><circle cx="80" cy="38" r="14"/>
+      <circle cx="16" cy="56" r="13"/><circle cx="84" cy="62" r="13"/>
+      <circle cx="26" cy="78" r="13"/><circle cx="50" cy="82" r="12"/><circle cx="74" cy="80" r="13"/>
+    </g>
+    <circle cx="50" cy="54" r="30" fill="#a8dcf6"/>
+    <g fill="#ffffff" stroke="none">
+      <path d="M22 24 C24 20 28 18 32 18 C30 20 26 22 24 26 Z"/><path d="M50 10 C54 8 58 8 62 8 C58 10 54 12 52 14 Z"/>
+      <path d="M76 30 C78 28 82 28 84 28 C82 30 80 32 78 34 Z"/><path d="M10 52 C12 48 14 48 16 47 C14 50 12 52 12 54 Z"/>
+      <path d="M78 56 C80 54 84 54 86 54 C84 56 82 58 80 60 Z"/><path d="M20 74 C22 72 24 71 27 71 C24 73 23 75 22 77 Z"/>
+      <path d="M68 76 C70 74 72 73 75 73 C72 75 71 77 70 79 Z"/><path d="M30 40 C34 32 42 28 50 28 C42 32 36 36 34 42 Z"/>
+    </g>
+    <circle cx="40" cy="52" r="6.5" fill="#ffffff"/><circle cx="60" cy="52" r="6.5" fill="#ffffff"/>
+    <circle cx="39" cy="53" r="3.2" fill="#123a54" stroke="none"/><circle cx="59" cy="53" r="3.2" fill="#123a54" stroke="none"/>
+    <path d="M40 66 Q50 76 60 66 Z" fill="#ff8ab8" stroke-width="2.4"/>
+    <circle cx="30" cy="64" r="3.4" fill="#ff8ab8" stroke="none" opacity=".7"/><circle cx="70" cy="64" r="3.4" fill="#ff8ab8" stroke="none" opacity=".7"/>
+  </g>
+</svg>

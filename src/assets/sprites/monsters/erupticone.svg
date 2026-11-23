@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- ERUPTICONE: a giant dark volcano with lava pouring down its sides, a fiery top and a big angry face (Claude-made, Round 69) -->
+  <defs><filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+  <g stroke="#101018" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="50" cy="95" rx="46" ry="4" fill="#000" opacity=".15" stroke="none"/>
+    <path d="M36 30 C28 22 30 10 36 4 C38 12 42 14 44 8 C48 14 52 14 54 6 C58 12 62 12 64 4 C70 12 72 22 64 30 Z" fill="#ff5a1a" filter="url(#glow)"/>
+    <path d="M42 30 C40 24 42 18 46 16 C48 20 52 20 54 16 C58 20 60 24 58 30 Z" fill="#ffd040" stroke="none"/>
+    <path d="M3 92 C12 70 24 46 32 30 C42 26 58 26 68 30 C76 46 88 70 97 92 Z" fill="#2f2f45"/>
+    <ellipse cx="50" cy="30" rx="18" ry="5" fill="#ffb020" filter="url(#glow)"/>
+    <path d="M34 32 C30 44 26 50 24 62 C23 68 30 68 30 60 C31 50 38 42 38 33 Z M64 32 C66 42 72 50 74 58 C76 66 82 64 80 56 C78 46 70 40 68 32 Z M47 34 C46 40 48 44 50 44 C52 44 54 40 53 34 Z" fill="#ffb020" stroke="#c05010" stroke-width="1.8"/>
+    <path d="M14 82 L22 76 M86 84 L80 78" stroke="#4a4a66" stroke-width="2"/>
+    <circle cx="38" cy="60" r="7" fill="#fff" stroke-width="2.4"/><circle cx="62" cy="60" r="7" fill="#fff" stroke-width="2.4"/>
+    <circle cx="39" cy="62" r="3.4" fill="#101018" stroke="none"/><circle cx="61" cy="62" r="3.4" fill="#101018" stroke="none"/>
+    <path d="M28 49 L45 55 M72 49 L55 55" fill="none" stroke="#101018" stroke-width="3.6"/>
+    <path d="M36 82 C38 72 62 72 64 82 Z" fill="#ff5a1a" stroke-width="2.6"/>
+    <path d="M40 77 L43 80 L46 76 L50 80 L54 76 L57 80 L60 77" fill="none" stroke="#fff" stroke-width="2"/>
+  </g>
+</svg>

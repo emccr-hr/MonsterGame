@@ -115,5 +115,96 @@
       "kind": "freezeChanceBonus",
       "bonus": 0.15
     }
+  },
+  {
+    "id": "overgrowth",
+    "name": "Overgrowth",
+    "description": "Moss grows back on it: heals 6% each turn.",
+    "effect": {
+      "kind": "regenPerTurn",
+      "fraction": 0.06
+    }
+  },
+  {
+    "id": "updraft",
+    "name": "Updraft",
+    "description": "Floats up on the wind: 12% chance attacks on it miss.",
+    "effect": {
+      "kind": "evadeChance",
+      "chance": 0.12
+    }
+  },
+  {
+    "id": "bouncy-skin",
+    "name": "Bouncy Skin",
+    "description": "Attacks bounce off: takes 12% less damage.",
+    "effect": {
+      "kind": "damageReduction",
+      "fraction": 0.12
+    }
+  },
+  {
+    "id": "salt-crust",
+    "name": "Salt Crust",
+    "description": "Salty and soaked already: 50% chance to ignore water moves.",
+    "effect": {
+      "kind": "ignoreElement",
+      "element": "water",
+      "chance": 0.5
+    }
+  },
+  {
+    "id": "thirsty-roots",
+    "name": "Thirsty Roots",
+    "description": "Its draining moves heal 1.5 times as much.",
+    "effect": {
+      "kind": "drainMultiplier",
+      "multiplier": 1.5
+    }
+  },
+  {
+    "id": "first-light",
+    "name": "First Light",
+    "description": "The sun hits it first: always attacks first.",
+    "effect": {
+      "kind": "alwaysFirst"
+    }
+  },
+  {
+    "id": "chill-aura",
+    "name": "Chill Aura",
+    "description": "Its freezing moves are 10% more likely to freeze.",
+    "effect": {
+      "kind": "freezeChanceBonus",
+      "bonus": 0.1
+    }
+  },
+  {
+    "id": "toasty",
+    "name": "Toasty",
+    "description": "Warm and woolly: can never be Frozen.",
+    "effect": {
+      "kind": "immuneToStatus",
+      "status": "frozen"
+    }
+  },
+  {
+    "id": "hypnoflame",
+    "name": "Hypnoflame",
+    "description": "The other monster stares at its flame: 7% chance each turn it forgets to attack.",
+    "effect": {
+      "kind": "opponentSkipChance",
+      "chance": 0.07
+    }
+  },
+  {
+    "id": "molten-core",
+    "name": "Molten Core",
+    "description": "Too hot to cool down: 50% chance to ignore ice moves.",
+    "effect": {
+      "kind": "ignoreElement",
+      "element": "ice",
+      "chance": 0.5
+    }
   }
 ]
