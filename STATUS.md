@@ -5,6 +5,7 @@ One line per session: date, what shipped, what's next. Newest at the top.
 
 | Date | What happened | Next |
 |---|---|---|
+| 2026-11-23 | **Battle animations and a menu fix** (PR #46, owner): no more overlapping monster list after a faint; damage numbers, wind-up, knock-back, dodge/block, faint, Victory, Defeated and run-away animations. | Check the Defeated and run-away animations in play; M6b. |
 | 2026-11-23 | **Sharp rendering** (PR #44, owner): the game draws at up to 2x and zooms its cameras instead of stretching a 960x640 canvas, so text and art are crisp; the Monster Book scrolls. | Play-test on the family computer (speed at 2x); M6b. |
 | 2026-11-23 | **Battle and capture effects, better water, arena art** (PR #42, owner): element bursts, status and heal effects, cage sparkles; waves, lava and quicksand; Avatar's arena drawn sealed or open. | Play-test; M6b (the arena's open look is ready for the Avatar battle). |
 | 2026-11-23 | **Wild monsters in Ansonville** (PR #40, designer Round 71): grassy spots all around town and a ring around Avatar's arena, where any first form from any biome can appear. Round 70: the Avatar gate stays at every wild monster (32). | Battle and capture effects, better water, arena art (owner, 2026-11-23); M6b. |
