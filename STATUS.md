@@ -5,6 +5,7 @@ One line per session: date, what shipped, what's next. Newest at the top.
 
 | Date | What happened | Next |
 |---|---|---|
+| 2026-11-23 | **Wild monsters in Ansonville** (PR #40, designer Round 71): grassy spots all around town and a ring around Avatar's arena, where any first form from any biome can appear. Round 70: the Avatar gate stays at every wild monster (32). | Battle and capture effects, better water, arena art (owner, 2026-11-23); M6b. |
 | 2026-11-22 | **Ten new monster families** (PR #37, designer Round 69): Claude-made, not animals, each with a new ability (Overgrowth, Updraft, Bouncy Skin, Salt Crust, Thirsty Roots, First Light, Chill Aura, Toasty, Hypnoflame, Molten Core); battle text now names the real ability (it called Mr. Toothache "cute"). 65 monsters; the Avatar gate needs 32. | Play-test with the designer; ask whether 32 to open the arena is too many; M6b. |
 | 2026-11-22 | **Blizzard Boy → Rock Crystal** (PR #35, designer Round 68): an ice superhero (renamed from "Iceman", Flags N3) with the new Deep Freeze ability (`freezeChanceBonus`). | |
 | 2026-11-22 | **Designer rounds 64–67** (PR #33): Mr. Toothache → Megalodon (his design); bigger biome maps (38 wide, 8 grass patches) with big palms and coconuts at the Beach; Claude-made families he asked for: Crystalump, Lanternpuff, Sandcastlet, Tumbleball, Lavamug (not animals). 43 monsters; the Avatar gate needs 21. | Play-test the new monsters with the designer; M6b (the game keeps going after Avatar); Ansonville bigger (M6c). |
