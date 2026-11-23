@@ -380,3 +380,14 @@ His answers (picked from options):
 > 10 random monsters that are not based off of animals. Give them 10 names. Give random attacks. It doesn't have to be the ones that I've listed. Write a new ability for each one. Make their evolved forms. Give them a biome. And make sure they're good. And give them a random size.
 
 *(note: Claude-made, two per biome. New abilities this time, as he asked.)*
+
+## 2026-11-23 — Round 71 (monsters around Avatar's arena)
+
+> I want monsters to spawn in the area around the avatars thing, and I want there to be a chance for anyone can spawn that's a lower evolution.
+
+*(note: "the avatars thing" read as Avatar's arena in Ansonville; "anyone can spawn that's a lower evolution" read as: any first form, from any biome, can appear there.)*
+
+Then:
+> Spots all over, not just around the Avatar's arena. All around Insanville, I want there to be grassy spots.
+
+*(note: "Insanville" = Ansonville.)*

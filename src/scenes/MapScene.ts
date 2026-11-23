@@ -109,7 +109,8 @@ export class MapScene extends Phaser.Scene {
     this.lookY = this.look.y;
     this.walkStep = 0;
     this.player = this.add.container(this.tile.x * T + T / 2, this.tile.y * T + T / 2, [this.look]).setDepth(5);
-    if (this.map.biome) this.walkers = this.makeWalkers(this.map.biome);
+    const pool = this.wildPool();
+    if (pool) this.walkers = this.makeWalkers(pool);
 
     const cam = this.cameras.main;
     cam.setBounds(0, 0, width(this.map) * T, height(this.map) * T);
@@ -260,9 +261,9 @@ export class MapScene extends Phaser.Scene {
     const kind = kindAt(this.map, next);
     // Walking into a visible wild monster battles exactly that one (Round 62).
     const wild = this.walkers?.at(next);
-    if (wild && this.map.biome) {
+    if (wild) {
       this.walkers!.remove(wild.id);
-      this.startEncounter(this.map.biome, wild.spawn);
+      this.startEncounter(this.wildPool()!, wild.spawn);
       return;
     }
     if (!isWalkable(kind)) {
@@ -351,12 +352,18 @@ export class MapScene extends Phaser.Scene {
   }
 
   private afterStep(kind: TileKind): void {
-    if (kind !== 'encounter' || !this.map.biome) return;
+    const pool = this.wildPool();
+    if (kind !== 'encounter' || !pool) return;
     // The rule is in src/logic (ADR 0002); the scene only supplies the Rng.
     // With visible monsters around, hidden surprises are rarer (Round 62: "some surprises").
     const step = stepOnEncounterGround(this.stepsSinceEncounter, this.rng, this.walkers ? SURPRISE_ENCOUNTER_RATE : undefined);
     this.stepsSinceEncounter = step.stepsSince;
-    if (step.encounter) this.startEncounter(this.map.biome);
+    if (step.encounter) this.startEncounter(pool);
+  }
+
+  /** Where wild monsters here come from: the biome, or the map's mixed pool (Round 71), or none. */
+  private wildPool(): string | null {
+    return this.map.biome ?? this.map.wildPool ?? null;
   }
 
   /** Fire the encounter: M4's encounter flow pauses this scene and runs the battle on top. */

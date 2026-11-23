@@ -9,8 +9,17 @@ export interface Spawn {
   big: boolean;
 }
 
+/**
+ * The grass around Avatar's arena in Ansonville (designer, Round 71): any first form from any biome
+ * can appear there, each with the same chance.
+ */
+export const MIXED_POOL = 'ansonville';
+
 /** The biome's spawn table: species and weight. Weights are shared out fairly (they needn't total 100). */
 export function spawnTable(content: Content, biome: string): { item: string; weight: number }[] {
+  if (biome === MIXED_POOL) {
+    return content.monsters.filter((m) => m.kind === 'monster' && m.spawnWeight !== null).map((m) => ({ item: m.id, weight: 1 }));
+  }
   return content.monsters
     .filter((m) => m.kind === 'monster' && m.biome === biome && m.spawnWeight !== null)
     .map((m) => ({ item: m.id, weight: m.spawnWeight! }));

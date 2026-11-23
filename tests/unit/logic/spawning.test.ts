@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { realContent, scriptedRng } from '../helpers';
 import { createRng } from '../../../src/logic/rng';
-import { rollSpawn, spawnTable, wildLevel } from '../../../src/logic/spawning';
+import { MIXED_POOL, rollSpawn, spawnTable, wildLevel } from '../../../src/logic/spawning';
 
 const content = realContent();
 const biomes = ['forest', 'beach', 'desert', 'snowy', 'volcano'];
@@ -14,6 +14,14 @@ describe('spawnTable', () => {
   it('uses the weights from monsters.json', () => {
     const forest = Object.fromEntries(spawnTable(content, 'forest').map((e) => [e.item, e.weight]));
     expect(forest).toEqual({ peggy: 5, bushtail: 55, hootle: 40, mosspebble: 20, leafkite: 20 });
+  });
+
+  it("Avatar's arena ring (Round 71): every first form from every biome, each with the same chance", () => {
+    const mixed = spawnTable(content, MIXED_POOL);
+    const firsts = content.monsters.filter((m) => m.kind === 'monster' && m.spawnWeight !== null).map((m) => m.id);
+    expect(mixed.map((e) => e.item).sort()).toEqual([...firsts].sort());
+    expect(new Set(mixed.map((e) => e.weight))).toEqual(new Set([1]));
+    expect(mixed.some((e) => content.monsters.find((m) => m.id === e.item)!.evolvesFrom !== null)).toBe(false);
   });
 
   it('has no evolved forms and no Avatar', () => {
