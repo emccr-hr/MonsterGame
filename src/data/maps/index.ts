@@ -22,6 +22,11 @@ export interface GameMap {
   name: string;
   /** The biome whose wild monsters live here, or null for Ansonville. */
   biome: string | null;
+  /**
+   * Where this map's wild monsters come from when it has no biome (Round 71): "ansonville" means
+   * any first form from any biome (`MIXED_POOL` in src/logic/spawning.ts).
+   */
+  wildPool?: string;
   rows: readonly string[];
   /** Gate character to biome id. */
   gates?: Readonly<Record<string, string>>;
@@ -42,34 +47,36 @@ export const ANSONVILLE: GameMap = {
   id: 'ansonville',
   name: 'Ansonville',
   biome: null,
+  // Round 71: grassy spots all around town and a ring around Avatar's arena, where any first-form monster can appear.
+  wildPool: 'ansonville',
   // Layout follows the sketch in 03-World-and-Story/Setting.md: Snowy north, Desert and Volcano
   // up the sides, Forest and Beach down the sides, the Avatar arena in the middle.
   rows: [
     '#################2##################',
-    '#TT..............=...............TT#',
-    '#T...............=................T#',
+    '#TT..,,,,,,......=....,,,,,,,,...TT#',
+    '#T...,,,,,,......=....,,,,,,,,....T#',
     '1===.............=.............====3',
     '#..=.............=.............=...#',
     '#..=============================...#',
     '#........$R......=......G..........#',
     '#................@.................#',
-    '#................=.................#',
-    '#.............aaaAaaa..............#',
-    '#.............aaaaaaa..............#',
-    '#.............aaaaaaa..............#',
-    '#.............aaaaaaa..............#',
-    '#.............aaaaaaa..............#',
-    '#..................................#',
-    '#..TT..........................TT..#',
+    '#...........,,,,,=,,,,,............#',
+    '#..,,,,,,...,,aaaAaaa,,....,,,,,,..#',
+    '#..,,,,,,...,,aaaaaaa,,....,,,,,,..#',
+    '#..,,,,,,...,,aaaaaaa,,....,,,,,,..#',
+    '#..,,,,,,...,,aaaaaaa,,....,,,,,,..#',
+    '#...........,,aaaaaaa,,............#',
+    '#...........,,,,,,,,,,,............#',
+    '#..TT.......,,,,,,,,,,,........TT..#',
     '#..................................#',
     '#==============.......=============#',
     '4==...............................=5',
-    '#T................................T#',
-    '#TT..............................TT#',
+    '#T....,,,,,,,..........,,,,,,,....T#',
+    '#TT...,,,,,,,..........,,,,,,,...TT#',
     '####################################',
   ],
   gates: { '1': 'desert', '2': 'snowy', '3': 'volcano', '4': 'forest', '5': 'beach' },
-  palette: { ground: 0x8fc46a, path: 0xcfb98a, encounter: 0x8fc46a, wall: 0x4a5a3a, blocker: 0x2f6d2f, water: 0x3b7dd8 },
+  palette: { ground: 0x8fc46a, path: 0xcfb98a, encounter: 0x5f9e3f, wall: 0x4a5a3a, blocker: 0x2f6d2f, water: 0x3b7dd8 },
 };
 
 // All five biomes share one layout for now (about one screen each): shop and Reviver by the

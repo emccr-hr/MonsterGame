@@ -77,7 +77,22 @@ describe('world maps', () => {
       const [exit] = findAll(map, 'E');
       expect(canReach(map, startTile(map), exit!), map.id).toBe(true);
     }
-    expect(findAll(ANSONVILLE, ',')).toHaveLength(0); // No wild monsters in town.
+  });
+
+  it("Ansonville has grassy spots all around town and a ring around Avatar's arena (Round 71), and the arena gate path stays open", () => {
+    const grass = findAll(ANSONVILLE, ',');
+    const arena = [...findAll(ANSONVILLE, 'a'), ...findAll(ANSONVILLE, 'A')];
+    const nearArena = grass.filter((g) => arena.some((t) => Math.abs(t.x - g.x) <= 2 && Math.abs(t.y - g.y) <= 2));
+    expect(nearArena.length).toBeGreaterThan(20);
+    expect(grass.length - nearArena.length).toBeGreaterThan(60); // the spots around town
+    // Never on the roads the smoke tests walk (rows 3 and 7, column 11).
+    for (const g of grass) expect(g.y !== 3 && g.y !== 7 && !(g.x === 11 && g.y >= 3 && g.y <= 7), `${g.x},${g.y}`).toBe(true);
+    // Straight down from the start to the arena gate without touching the grass.
+    const start = startTile(ANSONVILLE);
+    const gate = findAll(ANSONVILLE, 'A')[0]!;
+    expect(gate.x).toBe(start.x);
+    for (let y = start.y + 1; y < gate.y; y++) expect(kindAt(ANSONVILLE, { x: start.x, y })).not.toBe('encounter');
+    expect(ANSONVILLE.wildPool).toBe('ansonville');
   });
 
   it('encounter ground looks different from plain ground and paths in every biome', () => {

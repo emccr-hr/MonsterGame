@@ -101,7 +101,7 @@
     {
       "id": "find-monsters",
       "question": "Where are the wild monsters?",
-      "answer": "Look in the grass, sand, snow and ash! Wild monsters walk around there. Walk into one to battle it. A bigger one is a Big Monster. Sometimes a hidden one jumps out too!",
+      "answer": "In the grass, sand, snow and ash of each place, and in the grassy spots in Ansonville, where any monster can show up! Walk into one to battle it. A bigger one is a Big Monster.",
       "covers": [
         "rule:encounters"
       ]
