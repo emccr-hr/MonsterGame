@@ -13,6 +13,7 @@ import { markTipSeen } from '../state/world';
 import { reportState } from '../testHook';
 import { drawMonster } from '../ui/monsterArt';
 import { playMusic, playSfx } from '../ui/audio';
+import { breakFreePuff, cageTrail, caughtBurst, healEffect, hitEffect, moveShot, statusEffect, type FxElement } from '../ui/battleFx';
 import { addSprite } from '../ui/sprites';
 import { besideTile, findAll, startTile } from '../world/grid';
 import type { EvolveData } from './EvolveScene';
@@ -46,6 +47,8 @@ interface Beat {
  */
 export class BattleScene extends Phaser.Scene {
   private from!: WildEncounterEvent;
+  /** Element of the last move each side used, for the hit burst. */
+  private lastElement: Record<SideId, FxElement> = { player: null, enemy: null };
   private battle!: BattleState;
   private rng!: Rng;
   private phase: Phase = 'text';
@@ -83,6 +86,7 @@ export class BattleScene extends Phaser.Scene {
 
   create(): void {
     this.rng = gameRng();
+    this.lastElement = { player: null, enemy: null };
     const started = startWildEncounter(content, getGame(), this.from.biomeId, this.rng, this.from.spawn);
     setGame(started.state);
     this.battle = started.battle;
@@ -290,9 +294,25 @@ export class BattleScene extends Phaser.Scene {
         return () => {
           this.refreshSide(e.side, e.hp);
           this.flash(e.side);
+          // The burst lands just after the shot (owner, 2026-11-23): in the attacker's move element, or fire for a burn.
+          const el: FxElement = e.type === 'burnHurt' ? 'fire' : this.lastElement[e.side === 'player' ? 'enemy' : 'player'];
+          const at = this.spotOf(e.side);
+          this.time.delayedCall(e.type === 'burnHurt' ? 0 : 180, () => hitEffect(this, at.x, at.y, el, e.type === 'burnHurt' ? 70 : 110));
+        };
+      case 'status':
+        return () => {
+          const at = this.spotOf(e.side);
+          statusEffect(this, at.x, at.y, e.status, e.side === 'enemy' ? this.enemySprite : this.playerSprite);
         };
       case 'heal':
-        return () => this.refreshSide(e.side, e.side === 'player' && e.index !== this.battle.player.active ? undefined : e.hp);
+        return () => {
+          const onScreen = !(e.side === 'player' && e.index !== this.battle.player.active);
+          this.refreshSide(e.side, onScreen ? e.hp : undefined);
+          if (onScreen) {
+            const at = this.spotOf(e.side);
+            healEffect(this, at.x, at.y);
+          }
+        };
       case 'faint':
         return () => {
           const sprite = e.side === 'enemy' ? this.enemySprite : this.playerSprite;
@@ -310,6 +330,9 @@ export class BattleScene extends Phaser.Scene {
           const sprite = e.side === 'enemy' ? this.enemySprite : this.playerSprite;
           sprite?.setAlpha(1);
           if (sprite) this.tweens.add({ targets: sprite, x: sprite.x + (e.side === 'player' ? 24 : -24), duration: 90, yoyo: true });
+          const mv = content.moves.find((m) => m.id === e.move);
+          this.lastElement[e.side] = mv?.element ?? null;
+          moveShot(this, this.spotOf(e.side), this.spotOf(e.side === 'player' ? 'enemy' : 'player'), mv?.element ?? null, mv?.power !== 'none');
         };
       default:
         return undefined;
@@ -452,6 +475,11 @@ export class BattleScene extends Phaser.Scene {
     if (sprite) this.tweens.add({ targets: sprite, alpha: 0.3, duration: 70, yoyo: true, repeat: 1 });
   }
 
+  /** Where a side's monster stands on screen (for effects). */
+  private spotOf(side: SideId): { x: number; y: number } {
+    return side === 'enemy' ? ENEMY_AT : PLAYER_AT;
+  }
+
   /** The tiny cage flies at the wild monster, grows big, wobbles, then holds or breaks. */
   private throwCage(wobbles: number, caught: boolean): void {
     // The golden cage sprite (M8), or the old bars if its file is missing.
@@ -470,6 +498,7 @@ export class BattleScene extends Phaser.Scene {
     );
     cage.setScale(0.2);
     playSfx('cage-throw');
+    const stopTrail = cageTrail(this, cage);
     const wild = this.enemySprite;
     this.tweens.chain({
       targets: cage,
@@ -478,7 +507,10 @@ export class BattleScene extends Phaser.Scene {
         ...Array.from({ length: wobbles }, () => ({ angle: 15, duration: 110, yoyo: true, repeat: 1, delay: 100 })),
       ],
       onComplete: () => {
+        stopTrail();
         playSfx(caught ? 'catch' : 'break-free');
+        if (caught) caughtBurst(this, ENEMY_AT.x, ENEMY_AT.y);
+        else breakFreePuff(this, ENEMY_AT.x, ENEMY_AT.y);
         if (caught) {
           wild?.setVisible(false);
           this.tweens.add({ targets: cage, scale: 1, duration: 200 });

@@ -144,3 +144,13 @@ describe('map decor sprites', () => {
     for (const m of MAPS) for (const d of m.decor ?? []) expect(tiles[d.sprite], `${m.id}: ${d.sprite}.svg`).toBeDefined();
   });
 });
+
+describe("Avatar's arena art", () => {
+  it('has a sealed and an open picture, shaped like the arena (7 by 5 tiles)', () => {
+    const tiles = buildManifest(readDir('tiles'), () => 'url');
+    for (const id of ['arena-sealed', 'arena-open']) {
+      expect(tiles[id], id).toBeDefined();
+      expect(tiles[id]!.width / tiles[id]!.height).toBeCloseTo(7 / 5, 2);
+    }
+  });
+});
