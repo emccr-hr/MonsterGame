@@ -177,3 +177,103 @@ export function breakFreePuff(scene: Phaser.Scene, x: number, y: number): void {
     piece(scene, scene.add.rectangle(x, y, 4, 18, 0xc9a227), Math.cos(a) * 80, Math.sin(a) * 60, 600, { spin: 270, fall: 40 });
   }
 }
+
+// ---- More battle animations (owner, 2026-11-23): numbers, wind-up, dodge, faint, victory, defeat, run.
+
+/** "-23" in red or "+20" in green, floating up from a monster. */
+export function floatingNumber(scene: Phaser.Scene, x: number, y: number, text: string, color: string): void {
+  const t = scene.add
+    .text(x + (Math.random() - 0.5) * 20, y - 20, text, { fontFamily: 'system-ui, sans-serif', fontSize: '28px', fontStyle: 'bold', color, stroke: '#1b1530', strokeThickness: 5 })
+    .setOrigin(0.5)
+    .setDepth(DEPTH + 2)
+    .setScale(0.6);
+  scene.tweens.add({ targets: t, scale: 1.1, duration: 120, ease: 'Back.easeOut' });
+  scene.tweens.add({ targets: t, y: y - 80, alpha: 0, duration: 900, delay: 250, ease: 'Cubic.easeOut', onComplete: () => t.destroy() });
+}
+
+/** The attacker pulls back, then lunges forward and returns. `dir` is +1 for the player (left), -1 for the wild one. */
+export function windUpLunge(scene: Phaser.Scene, sprite: Phaser.GameObjects.Container, dir: number): void {
+  const x0 = sprite.x;
+  scene.tweens.chain({
+    targets: sprite,
+    tweens: [
+      { x: x0 - 14 * dir, scaleY: 0.92, duration: 90, ease: 'Quad.easeOut' },
+      { x: x0 + 34 * dir, scaleY: 1.05, duration: 90, ease: 'Quad.easeIn' },
+      { x: x0, scaleY: 1, duration: 140, ease: 'Quad.easeOut' },
+    ],
+  });
+}
+
+/** The monster that got hit is knocked back a little. */
+export function knockBack(scene: Phaser.Scene, sprite: Phaser.GameObjects.Container, dir: number): void {
+  const x0 = sprite.x;
+  scene.tweens.add({ targets: sprite, x: x0 + 16 * dir, angle: 6 * dir, duration: 70, yoyo: true, ease: 'Quad.easeOut', onComplete: () => sprite.setAngle(0).setX(x0) });
+}
+
+/** A miss: the target hops aside (a dodge) or just shimmers (a block), with "MISS!" or "BLOCKED!". */
+export function dodge(scene: Phaser.Scene, sprite: Phaser.GameObjects.Container | undefined, x: number, y: number, blocked = false): void {
+  if (sprite && !blocked) {
+    const y0 = sprite.y;
+    scene.tweens.add({ targets: sprite, y: y0 - 26, x: sprite.x + 18, duration: 140, yoyo: true, ease: 'Quad.easeOut', onComplete: () => sprite.setY(y0) });
+  }
+  const shield = scene.add.circle(x, y, 60, 0x9fd8ff, 0.25).setStrokeStyle(4, 0xffffff, 0.9).setDepth(DEPTH);
+  scene.tweens.add({ targets: shield, scale: 1.25, alpha: 0, duration: 450, onComplete: () => shield.destroy() });
+  floatingNumber(scene, x, y - 30, blocked ? 'BLOCKED!' : 'MISS!', '#ffffff');
+}
+
+/** Fainting: a puff of smoke and a few dizzy stars. */
+export function faintPuff(scene: Phaser.Scene, x: number, y: number): void {
+  for (let i = 0; i < 8; i++) {
+    const a = (i / 8) * Math.PI * 2;
+    piece(scene, scene.add.circle(x, y + 20, 14, 0xd9d9e0, 0.9).setStrokeStyle(2, 0x8a8a96), Math.cos(a) * 50, Math.sin(a) * 25 - 20, 700);
+  }
+  for (let i = 0; i < 3; i++) {
+    const s = scene.add.star(x, y - 50, 5, 4, 9, 0xffd166).setStrokeStyle(2, INK).setDepth(DEPTH + 1);
+    scene.tweens.add({ targets: s, x: x + Math.cos(i * 2.1) * 30, y: y - 60 + Math.sin(i * 2.1) * 10, angle: 360, alpha: 0, duration: 900, delay: i * 80, onComplete: () => s.destroy() });
+  }
+}
+
+/** A big banner across the middle of the screen ("Victory!", "Defeated..."). */
+function banner(scene: Phaser.Scene, text: string, fill: number, color: string): void {
+  const { width, height } = { width: 960, height: 640 };
+  const band = scene.add.rectangle(width / 2, height * 0.24, width, 90, fill, 0.85).setStrokeStyle(4, INK).setDepth(DEPTH + 3).setScale(1, 0);
+  const t = scene.add
+    .text(width / 2, height * 0.24, text, { fontFamily: 'system-ui, sans-serif', fontSize: '52px', fontStyle: 'bold', color, stroke: '#1b1530', strokeThickness: 8 })
+    .setOrigin(0.5)
+    .setDepth(DEPTH + 4)
+    .setScale(0.2)
+    .setAlpha(0);
+  scene.tweens.add({ targets: band, scaleY: 1, duration: 180, ease: 'Back.easeOut' });
+  scene.tweens.add({ targets: t, scale: 1, alpha: 1, duration: 260, delay: 100, ease: 'Back.easeOut' });
+  scene.tweens.add({ targets: [band, t], alpha: 0, duration: 400, delay: 1700, onComplete: () => (band.destroy(), t.destroy()) });
+}
+
+/** Victory: your monster hops for joy, confetti falls, and a "Victory!" banner. */
+export function victory(scene: Phaser.Scene, sprite: Phaser.GameObjects.Container | undefined): void {
+  if (sprite) {
+    const y0 = sprite.y;
+    scene.tweens.add({ targets: sprite, y: y0 - 30, duration: 160, yoyo: true, repeat: 2, ease: 'Quad.easeOut', onComplete: () => sprite.setY(y0) });
+  }
+  const colors = [0xff6a1a, 0xffd166, 0x3fae4a, 0x3b9be0, 0xff7ab8, 0x9b6bff];
+  for (let i = 0; i < 40; i++) {
+    const c = scene.add.rectangle(Math.random() * 960, -10 - Math.random() * 120, 8, 12, colors[i % colors.length]!).setDepth(DEPTH + 2);
+    scene.tweens.add({ targets: c, y: 700, x: c.x + (Math.random() - 0.5) * 120, angle: 360 * (Math.random() < 0.5 ? 1 : -1) * 2, duration: 1600 + Math.random() * 900, ease: 'Sine.easeIn', onComplete: () => c.destroy() });
+  }
+  banner(scene, 'Victory!', 0x2f7a4a, '#ffd166');
+}
+
+/** Defeat: the screen dims and a gentle "Defeated..." banner. */
+export function defeat(scene: Phaser.Scene): void {
+  const dim = scene.add.rectangle(480, 320, 960, 640, 0x0a0816, 0).setDepth(DEPTH + 2);
+  scene.tweens.add({ targets: dim, fillAlpha: 0.45, duration: 600, yoyo: true, hold: 1200, onComplete: () => dim.destroy() });
+  banner(scene, 'Defeated...', 0x3c2f66, '#cfc6ee');
+}
+
+/** Running away: your monster zooms off the left of the screen with speed lines. */
+export function runAway(scene: Phaser.Scene, sprite: Phaser.GameObjects.Container | undefined, x: number, y: number): void {
+  for (let i = 0; i < 6; i++) {
+    const l = scene.add.rectangle(x + 30, y - 40 + i * 16, 60, 4, 0xffffff, 0.9).setStrokeStyle(1, INK).setDepth(DEPTH);
+    scene.tweens.add({ targets: l, x: x + 140, alpha: 0, duration: 400, delay: i * 30, onComplete: () => l.destroy() });
+  }
+  if (sprite) scene.tweens.add({ targets: sprite, x: -200, duration: 500, ease: 'Quad.easeIn' });
+}

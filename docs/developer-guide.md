@@ -185,3 +185,4 @@ No code change needed (ADR 0003). Schemas: `src/data/schema.ts`; cross-checks: `
 - The world is still laid out in 960x640 (`GAME_WIDTH`, `GAME_HEIGHT`). The canvas is `RENDER_SCALE` (1 or 2) times bigger and every scene's camera zooms by it from the top-left (`src/ui/display.ts`, hooked on each scene's CREATE). Text gets `setResolution(RENDER_SCALE)` automatically.
 - Don't use `camera.startFollow`/`setBounds`: Phaser's follow assumes a middle-origin camera. MapScene scrolls with `cameraScrollFor` (`src/ui/displayMath.ts`).
 - `?test` keeps `RENDER_SCALE` 1 (headless WebGL is slow at 2x).
+- More in `battleFx.ts` (2026-11-23): `floatingNumber`, `windUpLunge`, `knockBack`, `dodge` (with a blocked mode), `faintPuff`, `victory`, `defeat`, `runAway`. BattleScene plays the ending one at the start of `finish()`.
