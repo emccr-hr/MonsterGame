@@ -106,5 +106,14 @@
       "kind": "opponentSkipChance",
       "chance": 0.1
     }
+  },
+  {
+    "id": "deep-freeze",
+    "name": "Deep Freeze",
+    "description": "Its freezing moves are more likely to freeze the other monster.",
+    "effect": {
+      "kind": "freezeChanceBonus",
+      "bonus": 0.15
+    }
   }
 ]

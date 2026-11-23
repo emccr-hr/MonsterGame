@@ -65,13 +65,21 @@ Build each move **once** and give it to any monster that knows it. Element tags:
 ### New moves (Round 67, Claude-made)
 | Move | Tag | Effect | Power | Known by |
 |---|---|---|---|---|
-| Shell Toss | | Damage | Low–Medium | Sandcastlet, Sandfortress |
+| Shell Toss | | Damage | Low–Medium | Sandcastlet, Sandfortress, Rock Crystal |
 | Moat Splash | 💧 | Damage | Medium | Sandcastlet, Sandfortress |
 | Tower Topple | 🪨 | Damage | High | Sandfortress |
 | Tumble Roll | | Damage | Medium | Tumbleball, Dustwhirl |
 | Prickle Poke | 🌿 | Damage | Low–Medium | Tumbleball, Dustwhirl |
 | Hot Splash | 🔥 | Damage, can burn (like Burn) | Medium | Lavamug, Lavakettle |
 | Steam Whistle | | Next attack against it is weaker (like Screech) | — | Lavamug, Lavakettle |
+
+### New moves (Round 68)
+| Move | Tag | Effect | Power | Known by |
+|---|---|---|---|---|
+| Freeze Punch | 🧊 | Damage, 10% Frozen | Medium | Blizzard Boy |
+| Kick | | Damage | Medium | Blizzard Boy |
+| Freeze Breath | 🧊 | Damage, 25% Frozen | Medium–High | Blizzard Boy |
+| Frost Quake | 🧊 | Damage | High | Rock Crystal |
 
 ## Abilities in use
 | Ability | Effect | Monsters |
@@ -88,3 +96,4 @@ Build each move **once** and give it to any monster that knows it. Element tags:
 | Water Storage | Heals 5% each turn | Camelump, Triplump |
 | Apex Predator | 5% chance per turn the opponent is intimidated and doesn't attack (same rule as Cute) | Mr. Toothache |
 | Apex Predator (Megalodon) | The same, at 10% | Megalodon |
+| Deep Freeze | +15% chance that its freezing moves freeze (new rule, Round 68) | Blizzard Boy |

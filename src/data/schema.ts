@@ -54,6 +54,8 @@ export const abilityEffect = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('evadeChance'), chance: fraction }),
   z.object({ kind: z.literal('drainMultiplier'), multiplier: z.number().positive() }),
   z.object({ kind: z.literal('regenPerTurn'), fraction }),
+  /** Deep Freeze (Round 68): added to the freeze chance of this monster's freezing moves. */
+  z.object({ kind: z.literal('freezeChanceBonus'), bonus: fraction }),
 ]);
 
 export const ability = z.object({

@@ -283,6 +283,27 @@ describe('abilities', () => {
   });
 });
 
+describe('Deep Freeze (Round 68)', () => {
+  it('adds 15% to the freeze chance: a 0.35 roll misses Freeze (25%) but freezes with Deep Freeze (40%)', () => {
+    const plain = realContent();
+    const deep = realContent();
+    deep.monsters.find((m) => m.id === 'frostpaw')!.ability = 'deep-freeze';
+    const froze = (c: Content) => {
+      const s = startBattle('wild', [mon(c, 'frostpaw', 10)], mon(c, 'dumble', 10, { moves: ['hit'] }), bag);
+      return ofType(resolveTurn(c, s, use('freeze'), scriptedRng([], 0.35)).events, 'status').some((e) => e.status === 'frozen');
+    };
+    expect(froze(plain)).toBe(false);
+    expect(froze(deep)).toBe(true);
+  });
+
+  it('does nothing for moves that never freeze', () => {
+    const deep = realContent();
+    deep.monsters.find((m) => m.id === 'frostpaw')!.ability = 'deep-freeze';
+    const s = startBattle('wild', [mon(deep, 'frostpaw', 10)], mon(deep, 'dumble', 10, { moves: ['hit'] }), bag);
+    expect(ofType(resolveTurn(deep, s, use('bite'), YES()).events, 'status')).toHaveLength(0);
+  });
+});
+
 describe('statuses and special moves', () => {
   it('Burn: Burned for 2 turns, losing 10% max HP each turn, then it stops', () => {
     const s0 = battle([mon(content, 'cinderscale', 20)], mon(content, 'yeti', 20, { moves: ['fetch'] }));

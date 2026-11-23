@@ -25,13 +25,13 @@ describe('the real game data', () => {
     expect(result.content).toBeDefined();
   });
 
-  it('matches the design docs: 42 monsters + Avatar, 21 wild; 5 wild at the Beach, Desert and Volcano (Rounds 64, 66, 67)', () => {
+  it('matches the design docs: 44 monsters + Avatar, 22 wild; 5 wild at the Beach, Desert and Volcano, 4 in Snowy (Rounds 64-68)', () => {
     const c = result.content!;
-    expect(c.monsters.filter((m) => m.kind === 'monster')).toHaveLength(42);
+    expect(c.monsters.filter((m) => m.kind === 'monster')).toHaveLength(44);
     expect(c.monsters.filter((m) => m.kind === 'boss').map((m) => m.name)).toEqual(['Avatar']);
-    expect(gateMonsters(c)).toHaveLength(21);
+    expect(gateMonsters(c)).toHaveLength(22);
     // Spawn numbers are weights: Rounds 64, 66 and 67 added 20s to the Beach, Desert and Volcano and kept the other weights.
-    const totals: Record<string, [number, number]> = { forest: [3, 100], beach: [5, 140], desert: [5, 140], snowy: [3, 100], volcano: [5, 140] };
+    const totals: Record<string, [number, number]> = { forest: [3, 100], beach: [5, 140], desert: [5, 140], snowy: [4, 110], volcano: [5, 140] };
     for (const b of c.biomes) {
       const wild = c.monsters.filter((m) => m.biome === b.id && m.spawnWeight !== null);
       expect(wild, b.id).toHaveLength(totals[b.id]![0]);

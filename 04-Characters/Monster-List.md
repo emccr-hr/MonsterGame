@@ -26,6 +26,8 @@ One file per monster in `Monsters/` (copy `_Monster-Template.md`). Goal: 2–3 w
 | [Dustwhirl](Monsters/Dustwhirl.md) | Desert | Evolve only | 2.5x Dumble | Final form | Claude-made (Round 67), needs his OK |
 | [Lavamug](Monsters/Lavamug.md) | Volcano | 20 | 1x Dumble | Lavakettle (level 26) | Claude-made (Round 67), needs his OK |
 | [Lavakettle](Monsters/Lavakettle.md) | Volcano | Evolve only | 2x Dumble | Final form | Claude-made (Round 67), needs his OK |
+| [Blizzard Boy](Monsters/Blizzard-Boy.md) | Snowy | 10 | 4x Dumble | Rock Crystal (level 20) | ✅ Designer (Round 68) |
+| [Rock Crystal](Monsters/Rock-Crystal.md) | Snowy | Evolve only | 6x Dumble | Final form | ✅ Designer (Round 68); moves and ability Claude-picked |
 | [Crystalump](Monsters/Crystalump.md) | Desert | 20 | 1.5x Dumble | Crystower (level 22) | Claude-made (Round 66), needs his OK |
 | [Crystower](Monsters/Crystower.md) | Desert | Evolve only | 3x Dumble | Final form | Claude-made (Round 66), needs his OK |
 | [Lanternpuff](Monsters/Lanternpuff.md) | Volcano | 20 | 1x Dumble | Blazelantern (level 24) | Claude-made (Round 66), needs his OK |
@@ -58,7 +60,7 @@ One file per monster in `Monsters/` (copy `_Monster-Template.md`). Goal: 2–3 w
 Most monster families have **2 forms**: base, then one evolution (final). The designer will say which families get a **3rd form**. Default: assume 2 forms unless told otherwise.
 
 ## Center gate (designer, Round 52)
-To open the gate to Avatar, catch **one of every monster that spawns naturally** (base forms). Current list: Peggy, Dumble, Anti-Ant, Yeti, Blobbin, Bushtail, Hootle, Sidesnap, Squawkle, Stingtail, Camelump, Pengwiggle, Frostpaw, Cinderscale, Ashflap, Mr. Toothache, Crystalump, Lanternpuff, Sandcastlet, Tumbleball, Lavamug (**21**, since Round 67). Evolved forms don't spawn and don't count.
+To open the gate to Avatar, catch **one of every monster that spawns naturally** (base forms). Current list: Peggy, Dumble, Anti-Ant, Yeti, Blobbin, Bushtail, Hootle, Sidesnap, Squawkle, Stingtail, Camelump, Pengwiggle, Frostpaw, Cinderscale, Ashflap, Mr. Toothache, Crystalump, Lanternpuff, Sandcastlet, Tumbleball, Lavamug, Blizzard Boy (**22**, since Round 68). Evolved forms don't spawn and don't count.
 
 ## Spawn chances
 Each monster has a spawn number (bigger = more common). Within a biome, the numbers are shared out fairly. Today each biome happens to total 100, so the numbers read as percentages.

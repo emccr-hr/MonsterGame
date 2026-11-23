@@ -191,3 +191,7 @@ Each item: what he asked for → why it's flagged → suggested simple version �
 
 ### X19. Map part price and first steps (open, default chosen)
 - **Default chosen:** each locked biome has **one map part, 50 Magic Gems**, sold in every shop. With 100 starting gems, a player can open a second biome early, which feels good. Battles give gems so no one gets stuck.
+
+## N3: "Iceman" is an existing superhero's name (Round 68)
+- **Problem:** the designer named his ice superhero "Iceman", the name of a well-known comic-book superhero. The game uses only original names (Flags N1, N2).
+- **Resolved (Round 68):** same idea and powers, new name picked by the designer: **Blizzard Boy**. His look is an original design (ice body, a mask, a cape and a snowflake on his chest), not drawn from any comic.
