@@ -32,5 +32,13 @@
     "medium": 50,
     "medium-high": 65,
     "high": 80
+  },
+  "ride": {
+    "speed": 2,
+    "swimBiome": "beach"
+  },
+  "pen": {
+    "size": 5,
+    "xpPerMinutePerLevel": 4
   }
 }

@@ -14,6 +14,8 @@ import { playMusic } from '../ui/audio';
 import { drawMapArt, drawPin, teleportSparkle } from '../ui/mapArt';
 import { cameraScrollFor } from '../ui/displayMath';
 import { addCharacter } from '../ui/sprites';
+import { drawMonster } from '../ui/monsterArt';
+import { canCrossWater, ridingMonster, stepMs } from '../logic/riding';
 import { WildWalkers } from '../ui/wildWalkers';
 import { SURPRISE_ENCOUNTER_RATE } from '../logic/wildWalkers';
 import type { Spawn } from '../logic/spawning';
@@ -78,6 +80,9 @@ export class MapScene extends Phaser.Scene {
   /** The drawing inside `player`; it bobs and leans while walking. */
   private look!: Phaser.GameObjects.Image | Phaser.GameObjects.Arc;
   private lookY = 0;
+  /** The player's own height in the container; riding lifts the player onto the monster (Round 88). */
+  private baseLookY = 0;
+  private rider?: Phaser.GameObjects.Container;
   private walkStep = 0;
   private messageBox!: Phaser.GameObjects.Container;
   private messageText!: Phaser.GameObjects.Text;
@@ -112,9 +117,11 @@ export class MapScene extends Phaser.Scene {
 
     // The player's vector sprite (M8), or the old red dot if the file is missing.
     this.look = addCharacter(this, 'player-map', 0, T / 2 + 2, T * 1.25) ?? this.add.circle(0, 0, T * 0.38, 0xff5d73).setStrokeStyle(3, 0x1b1b1b);
-    this.lookY = this.look.y;
+    this.lookY = this.baseLookY = this.look.y;
     this.walkStep = 0;
     this.player = this.add.container(this.tile.x * T + T / 2, this.tile.y * T + T / 2, [this.look]).setDepth(5);
+    this.drawRider();
+    this.drawPenMonsters();
     const pool = this.wildPool();
     if (pool) this.walkers = this.makeWalkers(pool);
 
@@ -129,6 +136,7 @@ export class MapScene extends Phaser.Scene {
     // Back from a battle, evolving or the menu (they pause this scene and resume it after).
     const onResume = () => {
       this.resumedAt = performance.now();
+      this.drawRider(); // the Team screen may have started or stopped a ride
       music();
       this.paused = false;
       this.queued = null;
@@ -235,7 +243,7 @@ export class MapScene extends Phaser.Scene {
   }
 
   /** Pauses the map and opens a screen on top (menu, shop); it resumes the map when it closes. */
-  private openOverlay(key: 'Menu' | 'Shop' | 'Papai'): void {
+  private openOverlay(key: 'Menu' | 'Shop' | 'Papai' | 'Pen'): void {
     if (this.paused || this.leaving || this.moving || this.justResumed()) return;
     this.paused = true;
     this.queued = null;
@@ -282,7 +290,9 @@ export class MapScene extends Phaser.Scene {
       this.startEncounter(this.wildPool()!, wild.spawn);
       return;
     }
-    if (!isWalkable(kind)) {
+    // Riding a Big Beach monster swims across water (Round 88).
+    const swim = kind === 'water' && canCrossWater(content, getGame());
+    if (!isWalkable(kind) && !swim) {
       this.bump(next, kind, false);
       return;
     }
@@ -292,7 +302,7 @@ export class MapScene extends Phaser.Scene {
       targets: this.player,
       x: next.x * T + T / 2,
       y: next.y * T + T / 2,
-      duration: STEP_MS,
+      duration: stepMs(content, getGame(), STEP_MS), // riding is faster (Round 88)
       onComplete: () => {
         this.tile = next;
         this.moving = false;
@@ -309,6 +319,38 @@ export class MapScene extends Phaser.Scene {
    * One step of walking: a little hop with a lean to one side, then the other side on the next
    * step, so the player looks like he's stepping left foot, right foot. He faces the way he walks.
    */
+/** Riding (Round 88): the ridden Big monster under the player, or nothing when walking. */
+  private drawRider(): void {
+    this.rider?.destroy();
+    this.rider = undefined;
+    const m = ridingMonster(getGame());
+    this.lookY = m ? this.baseLookY - T * 0.55 : this.baseLookY;
+    this.tweens.killTweensOf(this.look);
+    this.look.setY(this.lookY).setAngle(0);
+    if (!m) return;
+    this.rider = drawMonster(this, m, 0, T * 0.45, T * 1.3);
+    this.player.addAt(this.rider, 0);
+  }
+
+  /** Ansonville's pen (Round 89): the monsters in it wander around inside the fence. */
+  private drawPenMonsters(): void {
+    const area = this.map.pen;
+    const pen = getGame().pen;
+    if (!area || pen.length === 0) return;
+    const spot = () => ({ x: (area.x + 0.7 + Math.random() * (area.w - 1.4)) * T, y: (area.y + 1 + Math.random() * (area.h - 1.8)) * T });
+    for (const m of pen) {
+      const at = spot();
+      const look = drawMonster(this, m, at.x, at.y, T * 0.9).setDepth(4.5);
+      const wander = () => {
+        if (!look.active) return;
+        const to = spot();
+        look.setScale(to.x < look.x ? -1 : 1, 1);
+        this.tweens.add({ targets: look, x: to.x, y: to.y, duration: 1400 + Math.random() * 1600, delay: 600 + Math.random() * 2400, ease: 'Sine.easeInOut', onComplete: wander });
+      };
+      wander();
+    }
+  }
+
   private walkAnimation(dir: Dir): void {
     if (this.look instanceof Phaser.GameObjects.Image) {
       if (dir === 'left') this.look.setFlipX(true);
@@ -353,6 +395,9 @@ export class MapScene extends Phaser.Scene {
       }
       case 'guide':
         this.openOverlay('Papai');
+        return;
+      case 'pen':
+        this.openOverlay('Pen');
         return;
       case 'arenaGate': {
         // M6b: the open gate starts Avatar's battle (rules in src/logic/ending.ts).
@@ -471,6 +516,7 @@ export class MapScene extends Phaser.Scene {
     const under = (t: Tile, text: string) => (art.buildings ? label(t, text, 11).setY(t.y * T + T + 6) : label(t, text));
     for (const t of findAll(this.map, '$')) under(t, 'Shop');
     for (const t of findAll(this.map, 'R')) under(t, 'Heal');
+    for (const t of findAll(this.map, 'P')) label(t, 'Pen', 11).setY(t.y * T + T + 6);
     // The town's name over its square (Round 90), centered above the Shop and Reviver.
     const shop = findAll(this.map, '$')[0];
     if (this.map.town && shop) label({ x: shop.x, y: shop.y - 2 }, this.map.town.name, 20).setX((shop.x + 1) * T);

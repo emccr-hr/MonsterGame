@@ -5,6 +5,9 @@ import { BACKPACK_SORTS, monsterLine, sortedBackpack, swapTeamSlots, type Backpa
 import { swapWithBackpack, toBackpack, toTeam, type GameState, type Result } from '../logic/game';
 import { xpToNext } from '../logic/growth';
 import { species, type MonsterInstance } from '../logic/monster';
+import { canRide, canSwim, startRide, stopRide } from '../logic/riding';
+import { mapById } from '../data/maps';
+import { kindAt } from '../world/grid';
 import { getGame, saveGame, setGame } from '../state/game';
 import { markTipSeen } from '../state/world';
 import { reportState } from '../testHook';
@@ -45,7 +48,7 @@ export class TeamScene extends Phaser.Scene {
   }
 
   create(): void {
-    drawPanel(this, 'Team and Backpack', 'Enter: pick up, then Enter to swap   ←→: other side   Tab: sort   Esc: back', GAME_WIDTH, GAME_HEIGHT);
+    drawPanel(this, 'Team and Backpack', 'Enter: pick up, then swap   ←→: other side   Tab: sort   R: ride   Esc: back', GAME_WIDTH, GAME_HEIGHT);
     const style = { fontFamily: FONT, fontSize: '18px', color: COLORS.title };
     this.teamHeader = this.add.text(30, 64, '', style).setDepth(30);
     this.packHeader = this.add.text(500, 64, '', style).setDepth(30).setInteractive({ useHandCursor: true });
@@ -68,6 +71,8 @@ export class TeamScene extends Phaser.Scene {
       confirm: () => this.choose(this.focus, this.current().index),
       back: () => this.back(),
     });
+    // Riding (Round 88): R gets on (or off) the picked starred Big monster.
+    onKey(this, 'R', () => this.toggleRide());
     onKey(this, 'TAB', (e) => {
       e.preventDefault();
       this.nextSort();
@@ -103,10 +108,10 @@ export class TeamScene extends Phaser.Scene {
     this.packHeader.setText(`Backpack ${g.backpack.length}   Sort: ${this.sort} (Tab)`);
     const teamRows = Array.from({ length: size }, (_, i) => {
       const m = g.team[i];
-      return m ? `${i + 1}. ${monsterLine(content, m)}` : `${i + 1}. (empty)`;
+      return m ? `${i + 1}. ${monsterLine(content, m)}${m.uid === g.riding ? '  (riding)' : ''}` : `${i + 1}. (empty)`;
     });
     this.packOrder = sortedBackpack(content, g.backpack, this.sort);
-    const packRows = this.packOrder.map((m) => monsterLine(content, m));
+    const packRows = this.packOrder.map((m) => `${monsterLine(content, m)}${m.uid === g.riding ? '  (riding)' : ''}`);
     if (this.held?.side === 'team') packRows.unshift(PUT_AWAY);
     if (packRows.length === 0) packRows.push('(empty)');
     this.team.held = this.held?.side === 'team' ? g.team.findIndex((m) => m.uid === this.held!.uid) : null;
@@ -170,6 +175,31 @@ export class TeamScene extends Phaser.Scene {
     this.refresh();
   }
 
+/** Get on the picked monster, or off it if you're riding it already (Round 88). */
+  private toggleRide(): void {
+    if (this.held) return;
+    const m = this.monsterAt(this.focus, this.current().index);
+    if (!m) return;
+    const g = getGame();
+    const name = species(content, m.species).name;
+    if (g.riding === m.uid) {
+      const tile = g.tile;
+      const onWater = !!tile && kindAt(mapById(g.area), tile) === 'water';
+      const r = stopRide(g, onWater);
+      if (!r.ok) return this.say(r.reason);
+      setGame(r.state);
+      saveGame();
+      this.say(`You got off ${name}.`);
+    } else {
+      const r = startRide(content, g, m.uid);
+      if (!r.ok) return this.say(r.reason);
+      setGame(r.state);
+      saveGame();
+      this.say(`You're riding ${name}! You go faster${canSwim(content, m) ? ', and it can swim across water' : ''}.`);
+    }
+    this.refresh();
+  }
+
   private cancelHold(): void {
     this.held = null;
     this.say('');
@@ -206,6 +236,16 @@ export class TeamScene extends Phaser.Scene {
       .text(170, y, lines.join('\n'), { fontFamily: FONT, fontSize: '17px', color: COLORS.text, lineSpacing: 6, wordWrap: { width: GAME_WIDTH - 200 } })
       .setDepth(30);
     this.details = [sprite, text];
+    if (canRide(m)) {
+      // A Ride button for starred Big monsters (Round 88), for the mouse; R does the same.
+      const riding = getGame().riding === m.uid;
+      const button = this.add
+        .text(170, y + 92, riding ? '[ Get off (R) ]' : '[ Ride (R) ]', { fontFamily: FONT, fontSize: '18px', color: COLORS.selected, backgroundColor: '#00000066', padding: { x: 8, y: 4 } })
+        .setDepth(30)
+        .setInteractive({ useHandCursor: true });
+      button.on('pointerdown', () => this.toggleRide());
+      this.details.push(button);
+    }
   }
 
   private report(): void {

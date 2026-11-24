@@ -36,6 +36,10 @@ export interface GameState {
   tile: { x: number; y: number } | null;
   /** Guide tips already shown once. */
   seenTips: string[];
+  /** The starred Big monster the player is riding (Round 88), by uid, or null when walking. */
+  riding: number | null;
+  /** Monsters resting in Ansonville's pen (Round 89): up to rules.pen.size, out of the team and backpack. */
+  pen: MonsterInstance[];
 }
 
 export type Result<T> = { ok: true; state: T } | { ok: false; reason: string };
@@ -62,6 +66,8 @@ export function newGame(content: Content, firstBiome: string, rngState: number):
     area: 'ansonville',
     tile: null,
     seenTips: [],
+    riding: null,
+    pen: [],
   };
 }
 

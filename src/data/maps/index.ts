@@ -29,6 +29,8 @@ export interface GameMap {
   zoned?: boolean;
   /** A little town at the top of a biome map (Round 90): its name, and how many rows from the top it covers. */
   town?: { name: string; rows: number };
+  /** Ansonville's monster pen (Round 89): the fenced yard where pen monsters walk around. */
+  pen?: { x: number; y: number; w: number; h: number };
   /**
    * Where this map's wild monsters come from when it has no biome (Round 71): "ansonville" means
    * any first form from any biome (`MIXED_POOL` in src/logic/spawning.ts).
@@ -83,11 +85,11 @@ export const ANSONVILLE: GameMap = {
     '#........$R......=......G..........#',
     '#................@.................#',
     '#...........,,,,,=,,,,,............#',
-    '#..,,,,,,...,,aaaAaaa,,....,,,,,,..#',
-    '#..,,,,,,...,,aaaaaaa,,....,,,,,,..#',
-    '#..,,,,,,...,,aaaaaaa,,....,,,,,,..#',
-    '#..,,,,,,...,,aaaaaaa,,....,,,,,,..#',
-    '#...........,,aaaaaaa,,............#',
+    '#..,,,,,,...,,aaaAaaa,,....TTTTTT..#',
+    '#..,,,,,,...,,aaaaaaa,,....TTTTTT..#',
+    '#..,,,,,,...,,aaaaaaa,,....TTTTTT..#',
+    '#..,,,,,,...,,aaaaaaa,,....TTTTTT..#',
+    '#...........,,aaaaaaa,,......P.....#',
     '#...........,,,,,,,,,,,............#',
     '#..TT.......,,,,,,,,,,,........TT..#',
     '#..................................#',
@@ -98,6 +100,12 @@ export const ANSONVILLE: GameMap = {
     '####################################',
   ],
   gates: { '1': 'desert', '2': 'snowy', '3': 'volcano', '4': 'forest', '5': 'beach' },
+  // The monster pen (Round 89): a fenced yard east of the arena; bump the sign (P) below it to use it.
+  pen: { x: 27, y: 9, w: 6, h: 4 },
+  decor: [
+    { sprite: 'pen', x: 27, y: 9, w: 6, h: 4, scale: 1, flat: true },
+    { sprite: 'pen-sign', x: 29, y: 13, w: 1, h: 1, scale: 1 },
+  ],
   palette: { ground: 0x8fc46a, path: 0xcfb98a, encounter: 0x5f9e3f, wall: 0x4a5a3a, blocker: 0x2f6d2f, water: 0x3b7dd8 },
 };
 
@@ -326,8 +334,8 @@ const BEACH_SEA_LIFE: readonly MapDecor[] = [
 export const BIOME_MAPS: readonly GameMap[] = [
   // Tall grass, trees, a pond. Town: Forest Village (Round 90).
   biome('forest', 'Forest', 'Forest Village', { ground: 0x7cb35a, path: 0xb89c6a, encounter: 0x3f8f3a, wall: 0x2f4f2f, blocker: 0x1f5a24, water: 0x3b7dd8 }, FOREST_DECOR, FOREST_MONKEYS),
-  // Soft sand, palm trees, tide pools, the sea. Town: Water City.
-  biome('beach', 'Beach', 'Water City', { ground: 0xf1e7c6, path: 0xd8c08c, encounter: 0xe2c16a, wall: 0x8a6d3b, blocker: 0x4f9a4a, water: 0x2e86c1 }, [...BEACH_PALMS, ...BEACH_LOUNGE], [...BEACH_COCONUTS, ...BEACH_SEA_LIFE], true),
+  // Soft sand, palm trees, tide pools, the sea. Town: Aquatown (Round 91; was Water City).
+  biome('beach', 'Beach', 'Aquatown', { ground: 0xf1e7c6, path: 0xd8c08c, encounter: 0xe2c16a, wall: 0x8a6d3b, blocker: 0x4f9a4a, water: 0x2e86c1 }, [...BEACH_PALMS, ...BEACH_LOUNGE], [...BEACH_COCONUTS, ...BEACH_SEA_LIFE], true),
   // Dunes, cactus, quicksand. Town: Dune City.
   biome('desert', 'Desert', 'Dune City', { ground: 0xf6d77e, path: 0xd9a24e, encounter: 0xf0a830, wall: 0xb5652a, blocker: 0x3fae4a, water: 0xc88a4a }, DESERT_DECOR),
   // Deep snow, pine trees, ice. Town: Ice Town.

@@ -163,6 +163,10 @@ export const rules = z.object({
   catch: z.object({ base: fraction, missingHpBonus: fraction, cap: fraction, maxFailedThrows: z.number().int().positive() }),
   bossMovePowerBonus: z.number().nonnegative(),
   powerTiers: z.record(powerTier, z.number().nonnegative()),
+  /** Riding a starred Big monster (Round 88): how many times faster than walking; Big monsters from this biome can swim. */
+  ride: z.object({ speed: z.number().min(1), swimBiome: id }),
+  /** Ansonville's monster pen (Round 89): how many fit, and XP per real minute = xpPerMinutePerLevel × the monster's level. */
+  pen: z.object({ size: z.number().int().positive(), xpPerMinutePerLevel: z.number().nonnegative() }),
 });
 
 export const guideTip = z.object({ id, screen: z.string().min(1), text: z.string().min(1).max(140) });

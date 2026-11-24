@@ -41,6 +41,7 @@ export function drawMapArt(
     const y = small ? (d.y + d.h / 2) * T : (d.y + d.h) * T - size / 2;
     const img = addSprite(scene, 'tile', d.sprite, (d.x + d.w / 2) * T, y, size)?.setDepth(small || d.flat ? 1 : 4.6);
     if (!img) continue;
+    if (d.flat && !small) img.setY((d.y + d.h) * T - img.displayHeight / 2); // Round 89: the pen's fence lines up with its tiles
     if (d.flip) img.setFlipX(true);
     if (d.alt) animateAlt(scene, img, d.sprite, d.alt);
     if (d.shuttle) {

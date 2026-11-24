@@ -76,3 +76,17 @@ The designer wants to add **as many monsters as he wants** and still give each a
 - Until the first catch, the player has no monster to battle with, so the first catch is a "throw the cage right away" catch (that option already exists, C1). With 100 cages, running out isn't a worry.
 - At the start, only **Ansonville** and **one biome the player picks** are open. Other biomes stay hidden until the player **buys that biome's map part** (see Progression).
 - Proposed: on a new game, Ansonville shows 5 gates. The player picks 1, and the other 4 stay closed until their map part is bought.
+
+## Riding (designer, Round 88)
+- Only **starred Big monsters** can be ridden. Press **M → Team and Backpack**, pick the Big monster, press **R** (or click **Ride**). Press R again to get off.
+- Riding makes you **twice as fast** (`rules.ride.speed`). Wild monsters can still find you.
+- A Big monster from the **Beach** swims: riding it, you can go across water (`rules.ride.swimBiome`). You can't get off while on water.
+- Rules: `src/logic/riding.ts`. The ridden monster is drawn under the player on the map.
+
+## Monster pen (designer, Round 89)
+- A fenced yard in Ansonville, east of Avatar's arena. Walk into its sign to open the pen screen.
+- Up to **5** monsters (`rules.pen.size`), from the team or the backpack. The team keeps at least one monster, and you can't pen the one you ride.
+- Pen monsters walk around inside the fence. They **can't battle** until you take them out (to the team if there's room, else the backpack).
+- They gain XP over **real time while the game is open**: each minute, XP = 4 × their level (`rules.pen.xpPerMinutePerLevel`), the same as beating a wild monster of their own level. Time with the game closed doesn't count.
+- A pen monster that reaches its evolve level grows after the next battle once it's back on the team.
+- Rules: `src/logic/pen.ts`; clock: `src/state/penClock.ts`.

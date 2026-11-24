@@ -3,7 +3,7 @@
 import { z } from 'zod';
 import type { GameState } from './game.ts';
 
-export const SAVE_VERSION = 1;
+export const SAVE_VERSION = 2;
 
 const monster = z.object({
   uid: z.number().int(),
@@ -33,10 +33,15 @@ const gameState = z.object({
   area: z.string(),
   tile: z.object({ x: z.number().int(), y: z.number().int() }).nullable(),
   seenTips: z.array(z.string()),
+  riding: z.number().int().nullable(),
+  pen: z.array(monster),
 });
 
 /** Old save shape → next version. Add one step per version bump: MIGRATIONS[1] turns v1 into v2. */
-export const MIGRATIONS: Record<number, (old: Record<string, unknown>) => Record<string, unknown>> = {};
+export const MIGRATIONS: Record<number, (old: Record<string, unknown>) => Record<string, unknown>> = {
+  // v2 (Rounds 88-89): riding and the monster pen.
+  1: (old) => ({ ...old, riding: null, pen: [] }),
+};
 
 export function serialize(state: GameState): string {
   return JSON.stringify({ version: SAVE_VERSION, state });
