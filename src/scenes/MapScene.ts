@@ -572,7 +572,10 @@ export class MapScene extends Phaser.Scene {
 
   private report(): void {
     const g = currentGame();
-    this.wallet?.setText(g ? `${g.gems} gems   ${g.bag.cage ?? 0} cages` : '');
+    // How many wild monsters are caught, out of what Avatar's arena needs (designer, Round 77).
+    const arena = g ? gateProgress(content, g) : undefined;
+    const arenaText = !arena ? '' : arena.open ? '   Arena open!' : `   Arena: ${arena.caught}/${arena.needed}`;
+    this.wallet?.setText(g ? `${g.gems} gems   ${g.bag.cage ?? 0} cages${arenaText}` : '');
     reportState({
       scene: this.scene.key,
       area: this.map.id,

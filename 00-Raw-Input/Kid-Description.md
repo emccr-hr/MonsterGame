@@ -401,3 +401,11 @@ Then:
 > Spots all over, not just around the Avatar's arena. All around Insanville, I want there to be grassy spots.
 
 *(note: "Insanville" = Ansonville.)*
+
+## 2026-11-23 — Round 77 (arena count on screen, and rewards for catching)
+
+> Can you show me the amount of monsters that I need to catch until the Avatar's Arena is open?
+
+> Can you make it so that if you catch a monster, you still get money and XP?
+
+*(note: "money" = Magic Gems.)*

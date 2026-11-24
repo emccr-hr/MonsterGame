@@ -4,6 +4,7 @@
 |---|---|---|---|
 | Cages | Throw a tiny cage. It grows into a big cage mid-air and closes around the monster. It may hold or the monster may escape. Can be thrown at the start of an encounter or during a battle. | 1 | From designer |
 | Monsters in Ansonville | Grassy spots all around town and a ring around Avatar's arena, where **any first-form monster** from any place can appear. | 71 | From designer |
+| Catch rewards | Catching a monster gives Magic Gems and XP, like winning a battle. | 77 | From designer |
 | Visible wild monsters | Wild monsters wander on the grass, sand, snow and ash, so you can see them (and spot a Big one, which looks bigger) before you battle. Walk into one to start a battle with it. Some hidden ones can still jump out of the grass. | 62 | From designer |
 | Wild encounter choice | When a wild monster appears: **Throw cage** right away, or **Battle** to lower its HP and then throw. | 1, 4 | ✅ Agreed (C1) |
 | Big Monsters | Very rare (1 in 100) version of any monster: 1.5x size, small stat boost (+10%), same moves, star in the collection. Slightly harder to catch. | 4 | ✅ Agreed |
