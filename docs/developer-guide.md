@@ -200,3 +200,4 @@ No code change needed (ADR 0003). Schemas: `src/data/schema.ts`; cross-checks: `
 - Don't use `camera.startFollow`/`setBounds`: Phaser's follow assumes a middle-origin camera. MapScene scrolls with `cameraScrollFor` (`src/ui/displayMath.ts`).
 - `?test` keeps `RENDER_SCALE` 1 (headless WebGL is slow at 2x).
 - More in `battleFx.ts` (2026-11-23): `floatingNumber`, `windUpLunge`, `knockBack`, `dodge` (with a blocked mode), `faintPuff`, `victory`, `defeat`, `runAway`. BattleScene plays the ending one at the start of `finish()`.
+- Big decor that blocks (Rounds 72–75): list it in a map's `decor` and pass the rows through `withBigDecor(rows, decor)`, which puts blocker tiles under it and checks the spot is plain ground.

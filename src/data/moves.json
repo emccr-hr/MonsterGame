@@ -948,5 +948,37 @@
     "power": "high",
     "description": "Its top blows off in a giant burst of lava.",
     "effects": []
+  },
+  {
+    "id": "magma-fist",
+    "name": "Magma Fist",
+    "element": "fire",
+    "power": "medium",
+    "description": "A punch with a fist of hot magma.",
+    "effects": []
+  },
+  {
+    "id": "fire-kick",
+    "name": "Fire Kick",
+    "element": "fire",
+    "power": "medium-high",
+    "description": "A blazing kick.",
+    "effects": []
+  },
+  {
+    "id": "fire-bite",
+    "name": "Fire Bite",
+    "element": "fire",
+    "power": "medium-high",
+    "description": "A bite with blazing teeth.",
+    "effects": []
+  },
+  {
+    "id": "fire-paw",
+    "name": "Fire Paw",
+    "element": "fire",
+    "power": "medium",
+    "description": "A swipe with a burning paw.",
+    "effects": []
   }
 ]

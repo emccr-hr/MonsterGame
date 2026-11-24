@@ -221,13 +221,13 @@ describe('useHealingItem: wake-up snack', () => {
 describe('gateProgress', () => {
   const wildIds = content.monsters.filter((m) => m.kind === 'monster' && m.spawnWeight !== null).map((m) => m.id);
 
-  it('needs 32 species (Round 69) and starts at 0', () => {
-    expect(gateProgress(content, fresh())).toEqual({ caught: 0, needed: 32, open: false });
+  it('needs 33 species (Round 76) and starts at 0', () => {
+    expect(gateProgress(content, fresh())).toEqual({ caught: 0, needed: 33, open: false });
   });
 
   it('counts caught base forms', () => {
     const s = { ...fresh(), caught: wildIds.slice(0, 4) };
-    expect(gateProgress(content, s)).toEqual({ caught: 4, needed: 32, open: false });
+    expect(gateProgress(content, s)).toEqual({ caught: 4, needed: 33, open: false });
   });
 
   it('does not count evolved forms', () => {
@@ -235,12 +235,12 @@ describe('gateProgress', () => {
     expect(gateProgress(content, s).caught).toBe(0);
   });
 
-  it('opens at 32 of 32', () => {
+  it('opens at 33 of 33', () => {
     const s = { ...fresh(), caught: wildIds };
-    expect(gateProgress(content, s)).toEqual({ caught: 32, needed: 32, open: true });
+    expect(gateProgress(content, s)).toEqual({ caught: 33, needed: 33, open: true });
   });
 
-  it('stays closed at 31 of 32', () => {
+  it('stays closed at 32 of 33', () => {
     const s = { ...fresh(), caught: wildIds.slice(1) };
     expect(gateProgress(content, s).open).toBe(false);
   });
