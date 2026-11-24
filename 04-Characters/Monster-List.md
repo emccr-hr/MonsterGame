@@ -46,6 +46,8 @@ One file per monster in `Monsters/` (copy `_Monster-Template.md`). Goal: 2–3 w
 | [Candelabra](Monsters/Candelabra.md) | Volcano | Evolve only | 2.5x Dumble | Final form | Claude-made (Round 69), needs his OK |
 | [Puffcone](Monsters/Puffcone.md) | Volcano | 20 | 2x Dumble | Erupticone (level 34) | Claude-made (Round 69), needs his OK |
 | [Erupticone](Monsters/Erupticone.md) | Volcano | Evolve only | 7x Dumble | Final form | Claude-made (Round 69), needs his OK |
+| [Flame Cat](Monsters/Flame-Cat.md) | Volcano | 20 | 1.5x Dumble | Lava Tiger (level 15) | ✅ Designer (Round 76) |
+| [Lava Tiger](Monsters/Lava-Tiger.md) | Volcano | Evolve only | 3x Dumble | Final form | ✅ Designer (Round 76) |
 | [Blizzard Boy](Monsters/Blizzard-Boy.md) | Snowy | 10 | 4x Dumble | Rock Crystal (level 20) | ✅ Designer (Round 68) |
 | [Rock Crystal](Monsters/Rock-Crystal.md) | Snowy | Evolve only | 6x Dumble | Final form | ✅ Designer (Round 68); moves and ability Claude-picked |
 | [Crystalump](Monsters/Crystalump.md) | Desert | 20 | 1.5x Dumble | Crystower (level 22) | Claude-made (Round 66), needs his OK |

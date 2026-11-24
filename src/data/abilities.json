@@ -206,5 +206,14 @@
       "element": "ice",
       "chance": 0.5
     }
+  },
+  {
+    "id": "lava-body",
+    "name": "Lava Body",
+    "description": "So hot it can never be Frozen.",
+    "effect": {
+      "kind": "immuneToStatus",
+      "status": "frozen"
+    }
   }
 ]
