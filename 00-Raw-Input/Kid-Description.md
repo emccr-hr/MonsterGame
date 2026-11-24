@@ -468,3 +468,9 @@ His answers to two follow-up questions:
 > In the beach area. On the right, fifth end of the thing, I want to see water and crabs coming in and out. I want to see fish jumping in and out too.
 
 *(note: "On the right, fifth end of the thing" read as: the right fifth of the Beach map is the sea.)*
+
+## 2026-11-23 — Round 85 (shops in the middle)
+
+> Move the shops and healing things more towards the middle of each biome, not right at the beginning. Or maybe to the left of the entrance. But it's your call on this. Choose one.
+
+*(note: he left the choice to us; we picked the middle of each biome.)*

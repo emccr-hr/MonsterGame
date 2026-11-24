@@ -103,7 +103,8 @@ export const ANSONVILLE: GameMap = {
 // entrance at the bottom, encounter ground around the edges. Different looks come with real art.
 // 56x27 since Round 78 ("make all biomes bigger... eight new spawning platforms in each biome"): the
 // Round 65 map sits at the bottom middle (exit, shop and Reviver where they were), with 8 new grass
-// patches, a pond and room for more big scenery in the new space above and to the sides.
+// patches, a pond and room for more big scenery in the new space above and to the sides. The shop and
+// Reviver stand in the middle of the map, straight up from the entrance (Round 85).
 const BIOME_ROWS = [
   '########################################################',
   '#......................................................#',
@@ -122,13 +123,13 @@ const BIOME_ROWS = [
   '#.,,,,,.......,,,,~~~,,,,,,..,,,,,,~~~,,,,.......,,,,,.#',
   '#.,,,,,.......,,,,~~~,,,,,,..,,,,,,~~~,,,,.......,,,,,.#',
   '#.,,,,,.......,,,,,,,,,,,,,..,,,,,,,,,,,,,.......,,,,,.#',
-  '#......................................................#',
+  '#...........................$R.........................#',
   '#.........,,,.....TT..............TT.......,,,.........#',
   '#.,,,,,...,,,..............................,,,...,,,,,.#',
   '#.,,,,,...,,,.,,,,,,,,,,,..........,,,,,,,.,,,...,,,,,.#',
   '#.,,,,,.......,,,,,,,,,,,..........,,,,,,,.......,,,,,.#',
   '#.,,,,,.......,,,,,,TT,,,..........,,,TT,,.......,,,,,.#',
-  '#.,,,,,.......,,,,,,,,,,,...$R.....,,,,,,,.......,,,,,.#',
+  '#.,,,,,.......,,,,,,,,,,,..........,,,,,,,.......,,,,,.#',
   '#...........................@..........................#',
   '#...........................=..........................#',
   '############################E###########################',
