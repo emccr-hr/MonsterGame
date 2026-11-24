@@ -26,7 +26,7 @@ describe("Papai's next goal", () => {
 
   it('counts wild monsters once every place is open', () => {
     const s = { ...caught(newGame(content, 'forest', 1), 'bushtail'), openBiomes: content.biomes.map((b) => b.id) };
-    expect(nextGoal(content, s)).toMatch(/You have 1 of 33/);
+    expect(nextGoal(content, s)).toMatch(/You have 1 of 34/);
   });
 
   it("opens Avatar's arena when every wild monster is caught", () => {

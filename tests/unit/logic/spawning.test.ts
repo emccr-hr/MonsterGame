@@ -7,13 +7,13 @@ const content = realContent();
 const biomes = ['forest', 'beach', 'desert', 'snowy', 'volcano'];
 
 describe('spawnTable', () => {
-  it('has 5 wild species in the Forest, 6 in Snowy, 7 in Beach and Desert, 8 in Volcano (Rounds 64-76)', () => {
-    for (const b of biomes) expect(spawnTable(content, b)).toHaveLength(b === 'volcano' ? 8 : ['beach', 'desert'].includes(b) ? 7 : b === 'snowy' ? 6 : 5);
+  it('has 6 wild species in the Forest and Snowy, 7 in Beach and Desert, 8 in Volcano (Rounds 64-86)', () => {
+    for (const b of biomes) expect(spawnTable(content, b)).toHaveLength(b === 'volcano' ? 8 : ['beach', 'desert'].includes(b) ? 7 : 6);
   });
 
   it('uses the weights from monsters.json', () => {
     const forest = Object.fromEntries(spawnTable(content, 'forest').map((e) => [e.item, e.weight]));
-    expect(forest).toEqual({ peggy: 5, bushtail: 55, hootle: 40, mosspebble: 20, leafkite: 20 });
+    expect(forest).toEqual({ peggy: 5, bushtail: 55, hootle: 40, mosspebble: 20, leafkite: 20, 'earth-snail': 10 });
   });
 
   it("Avatar's arena ring (Round 71): every first form from every biome, each with the same chance", () => {

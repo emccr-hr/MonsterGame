@@ -156,7 +156,7 @@
     {
       "id": "burned-frozen",
       "question": "What are Burned and Frozen?",
-      "answer": "Burned monsters lose a little HP each turn for a while. Frozen monsters miss their next turn. Those are the only two.",
+      "answer": "Burned monsters lose a little HP each turn for a while. Frozen monsters miss their next turn. Those are the only two. The Shell move blocks the next attack completely, burn and all.",
       "covers": [
         "rule:statuses"
       ]

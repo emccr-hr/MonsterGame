@@ -980,5 +980,49 @@
     "power": "medium",
     "description": "A swipe with a burning paw.",
     "effects": []
+  },
+  {
+    "id": "tree-hit",
+    "name": "Tree Hit",
+    "element": "nature",
+    "power": "high",
+    "description": "Swings a tree from its shell and bonks the other monster.",
+    "effects": []
+  },
+  {
+    "id": "berry-kick",
+    "name": "Berry Kick",
+    "element": "nature",
+    "power": "medium",
+    "description": "Kicks a hard berry at the other monster.",
+    "effects": []
+  },
+  {
+    "id": "snail-bite",
+    "name": "Snail Bite",
+    "element": null,
+    "power": "medium",
+    "description": "A slow but strong snail chomp.",
+    "effects": []
+  },
+  {
+    "id": "shell",
+    "name": "Shell",
+    "element": null,
+    "power": "none",
+    "description": "Hides in its shell. The next attack on it does nothing at all.",
+    "effects": [
+      {
+        "kind": "shell"
+      }
+    ]
+  },
+  {
+    "id": "sand-punch",
+    "name": "Sand Punch",
+    "element": "earth",
+    "power": "medium-high",
+    "description": "A punch made of hard-packed sand.",
+    "effects": []
   }
 ]

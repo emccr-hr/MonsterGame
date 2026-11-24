@@ -130,6 +130,15 @@ Build each move **once** and give it to any monster that knows it. Element tags:
 | Fire Bite | 🔥 | Damage | Medium–High | Lava Tiger |
 | Fire Paw | 🔥 | Damage | Medium | Lava Tiger |
 
+### New moves (Round 86)
+| Move | Tag | Effect | Power | Known by |
+|---|---|---|---|---|
+| Tree Hit | 🌿 | Damage | High | Earth Snail |
+| Berry Kick | 🌿 | Damage | Medium | Earth Snail, World Snail |
+| Snail Bite | | Damage | Medium | Earth Snail |
+| Shell | | The next attack on it does nothing at all: no damage, no Burned, no weakening (new rule) | — | Earth Snail |
+| Sand Punch | 🪨 | Damage | Medium–High | World Snail |
+
 ## Abilities in use
 | Ability | Effect | Monsters |
 |---|---|---|
@@ -146,6 +155,7 @@ Build each move **once** and give it to any monster that knows it. Element tags:
 | Apex Predator | 5% chance per turn the opponent is intimidated and doesn't attack (same rule as Cute) | Mr. Toothache |
 | Apex Predator (Megalodon) | The same, at 10% | Megalodon |
 | Deep Freeze | +15% chance that its freezing moves freeze (new rule, Round 68) | Blizzard Boy |
+| Damp Moss | Can never be Burned (same rule as Fur Coat, for Burned) *(Round 86)* | Earth Snail, World Snail |
 | Lava Body | Can never be Frozen (new name, same rule as Fur Coat) | Flame Cat, Lava Tiger |
 | Overgrowth | Moss grows back on it: heals 6% each turn. *(new, Round 69)* | Mosspebble, Mossboulder |
 | Updraft | Floats up on the wind: 12% chance attacks on it miss. *(new, Round 69)* | Leafkite, Stormkite |

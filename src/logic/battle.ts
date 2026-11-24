@@ -22,6 +22,8 @@ export interface Combatant {
   weakened: number;
   /** Underground after the first half of Dig: can't be hit, attacks next turn. */
   digging: boolean;
+  /** Hiding in its shell (Shell, Round 86): the next attack on it does nothing. */
+  shelled: boolean;
 }
 
 export interface Side {
@@ -53,7 +55,7 @@ export type Action =
   | { kind: 'cage' }
   | { kind: 'run' };
 
-export type MissReason = 'underground' | 'slippery' | 'colony' | 'lavaSkin' | 'immune';
+export type MissReason = 'shell' | 'underground' | 'slippery' | 'colony' | 'lavaSkin' | 'immune';
 export type SkipReason = 'frozen' | 'sleeping' | 'cute';
 
 export type BattleEvent =
@@ -65,6 +67,7 @@ export type BattleEvent =
   | { type: 'burnHurt'; side: SideId; amount: number; hp: number }
   | { type: 'skip'; side: SideId; reason: SkipReason }
   | { type: 'dig'; side: SideId }
+  | { type: 'shell'; side: SideId }
   | { type: 'boost'; side: SideId; stacks: number }
   | { type: 'weakened'; side: SideId }
   | { type: 'faint'; side: SideId; index: number }
@@ -78,7 +81,7 @@ export interface TurnResult {
   events: BattleEvent[];
 }
 
-const combatant = (m: MonsterInstance): Combatant => ({ m: { ...m, moves: [...m.moves] }, frozen: false, sleeping: false, boost: 0, weakened: 0, digging: false });
+const combatant = (m: MonsterInstance): Combatant => ({ m: { ...m, moves: [...m.moves] }, frozen: false, sleeping: false, boost: 0, weakened: 0, digging: false, shelled: false });
 
 /** Starts a battle. The player's first awake monster leads. */
 export function startBattle(
@@ -161,6 +164,7 @@ export function chooseEnemyMove(content: Content, s: BattleState, rng: Rng): str
     if (has(mv, 'healSelf') && healthy) return false;
     if (has(mv, 'healTeam') && s.enemy.team.length < 2) return false;
     if (has(mv, 'attackBoost') && me.boost >= has(mv, 'attackBoost')!.maxStacks) return false;
+    if (has(mv, 'shell') && me.shelled) return false;
     return true;
   });
   return rng.pick(useful.length ? useful : me.m.moves);
@@ -271,6 +275,10 @@ class Turn {
     const healSelf = has(mv, 'healSelf');
     if (healSelf) this.heal(id, this.side(id).active, maxHp(this.content, me.m) * healSelf.fraction);
     if (has(mv, 'skipNextTurn')) me.sleeping = true;
+    if (has(mv, 'shell')) {
+      me.shelled = true;
+      this.events.push({ type: 'shell', side: id });
+    }
     const healTeam = has(mv, 'healTeam');
     if (healTeam) {
       this.side(id).team.forEach((c, i) => {
@@ -280,6 +288,12 @@ class Turn {
     if (!targetsFoe || !foe || isKnockedOut(foe.m)) return;
 
     // From here the move hits (or misses) the other monster.
+    if (foe.shelled) {
+      // Shell (Round 86): this attack does nothing at all, then the shell opens.
+      foe.shelled = false;
+      this.events.push({ type: 'miss', side: foeId, reason: 'shell' });
+      return;
+    }
     const miss = this.missReason(me, foe, mv);
     if (miss) {
       this.events.push({ type: 'miss', side: foeId, reason: miss });
@@ -363,7 +377,7 @@ class Turn {
     const p = activeOf(this.s.player);
     if (p && isKnockedOut(p.m) && !this.s.mustSwitch) {
       this.events.push({ type: 'faint', side: 'player', index: this.s.player.active });
-      p.frozen = p.sleeping = p.digging = false;
+      p.frozen = p.sleeping = p.digging = p.shelled = false;
       if (this.s.player.team.some((c) => !isKnockedOut(c.m))) this.s.mustSwitch = true;
     }
     if (e && isKnockedOut(e.m)) {
@@ -384,7 +398,7 @@ class Turn {
 
 function switchTo(s: BattleState, to: number) {
   const out = activeOf(s.player);
-  if (out) Object.assign(out, { boost: 0, weakened: 0, digging: false, sleeping: false, frozen: false });
+  if (out) Object.assign(out, { boost: 0, weakened: 0, digging: false, shelled: false, sleeping: false, frozen: false });
   s.player.active = to;
 }
 

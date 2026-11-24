@@ -48,6 +48,8 @@ One file per monster in `Monsters/` (copy `_Monster-Template.md`). Goal: 2–3 w
 | [Erupticone](Monsters/Erupticone.md) | Volcano | Evolve only | 7x Dumble | Final form | Claude-made (Round 69), needs his OK |
 | [Flame Cat](Monsters/Flame-Cat.md) | Volcano | 20 | 1.5x Dumble | Lava Tiger (level 15) | ✅ Designer (Round 76) |
 | [Lava Tiger](Monsters/Lava-Tiger.md) | Volcano | Evolve only | 3x Dumble | Final form | ✅ Designer (Round 76) |
+| [Earth Snail](Monsters/Earth-Snail.md) | Forest | 10 | 4x Dumble | World Snail (level 20) | ✅ Designer (Round 86); spawn number proposed |
+| [World Snail](Monsters/World-Snail.md) | Forest | Evolve only | 6x Dumble (proposal) | Final form | ✅ Designer (Round 86); size and ability proposed |
 | [Blizzard Boy](Monsters/Blizzard-Boy.md) | Snowy | 10 | 4x Dumble | Rock Crystal (level 20) | ✅ Designer (Round 68) |
 | [Rock Crystal](Monsters/Rock-Crystal.md) | Snowy | Evolve only | 6x Dumble | Final form | ✅ Designer (Round 68); moves and ability Claude-picked |
 | [Crystalump](Monsters/Crystalump.md) | Desert | 20 | 1.5x Dumble | Crystower (level 22) | Claude-made (Round 66), needs his OK |
@@ -82,7 +84,7 @@ One file per monster in `Monsters/` (copy `_Monster-Template.md`). Goal: 2–3 w
 Most monster families have **2 forms**: base, then one evolution (final). The designer will say which families get a **3rd form**. Default: assume 2 forms unless told otherwise.
 
 ## Center gate (designer, Round 52)
-To open the gate to Avatar, catch **one of every monster that spawns naturally** (base forms). Current list: Peggy, Dumble, Anti-Ant, Yeti, Blobbin, Bushtail, Hootle, Sidesnap, Squawkle, Stingtail, Camelump, Pengwiggle, Frostpaw, Cinderscale, Ashflap, Mr. Toothache, Crystalump, Lanternpuff, Sandcastlet, Tumbleball, Lavamug, Blizzard Boy, Mosspebble, Leafkite, Bubblebop, Driftlog, Pricklepot, Dialstone, Snowglobby, Mittenpuff, Candlewick, Puffcone (**32**, since Round 69). Evolved forms don't spawn and don't count.
+To open the gate to Avatar, catch **one of every monster that spawns naturally** (base forms). Current list: Peggy, Dumble, Anti-Ant, Yeti, Blobbin, Bushtail, Hootle, Sidesnap, Squawkle, Stingtail, Camelump, Pengwiggle, Frostpaw, Cinderscale, Ashflap, Mr. Toothache, Crystalump, Lanternpuff, Sandcastlet, Tumbleball, Lavamug, Blizzard Boy, Mosspebble, Leafkite, Bubblebop, Driftlog, Pricklepot, Dialstone, Snowglobby, Mittenpuff, Candlewick, Puffcone, Flame Cat, Earth Snail (**34**, since Round 86). Evolved forms don't spawn and don't count.
 
 ## Spawn chances
 Each monster has a spawn number (bigger = more common). Within a biome, the numbers are shared out fairly. Today each biome happens to total 100, so the numbers read as percentages.

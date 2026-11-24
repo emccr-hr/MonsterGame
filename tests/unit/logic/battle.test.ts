@@ -606,3 +606,43 @@ describe('rules for the whole engine', () => {
     expect(weakWins).toBeLessThanOrEqual(2);
   });
 });
+
+describe('Earth Snail: Shell and Damp Moss (Round 86)', () => {
+  it('Shell: the next attack on it does nothing at all, then the shell opens', () => {
+    // Earth Snail (speed 26) is faster than World Snail (speed 22), so it hides first and the Sand Punch hits the shell.
+    const s0 = battle([mon(content, 'earth-snail', 20)], mon(content, 'world-snail', 20, { moves: ['sand-punch'] }));
+    const r1 = turn(s0, use('shell'));
+    expect(ofType(r1.events, 'shell')).toEqual([{ type: 'shell', side: 'player' }]);
+    expect(ofType(r1.events, 'miss')).toEqual([{ type: 'miss', side: 'player', reason: 'shell' }]);
+    expect(r1.state.player.team[0]!.m.hp).toBe(s0.player.team[0]!.m.hp);
+    expect(r1.state.player.team[0]!.shelled).toBe(false);
+    // Next turn the shell is open again: the attack lands.
+    const r2 = turn(r1.state, use('snail-bite'));
+    expect(ofType(r2.events, 'damage').some((e) => e.side === 'player')).toBe(true);
+  });
+
+  it('Shell blocks damage and weakening completely', () => {
+    const s0 = battle([mon(content, 'dumble', 20, { moves: ['bite'] })], mon(content, 'earth-snail', 20, { moves: ['shell'] }));
+    s0.enemy.team[0]!.shelled = true;
+    const r = turn(s0, use('bite'));
+    expect(ofType(r.events, 'miss')).toContainEqual({ type: 'miss', side: 'enemy', reason: 'shell' });
+    expect(ofType(r.events, 'damage').filter((e) => e.side === 'enemy')).toHaveLength(0);
+    expect(r.state.enemy.team[0]!.m.hp).toBe(s0.enemy.team[0]!.m.hp);
+  });
+
+  it('the enemy does not use Shell again while its shell is already closed', () => {
+    const s0 = battle([mon(content, 'dumble', 20, { moves: ['popsicle'] })], mon(content, 'earth-snail', 20, { moves: ['shell', 'snail-bite'] }));
+    s0.enemy.team[0]!.shelled = true;
+    const r = turn(s0, use('popsicle'), YES());
+    expect(ofType(r.events, 'move').filter((e) => e.side === 'enemy').map((e) => e.move)).toEqual(['snail-bite']);
+  });
+
+  it('Damp Moss: Earth Snail and World Snail can never be Burned', () => {
+    for (const id of ['earth-snail', 'world-snail']) {
+      const s0 = battle([mon(content, 'cinderscale', 20)], mon(content, id, 20, { moves: ['berry-kick'] }));
+      const r = turn(s0, use('burn'), YES());
+      expect(ofType(r.events, 'status')).toHaveLength(0);
+      expect(r.state.enemy.team[0]!.m.burned).toBe(0);
+    }
+  });
+});

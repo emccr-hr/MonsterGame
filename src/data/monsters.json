@@ -2252,5 +2252,72 @@
       "defense": 85,
       "speed": 54
     }
+  },
+  {
+    "id": "earth-snail",
+    "name": "Earth Snail",
+    "kind": "monster",
+    "biome": "forest",
+    "spawnWeight": 10,
+    "sizeLabel": "Large (4x Dumble)",
+    "scale": 4,
+    "look": "A big green-gray snail whose shell is a little hill with trees, bushes and grass growing on top.",
+    "art": {
+      "body": "#a8b878",
+      "accent": "#4f9a3a",
+      "markings": "spots"
+    },
+    "traits": [],
+    "ability": "damp-moss",
+    "moves": [
+      "tree-hit",
+      "berry-kick",
+      "snail-bite",
+      "shell"
+    ],
+    "evolvesTo": {
+      "monster": "world-snail",
+      "level": 20
+    },
+    "evolvesFrom": null,
+    "catchable": true,
+    "baseStats": {
+      "hp": 66,
+      "attack": 46,
+      "defense": 62,
+      "speed": 26
+    }
+  },
+  {
+    "id": "world-snail",
+    "name": "World Snail",
+    "kind": "monster",
+    "biome": "forest",
+    "spawnWeight": null,
+    "sizeLabel": "Huge (6x Dumble)",
+    "scale": 6,
+    "look": "A giant snail whose shell is a whole little world: trees and grass on one side, ice on another, and glowing lava on another.",
+    "art": {
+      "body": "#9aa8c0",
+      "accent": "#ff7a2a",
+      "markings": "spots"
+    },
+    "traits": [],
+    "ability": "damp-moss",
+    "moves": [
+      "burn",
+      "freeze",
+      "berry-kick",
+      "sand-punch"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "earth-snail",
+    "catchable": true,
+    "baseStats": {
+      "hp": 108,
+      "attack": 66,
+      "defense": 84,
+      "speed": 22
+    }
   }
 ]

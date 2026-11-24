@@ -95,6 +95,8 @@ export function eventText(content: Content, s: BattleState, e: BattleEvent): str
       return null;
     case 'miss':
       switch (e.reason) {
+        case 'shell':
+          return `${who(e.side)}'s shell blocked it! Nothing happened.`;
         case 'underground':
           return `It missed! ${who(e.side)} is underground.`;
         case 'slippery': {
@@ -127,6 +129,8 @@ export function eventText(content: Content, s: BattleState, e: BattleEvent): str
       }
     case 'dig':
       return `${who(e.side)} dug underground!`;
+    case 'shell':
+      return `${who(e.side)} hid in its shell!`;
     case 'boost':
       return `${who(e.side)} is getting stronger!`;
     case 'weakened':
