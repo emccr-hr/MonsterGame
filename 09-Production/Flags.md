@@ -195,3 +195,7 @@ Each item: what he asked for → why it's flagged → suggested simple version �
 ## N3: "Iceman" is an existing superhero's name (Round 68)
 - **Problem:** the designer named his ice superhero "Iceman", the name of a well-known comic-book superhero. The game uses only original names (Flags N1, N2).
 - **Resolved (Round 68):** same idea and powers, new name picked by the designer: **Blizzard Boy**. His look is an original design (ice body, a mask, a cape and a snowflake on his chest), not drawn from any comic.
+
+## N4: "Fire Punch" is a move name from an existing game (Round 76)
+- **Problem:** the designer gave Flame Cat a move called "Fire Punch", the name of a move in a well-known monster game (Flags N1, N2).
+- **Resolved (Round 76):** same move, new name picked by the designer: **Magma Fist**.

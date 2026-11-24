@@ -401,3 +401,14 @@ Then:
 > Spots all over, not just around the Avatar's arena. All around Insanville, I want there to be grassy spots.
 
 *(note: "Insanville" = Ansonville.)*
+
+## 2026-11-23 — Round 76 (Flame Cat and Lava Tiger)
+
+> Can you create a cat's made of lava that spawns in the fire zone? It attacks our fire punch. Fire kick. Burn. And scratch. I wanted to put it to be it can't be frozen. I want it to be called Flame Cat. And I want it to evolve into Lava Tiger. That looks like a bigger version of it with black stripes. A longer body. And I want it attacks to be Fire Bite. Scratch. Fire Paw. And kick. I want it to have the same ability. I want Fire Cat to be One and a half times bigger than Dumple. I want Lava Tiger to be double the size of Fire Cat.
+
+> chance to be 20%. Spawn chance 20%.
+
+His answers to two follow-up questions:
+> "Fire Punch" is a move name in a famous monster game, so he picked a new name: **Magma Fist**. Flame Cat evolves at **level 15**.
+
+*(note: "a cat's made of lava" = a cat made of lava; "It attacks our" = its attacks are; "the fire zone" = the Volcano; "Fire Cat" = Flame Cat; "Dumple" = Dumble. Lava Tiger is double Flame Cat's 1.5x, so 3x.)*

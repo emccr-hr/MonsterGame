@@ -1880,6 +1880,73 @@
     }
   },
   {
+    "id": "flame-cat",
+    "name": "Flame Cat",
+    "kind": "monster",
+    "biome": "volcano",
+    "spawnWeight": 20,
+    "sizeLabel": "Small-medium (1.5x Dumble)",
+    "scale": 1.5,
+    "look": "An orange-red cat made of glowing lava, with yellow cracks, flame ears and a flickering flame tail.",
+    "art": {
+      "body": "#ff5a1f",
+      "accent": "#ffd166",
+      "markings": "stripes"
+    },
+    "traits": [],
+    "ability": "lava-body",
+    "moves": [
+      "magma-fist",
+      "fire-kick",
+      "burn",
+      "scratch"
+    ],
+    "evolvesTo": {
+      "monster": "lava-tiger",
+      "level": 15
+    },
+    "evolvesFrom": null,
+    "catchable": true,
+    "baseStats": {
+      "hp": 47,
+      "attack": 50,
+      "defense": 50,
+      "speed": 53
+    }
+  },
+  {
+    "id": "lava-tiger",
+    "name": "Lava Tiger",
+    "kind": "monster",
+    "biome": "volcano",
+    "spawnWeight": null,
+    "sizeLabel": "Large (3x Dumble)",
+    "scale": 3,
+    "look": "A bigger Flame Cat with black stripes and a longer body, glowing lava between the stripes.",
+    "art": {
+      "body": "#d9481a",
+      "accent": "#1a1210",
+      "markings": "stripes"
+    },
+    "traits": [],
+    "ability": "lava-body",
+    "moves": [
+      "fire-bite",
+      "scratch",
+      "fire-paw",
+      "kick"
+    ],
+    "evolvesTo": null,
+    "evolvesFrom": "flame-cat",
+    "catchable": true,
+    "baseStats": {
+      "hp": 78,
+      "attack": 70,
+      "defense": 70,
+      "speed": 62
+    }
+  },
+  {
     "kind": "monster",
     "traits": [],
     "catchable": true,

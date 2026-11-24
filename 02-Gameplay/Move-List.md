@@ -122,6 +122,14 @@ Build each move **once** and give it to any monster that knows it. Element tags:
 | Rock Spit | 🪨 | Damage | Medium | Puffcone, Erupticone |
 | Volcano Burst | 🔥 | Damage | High | Erupticone |
 
+### New moves (Round 76)
+| Move | Tag | Effect | Power | Known by |
+|---|---|---|---|---|
+| Magma Fist | 🔥 | Damage | Medium | Flame Cat |
+| Fire Kick | 🔥 | Damage | Medium–High | Flame Cat |
+| Fire Bite | 🔥 | Damage | Medium–High | Lava Tiger |
+| Fire Paw | 🔥 | Damage | Medium | Lava Tiger |
+
 ## Abilities in use
 | Ability | Effect | Monsters |
 |---|---|---|
@@ -138,6 +146,7 @@ Build each move **once** and give it to any monster that knows it. Element tags:
 | Apex Predator | 5% chance per turn the opponent is intimidated and doesn't attack (same rule as Cute) | Mr. Toothache |
 | Apex Predator (Megalodon) | The same, at 10% | Megalodon |
 | Deep Freeze | +15% chance that its freezing moves freeze (new rule, Round 68) | Blizzard Boy |
+| Lava Body | Can never be Frozen (new name, same rule as Fur Coat) | Flame Cat, Lava Tiger |
 | Overgrowth | Moss grows back on it: heals 6% each turn. *(new, Round 69)* | Mosspebble, Mossboulder |
 | Updraft | Floats up on the wind: 12% chance attacks on it miss. *(new, Round 69)* | Leafkite, Stormkite |
 | Bouncy Skin | Attacks bounce off: takes 12% less damage. *(new, Round 69)* | Bubblebop, Bubblecloud |
