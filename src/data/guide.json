@@ -94,6 +94,11 @@
       "id": "after-avatar",
       "screen": "Map",
       "text": "You beat Avatar! The game keeps going. Catch Big Monsters and fill your Monster Book!"
+    },
+    {
+      "id": "pen",
+      "screen": "Pen",
+      "text": "Put up to 5 monsters in the pen. They walk around and grow while you play. Take them out to battle!"
     }
   ],
   "topics": [
@@ -164,9 +169,27 @@
     {
       "id": "big-monsters",
       "question": "What is a Big Monster?",
-      "answer": "Sometimes a wild monster is BIG. You can spot it on the map: it looks bigger than the others. It is stronger, harder to catch, and gets a star in your Monster Book. About 1 in 100!",
+      "answer": "Sometimes a wild monster is BIG. You can spot it on the map: it looks bigger than the others. It is stronger, harder to catch, and gets a star in your Monster Book. About 1 in 100! You can ride a Big one.",
       "covers": [
         "rule:big"
+      ]
+    },
+    {
+      "id": "riding",
+      "question": "Can I ride my monsters?",
+      "answer": "Yes, if it is a Big one (with a star)! Press M, pick Team and Backpack, pick your Big monster and press R (or click Ride). You go twice as fast. A Big Beach monster can even swim across water! Press R again to get off.",
+      "covers": [
+        "key:R",
+        "rule:riding"
+      ]
+    },
+    {
+      "id": "pen",
+      "question": "What is the pen?",
+      "answer": "The fenced yard in Ansonville, east of the arena. Walk into its sign to put up to 5 monsters in. They walk around and get XP every minute while you play. They can not battle until you take them out.",
+      "covers": [
+        "scene:Pen",
+        "rule:pen"
       ]
     },
     {

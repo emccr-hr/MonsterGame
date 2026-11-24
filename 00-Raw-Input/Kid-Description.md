@@ -506,3 +506,7 @@ His answers to two follow-up questions:
 *(note: read as: each biome map grows a bit at the top, and that new top part is a small town with houses made of wood that matches the biome; the Shop and Reviver move into the town. Names: Lava Town = Volcano, Ice Town = Snowy, Forest Village = Forest, Water City = Beach.)*
 
 *(Round 90 answer: the Desert's town is **Dune City**.)*
+
+## 2026-11-24 — Round 91 (Water City is now Aquatown)
+
+> Can you name Water City Aquatown?

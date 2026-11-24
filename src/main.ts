@@ -11,12 +11,14 @@ import { MapScene } from './scenes/MapScene';
 import { MenuScene } from './scenes/MenuScene';
 import { PapaiScene } from './scenes/PapaiScene';
 import { ShopScene } from './scenes/ShopScene';
+import { PenScene } from './scenes/PenScene';
 import { TeamScene } from './scenes/TeamScene';
 import { TeleportScene } from './scenes/TeleportScene';
 import { EndingScene } from './scenes/EndingScene';
 import { PickBiomeScene } from './scenes/PickBiome';
 import { TitleScene } from './scenes/Title';
 import { installTestHook } from './testHook';
+import { startPenClock } from './state/penClock';
 import { installSharpRendering, RENDER_SCALE } from './ui/display';
 
 installTestHook(__APP_VERSION__);
@@ -31,8 +33,9 @@ const game = new Phaser.Game({
   antialias: true,
   roundPixels: true,
   scale: { mode: Phaser.Scale.FIT, autoCenter: Phaser.Scale.CENTER_BOTH },
-  scene: [BootScene, TitleScene, PickBiomeScene, ...MAPS.map((m) => new MapScene(m)), BattleScene, EvolveScene, MenuScene, TeamScene, BagScene, BookScene, ShopScene, PapaiScene, TeleportScene, EndingScene],
+  scene: [BootScene, TitleScene, PickBiomeScene, ...MAPS.map((m) => new MapScene(m)), BattleScene, EvolveScene, MenuScene, TeamScene, BagScene, BookScene, ShopScene, PenScene, PapaiScene, TeleportScene, EndingScene],
 });
 
 installSharpRendering(game);
 installEncounterFlow(game);
+startPenClock(); // pen monsters grow while the game is open (Round 89)

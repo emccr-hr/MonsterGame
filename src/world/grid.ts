@@ -29,7 +29,8 @@ export type TileKind =
   | 'arena'
   | 'arenaGate'
   | 'exit'
-  | 'gate';
+  | 'gate'
+  | 'pen';
 
 const LEGEND: Readonly<Record<string, TileKind>> = {
   '#': 'wall',
@@ -45,6 +46,7 @@ const LEGEND: Readonly<Record<string, TileKind>> = {
   a: 'arena',
   A: 'arenaGate',
   E: 'exit',
+  P: 'pen',
 };
 
 export function width(map: GameMap): number {

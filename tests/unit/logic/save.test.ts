@@ -85,11 +85,18 @@ describe('deserialize', () => {
 });
 
 describe('migrations', () => {
-  it('starts with no steps while the version is 1', () => {
-    expect(SAVE_VERSION).toBe(1);
-    expect(Object.keys(MIGRATIONS)).toEqual([]);
+  it('version 2 (Rounds 88-89) adds riding and the pen', () => {
+    expect(SAVE_VERSION).toBe(2);
+    expect(Object.keys(MIGRATIONS)).toEqual(['1']);
   });
 
-  // With SAVE_VERSION 1 and versions below 1 refused as "no version", the migration loop cannot
-  // run yet. When SAVE_VERSION becomes 2, add a test that MIGRATIONS[1] upgrades a v1 save.
+  it('a version 1 save loads with nobody ridden and an empty pen', () => {
+    const { riding: _r, pen: _p, ...old } = newGame(content, 'forest', 7);
+    const loaded = deserialize(JSON.stringify({ version: 1, state: old }));
+    expect(loaded.ok).toBe(true);
+    if (loaded.ok) {
+      expect(loaded.state.riding).toBe(null);
+      expect(loaded.state.pen).toEqual([]);
+    }
+  });
 });

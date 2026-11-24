@@ -232,7 +232,7 @@ describe('monkeys, a dragon and the sea (Rounds 82-84)', () => {
 });
 
 describe('biome towns (Round 90)', () => {
-  const names: Record<string, string> = { forest: 'Forest Village', beach: 'Water City', desert: 'Dune City', snowy: 'Ice Town', volcano: 'Lava Town' };
+  const names: Record<string, string> = { forest: 'Forest Village', beach: 'Aquatown', desert: 'Dune City', snowy: 'Ice Town', volcano: 'Lava Town' };
 
   it.each(BIOME_MAPS.map((m) => m.id))('%s has its town on top, with the Shop and Reviver inside and reachable', (id) => {
     const map = mapById(id)!;
