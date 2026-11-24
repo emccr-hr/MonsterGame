@@ -62,25 +62,33 @@ export function finishBattle(content: Content, state: GameState, battle: BattleS
   for (const c of battle.player.team) next = replaceMonster(next, { ...c.m });
 
   const enemy = activeOf(battle.enemy)!.m;
+  /** XP for every awake team monster (none on the very first catch, with no team yet), and gems. */
+  const giveRewards = (s: GameState): GameState => {
+    const awake = s.team.filter((m) => !isKnockedOut(m));
+    rewards.xp = awake.length ? xpYield(enemy.level) : 0;
+    rewards.gems = wildBattleGems(content, rng);
+    let out = addGems(s, rewards.gems);
+    for (const m of awake) {
+      const grown = addXp(content, m, rewards.xp);
+      if (grown.levelsGained) rewards.levelUps[m.uid] = grown.levelsGained;
+      if (grown.canEvolveInto) rewards.evolutions[m.uid] = grown.canEvolveInto;
+      out = replaceMonster(out, grown.monster);
+    }
+    return out;
+  };
   switch (battle.outcome) {
     case 'won': {
       if (battle.kind === 'boss') {
         next = { ...next, avatarBeaten: true };
         break;
       }
-      rewards.xp = xpYield(enemy.level);
-      rewards.gems = wildBattleGems(content, rng);
-      next = addGems(next, rewards.gems);
-      for (const m of next.team) {
-        if (isKnockedOut(m)) continue;
-        const grown = addXp(content, m, rewards.xp);
-        if (grown.levelsGained) rewards.levelUps[m.uid] = grown.levelsGained;
-        if (grown.canEvolveInto) rewards.evolutions[m.uid] = grown.canEvolveInto;
-        next = replaceMonster(next, grown.monster);
-      }
+      next = giveRewards(next);
       break;
     }
     case 'caught': {
+      // A catch pays like a win (designer, Round 77): the team that fought gets the XP and gems
+      // before the new monster joins.
+      next = giveRewards(next);
       const added = addCaught(content, next, enemy);
       next = added.state;
       rewards.caught = added.monster;

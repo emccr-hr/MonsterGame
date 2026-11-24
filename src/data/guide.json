@@ -229,7 +229,7 @@
     {
       "id": "gems",
       "question": "How do I get Magic Gems?",
-      "answer": "Win battles against wild monsters. Each win gives you some gems. Spend them at the shop.",
+      "answer": "Win a battle or catch a monster: both give you gems, and your team gets XP. Spend gems at the shop.",
       "covers": [
         "rule:gems"
       ]

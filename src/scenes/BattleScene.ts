@@ -413,8 +413,9 @@ export class BattleScene extends Phaser.Scene {
       const name = species(content, rewards.caught.species).name;
       lines.push({ text: rewards.caughtToTeam ? `${name} joined your team!` : `${name} went to your backpack.` });
     }
-    if (ended.outcome === 'won' && ended.kind === 'wild') {
-      lines.push({ text: `Your team got ${rewards.xp} XP and ${rewards.gems} Magic Gems!` });
+    if ((ended.outcome === 'won' || ended.outcome === 'caught') && ended.kind === 'wild') {
+      // A catch pays like a win (Round 77). The very first catch has no team yet, so it's gems only.
+      lines.push({ text: rewards.xp > 0 ? `Your team got ${rewards.xp} XP and ${rewards.gems} Magic Gems!` : `You got ${rewards.gems} Magic Gems!` });
       for (const [uid, levels] of Object.entries(rewards.levelUps)) {
         const m = state.team.find((x) => x.uid === Number(uid));
         if (m) lines.push({ text: `${species(content, m.species).name} grew to level ${m.level}!${levels > 1 ? ` (+${levels})` : ''}`, show: () => playSfx('level-up') });

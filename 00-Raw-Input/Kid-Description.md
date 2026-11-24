@@ -424,3 +424,11 @@ His answers to two follow-up questions:
 > "Fire Punch" is a move name in a famous monster game, so he picked a new name: **Magma Fist**. Flame Cat evolves at **level 15**.
 
 *(note: "a cat's made of lava" = a cat made of lava; "It attacks our" = its attacks are; "the fire zone" = the Volcano; "Fire Cat" = Flame Cat; "Dumple" = Dumble. Lava Tiger is double Flame Cat's 1.5x, so 3x.)*
+
+## 2026-11-23 — Round 77 (arena count on screen, and rewards for catching)
+
+> Can you show me the amount of monsters that I need to catch until the Avatar's Arena is open?
+
+> Can you make it so that if you catch a monster, you still get money and XP?
+
+*(note: "money" = Magic Gems.)*

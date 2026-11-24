@@ -48,6 +48,25 @@ describe('finishing a battle', () => {
     expect(after.bag.cage).toBe(99);
     expect(rewards.caught?.uid).toBe(after.team[0]!.uid);
     expect(rewards.caughtToTeam).toBe(true);
+    // The very first catch: gems, but no XP (there's no team yet to get it).
+    expect(rewards.gems).toBeGreaterThan(0);
+    expect(after.gems).toBe(s.gems + rewards.gems);
+    expect(rewards.xp).toBe(0);
+  });
+
+  it('a catch pays like a win: the team that fought gets XP and gems (Round 77)', () => {
+    const s = withTeam(['moltenmaw'], 20);
+    const { state, battle } = startWildEncounter(content, s, 'forest', createRng(5), { species: 'bushtail', level: 12, big: false });
+    const done = play(battle, { kind: 'cage' }, 0);
+    expect(done.outcome).toBe('caught');
+    const { state: after, rewards } = finishBattle(content, state, done, createRng(2));
+    expect(rewards.xp).toBeGreaterThan(0);
+    expect(rewards.gems).toBeGreaterThan(0);
+    expect(after.gems).toBe(s.gems + rewards.gems);
+    const fighter = after.team.find((m) => m.species === 'moltenmaw')!;
+    expect(fighter.xp > s.team[0]!.xp || fighter.level > s.team[0]!.level).toBe(true);
+    // The new monster joins without the XP.
+    expect(after.team.find((m) => m.species === 'bushtail')!.xp).toBe(0);
   });
 
   it('a win gives every awake team monster XP, and gems', () => {
