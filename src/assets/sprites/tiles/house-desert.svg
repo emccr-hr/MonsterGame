@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- A house in Dune City (designer, Round 90): a sandy house of sun-bleached palm wood with a flat clay roof -->
+  <g stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="32" cy="62" rx="28" ry="2" fill="#000" opacity=".18"/>
+    <rect x="8" y="26" width="48" height="28" fill="#d8a868" stroke="#8a5a28"/>
+    <path d="M8 33 H56 M8 40 H56 M8 47 H56" stroke="#8a5a28" stroke-width="1.2" opacity=".7"/>
+    <rect x="4" y="18" width="56" height="8" rx="2" fill="#d06a3a" stroke="#8a3a18"/>
+    <rect x="27" y="38" width="10" height="16" rx="1.5" fill="#8a5a28" stroke="#8a5a28"/>
+    <circle cx="34.6" cy="46.4" r="1" fill="#f0c890" stroke="none"/>
+    <rect x="13" y="34" width="9" height="8" fill="#ffe9a0" stroke="#8a5a28"/><path d="M17.5 34 V42 M13 38 H22" stroke="#8a5a28" stroke-width="1.2"/>
+    <rect x="42" y="34" width="9" height="8" fill="#ffe9a0" stroke="#8a5a28"/><path d="M46.5 34 V42 M42 38 H51" stroke="#8a5a28" stroke-width="1.2"/>
+    <path d="M52 20 v-8 M48 14 h8" stroke="#3fae4a" stroke-width="2.4"/>
+  </g>
+</svg>

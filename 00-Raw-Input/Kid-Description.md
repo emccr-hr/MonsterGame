@@ -498,3 +498,11 @@ His answers to two follow-up questions:
 *(note: he corrected himself: they level up "while they're there", in the pen.)*
 
 *(Round 89 answers, from his picks: pen monsters grow **over real time** while the game is open, at **about the same speed as battling**; Claude picks the spot for the pen.)*
+
+## 2026-11-23 — Round 90 (a little town in each biome)
+
+> Can you add a little part of each biome for a little town dedicated to that biome with different wood depending on what your biome looks like and houses, and put the shop and healing thingy there. I want you to expand a little bit just further to the top of the biome, and I want you to give them a name, like Lava Town, Ice Town, Forest Village. And Water City.
+
+*(note: read as: each biome map grows a bit at the top, and that new top part is a small town with houses made of wood that matches the biome; the Shop and Reviver move into the town. Names: Lava Town = Volcano, Ice Town = Snowy, Forest Village = Forest, Water City = Beach.)*
+
+*(Round 90 answer: the Desert's town is **Dune City**.)*

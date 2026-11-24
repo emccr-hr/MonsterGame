@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- A house in Ice Town (designer, Round 90): a house of pale birch wood with snow piled on the roof and an icy blue door -->
+  <g stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="32" cy="62" rx="28" ry="2" fill="#000" opacity=".18"/>
+    <rect x="8" y="26" width="48" height="28" fill="#ece4d4" stroke="#7a7468"/>
+    <path d="M8 33 H56 M8 40 H56 M8 47 H56" stroke="#7a7468" stroke-width="1.2" opacity=".7"/>
+    <path d="M2 30 L32 6 L62 30 Z" fill="#ffffff" stroke="#5f9fcf"/><path d="M8 28 L32 10 L56 28" fill="none" stroke="#cfefff" stroke-width="1.6"/>
+    <rect x="27" y="38" width="10" height="16" rx="1.5" fill="#4fa3e0" stroke="#7a7468"/>
+    <circle cx="34.6" cy="46.4" r="1" fill="#cfefff" stroke="none"/>
+    <rect x="13" y="34" width="9" height="8" fill="#ffe9a0" stroke="#7a7468"/><path d="M17.5 34 V42 M13 38 H22" stroke="#7a7468" stroke-width="1.2"/>
+    <rect x="42" y="34" width="9" height="8" fill="#ffe9a0" stroke="#7a7468"/><path d="M46.5 34 V42 M42 38 H51" stroke="#7a7468" stroke-width="1.2"/>
+    <path d="M14 24 v4 M24 24 v3 M40 24 v4 M50 24 v3" stroke="#bfe6ff" stroke-width="2"/><path d="M20 38 h2 M42 46 h2 M30 50 h2" stroke="#3a3428" stroke-width="1.6"/>
+  </g>
+</svg>

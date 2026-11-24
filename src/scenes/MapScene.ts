@@ -298,6 +298,7 @@ export class MapScene extends Phaser.Scene {
         this.moving = false;
         setPlayerPosition(this.map.id, next);
         if (this.messageBox.visible) this.placeMessageBox();
+        (this.children.getByName('area') as Phaser.GameObjects.Text | null)?.setText(this.areaName());
         this.afterStep(kind);
         this.report();
       },
@@ -470,6 +471,9 @@ export class MapScene extends Phaser.Scene {
     const under = (t: Tile, text: string) => (art.buildings ? label(t, text, 11).setY(t.y * T + T + 6) : label(t, text));
     for (const t of findAll(this.map, '$')) under(t, 'Shop');
     for (const t of findAll(this.map, 'R')) under(t, 'Heal');
+    // The town's name over its square (Round 90), centered above the Shop and Reviver.
+    const shop = findAll(this.map, '$')[0];
+    if (this.map.town && shop) label({ x: shop.x, y: shop.y - 2 }, this.map.town.name, 20).setX((shop.x + 1) * T);
     for (const t of findAll(this.map, 'G')) {
       // Papai stands on his spot (M8 sprite) with a "?" above him; the old yellow dot if the file is missing.
       const papai = addCharacter(this, 'papai-map', t.x * T + T / 2, t.y * T + T + 2, T * 1.25);
@@ -506,9 +510,15 @@ export class MapScene extends Phaser.Scene {
     for (const pin of getGame().pins.filter((p) => p.scene === this.map.id)) drawPin(this, pin.x * T + T / 2, pin.y * T + T / 2);
   }
 
+  /** The name top left: the town's name inside a biome's town (Round 90), else the map's. */
+  private areaName(): string {
+    const town = this.map.town;
+    return town && this.tile.y < town.rows ? town.name : this.map.name;
+  }
+
   private drawHud(): void {
     const area = this.add
-      .text(12, 10, this.map.name, {
+      .text(12, 10, this.areaName(), {
         fontFamily: FONT,
         fontSize: '24px',
         color: COLORS.text,
