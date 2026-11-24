@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 64" width="96" height="64">
+  <!-- Big volcano on the left and right of the Volcano map (designer, Round 72): a dark mountain with lava running down and a glowing, smoking top -->
+  <defs><filter id="glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="48" cy="62" rx="44" ry="3" fill="#000" opacity=".25"/>
+    <g fill="#8a8288" opacity=".8"><circle cx="42" cy="8" r="5"/><circle cx="50" cy="5" r="6"/><circle cx="58" cy="9" r="4.5"/><circle cx="47" cy="2" r="3.5"/></g>
+    <path d="M3 62 L34 18 Q48 12 62 18 L93 62 Z" fill="#3a2222" stroke="#140a0a" stroke-width="2.4"/>
+    <path d="M20 62 L38 30 L44 34 L32 62 Z M64 62 L56 32 L62 30 L78 62 Z" fill="#4e2e2a" stroke="none"/>
+    <ellipse cx="48" cy="18" rx="14" ry="4" fill="#ff7a1a" stroke="#7a2200" stroke-width="1.6" filter="url(#glow)"/>
+    <path d="M42 19 C40 28 46 34 42 44 C40 50 44 56 42 62 M54 19 C58 28 52 36 58 46 C60 52 56 58 58 62" fill="none" stroke="#ff8a1f" stroke-width="3.2" filter="url(#glow)"/>
+    <path d="M42 19 C40 28 46 34 42 44 C40 50 44 56 42 62 M54 19 C58 28 52 36 58 46 C60 52 56 58 58 62" fill="none" stroke="#ffd166" stroke-width="1.2"/>
+    <g fill="#ffd166" filter="url(#glow)"><circle cx="44" cy="13" r="1.6"/><circle cx="52" cy="11" r="1.3"/><circle cx="49" cy="14" r="1"/></g>
+    <path d="M14 56 l4 -3 M80 54 l-4 -3 M26 46 l5 -2" stroke="#1e1010" stroke-width="1.4"/>
+  </g>
+</svg>
