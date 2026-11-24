@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 64" width="32" height="64">
+  <!-- A monkey swinging on a vine, holding a banana in its other hand (designer, Round 82; scenery, not a monster). The vine's top is the swing point. -->
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 0 C15 12 17 24 16 34" fill="none" stroke="#3f8f3a" stroke-width="2.4"/>
+    <g fill="#6cc04a" stroke="#2f6d2f" stroke-width=".8"><ellipse cx="14" cy="10" rx="2.4" ry="1.4"/><ellipse cx="18" cy="22" rx="2.4" ry="1.4"/></g>
+    <g stroke="#3a2210" stroke-width="1.6">
+      <path d="M16 34 C14 38 13 40 13 42" fill="none" stroke="#8a5a30" stroke-width="3"/>
+      <ellipse cx="14" cy="50" rx="6.5" ry="7.5" fill="#8a5a30"/>
+      <ellipse cx="14" cy="52" rx="3.6" ry="4.6" fill="#e8c49a" stroke="none"/>
+      <circle cx="13" cy="41" r="6" fill="#8a5a30"/>
+      <circle cx="7.5" cy="41" r="2.4" fill="#e8c49a"/><circle cx="18.5" cy="41" r="2.4" fill="#e8c49a"/>
+      <ellipse cx="13" cy="42.5" rx="3.8" ry="3.4" fill="#e8c49a"/>
+      <circle cx="11.5" cy="40.5" r=".9" fill="#1a0e06" stroke="none"/><circle cx="14.5" cy="40.5" r=".9" fill="#1a0e06" stroke="none"/>
+      <path d="M11.5 44 Q13 45.2 14.5 44" fill="none" stroke-width="1"/>
+      <path d="M9 52 C5 54 4 58 6 60" fill="none" stroke="#8a5a30" stroke-width="3"/>
+      <path d="M2 57 C4 62 10 62 10 58 C8 60 5 60 2 57 Z" fill="#ffe066" stroke="#b8960a" stroke-width="1"/>
+      <path d="M12 57 L10 63 M16 57 L18 63" fill="none" stroke="#8a5a30" stroke-width="3"/>
+      <path d="M20 52 C26 50 28 56 24 58" fill="none" stroke="#8a5a30" stroke-width="2"/>
+    </g>
+  </g>
+</svg>

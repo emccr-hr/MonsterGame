@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
+  <!-- A fish jumping out of the sea at the Beach (designer, Round 84; scenery, not a monster). Faces left. -->
+  <g stroke="#1f4f7a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M24 16 L31 9 L30 23 Z" fill="#f2b134"/>
+    <ellipse cx="15" cy="16" rx="12" ry="7.5" fill="#3fa7f5"/>
+    <path d="M10 10 C14 6 18 6 20 9" fill="#f2b134"/>
+    <path d="M12 21 C14 24 17 24 18 22" fill="#f2b134"/>
+    <path d="M14 13 C17 15 17 18 14 20" fill="none" stroke="#bfe6ff" stroke-width="1.4"/>
+    <circle cx="7.5" cy="14" r="2" fill="#fff" stroke-width="1"/><circle cx="7.2" cy="14" r=".9" fill="#111" stroke="none"/>
+    <path d="M3.5 17 Q5 18 6 17" fill="none" stroke-width="1"/>
+  </g>
+</svg>

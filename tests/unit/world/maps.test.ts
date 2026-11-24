@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { content } from '../../../src/data';
-import { ANSONVILLE, BIOME_MAPS, MAPS, mapById } from '../../../src/data/maps';
+import { ANSONVILLE, BIOME_MAPS, MAPS, mapById, paletteAt, zoneAt } from '../../../src/data/maps';
 import {
   besideTile,
   canReach,
@@ -133,14 +133,18 @@ describe('bigger biome maps (Round 65)', () => {
     return count;
   };
 
-  it('every biome map has at least 4 more grass patches than the first layout (4, so 8 or more)', () => {
-    for (const m of BIOME_MAPS) expect(patches(m.rows), m.id).toBeGreaterThanOrEqual(8);
+  it('every biome map has 8 more grass patches since Round 78 (16 or more), and is bigger (56x27)', () => {
+    for (const m of BIOME_MAPS) {
+      // The Beach gave three patches to the sea (Round 84).
+      expect(patches(m.rows), m.id).toBeGreaterThanOrEqual(m.id === 'beach' ? 13 : 16);
+      expect([m.rows[0]!.length, m.rows.length], m.id).toEqual([56, 27]);
+    }
   });
 
   it('the Beach has a big palm tree on the left and the right, over blocker tiles, with coconuts on open sand', () => {
     const beach = mapById('beach');
     const palms = (beach.decor ?? []).filter((d) => d.sprite === 'palm-big');
-    expect(palms).toHaveLength(2);
+    expect(palms.length).toBeGreaterThanOrEqual(2); // 8 since Round 78
     const w = beach.rows[0]!.length;
     expect(palms.some((p) => p.x < w / 2) && palms.some((p) => p.x > w / 2)).toBe(true);
     for (const p of palms)
@@ -154,21 +158,75 @@ describe('bigger biome maps (Round 65)', () => {
 describe('big scenery (Rounds 72-75)', () => {
   const big = (id: string, sprite: string) => (mapById(id).decor ?? []).filter((d) => d.sprite === sprite);
   it('Forest big trees, a Desert skeleton, two Volcano volcanoes and Snowy glaciers, each on blocker tiles', () => {
-    expect(big('forest', 'tree-big').length).toBeGreaterThanOrEqual(3);
-    expect(big('desert', 'skeleton')).toHaveLength(1);
+    expect(big('forest', 'tree-big').length).toBeGreaterThanOrEqual(8);
+    expect(big('desert', 'skeleton').length).toBeGreaterThanOrEqual(4); // more since Round 78
     const volcanoes = big('volcano', 'volcano-big');
-    expect(volcanoes).toHaveLength(2);
+    expect(volcanoes.length).toBeGreaterThanOrEqual(4); // more since Round 78
     const w = mapById('volcano').rows[0]!.length;
     expect(volcanoes.some((v) => v.x < w / 2) && volcanoes.some((v) => v.x > w / 2)).toBe(true);
-    expect(big('snowy', 'glacier').length).toBeGreaterThanOrEqual(2);
+    expect(big('snowy', 'glacier').length).toBeGreaterThanOrEqual(8);
     for (const id of ['forest', 'desert', 'volcano', 'snowy']) {
       const m = mapById(id);
-      for (const d of m.decor ?? [])
+      // Standing scenery blocks its tiles; moving scenery (monkeys, crabs, fish) and coconuts don't.
+      for (const d of (m.decor ?? []).filter((x) => !x.swing && !x.shuttle && !x.jump && x.sprite !== 'coconut'))
         for (let y = d.y; y < d.y + d.h; y++) for (let x = d.x; x < d.x + d.w; x++) expect(m.rows[y]![x], `${id} ${d.sprite} at ${x},${y}`).toBe('T');
     }
   });
 
   it('every biome can still reach its exit from the start', () => {
     for (const m of BIOME_MAPS) expect(canReach(m, startTile(m), findAll(m, 'E')[0]!), m.id).toBe(true);
+  });
+});
+
+describe('the Desert watering hole (Round 79)', () => {
+  it('has a watering hole with giraffes, an elephant and a lion that lift their heads, all on blocker tiles', () => {
+    const desert = mapById('desert');
+    const decor = desert.decor ?? [];
+    expect(decor.some((d) => d.sprite === 'watering-hole')).toBe(true);
+    for (const animal of ['giraffe', 'elephant', 'lion']) {
+      const a = decor.find((d) => d.sprite === `${animal}-drink`);
+      expect(a?.alt, animal).toBe(`${animal}-up`);
+      expect(desert.rows[a!.y]![a!.x], animal).toBe('T');
+    }
+  });
+});
+
+describe("Ansonville's five areas and the frozen Dumble (Rounds 80-81)", () => {
+  it('each part of Ansonville belongs to the biome whose gate is nearest', () => {
+    const zones = new Set<string>();
+    ANSONVILLE.rows.forEach((row, y) => [...row].forEach((_, x) => zones.add(zoneAt(ANSONVILLE, x, y) ?? 'none')));
+    expect([...zones].sort()).toEqual(['beach', 'desert', 'forest', 'snowy', 'volcano']);
+    for (const [ch, biome] of Object.entries(ANSONVILLE.gates ?? {})) {
+      const gate = findAll(ANSONVILLE, ch)[0]!;
+      expect(zoneAt(ANSONVILLE, gate.x, gate.y)).toBe(biome);
+    }
+    // Colors come from that biome, but the town's paths stay one color.
+    const snowGate = gateTile(ANSONVILLE, 'snowy')!;
+    expect(paletteAt(ANSONVILLE, snowGate.x, snowGate.y + 1).ground).toBe(mapById('snowy').palette.ground);
+    expect(paletteAt(ANSONVILLE, snowGate.x, snowGate.y + 1).path).toBe(ANSONVILLE.palette.path);
+    expect(zoneAt(mapById('forest'), 3, 3)).toBeNull();
+  });
+
+  it('Snowy has a big glacier with a Dumble frozen inside, on blocker tiles', () => {
+    const snowy = mapById('snowy');
+    const d = (snowy.decor ?? []).find((x) => x.sprite === 'glacier-dumble')!;
+    expect(d).toBeDefined();
+    for (let y = d.y; y < d.y + d.h; y++) for (let x = d.x; x < d.x + d.w; x++) expect(snowy.rows[y]![x]).toBe('T');
+  });
+});
+
+describe('monkeys, a dragon and the sea (Rounds 82-84)', () => {
+  it('the Forest vine tree has swinging monkeys, the Volcano a fire-breathing dragon, the Beach a sea with crabs and fish', () => {
+    const forest = mapById('forest').decor ?? [];
+    expect(forest.some((d) => d.sprite === 'tree-vines')).toBe(true);
+    expect(forest.filter((d) => d.sprite === 'monkey-swing' && d.swing).length).toBeGreaterThanOrEqual(2);
+    const dragon = (mapById('volcano').decor ?? []).find((d) => d.sprite === 'dragon');
+    expect(dragon?.alt).toBe('dragon-fire');
+    const beach = mapById('beach');
+    const w = beach.rows[0]!.length;
+    // The right fifth is sea.
+    for (let y = 1; y < beach.rows.length - 1; y++) expect(beach.rows[y]!.slice(Math.ceil(w * 0.82), w - 1)).toMatch(/^~+$/);
+    expect((beach.decor ?? []).filter((d) => d.sprite === 'beach-crab' && d.shuttle).length).toBeGreaterThanOrEqual(3);
+    expect((beach.decor ?? []).filter((d) => d.sprite === 'fish' && d.jump).length).toBeGreaterThanOrEqual(3);
   });
 });

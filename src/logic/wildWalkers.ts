@@ -20,8 +20,11 @@ export interface Walker {
 
 /** Proposed numbers (Decisions-Log, 2026-11-22); tune after play-testing. */
 export const WALKERS = {
-  /** How many wander on a biome map at once. */
+  /** How many wander on a map at once: at least this many, more on bigger maps (walkersFor). */
   perMap: 5,
+  /** One more for every this many encounter tiles, up to maxPerMap (Round 78: bigger biomes). */
+  tilesPerWalker: 60,
+  maxPerMap: 12,
   /** Each one tries a step every this many ms (random between min and max). */
   stepMs: { min: 1000, max: 2000 },
   /** A new one appears this long after one leaves (battled or caught). */
@@ -29,6 +32,11 @@ export const WALKERS = {
   /** New ones appear at least this many tiles from the player, so they don't pop up in your face. */
   minSpawnDistance: 4,
 } as const;
+
+/** How many wild monsters wander on a map with this many encounter tiles. */
+export function walkersFor(groundTiles: number): number {
+  return Math.min(WALKERS.maxPerMap, Math.max(WALKERS.perMap, Math.round(groundTiles / WALKERS.tilesPerWalker)));
+}
 
 /** Some surprises stay (Round 62): hidden encounters on top of the visible ones, less often than before. */
 export const SURPRISE_ENCOUNTER_RATE: EncounterRate = { chance: 0.04, safeSteps: 5 };

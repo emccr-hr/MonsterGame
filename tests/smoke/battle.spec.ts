@@ -2,7 +2,7 @@ import { expect, test, type Page } from '@playwright/test';
 
 // M4 catching and battles: New Game → Snowy → first catch (only "Throw cage") → win a battle →
 // reload and Continue. `?seed=` makes the dice repeat, so the run is the same every time.
-// Snowy layout (src/data/maps): biome start (15,14); encounter ground at (11,13) and (11,12).
+// Snowy layout (src/data/maps, 56x27 since Round 78): biome start (28,24); encounter ground at (24,23) and (24,22).
 
 interface Snap {
   scene: string;
@@ -65,12 +65,12 @@ async function step(page: Page, key: string) {
 /** From the biome start, walk onto the snow and pace up and down until a wild monster appears. */
 async function findWildMonster(page: Page) {
   const s = await state(page);
-  if (s.tile && s.tile.y === 14) {
+  if (s.tile && s.tile.y === 24) {
     for (let i = 0; i < 4; i++) await step(page, 'ArrowLeft');
     await step(page, 'ArrowUp');
   }
   for (let i = 0; i < 80 && (await state(page)).scene !== 'Battle'; i++) {
-    await step(page, (await state(page)).tile!.y === 13 ? 'ArrowUp' : 'ArrowDown');
+    await step(page, (await state(page)).tile!.y === 23 ? 'ArrowUp' : 'ArrowDown');
   }
   await expect.poll(async () => (await state(page)).scene).toBe('Battle');
 }

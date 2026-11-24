@@ -147,6 +147,8 @@ describe('map decor sprites', () => {
     const { MAPS } = await import('../../../src/data/maps');
     const tiles = buildManifest(readDir('tiles'), () => 'url');
     for (const m of MAPS) for (const d of m.decor ?? []) expect(tiles[d.sprite], `${m.id}: ${d.sprite}.svg`).toBeDefined();
+    // Animated scenery (Round 79): the second picture exists too.
+    for (const m of MAPS) for (const d of m.decor ?? []) if (d.alt) expect(tiles[d.alt], `${m.id}: ${d.alt}.svg`).toBeDefined();
   });
 });
 

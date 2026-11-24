@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Lion at the watering hole, head down lapping water (designer, Round 79; scenery, not a monster) -->
+  <g stroke="#5a3a10" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="34" cy="62" rx="24" ry="2.2" fill="#000" opacity=".15" stroke="none"/>
+    <path d="M56 40 Q64 34 60 28" fill="none"/><circle cx="60" cy="27" r="2.4" fill="#8a5a20"/>
+    <rect x="24" y="46" width="6" height="16" rx="3" fill="#d9a24e"/><rect x="48" y="46" width="6" height="16" rx="3" fill="#d9a24e"/>
+    <ellipse cx="40" cy="42" rx="18" ry="9" fill="#e0b060"/>
+    <circle cx="18" cy="50" r="12" fill="#a8641e"/>
+    <circle cx="16" cy="53" r="7" fill="#e0b060"/>
+    <path d="M12 56 Q16 59 20 56" fill="none" stroke-width="1.4"/>
+    <path d="M12 51 L14 51 M18 51 L20 51" stroke="#2a1a08" stroke-width="1.6"/>
+    <rect x="30" y="48" width="6" height="14" rx="3" fill="#e0b060"/><rect x="42" y="48" width="6" height="14" rx="3" fill="#e0b060"/>
+  </g>
+</svg>
