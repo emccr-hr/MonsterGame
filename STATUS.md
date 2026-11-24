@@ -5,6 +5,8 @@ One line per session: date, what shipped, what's next. Newest at the top.
 
 | Date | What happened | Next |
 |---|---|---|
+| 2026-11-24 | **Shops in the middle, Earth Snail → World Snail, Beach lounge** (PR #55, designer Rounds 85–87): the Shop and Reviver moved to the middle of each biome; Earth Snail (Forest, level 20 → World Snail) with the new **Shell** move (the next attack does nothing at all) and Damp Moss (never Burned); 69 monsters, the Avatar gate needs 34; lounge chairs and coconut drinks on the Beach. Rounds 88–89 recorded: riding starred Big monsters (faster, water monsters swim) and a monster pen in Ansonville (5 monsters, XP over real time). | Biome towns (PR #56, Round 90); then build riding and the pen. |
+| 2026-11-23 | **Bigger biomes and lots of scenery** (PR #54, designer Rounds 78–84): biomes 56x27 with 8 new grass patches; a Desert watering hole with animals; Ansonville in five biome-colored areas; a Dumble frozen in a Snowy glacier; monkeys swinging on a Forest vine tree; a fire-breathing Volcano dragon; the sea on the Beach's right fifth with crabs and jumping fish. | |
 | 2026-11-23 | **Catch rewards and the arena count** (PR #52, designer Round 77): catching gives gems and XP like a win; the map shows "Arena: caught/needed". | Play-test. |
 | 2026-11-23 | **Flame Cat → Lava Tiger** (PR #51, designer Round 76): a lava cat with the Lava Body ability ("Fire Punch" renamed Magma Fist, Flags N4); 67 monsters, the Avatar gate needs 33. | |
 | 2026-11-23 | **Big scenery** (PR #50, designer Rounds 72–75): volcanoes, big forest trees, a desert skeleton and snowy glaciers (`withBigDecor`). | |
