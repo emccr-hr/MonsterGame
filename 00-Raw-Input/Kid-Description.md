@@ -402,6 +402,18 @@ Then:
 
 *(note: "Insanville" = Ansonville.)*
 
+## 2026-11-23 — Rounds 72–75 (big scenery in the biomes)
+
+> Can you add a big volcano on the left and right of the volcano of the lava area?
+
+> Some big trees in some places in the forest area.
+
+> Can you add a skeleton poking out of the sand in the desert area?
+
+> Can you add little side glaciers in the snow area?
+
+*(note: "the volcano of the lava area" read as the Volcano biome.)*
+
 ## 2026-11-23 — Round 76 (Flame Cat and Lava Tiger)
 
 > Can you create a cat's made of lava that spawns in the fire zone? It attacks our fire punch. Fire kick. Burn. And scratch. I wanted to put it to be it can't be frozen. I want it to be called Flame Cat. And I want it to evolve into Lava Tiger. That looks like a bigger version of it with black stripes. A longer body. And I want it attacks to be Fire Bite. Scratch. Fire Paw. And kick. I want it to have the same ability. I want Fire Cat to be One and a half times bigger than Dumple. I want Lava Tiger to be double the size of Fire Cat.
