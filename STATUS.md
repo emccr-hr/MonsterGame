@@ -5,6 +5,9 @@ One line per session: date, what shipped, what's next. Newest at the top.
 
 | Date | What happened | Next |
 |---|---|---|
+| 2026-11-23 | **Catch rewards and the arena count** (PR #52, designer Round 77): catching gives gems and XP like a win; the map shows "Arena: caught/needed". | Play-test. |
+| 2026-11-23 | **Flame Cat → Lava Tiger** (PR #51, designer Round 76): a lava cat with the Lava Body ability ("Fire Punch" renamed Magma Fist, Flags N4); 67 monsters, the Avatar gate needs 33. | |
+| 2026-11-23 | **Big scenery** (PR #50, designer Rounds 72–75): volcanoes, big forest trees, a desert skeleton and snowy glaciers (`withBigDecor`). | |
 | 2026-11-23 | **M6b: teleporting, Avatar's battle, the ending** (PR #48): M → Teleport from level 50 (shops and up to 5 pins, X picks one up); the open arena gate starts Avatar's battle with its own song; the first win plays the ending and credits, then the game keeps going in Ansonville and Papai points to Big Monsters and the Monster Book. | Owner: names for the credits; designer: rematches OK? Play-test the endgame; M6c bigger maps. |
 | 2026-11-23 | **Battle animations and a menu fix** (PR #46, owner): no more overlapping monster list after a faint; damage numbers, wind-up, knock-back, dodge/block, faint, Victory, Defeated and run-away animations. | Check the Defeated and run-away animations in play; M6b. |
 | 2026-11-23 | **Sharp rendering** (PR #44, owner): the game draws at up to 2x and zooms its cameras instead of stretching a 960x640 canvas, so text and art are crisp; the Monster Book scrolls. | Play-test on the family computer (speed at 2x); M6b. |
