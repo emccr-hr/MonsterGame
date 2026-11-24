@@ -40,5 +40,6 @@ Fun, friendly adventure.
 
 ## Rules of the world
 - Every biome and Ansonville has a **shop with a Reviver** next to it (free full heal).
+- **Biome towns (Round 90):** each biome has a little town at its top, with houses built from that biome's own wood, and its shop and Reviver are there: **Forest Village** (Forest), **Water City** (Beach), **Dune City** (Desert), **Ice Town** (Snowy) and **Lava Town** (Volcano).
 - Wild monsters appear only in their home biome.
 - Big Monster versions can appear in that same biome (1 in 100).

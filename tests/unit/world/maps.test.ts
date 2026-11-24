@@ -133,11 +133,11 @@ describe('bigger biome maps (Round 65)', () => {
     return count;
   };
 
-  it('every biome map has 8 more grass patches since Round 78 (16 or more), and is bigger (56x27)', () => {
+  it('every biome map has 8 more grass patches since Round 78 (16 or more), and is bigger (56x27, plus the 8-row town on top since Round 90: 56x35)', () => {
     for (const m of BIOME_MAPS) {
       // The Beach gave three patches to the sea (Round 84).
       expect(patches(m.rows), m.id).toBeGreaterThanOrEqual(m.id === 'beach' ? 13 : 16);
-      expect([m.rows[0]!.length, m.rows.length], m.id).toEqual([56, 27]);
+      expect([m.rows[0]!.length, m.rows.length], m.id).toEqual([56, 35]);
     }
   });
 
@@ -228,5 +228,26 @@ describe('monkeys, a dragon and the sea (Rounds 82-84)', () => {
     for (let y = 1; y < beach.rows.length - 1; y++) expect(beach.rows[y]!.slice(Math.ceil(w * 0.82), w - 1)).toMatch(/^~+$/);
     expect((beach.decor ?? []).filter((d) => d.sprite === 'beach-crab' && d.shuttle).length).toBeGreaterThanOrEqual(3);
     expect((beach.decor ?? []).filter((d) => d.sprite === 'fish' && d.jump).length).toBeGreaterThanOrEqual(3);
+  });
+});
+
+describe('biome towns (Round 90)', () => {
+  const names: Record<string, string> = { forest: 'Forest Village', beach: 'Water City', desert: 'Dune City', snowy: 'Ice Town', volcano: 'Lava Town' };
+
+  it.each(BIOME_MAPS.map((m) => m.id))('%s has its town on top, with the Shop and Reviver inside and reachable', (id) => {
+    const map = mapById(id)!;
+    expect(map.town?.name).toBe(names[id]);
+    const rows = map.town!.rows;
+    const start = startTile(map);
+    expect(start.y).toBeGreaterThan(rows);
+    for (const ch of ['$', 'R']) {
+      const [t] = findAll(map, ch);
+      expect(t!.y, ch).toBeLessThan(rows);
+      expect(canReach(map, start, t!), ch).toBe(true);
+    }
+    // Houses of the biome's own wood, all inside the town.
+    const houses = (map.decor ?? []).filter((d) => d.sprite === `house-${id}`);
+    expect(houses.length).toBeGreaterThanOrEqual(8);
+    for (const h of houses) expect(h.y + h.h).toBeLessThanOrEqual(rows);
   });
 });

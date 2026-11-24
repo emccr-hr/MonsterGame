@@ -27,6 +27,8 @@ export interface GameMap {
    * of the biome whose gate is nearest (`zoneAt`, `paletteAt`).
    */
   zoned?: boolean;
+  /** A little town at the top of a biome map (Round 90): its name, and how many rows from the top it covers. */
+  town?: { name: string; rows: number };
   /**
    * Where this map's wild monsters come from when it has no biome (Round 71): "ansonville" means
    * any first form from any biome (`MIXED_POOL` in src/logic/spawning.ts).
@@ -104,7 +106,7 @@ export const ANSONVILLE: GameMap = {
 // 56x27 since Round 78 ("make all biomes bigger... eight new spawning platforms in each biome"): the
 // Round 65 map sits at the bottom middle (exit, shop and Reviver where they were), with 8 new grass
 // patches, a pond and room for more big scenery in the new space above and to the sides. The shop and
-// Reviver stand in the middle of the map, straight up from the entrance (Round 85).
+// Reviver stood in the middle of the map (Round 85); since Round 90 they are in the town at the top (TOWN_ROWS).
 const BIOME_ROWS = [
   '########################################################',
   '#......................................................#',
@@ -123,7 +125,7 @@ const BIOME_ROWS = [
   '#.,,,,,.......,,,,~~~,,,,,,..,,,,,,~~~,,,,.......,,,,,.#',
   '#.,,,,,.......,,,,~~~,,,,,,..,,,,,,~~~,,,,.......,,,,,.#',
   '#.,,,,,.......,,,,,,,,,,,,,..,,,,,,,,,,,,,.......,,,,,.#',
-  '#...........................$R.........................#',
+  '#......................................................#',
   '#.........,,,.....TT..............TT.......,,,.........#',
   '#.,,,,,...,,,..............................,,,...,,,,,.#',
   '#.,,,,,...,,,.,,,,,,,,,,,..........,,,,,,,.,,,...,,,,,.#',
@@ -136,14 +138,42 @@ const BIOME_ROWS = [
 ] as const;
 
 
-const biome = (id: string, name: string, palette: Palette, rows: readonly string[] = BIOME_ROWS, decor?: readonly MapDecor[]): GameMap => ({
-  id,
-  name,
-  biome: id,
-  rows,
-  palette,
-  decor,
-});
+/**
+ * A little town at the top of every biome map (Round 90): houses made of the biome's own wood, with
+ * the Shop and Reviver on the town square. A gap in the old top wall leads down into the wild part.
+ */
+const TOWN_ROWS = [
+  '########################################################',
+  '#......................................................#',
+  '#......................................................#',
+  '#......................................................#',
+  '#...........................$R.........................#',
+  '#===========================..=========================#',
+  '#...........................==.........................#',
+  '#...........................==.........................#',
+] as const;
+const TOWN_H = TOWN_ROWS.length;
+/** The old top wall, with a way through under the town square. */
+const TOWN_GATE_ROW = BIOME_ROWS[0].slice(0, 28) + '==' + BIOME_ROWS[0].slice(30);
+const ROWS_WITH_TOWN: readonly string[] = [...TOWN_ROWS, TOWN_GATE_ROW, ...BIOME_ROWS.slice(1)];
+/** Where the houses stand (2x2 each), left of the Beach's sea. */
+const HOUSE_SPOTS = [
+  { x: 3, y: 1 }, { x: 9, y: 1 }, { x: 15, y: 1 }, { x: 21, y: 1 }, { x: 33, y: 1 }, { x: 39, y: 1 },
+  { x: 6, y: 6 }, { x: 12, y: 6 }, { x: 18, y: 6 }, { x: 36, y: 6 }, { x: 42, y: 6 },
+] as const;
+/** Moves wild-area decor down below the town. */
+const belowTown = (decor: readonly MapDecor[]): MapDecor[] => decor.map((d) => ({ ...d, y: d.y + TOWN_H }));
+
+/**
+ * One biome map: the town on top, then the wild part. `solid` decor blocks the tiles under it,
+ * `loose` decor doesn't (coconuts, animals in the water). Both use wild-part coordinates.
+ */
+function biome(id: string, name: string, town: string, palette: Palette, solid: readonly MapDecor[], loose: readonly MapDecor[] = [], ocean = false): GameMap {
+  const houses: MapDecor[] = HOUSE_SPOTS.map((h) => ({ sprite: `house-${id}`, x: h.x, y: h.y, w: 2, h: 2, scale: 1.3 }));
+  const blocking = [...houses, ...belowTown(solid)];
+  const rows = withBigDecor(ocean ? withOcean(ROWS_WITH_TOWN, OCEAN_FROM) : ROWS_WITH_TOWN, blocking);
+  return { id, name, biome: id, town: { name: town, rows: TOWN_H }, rows, palette, decor: [...blocking, ...belowTown(loose)] };
+}
 
 /**
  * Big decor that blocks the tiles under it: the rows get blocker tiles ("T") there, so the player
@@ -294,16 +324,16 @@ const BEACH_SEA_LIFE: readonly MapDecor[] = [
 // Colors: the chosen palette rows in 06-Art-and-Audio/Art-Mockups.html section 5 (owner, 2026-11-21).
 // Forest and Beach kept their colors; Desert, Snowy and Volcano use the brighter rows.
 export const BIOME_MAPS: readonly GameMap[] = [
-  // Tall grass, trees, a pond.
-  biome('forest', 'Forest', { ground: 0x7cb35a, path: 0xb89c6a, encounter: 0x3f8f3a, wall: 0x2f4f2f, blocker: 0x1f5a24, water: 0x3b7dd8 }, withBigDecor(BIOME_ROWS, FOREST_DECOR), [...FOREST_DECOR, ...FOREST_MONKEYS]),
-  // Soft sand, palm trees, tide pools.
-  biome('beach', 'Beach', { ground: 0xf1e7c6, path: 0xd8c08c, encounter: 0xe2c16a, wall: 0x8a6d3b, blocker: 0x4f9a4a, water: 0x2e86c1 }, withBigDecor(withOcean(BIOME_ROWS, OCEAN_FROM), [...BEACH_PALMS, ...BEACH_LOUNGE]), [...BEACH_PALMS, ...BEACH_LOUNGE, ...BEACH_COCONUTS, ...BEACH_SEA_LIFE]),
-  // Dunes, cactus, quicksand.
-  biome('desert', 'Desert', { ground: 0xf6d77e, path: 0xd9a24e, encounter: 0xf0a830, wall: 0xb5652a, blocker: 0x3fae4a, water: 0xc88a4a }, withBigDecor(BIOME_ROWS, DESERT_DECOR), DESERT_DECOR),
-  // Deep snow, pine trees, ice.
-  biome('snowy', 'Snowy', { ground: 0xf4f8fb, path: 0xb9d4f0, encounter: 0x8fc3f2, wall: 0x2f5f9e, blocker: 0x1f7a4f, water: 0x4fb3f5 }, withBigDecor(BIOME_ROWS, SNOWY_DECOR), SNOWY_DECOR),
-  // Ash, rocks, lava.
-  biome('volcano', 'Volcano', { ground: 0x5a3430, path: 0x8f4f36, encounter: 0xa8746a, wall: 0x2a1414, blocker: 0x3a2020, water: 0xff4a1a }, withBigDecor(BIOME_ROWS, VOLCANO_DECOR), VOLCANO_DECOR),
+  // Tall grass, trees, a pond. Town: Forest Village (Round 90).
+  biome('forest', 'Forest', 'Forest Village', { ground: 0x7cb35a, path: 0xb89c6a, encounter: 0x3f8f3a, wall: 0x2f4f2f, blocker: 0x1f5a24, water: 0x3b7dd8 }, FOREST_DECOR, FOREST_MONKEYS),
+  // Soft sand, palm trees, tide pools, the sea. Town: Water City.
+  biome('beach', 'Beach', 'Water City', { ground: 0xf1e7c6, path: 0xd8c08c, encounter: 0xe2c16a, wall: 0x8a6d3b, blocker: 0x4f9a4a, water: 0x2e86c1 }, [...BEACH_PALMS, ...BEACH_LOUNGE], [...BEACH_COCONUTS, ...BEACH_SEA_LIFE], true),
+  // Dunes, cactus, quicksand. Town: Dune City.
+  biome('desert', 'Desert', 'Dune City', { ground: 0xf6d77e, path: 0xd9a24e, encounter: 0xf0a830, wall: 0xb5652a, blocker: 0x3fae4a, water: 0xc88a4a }, DESERT_DECOR),
+  // Deep snow, pine trees, ice. Town: Ice Town.
+  biome('snowy', 'Snowy', 'Ice Town', { ground: 0xf4f8fb, path: 0xb9d4f0, encounter: 0x8fc3f2, wall: 0x2f5f9e, blocker: 0x1f7a4f, water: 0x4fb3f5 }, SNOWY_DECOR),
+  // Ash, rocks, lava. Town: Lava Town.
+  biome('volcano', 'Volcano', 'Lava Town', { ground: 0x5a3430, path: 0x8f4f36, encounter: 0xa8746a, wall: 0x2a1414, blocker: 0x3a2020, water: 0xff4a1a }, VOLCANO_DECOR),
 ];
 
 export const MAPS: readonly GameMap[] = [ANSONVILLE, ...BIOME_MAPS];
