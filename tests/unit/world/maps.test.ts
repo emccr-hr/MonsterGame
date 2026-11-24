@@ -150,3 +150,25 @@ describe('bigger biome maps (Round 65)', () => {
     for (const c of coconuts) expect(beach.rows[c.y]![c.x], `coconut at ${c.x},${c.y}`).toBe('.');
   });
 });
+
+describe('big scenery (Rounds 72-75)', () => {
+  const big = (id: string, sprite: string) => (mapById(id).decor ?? []).filter((d) => d.sprite === sprite);
+  it('Forest big trees, a Desert skeleton, two Volcano volcanoes and Snowy glaciers, each on blocker tiles', () => {
+    expect(big('forest', 'tree-big').length).toBeGreaterThanOrEqual(3);
+    expect(big('desert', 'skeleton')).toHaveLength(1);
+    const volcanoes = big('volcano', 'volcano-big');
+    expect(volcanoes).toHaveLength(2);
+    const w = mapById('volcano').rows[0]!.length;
+    expect(volcanoes.some((v) => v.x < w / 2) && volcanoes.some((v) => v.x > w / 2)).toBe(true);
+    expect(big('snowy', 'glacier').length).toBeGreaterThanOrEqual(2);
+    for (const id of ['forest', 'desert', 'volcano', 'snowy']) {
+      const m = mapById(id);
+      for (const d of m.decor ?? [])
+        for (let y = d.y; y < d.y + d.h; y++) for (let x = d.x; x < d.x + d.w; x++) expect(m.rows[y]![x], `${id} ${d.sprite} at ${x},${y}`).toBe('T');
+    }
+  });
+
+  it('every biome can still reach its exit from the start', () => {
+    for (const m of BIOME_MAPS) expect(canReach(m, startTile(m), findAll(m, 'E')[0]!), m.id).toBe(true);
+  });
+});

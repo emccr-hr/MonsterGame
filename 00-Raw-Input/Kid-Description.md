@@ -401,3 +401,15 @@ Then:
 > Spots all over, not just around the Avatar's arena. All around Insanville, I want there to be grassy spots.
 
 *(note: "Insanville" = Ansonville.)*
+
+## 2026-11-23 — Rounds 72–75 (big scenery in the biomes)
+
+> Can you add a big volcano on the left and right of the volcano of the lava area?
+
+> Some big trees in some places in the forest area.
+
+> Can you add a skeleton poking out of the sand in the desert area?
+
+> Can you add little side glaciers in the snow area?
+
+*(note: "the volcano of the lava area" read as the Volcano biome.)*

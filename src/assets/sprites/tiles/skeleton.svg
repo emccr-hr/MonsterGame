@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 64" width="96" height="64">
+  <!-- An old skeleton poking out of the sand in the Desert (designer, Round 74): a big ancient creature's skull and ribs, half buried, bleached by the sun -->
+  <g stroke="#7a6a50" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="48" cy="61" rx="44" ry="3" fill="#000" opacity=".15" stroke="none"/>
+    <g fill="none" stroke="#7a6a50" stroke-width="6"><path d="M44 56 C44 36 54 28 60 26 M52 56 C52 38 62 30 68 30 M60 56 C60 40 70 34 76 34 M68 56 C68 44 76 40 82 40"/></g>
+    <g fill="none" stroke="#f3ecd8" stroke-width="3.6"><path d="M44 56 C44 36 54 28 60 26 M52 56 C52 38 62 30 68 30 M60 56 C60 40 70 34 76 34 M68 56 C68 44 76 40 82 40"/></g>
+    <path d="M40 30 C52 22 70 22 88 38" fill="none" stroke="#7a6a50" stroke-width="7"/>
+    <path d="M40 30 C52 22 70 22 88 38" fill="none" stroke="#f3ecd8" stroke-width="4.4"/>
+    <path d="M6 50 C4 36 14 26 28 26 C38 26 44 32 44 42 L44 52 C40 54 34 54 30 52 L28 46 L22 52 L14 54 Z" fill="#f3ecd8"/>
+    <ellipse cx="26" cy="38" rx="6" ry="5" fill="#4a3a28"/>
+    <path d="M10 48 v-5 M15 50 v-5 M20 50 v-5" stroke="#7a6a50" stroke-width="1.6"/>
+    <path d="M36 28 C38 22 44 20 46 24" fill="none" stroke-width="1.6"/>
+    <path d="M0 58 C14 50 24 56 34 54 C46 52 52 58 62 56 C74 54 84 52 96 58 L96 64 L0 64 Z" fill="#f2d07a" stroke="#c89a4a" stroke-width="2"/>
+    <path d="M10 60 h6 M40 60 h5 M70 60 h6" stroke="#d9a24e" stroke-width="1.4"/>
+  </g>
+</svg>
