@@ -10,7 +10,10 @@ and `09-Production/Development-Plan.md`. Whoever orchestrates keeps this file cu
 - His exact words: `00-Raw-Input/Kid-Description.md` (61 rounds; voice-typing slips are noted under each round).
 - Repo: https://github.com/emccr-hr/MonsterGame (public, `main`). It may later move to another account the owner controls.
 
-## State (2026-11-23)
+## State (2026-11-24)
+- **Rounds 85–89 (PR #55):** Earth Snail → World Snail; **Shell** is a new move rule (`shell` effect, `shelled` on the combatant in `src/logic/battle.ts`: the next attack on it does nothing, then it opens); Damp Moss = never Burned. 69 monsters, 34 wild for the Avatar gate. Beach lounge decor. **Recorded, not built:** riding (Round 88: starred Big monsters only, from the Team screen, faster; Big Beach monsters can swim) and a monster pen in Ansonville (Round 89: 5 monsters, XP over real time while the game is open, about battle speed). Their choices are in Kid-Description.md and Decisions-Log.md.
+- **Rounds 78–84 (PR #54):** biome maps 56x27 (`BIOME_ROWS`); decor animations `alt`, `swing`, `shuttle`, `jump`; Ansonville is `zoned` (`zoneAt`, `paletteAt`); the Beach's right side is ocean (`withOcean`).
+- **Round 90 open as PR #56:** a town at the top of every biome (8 rows, maps 56x35, `biome()` builds town + ocean + blocking decor, `GameMap.town`); the Shop and Reviver move there.
 - **M6b merged (PR #48):** M → **Teleport** (`TeleportScene`, from level 50: place a pin where you stand, every open shop, placed pins; X/Delete picks a pin up; pins drawn on the map). Walking into the **open arena gate** starts Avatar's battle (`arenaGate` in `src/logic/ending.ts`, `boss: true` on `WILD_ENCOUNTER`, `avatar` song). The first win plays `Ending` (story, credits from `src/data/ending.json`, "Your adventure" numbers), then back in Ansonville beside the arena; `avatarBeaten` saved; Papai suggests Big Monsters and the Monster Book. Rematches allowed (no credits again), no XP/gems for Avatar (Open-Questions 39). Smoke test `tests/smoke/endgame.spec.ts` loads a late-game save. How-to: developer guide "Teleporting, Avatar and the ending (M6b)".
 - **M5 merged (PR #19):** **M** (or the "M: Menu" button) opens Team and Backpack (pick up and swap, Tab sorts), Bag (target picker, also in battle), Monster Book (seen/caught/Big, "Wild monsters caught: X / 15"), Ask Papai, Save. Monsters evolve right after the battle where they reach their level (`Evolve` scene). Rules in `src/logic/collection.ts`; list widget `src/ui/listMenu.ts`. Dev builds: **L** levels the team to its evolve level. How-to: developer guide "Team, Bag, Monster Book and evolving (M5)".
 - **M6a merged (PR #20):** shop (`ShopScene`, `src/logic/shop.ts`): cages, potions, snacks, pins, and one map part per locked biome (buying opens the gate at once). Gems and cages on the map HUD; arena gate shows "Monsters caught: X / 15". M6b is built (PR #48).
@@ -40,6 +43,7 @@ and `09-Production/Development-Plan.md`. Whoever orchestrates keeps this file cu
 - Skills: `design-buddy` (talking with the designer), `gameplay-expert` (rules and Papai's answers).
 
 ## Next
+0. **Designer features to build:** riding starred Big monsters (Round 88) and the monster pen in Ansonville (Round 89), after PR #56 (biome towns) merges.
 1. **Play-test M5/M6 with the designer** (catch, battle, evolve, shop, map part, Ask Papai) and capture his reactions as a new raw-input round (`00-Raw-Input/`, append only). Ask him (design-buddy) whether evolving should ask "Grow now?" and about Papai's personality (Open-Questions 38).
 2. **Endgame follow-ups (M6b is built):** owner picks the names for the credits (`src/data/ending.json`, Open-Questions 40); ask the designer whether Avatar rematches are OK and whether beating it should give a prize (Open-Questions 39); play-test the endgame with him.
 3. **M6c world polish (owner feedback):** bigger maps or more sections per biome, and a bigger Ansonville (Development-Plan M6c).
