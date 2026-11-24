@@ -6,7 +6,7 @@ import { activeOf } from '../../../src/logic/battle';
 import { newGame } from '../../../src/logic/game';
 import { createRng } from '../../../src/logic/rng';
 import { DEFAULT_ENCOUNTER_RATE } from '../../../src/logic/encounterRate';
-import { mapSpriteSize, sameTile, spawnWalker, SURPRISE_ENCOUNTER_RATE, wanderStep, WALKERS, type Tile } from '../../../src/logic/wildWalkers';
+import { mapSpriteSize, sameTile, spawnWalker, SURPRISE_ENCOUNTER_RATE, walkersFor, wanderStep, WALKERS, type Tile } from '../../../src/logic/wildWalkers';
 import { realContent } from '../helpers';
 
 const content = realContent();
@@ -46,6 +46,14 @@ describe('wandering', () => {
 
   it('stays put when boxed in', () => {
     expect(wanderStep({ x: 2, y: 2 }, () => false, createRng(3))).toEqual({ x: 2, y: 2 });
+  });
+});
+
+describe('how many wander (Round 78: bigger biomes)', () => {
+  it('at least 5, one more per 60 encounter tiles, at most 12', () => {
+    expect(walkersFor(100)).toBe(5);
+    expect(walkersFor(420)).toBe(7);
+    expect(walkersFor(5000)).toBe(12);
   });
 });
 

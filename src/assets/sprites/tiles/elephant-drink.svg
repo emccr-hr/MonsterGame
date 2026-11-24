@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Elephant at the watering hole, trunk down drinking (designer, Round 79; scenery, not a monster) -->
+  <g stroke="#3a3a42" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="34" cy="62" rx="26" ry="2.4" fill="#000" opacity=".15" stroke="none"/>
+    <rect x="22" y="44" width="8" height="18" rx="3" fill="#8a8a96"/><rect x="34" y="46" width="8" height="16" rx="3" fill="#8a8a96"/>
+    <rect x="46" y="44" width="8" height="18" rx="3" fill="#8a8a96"/>
+    <ellipse cx="40" cy="38" rx="20" ry="14" fill="#9a9aa6"/>
+    <circle cx="18" cy="36" r="11" fill="#9a9aa6"/>
+    <path d="M22 26 C30 22 34 32 30 42 C26 44 22 42 22 38 Z" fill="#8a8a96"/>
+    <path d="M10 40 C6 46 6 54 8 60" fill="none" stroke="#3a3a42" stroke-width="7"/>
+    <path d="M10 40 C6 46 6 54 8 60" fill="none" stroke="#9a9aa6" stroke-width="4"/>
+    <path d="M12 44 L16 46" stroke="#f3ecd8" stroke-width="3"/>
+    <circle cx="14" cy="33" r="1.4" fill="#2a2a30" stroke="none"/>
+    <path d="M60 36 Q63 42 61 46" fill="none"/>
+  </g>
+</svg>

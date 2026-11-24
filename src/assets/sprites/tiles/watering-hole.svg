@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 64" width="128" height="64">
+  <!-- A watering hole in the Desert (designer, Round 79): a muddy-edged pool of blue water with reeds -->
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="64" cy="34" rx="62" ry="28" fill="#b8874a" stroke="#7a5428" stroke-width="2.5"/>
+    <ellipse cx="64" cy="34" rx="54" ry="22" fill="#3b9be0" stroke="#1f5f9e" stroke-width="2"/>
+    <path d="M26 30 q8 -4 16 0 M70 26 q8 -4 16 0 M46 42 q8 -4 16 0 M84 40 q6 -3 12 0" fill="none" stroke="#bfe6ff" stroke-width="2.4"/>
+    <ellipse cx="44" cy="28" rx="6" ry="2" fill="#ffffff" opacity=".6"/>
+    <g stroke="#3f7a2a" stroke-width="2.4" fill="none"><path d="M8 40 V24 M12 42 V20 M16 41 V26 M114 38 V22 M118 40 V18 M122 39 V25"/></g>
+    <g fill="#6aa84f" stroke="#3f7a2a" stroke-width="1"><ellipse cx="12" cy="19" rx="2.4" ry="5"/><ellipse cx="118" cy="17" rx="2.4" ry="5"/></g>
+  </g>
+</svg>

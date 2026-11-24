@@ -4,6 +4,7 @@
 import * as Phaser from 'phaser';
 import type { GameMap } from '../data/maps';
 import { findAll } from '../world/grid';
+import { spriteKey } from './spriteManifest';
 import { addSprite } from './sprites';
 
 export interface MapArtDrawn {
@@ -35,10 +36,13 @@ export function drawMapArt(
   const underDecor = (x: number, y: number) => decor.some((d) => x >= d.x && x < d.x + d.w && y >= d.y && y < d.y + d.h);
   for (const d of decor) {
     const small = d.sprite === 'coconut';
-    // Big pictures stand on their tiles and grow 1.5x upward, so a big palm towers over the small ones.
-    const size = Math.max(d.w, d.h) * T * (small ? 0.7 : 1.5);
+    // Big pictures stand on their tiles and grow 2x upward (Round 78: "make everything bigger"), so a big palm towers over the small ones.
+    const size = Math.max(d.w, d.h) * T * (d.scale ?? (small ? 0.7 : 2));
     const y = small ? (d.y + d.h / 2) * T : (d.y + d.h) * T - size / 2;
-    addSprite(scene, 'tile', d.sprite, (d.x + d.w / 2) * T, y, size)?.setDepth(small ? 1 : 4.6);
+    const img = addSprite(scene, 'tile', d.sprite, (d.x + d.w / 2) * T, y, size)?.setDepth(small || d.flat ? 1 : 4.6);
+    if (!img) continue;
+    if (d.flip) img.setFlipX(true);
+    if (d.alt) animateAlt(scene, img, d.sprite, d.alt);
   }
 
   const tree = `tree-${map.biome ?? 'ansonville'}`;
@@ -76,6 +80,23 @@ export function drawMapArt(
     }
   }
   return drawn;
+}
+
+/** Now and then show the other picture for a moment (an animal lifting its head), at a random rhythm. */
+function animateAlt(scene: Phaser.Scene, img: Phaser.GameObjects.Image, main: string, alt: string): void {
+  const [w, h] = [img.displayWidth, img.displayHeight];
+  const show = (id: string) => img.setTexture(spriteKey('tile', id)).setDisplaySize(w, h);
+  const next = () =>
+    scene.time.delayedCall(2500 + Math.random() * 4000, () => {
+      if (!img.active) return;
+      show(alt);
+      scene.time.delayedCall(1100 + Math.random() * 900, () => {
+        if (!img.active) return;
+        show(main);
+        next();
+      });
+    });
+  next();
 }
 
 /**

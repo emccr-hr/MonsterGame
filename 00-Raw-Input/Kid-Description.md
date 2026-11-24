@@ -432,3 +432,13 @@ His answers to two follow-up questions:
 > Can you make it so that if you catch a monster, you still get money and XP?
 
 *(note: "money" = Magic Gems.)*
+
+## 2026-11-23 — Round 78 (bigger biomes, more of everything)
+
+> Can you make all biomes bigger? And add more skeletons, more volcanoes, more glaciers, more trees, more palm trees, and make everything bigger and have eight new spawning platforms in each biome.
+
+## 2026-11-23 — Round 79 (a watering hole)
+
+> Add a watering hole with giraffes, elephants, and lions drinking from it. They lift their heads sometimes. You cannot catch them or battle them. They are not an actual entity.
+
+*(note: "spawning platforms" read as grass patches where wild monsters appear. The watering hole went in the Desert; he didn't say which biome.)*

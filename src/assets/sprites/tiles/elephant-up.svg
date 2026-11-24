@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Elephant at the watering hole, trunk up spraying water (designer, Round 79; scenery, not a monster) -->
+  <g stroke="#3a3a42" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="34" cy="62" rx="26" ry="2.4" fill="#000" opacity=".15" stroke="none"/>
+    <rect x="22" y="44" width="8" height="18" rx="3" fill="#8a8a96"/><rect x="34" y="46" width="8" height="16" rx="3" fill="#8a8a96"/>
+    <rect x="46" y="44" width="8" height="18" rx="3" fill="#8a8a96"/>
+    <ellipse cx="40" cy="38" rx="20" ry="14" fill="#9a9aa6"/>
+    <circle cx="18" cy="32" r="11" fill="#9a9aa6"/>
+    <path d="M22 22 C30 18 34 28 30 38 C26 40 22 38 22 34 Z" fill="#8a8a96"/>
+    <path d="M10 30 C4 24 4 14 10 8" fill="none" stroke="#3a3a42" stroke-width="7"/>
+    <path d="M10 30 C4 24 4 14 10 8" fill="none" stroke="#9a9aa6" stroke-width="4"/>
+    <g fill="#7cc4f2" stroke="#2a6fa8" stroke-width="1"><circle cx="14" cy="4" r="2"/><circle cx="18" cy="7" r="1.6"/><circle cx="10" cy="2" r="1.4"/></g>
+    <path d="M12 38 L16 40" stroke="#f3ecd8" stroke-width="3"/>
+    <circle cx="14" cy="29" r="1.4" fill="#2a2a30" stroke="none"/>
+    <path d="M60 36 Q63 42 61 46" fill="none"/>
+  </g>
+</svg>

@@ -41,6 +41,14 @@ export interface MapDecor {
   y: number;
   w: number;
   h: number;
+  /** Size as a multiple of its block (default 2 for big decor, 0.7 for coconuts). */
+  scale?: number;
+  /** Mirror it (sprites face left). */
+  flip?: boolean;
+  /** Lies flat on the ground (a pond): drawn under monsters and the player. */
+  flat?: boolean;
+  /** Animation (Round 79): now and then it switches to this other picture for a moment (an animal lifting its head). */
+  alt?: string;
 }
 
 export const ANSONVILLE: GameMap = {
@@ -81,48 +89,39 @@ export const ANSONVILLE: GameMap = {
 
 // All five biomes share one layout for now (about one screen each): shop and Reviver by the
 // entrance at the bottom, encounter ground around the edges. Different looks come with real art.
-// 38x17 since Round 65 ("4 more grassy patches in each biome"): the first layout plus 4 columns on each
-// side, each strip with 2 new grass patches.
+// 56x27 since Round 78 ("make all biomes bigger... eight new spawning platforms in each biome"): the
+// Round 65 map sits at the bottom middle (exit, shop and Reviver where they were), with 8 new grass
+// patches, a pond and room for more big scenery in the new space above and to the sides.
 const BIOME_ROWS = [
-  '######################################',
-  '#,,,.TT,,,,,,,,,,TTTT,,,,,,,,,,TT.,,,#',
-  '#,,,.T,,,,,,,,,,,,TT,,,,,,,,,,,,T.,,,#',
-  '#,,,.,,,,,,,,,,,,,..,,,,,,,,,,,,,.,,,#',
-  '#....,,,,~~~,,,,,,..,,,,,,~~~,,,,....#',
-  '#....,,,,~~~,,,,,,..,,,,,,~~~,,,,....#',
-  '#....,,,,,,,,,,,,,..,,,,,,,,,,,,,....#',
-  '#....................................#',
-  '#,,,.....TT..............TT.......,,,#',
-  '#,,,..............................,,,#',
-  '#,,,.,,,,,,,,,,,..........,,,,,,,.,,,#',
-  '#....,,,,,,,,,,,..........,,,,,,,....#',
-  '#....,,,,,,TT,,,..........,,,TT,,....#',
-  '#....,,,,,,,,,,,...$R.....,,,,,,,....#',
-  '#..................@.................#',
-  '#..................=.................#',
-  '###################E##################',
+  '########################################################',
+  '#......................................................#',
+  '#..,,,,,,,,....,,,,,,,,,,......,,,,,,,,,,....,,,,,,,,..#',
+  '#..,,,,,,,,....,,,,,,,,,,......,,,,,,,,,,....,,,,,,,,..#',
+  '#..,,,,,,,,....,,,,,,,,,,......,,,,,,,,,,....,,,,,,,,..#',
+  '#..,,,,,,,,....,,,,,,,,,,......,,,,,,,,,,....,,,,,,,,..#',
+  '#......................................................#',
+  '#.........................~~~~.........................#',
+  '#.........................~~~~.........................#',
+  '#......................................................#',
+  '#......................................................#',
+  '#.........,,,.TT,,,,,,,,,,TTTT,,,,,,,,,,TT.,,,.........#',
+  '#.,,,,,...,,,.T,,,,,,,,,,,,TT,,,,,,,,,,,,T.,,,...,,,,,.#',
+  '#.,,,,,...,,,.,,,,,,,,,,,,,..,,,,,,,,,,,,,.,,,...,,,,,.#',
+  '#.,,,,,.......,,,,~~~,,,,,,..,,,,,,~~~,,,,.......,,,,,.#',
+  '#.,,,,,.......,,,,~~~,,,,,,..,,,,,,~~~,,,,.......,,,,,.#',
+  '#.,,,,,.......,,,,,,,,,,,,,..,,,,,,,,,,,,,.......,,,,,.#',
+  '#......................................................#',
+  '#.........,,,.....TT..............TT.......,,,.........#',
+  '#.,,,,,...,,,..............................,,,...,,,,,.#',
+  '#.,,,,,...,,,.,,,,,,,,,,,..........,,,,,,,.,,,...,,,,,.#',
+  '#.,,,,,.......,,,,,,,,,,,..........,,,,,,,.......,,,,,.#',
+  '#.,,,,,.......,,,,,,TT,,,..........,,,TT,,.......,,,,,.#',
+  '#.,,,,,.......,,,,,,,,,,,...$R.....,,,,,,,.......,,,,,.#',
+  '#...........................@..........................#',
+  '#...........................=..........................#',
+  '############################E###########################',
 ] as const;
 
-// The Beach: the same layout, plus a big palm tree on the left and right (Round 65).
-const BEACH_ROWS = [
-  '######################################',
-  '#,,,.TT,,,,,,,,,,TTTT,,,,,,,,,,TT.,,,#',
-  '#,,,.T,,,,,,,,,,,,TT,,,,,,,,,,,,T.,,,#',
-  '#,,,.,,,,,,,,,,,,,..,,,,,,,,,,,,,.,,,#',
-  '#....,,,,~~~,,,,,,..,,,,,,~~~,,,,....#',
-  '#.TT.,,,,~~~,,,,,,..,,,,,,~~~,,,,.TT.#',
-  '#.TT.,,,,,,,,,,,,,..,,,,,,,,,,,,,.TT.#',
-  '#....................................#',
-  '#,,,.....TT..............TT.......,,,#',
-  '#,,,..............................,,,#',
-  '#,,,.,,,,,,,,,,,..........,,,,,,,.,,,#',
-  '#....,,,,,,,,,,,..........,,,,,,,....#',
-  '#....,,,,,,TT,,,..........,,,TT,,....#',
-  '#....,,,,,,,,,,,...$R.....,,,,,,,....#',
-  '#..................@.................#',
-  '#..................=.................#',
-  '###################E##################',
-] as const;
 
 const biome = (id: string, name: string, palette: Palette, rows: readonly string[] = BIOME_ROWS, decor?: readonly MapDecor[]): GameMap => ({
   id,
@@ -148,28 +147,98 @@ function withBigDecor(rows: readonly string[], decor: readonly MapDecor[]): read
   return out.map((r) => r.join(''));
 }
 
-/** Big trees in a few places in the Forest (Round 73). */
-const FOREST_DECOR: readonly MapDecor[] = [{"sprite":"tree-big","x":2,"y":5,"w":2,"h":2},{"sprite":"tree-big","x":34,"y":5,"w":2,"h":2},{"sprite":"tree-big","x":12,"y":8,"w":2,"h":2},{"sprite":"tree-big","x":21,"y":9,"w":2,"h":2}];
+/** Big trees all over the Forest (Rounds 73 and 78). */
+const FOREST_DECOR: readonly MapDecor[] = [
+  { sprite: 'tree-big', x: 11, y: 15, w: 2, h: 2 },
+  { sprite: 'tree-big', x: 43, y: 15, w: 2, h: 2 },
+  { sprite: 'tree-big', x: 21, y: 18, w: 2, h: 2 },
+  { sprite: 'tree-big', x: 30, y: 19, w: 2, h: 2 },
+  { sprite: 'tree-big', x: 12, y: 2, w: 2, h: 2 },
+  { sprite: 'tree-big', x: 26, y: 2, w: 2, h: 2 },
+  { sprite: 'tree-big', x: 42, y: 2, w: 2, h: 2 },
+  { sprite: 'tree-big', x: 5, y: 7, w: 2, h: 2 },
+  { sprite: 'tree-big', x: 48, y: 7, w: 2, h: 2 },
+  { sprite: 'tree-big', x: 3, y: 17, w: 2, h: 2 },
+  { sprite: 'tree-big', x: 50, y: 17, w: 2, h: 2 },
+  { sprite: 'tree-big', x: 3, y: 24, w: 2, h: 2 },
+  { sprite: 'tree-big', x: 50, y: 24, w: 2, h: 2 },
+];
 
-/** An old skeleton poking out of the sand in the Desert (Round 74). */
-const DESERT_DECOR: readonly MapDecor[] = [{"sprite":"skeleton","x":28,"y":8,"w":3,"h":2}];
+/**
+ * A watering hole in the Desert with giraffes, an elephant and a lion drinking; now and then they
+ * lift their heads (designer, Round 79). Scenery only: they block their tiles but aren't monsters.
+ */
+const WATERING_HOLE: readonly MapDecor[] = [
+  { sprite: 'watering-hole', x: 15, y: 7, w: 4, h: 2, scale: 1.1, flat: true },
+  { sprite: 'giraffe-drink', alt: 'giraffe-up', x: 14, y: 7, w: 1, h: 1, scale: 2.2, flip: true },
+  { sprite: 'giraffe-drink', alt: 'giraffe-up', x: 18, y: 6, w: 1, h: 1, scale: 2.2 },
+  { sprite: 'elephant-drink', alt: 'elephant-up', x: 19, y: 8, w: 1, h: 1, scale: 2 },
+  { sprite: 'lion-drink', alt: 'lion-up', x: 16, y: 9, w: 1, h: 1, scale: 1.6 },
+];
 
-/** Little glaciers on the sides of the Snowy map (Round 75). */
-const SNOWY_DECOR: readonly MapDecor[] = [{"sprite":"glacier","x":1,"y":5,"w":2,"h":2},{"sprite":"glacier","x":35,"y":5,"w":2,"h":2},{"sprite":"glacier","x":1,"y":12,"w":2,"h":2},{"sprite":"glacier","x":35,"y":12,"w":2,"h":2}];
+/** Old skeletons poking out of the Desert sand (Rounds 74 and 78). */
+const DESERT_DECOR: readonly MapDecor[] = [
+  ...WATERING_HOLE,
+  { sprite: 'skeleton', x: 37, y: 18, w: 3, h: 2 },
+  { sprite: 'skeleton', x: 11, y: 2, w: 3, h: 2 },
+  { sprite: 'skeleton', x: 41, y: 2, w: 3, h: 2 },
+  { sprite: 'skeleton', x: 5, y: 7, w: 3, h: 2 },
+  { sprite: 'skeleton', x: 47, y: 7, w: 3, h: 2 },
+  { sprite: 'skeleton', x: 26, y: 2, w: 3, h: 2 },
+];
 
-/** A big volcano on the left and right of the Volcano map (Round 72). */
-const VOLCANO_DECOR: readonly MapDecor[] = [{"sprite":"volcano-big","x":1,"y":5,"w":3,"h":2},{"sprite":"volcano-big","x":34,"y":5,"w":3,"h":2}];
+/** Little glaciers in the Snowy map (Rounds 75 and 78). */
+const SNOWY_DECOR: readonly MapDecor[] = [
+  { sprite: 'glacier', x: 10, y: 15, w: 2, h: 2 },
+  { sprite: 'glacier', x: 44, y: 15, w: 2, h: 2 },
+  { sprite: 'glacier', x: 10, y: 22, w: 2, h: 2 },
+  { sprite: 'glacier', x: 44, y: 22, w: 2, h: 2 },
+  { sprite: 'glacier', x: 12, y: 2, w: 2, h: 2 },
+  { sprite: 'glacier', x: 42, y: 2, w: 2, h: 2 },
+  { sprite: 'glacier', x: 5, y: 7, w: 2, h: 2 },
+  { sprite: 'glacier', x: 48, y: 7, w: 2, h: 2 },
+  { sprite: 'glacier', x: 3, y: 17, w: 2, h: 2 },
+  { sprite: 'glacier', x: 50, y: 17, w: 2, h: 2 },
+];
 
-/** Big palm trees and fallen coconuts on the Beach (Round 65). */
-const BEACH_DECOR: readonly MapDecor[] = [
-  { sprite: 'palm-big', x: 2, y: 5, w: 2, h: 2 },
-  { sprite: 'palm-big', x: 34, y: 5, w: 2, h: 2 },
-  { sprite: 'coconut', x: 1, y: 7, w: 1, h: 1 },
-  { sprite: 'coconut', x: 4, y: 6, w: 1, h: 1 },
-  { sprite: 'coconut', x: 3, y: 7, w: 1, h: 1 },
-  { sprite: 'coconut', x: 36, y: 7, w: 1, h: 1 },
-  { sprite: 'coconut', x: 33, y: 6, w: 1, h: 1 },
-  { sprite: 'coconut', x: 34, y: 7, w: 1, h: 1 },
+/** Big volcanoes in the Volcano map (Rounds 72 and 78). */
+const VOLCANO_DECOR: readonly MapDecor[] = [
+  { sprite: 'volcano-big', x: 10, y: 15, w: 3, h: 2 },
+  { sprite: 'volcano-big', x: 43, y: 15, w: 3, h: 2 },
+  { sprite: 'volcano-big', x: 11, y: 2, w: 3, h: 2 },
+  { sprite: 'volcano-big', x: 41, y: 2, w: 3, h: 2 },
+  { sprite: 'volcano-big', x: 5, y: 7, w: 3, h: 2 },
+  { sprite: 'volcano-big', x: 47, y: 7, w: 3, h: 2 },
+];
+
+/** Big palm trees on the Beach (Rounds 65 and 78), with fallen coconuts beside them (coconuts don't block). */
+const BEACH_PALMS: readonly MapDecor[] = [
+  { sprite: 'palm-big', x: 11, y: 15, w: 2, h: 2 },
+  { sprite: 'palm-big', x: 43, y: 15, w: 2, h: 2 },
+  { sprite: 'palm-big', x: 12, y: 2, w: 2, h: 2 },
+  { sprite: 'palm-big', x: 42, y: 2, w: 2, h: 2 },
+  { sprite: 'palm-big', x: 5, y: 7, w: 2, h: 2 },
+  { sprite: 'palm-big', x: 48, y: 7, w: 2, h: 2 },
+  { sprite: 'palm-big', x: 3, y: 24, w: 2, h: 2 },
+  { sprite: 'palm-big', x: 50, y: 24, w: 2, h: 2 },
+];
+const BEACH_COCONUTS: readonly MapDecor[] = [
+  { sprite: 'coconut', x: 10, y: 16, w: 1, h: 1 },
+  { sprite: 'coconut', x: 13, y: 16, w: 1, h: 1 },
+  { sprite: 'coconut', x: 42, y: 16, w: 1, h: 1 },
+  { sprite: 'coconut', x: 45, y: 16, w: 1, h: 1 },
+  { sprite: 'coconut', x: 11, y: 3, w: 1, h: 1 },
+  { sprite: 'coconut', x: 14, y: 3, w: 1, h: 1 },
+  { sprite: 'coconut', x: 41, y: 3, w: 1, h: 1 },
+  { sprite: 'coconut', x: 44, y: 3, w: 1, h: 1 },
+  { sprite: 'coconut', x: 4, y: 8, w: 1, h: 1 },
+  { sprite: 'coconut', x: 7, y: 8, w: 1, h: 1 },
+  { sprite: 'coconut', x: 47, y: 8, w: 1, h: 1 },
+  { sprite: 'coconut', x: 50, y: 8, w: 1, h: 1 },
+  { sprite: 'coconut', x: 2, y: 25, w: 1, h: 1 },
+  { sprite: 'coconut', x: 5, y: 25, w: 1, h: 1 },
+  { sprite: 'coconut', x: 49, y: 25, w: 1, h: 1 },
+  { sprite: 'coconut', x: 52, y: 25, w: 1, h: 1 },
 ];
 
 // Colors: the chosen palette rows in 06-Art-and-Audio/Art-Mockups.html section 5 (owner, 2026-11-21).
@@ -178,7 +247,7 @@ export const BIOME_MAPS: readonly GameMap[] = [
   // Tall grass, trees, a pond.
   biome('forest', 'Forest', { ground: 0x7cb35a, path: 0xb89c6a, encounter: 0x3f8f3a, wall: 0x2f4f2f, blocker: 0x1f5a24, water: 0x3b7dd8 }, withBigDecor(BIOME_ROWS, FOREST_DECOR), FOREST_DECOR),
   // Soft sand, palm trees, tide pools.
-  biome('beach', 'Beach', { ground: 0xf1e7c6, path: 0xd8c08c, encounter: 0xe2c16a, wall: 0x8a6d3b, blocker: 0x4f9a4a, water: 0x2e86c1 }, BEACH_ROWS, BEACH_DECOR),
+  biome('beach', 'Beach', { ground: 0xf1e7c6, path: 0xd8c08c, encounter: 0xe2c16a, wall: 0x8a6d3b, blocker: 0x4f9a4a, water: 0x2e86c1 }, withBigDecor(BIOME_ROWS, BEACH_PALMS), [...BEACH_PALMS, ...BEACH_COCONUTS]),
   // Dunes, cactus, quicksand.
   biome('desert', 'Desert', { ground: 0xf6d77e, path: 0xd9a24e, encounter: 0xf0a830, wall: 0xb5652a, blocker: 0x3fae4a, water: 0xc88a4a }, withBigDecor(BIOME_ROWS, DESERT_DECOR), DESERT_DECOR),
   // Deep snow, pine trees, ice.

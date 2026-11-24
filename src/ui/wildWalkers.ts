@@ -6,7 +6,7 @@ import type * as Phaser from 'phaser';
 import { content } from '../data';
 import type { Rng } from '../logic/rng';
 import { species } from '../logic/monster';
-import { mapSpriteSize, sameTile, spawnWalker, wanderStep, WALKERS, type Tile, type Walker } from '../logic/wildWalkers';
+import { mapSpriteSize, sameTile, spawnWalker, walkersFor, wanderStep, WALKERS, type Tile, type Walker } from '../logic/wildWalkers';
 import { drawMonster } from './monsterArt';
 
 interface Shown extends Walker {
@@ -35,9 +35,10 @@ export class WildWalkers {
   constructor(scene: Phaser.Scene, opts: WildWalkersOptions) {
     this.scene = scene;
     this.opts = opts;
-    for (let i = 0; i < WALKERS.perMap; i++) this.spawn();
+    const target = walkersFor(opts.ground.length);
+    for (let i = 0; i < target; i++) this.spawn();
     // Scene timers pause with the scene, so nobody moves during a battle or the menu.
-    scene.time.addEvent({ delay: WALKERS.respawnMs, loop: true, callback: () => this.shown.length < WALKERS.perMap && this.spawn() });
+    scene.time.addEvent({ delay: WALKERS.respawnMs, loop: true, callback: () => this.shown.length < target && this.spawn() });
   }
 
   /** The wild monster on this tile, if any. */
