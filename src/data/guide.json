@@ -23,7 +23,7 @@
     {
       "id": "biome",
       "screen": "Biome",
-      "text": "Wild monsters walk around in the grass, sand, snow and ash. Walk into one to battle it! Shop and Reviver: by the exit."
+      "text": "Wild monsters walk around in the grass, sand, snow and ash. Walk into one to battle it! Shop and Reviver: in the middle."
     },
     {
       "id": "first-catch",
@@ -156,7 +156,7 @@
     {
       "id": "burned-frozen",
       "question": "What are Burned and Frozen?",
-      "answer": "Burned monsters lose a little HP each turn for a while. Frozen monsters miss their next turn. Those are the only two.",
+      "answer": "Burned monsters lose a little HP each turn for a while. Frozen monsters miss their next turn. Those are the only two. The Shell move blocks the next attack completely, burn and all.",
       "covers": [
         "rule:statuses"
       ]

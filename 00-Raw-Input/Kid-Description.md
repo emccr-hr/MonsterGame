@@ -468,3 +468,33 @@ His answers to two follow-up questions:
 > In the beach area. On the right, fifth end of the thing, I want to see water and crabs coming in and out. I want to see fish jumping in and out too.
 
 *(note: "On the right, fifth end of the thing" read as: the right fifth of the Beach map is the sea.)*
+
+## 2026-11-23 — Round 85 (shops in the middle)
+
+> Move the shops and healing things more towards the middle of each biome, not right at the beginning. Or maybe to the left of the entrance. But it's your call on this. Choose one.
+
+*(note: he left the choice to us; we picked the middle of each biome.)*
+
+## 2026-11-23 — Round 86 (Earth Snail and World Snail)
+
+> Can you Make a snail. But on top of its shell, there's trees and bushes and grass. Call him the earth snail. I want him to be as big as Blizzard Boy. I want him to spawn in the grass area. I want him to have Attacks that are tree hit, berry kick, snail bite, and shell. Shell means your opponent's attack does not do anything to you. No burning, no decreasing anything. Absolutely nothing. I want his ability to be, he cannot be burned. I want his evolved form to be the world snail. That all around his shell, there's trees and grass and ice and lava. He has burn, freeze, berry kick, and sand punch. He evolves into World Snail at level 20.
+
+*(note: "the grass area" read as the Forest biome. "As big as Blizzard Boy" = 4x Dumble.)*
+
+## 2026-11-23 — Round 87 (a lounge spot at the Beach)
+
+> in the middle of the beach, I want there to be 2 lounge chairs, a table in the middle, and on that table, there are 2 coconuts chopped in half with straws coming out.
+
+## 2026-11-23 — Round 88 (riding big monsters)
+
+> If you go into your bag and click on a big monster, you should be able to hit ride, and then you're able to ride around on that monster.
+
+*(Round 88 answers, from his picks: only **starred Big** monsters can be ridden; riding makes you **walk faster** (wild monsters can still find you); and **yes**, you can swim across water riding a water monster. Ride goes on the Team screen, since monsters live there, not in the Bag.)*
+
+## 2026-11-23 — Round 89 (a monster pen in Ansonville)
+
+> On the side of Ansonville, there should be a little pen where you can put 5 monsters in, and they'll walk around. You cannot battle with them or do anything with them until you take them out, and they will gain XP and level up while you're there. While they're there.
+
+*(note: he corrected himself: they level up "while they're there", in the pen.)*
+
+*(Round 89 answers, from his picks: pen monsters grow **over real time** while the game is open, at **about the same speed as battling**; Claude picks the spot for the pen.)*

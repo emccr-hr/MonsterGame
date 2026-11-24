@@ -31,6 +31,8 @@ export const moveEffect = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('skipNextTurn') }),
   /** Heal the user's other team monsters (Protect the Queen). */
   z.object({ kind: z.literal('healTeam'), fraction }),
+  /** Shell (Round 86): the next attack on the user does nothing at all: no damage, no Burned, no weakening. */
+  z.object({ kind: z.literal('shell') }),
 ]);
 
 export const move = z.object({

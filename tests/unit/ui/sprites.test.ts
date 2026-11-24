@@ -103,7 +103,7 @@ describe('the sprite files', () => {
 
   it('every base monster has a sprite (Round 61: base character art first)', () => {
     const base = content.monsters.filter((m) => m.evolvesFrom === null && m.kind === 'monster');
-    expect(base).toHaveLength(33);
+    expect(base).toHaveLength(34);
     for (const m of base) expect(monsters[m.id], `${m.id} needs src/assets/sprites/monsters/${m.id}.svg`).toBeDefined();
   });
 

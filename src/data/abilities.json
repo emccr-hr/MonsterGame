@@ -215,5 +215,14 @@
       "kind": "immuneToStatus",
       "status": "frozen"
     }
+  },
+  {
+    "id": "damp-moss",
+    "name": "Damp Moss",
+    "description": "Its wet, mossy shell can never be Burned.",
+    "effect": {
+      "kind": "immuneToStatus",
+      "status": "burned"
+    }
   }
 ]

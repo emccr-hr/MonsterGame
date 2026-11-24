@@ -103,7 +103,8 @@ export const ANSONVILLE: GameMap = {
 // entrance at the bottom, encounter ground around the edges. Different looks come with real art.
 // 56x27 since Round 78 ("make all biomes bigger... eight new spawning platforms in each biome"): the
 // Round 65 map sits at the bottom middle (exit, shop and Reviver where they were), with 8 new grass
-// patches, a pond and room for more big scenery in the new space above and to the sides.
+// patches, a pond and room for more big scenery in the new space above and to the sides. The shop and
+// Reviver stand in the middle of the map, straight up from the entrance (Round 85).
 const BIOME_ROWS = [
   '########################################################',
   '#......................................................#',
@@ -122,13 +123,13 @@ const BIOME_ROWS = [
   '#.,,,,,.......,,,,~~~,,,,,,..,,,,,,~~~,,,,.......,,,,,.#',
   '#.,,,,,.......,,,,~~~,,,,,,..,,,,,,~~~,,,,.......,,,,,.#',
   '#.,,,,,.......,,,,,,,,,,,,,..,,,,,,,,,,,,,.......,,,,,.#',
-  '#......................................................#',
+  '#...........................$R.........................#',
   '#.........,,,.....TT..............TT.......,,,.........#',
   '#.,,,,,...,,,..............................,,,...,,,,,.#',
   '#.,,,,,...,,,.,,,,,,,,,,,..........,,,,,,,.,,,...,,,,,.#',
   '#.,,,,,.......,,,,,,,,,,,..........,,,,,,,.......,,,,,.#',
   '#.,,,,,.......,,,,,,TT,,,..........,,,TT,,.......,,,,,.#',
-  '#.,,,,,.......,,,,,,,,,,,...$R.....,,,,,,,.......,,,,,.#',
+  '#.,,,,,.......,,,,,,,,,,,..........,,,,,,,.......,,,,,.#',
   '#...........................@..........................#',
   '#...........................=..........................#',
   '############################E###########################',
@@ -262,6 +263,13 @@ const BEACH_COCONUTS: readonly MapDecor[] = [
   { sprite: 'coconut', x: 43, y: 24, w: 1, h: 1 },
 ];
 
+/** A lounge spot in the middle of the Beach, by the pond (Round 87): two lounge chairs and a table with two coconut drinks. They block. */
+const BEACH_LOUNGE: readonly MapDecor[] = [
+  { sprite: 'lounge-chair', x: 24, y: 10, w: 2, h: 1, scale: 1 },
+  { sprite: 'beach-table', x: 27, y: 10, w: 2, h: 1, scale: 1.2 },
+  { sprite: 'lounge-chair', x: 30, y: 10, w: 2, h: 1, scale: 1, flip: true },
+];
+
 /** The Beach's right side is the ocean (Round 84): from this column to the wall. */
 const OCEAN_FROM = 46;
 /** Rows with the ocean on the right: every tile from OCEAN_FROM to the wall becomes water. */
@@ -289,7 +297,7 @@ export const BIOME_MAPS: readonly GameMap[] = [
   // Tall grass, trees, a pond.
   biome('forest', 'Forest', { ground: 0x7cb35a, path: 0xb89c6a, encounter: 0x3f8f3a, wall: 0x2f4f2f, blocker: 0x1f5a24, water: 0x3b7dd8 }, withBigDecor(BIOME_ROWS, FOREST_DECOR), [...FOREST_DECOR, ...FOREST_MONKEYS]),
   // Soft sand, palm trees, tide pools.
-  biome('beach', 'Beach', { ground: 0xf1e7c6, path: 0xd8c08c, encounter: 0xe2c16a, wall: 0x8a6d3b, blocker: 0x4f9a4a, water: 0x2e86c1 }, withBigDecor(withOcean(BIOME_ROWS, OCEAN_FROM), BEACH_PALMS), [...BEACH_PALMS, ...BEACH_COCONUTS, ...BEACH_SEA_LIFE]),
+  biome('beach', 'Beach', { ground: 0xf1e7c6, path: 0xd8c08c, encounter: 0xe2c16a, wall: 0x8a6d3b, blocker: 0x4f9a4a, water: 0x2e86c1 }, withBigDecor(withOcean(BIOME_ROWS, OCEAN_FROM), [...BEACH_PALMS, ...BEACH_LOUNGE]), [...BEACH_PALMS, ...BEACH_LOUNGE, ...BEACH_COCONUTS, ...BEACH_SEA_LIFE]),
   // Dunes, cactus, quicksand.
   biome('desert', 'Desert', { ground: 0xf6d77e, path: 0xd9a24e, encounter: 0xf0a830, wall: 0xb5652a, blocker: 0x3fae4a, water: 0xc88a4a }, withBigDecor(BIOME_ROWS, DESERT_DECOR), DESERT_DECOR),
   // Deep snow, pine trees, ice.

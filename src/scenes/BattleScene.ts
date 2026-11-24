@@ -375,6 +375,12 @@ export class BattleScene extends Phaser.Scene {
           const sprite = e.side === 'enemy' ? this.enemySprite : this.playerSprite;
           sprite?.setAlpha(0.25);
         };
+      case 'shell':
+        return () => {
+          // Shell (Round 86): a quick squash, like pulling into its shell.
+          const sprite = e.side === 'enemy' ? this.enemySprite : this.playerSprite;
+          if (sprite) this.tweens.add({ targets: sprite, scaleY: sprite.scaleY * 0.8, duration: 160, yoyo: true });
+        };
       case 'move':
         return () => {
           const sprite = e.side === 'enemy' ? this.enemySprite : this.playerSprite;
