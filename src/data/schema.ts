@@ -202,6 +202,17 @@ export const guideGoal = z.object({ id, when: guideCondition, text: z.string().m
 
 export const guide = z.object({ tips: z.array(guideTip), topics: z.array(guideTopic), goals: z.array(guideGoal).min(1) });
 
+// ---- Ending (M6b): the words after beating Avatar and the credits (src/data/ending.json). ----
+export const ending = z.object({
+  /** Lines shown one at a time after Avatar is beaten. */
+  story: z.array(z.string().min(1).max(120)).min(1),
+  /** Credits: a role and the names under it. */
+  credits: z.array(z.object({ role: z.string().min(1).max(40), names: z.array(z.string().min(1).max(60)).min(1) })).min(1),
+  /** The last screen: the game keeps going (designer, Round 63). */
+  after: z.string().min(1).max(160),
+});
+export type Ending = z.infer<typeof ending>;
+
 // ---- Files ----------------------------------------------------------------------------------
 export const contentFiles = {
   monsters: z.array(monster),

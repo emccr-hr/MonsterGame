@@ -10,8 +10,10 @@ import {
   canTeleport,
   gateProgress,
   lockedBiomes,
+  pinsInBag,
   placePin,
   removePin,
+  teleportChoices,
   teleportSpots,
   useHealingItem,
   useReviver,
@@ -322,5 +324,31 @@ describe('placePin and removePin', () => {
     const placed = expectOk(placePin(content, s, 'forest', 1, 1));
     removePin(content, placed, 1);
     expect(s).toEqual(copy);
+  });
+});
+
+describe('teleportChoices (the Teleport menu, M6b)', () => {
+  const high = () => mon(content, 'bushtail', 50);
+
+  it('is empty before level 50', () => {
+    expect(teleportChoices(content, withTeam(mon(content, 'bushtail', 49)))).toEqual([]);
+  });
+
+  it('lists the shops first, then the pins with their place names', () => {
+    const pins = [
+      { id: 4, scene: 'beach', x: 3, y: 4 },
+      { id: 7, scene: 'ansonville', x: 5, y: 6 },
+    ];
+    const s = { ...withTeam(high()), openBiomes: ['forest', 'beach'], pins };
+    const rows = teleportChoices(content, s);
+    expect(rows.map((r) => r.label)).toEqual(['Ansonville shop', 'Forest shop', 'Beach shop', 'Pin 1: Beach', 'Pin 2: Ansonville']);
+    expect(rows.map((r) => r.area)).toEqual(['ansonville', 'forest', 'beach', 'beach', 'ansonville']);
+    expect(rows[3]!.pin).toEqual(pins[0]);
+    expect(rows[0]!.pin).toBeUndefined();
+  });
+
+  it('counts the pins still in the bag', () => {
+    expect(pinsInBag(content, { ...fresh(), bag: { 'teleport-pin': 2 } })).toBe(2);
+    expect(pinsInBag(content, fresh())).toBe(0);
   });
 });

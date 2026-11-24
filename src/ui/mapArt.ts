@@ -138,3 +138,25 @@ function drawWater(scene: Phaser.Scene, map: GameMap, T: number): void {
     scene.tweens.add({ targets: spark, alpha: 0.1, duration: 1100, yoyo: true, repeat: -1, ease: 'Sine.easeInOut' });
   }
 }
+
+/** A Teleport Pin on the map (M6b): a red map pin standing on its tile. Purely a picture. */
+export function drawPin(scene: Phaser.Scene, cx: number, cy: number): void {
+  const g = scene.add.graphics().setDepth(3);
+  g.fillStyle(0x000000, 0.25).fillEllipse(cx, cy + 12, 14, 5);
+  g.lineStyle(3, 0x5b5b6b).lineBetween(cx, cy + 12, cx, cy - 2);
+  g.fillStyle(0xe5484d).fillCircle(cx, cy - 8, 7);
+  g.lineStyle(2, 0x7a1f22).strokeCircle(cx, cy - 8, 7);
+  g.fillStyle(0xffffff, 0.8).fillCircle(cx - 2, cy - 10, 2);
+}
+
+/** Poof: a ring of sparkles where the player lands after teleporting. */
+export function teleportSparkle(scene: Phaser.Scene, cx: number, cy: number): void {
+  const colors = [0xffd166, 0x9b6bff, 0x7dd3fc, 0xffffff];
+  for (let i = 0; i < 14; i++) {
+    const a = (i / 14) * Math.PI * 2;
+    const s = scene.add.star(cx, cy, 4, 2, 6, colors[i % colors.length]!).setDepth(6);
+    scene.tweens.add({ targets: s, x: cx + Math.cos(a) * 40, y: cy + Math.sin(a) * 40, alpha: 0, angle: 180, duration: 700, ease: 'Quad.easeOut', onComplete: () => s.destroy() });
+  }
+  const ring = scene.add.circle(cx, cy, 6, 0xffffff, 0).setStrokeStyle(3, 0xffd166).setDepth(6);
+  scene.tweens.add({ targets: ring, radius: 44, alpha: 0, duration: 600, onComplete: () => ring.destroy() });
+}

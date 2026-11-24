@@ -46,7 +46,7 @@ Designer, Round 44.
   - **Pins can be deleted** to free up a slot.
 - **Pins cost 100 Magic Gems each** (designer, Round 45).
 - Agreed (✅ agreed, Round 58): Deleting a pin **gives it back** to your bag so you can place it again (no re-buying). You can **buy** pins before level 50 but only **use** them after. Pins can't be placed inside the final boss's arena.
-- Teleport menu: open the map → pick a shop or pin → poof.
+- Teleport menu: open the map → pick a shop or pin → poof. *(Built in M6b: press M, pick Teleport. "Place a pin here" puts a pin where you stand; X picks a pin back up.)*
 
 ## Revivers
 Designer, Round 46.

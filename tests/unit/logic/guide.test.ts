@@ -51,4 +51,13 @@ describe("Papai's questions", () => {
     for (const t of content.guide.topics) if (t.unlock) expect(typeof conditionHolds(content, s, t.unlock)).toBe('boolean');
     for (const g of content.guide.goals) expect(typeof conditionHolds(content, s, g.when)).toBe('boolean');
   });
+
+  it('after Avatar, suggests Big Monsters and the Monster Book, and answers "What now?"', () => {
+    let s = newGame(content, 'forest', 1);
+    for (const m of content.monsters.filter((x) => x.spawnWeight !== null)) s = caught(s, m.id);
+    s = { ...s, avatarBeaten: true };
+    expect(nextGoal(content, s)).toMatch(/Big Monsters.*Monster Book/);
+    expect(topicsFor(content, s).some((t) => t.id === 'after-avatar')).toBe(true);
+    expect(topicsFor(content, { ...s, avatarBeaten: false }).some((t) => t.id === 'after-avatar')).toBe(false);
+  });
 });

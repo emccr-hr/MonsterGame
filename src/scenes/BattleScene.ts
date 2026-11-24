@@ -5,7 +5,9 @@ import { mapById } from '../data/maps';
 import { activeOf, invalidReason, resolveTurn, type Action, type BattleEvent, type BattleState, type SideId } from '../logic/battle';
 import { bagMenu, eventText, mainMenu, moveMenu, sideName, targetMenu, teamMenu, type MenuChoice } from '../logic/battleUi';
 import { readyToEvolve } from '../logic/collection';
-import { finishBattle, startWildEncounter } from '../logic/encounter';
+import { playsEnding } from '../logic/ending';
+import { finishBattle, startAvatarBattle, startWildEncounter } from '../logic/encounter';
+import type { GameState } from '../logic/game';
 import { maxHp, species } from '../logic/monster';
 import type { Rng } from '../logic/rng';
 import { gameRng, getGame, saveGame, setGame } from '../state/game';
@@ -76,6 +78,9 @@ export class BattleScene extends Phaser.Scene {
   private selected = 0;
   private fast = false;
   private message = '';
+  /** The game before an Avatar battle, to tell a first win (the ending) from a rematch. */
+  private before?: GameState;
+  private endingNext = false;
 
   private enemySprite?: Phaser.GameObjects.Container;
   private playerSprite?: Phaser.GameObjects.Container;
@@ -99,17 +104,26 @@ export class BattleScene extends Phaser.Scene {
     this.menuTexts = [];
     this.enemySprite = undefined;
     this.playerSprite = undefined;
+    this.before = undefined;
+    this.endingNext = false;
   }
 
   create(): void {
     this.rng = gameRng();
     this.lastElement = { player: null, enemy: null };
-    const started = startWildEncounter(content, getGame(), this.from.biomeId, this.rng, this.from.spawn);
-    setGame(started.state);
-    this.battle = started.battle;
+    if (this.from.boss) {
+      // M6b: Avatar's battle, from the open arena gate. No catching and no running.
+      this.before = getGame();
+      this.battle = startAvatarBattle(content, getGame());
+    } else {
+      const started = startWildEncounter(content, getGame(), this.from.biomeId, this.rng, this.from.spawn);
+      setGame(started.state);
+      this.battle = started.battle;
+    }
 
-    this.drawBackground();
-    playMusic('battle');
+    if (this.from.boss) this.drawArena();
+    else this.drawBackground();
+    playMusic(this.from.boss ? 'avatar' : 'battle');
     this.enemyBar = this.makeBar(40, 40);
     this.playerBar = this.makeBar(GAME_WIDTH - 360, 300);
     this.enemySprite = drawMonster(this, activeOf(this.battle.enemy)!.m, ENEMY_AT.x, ENEMY_AT.y);
@@ -132,7 +146,8 @@ export class BattleScene extends Phaser.Scene {
 
     const wild = activeOf(this.battle.enemy)!.m;
     const first = this.battle.player.team.length === 0;
-    const lines: Beat[] = [{ text: `A wild ${wild.big ? 'BIG ' : ''}${species(content, wild.species).name} appears!` }];
+    const lines: Beat[] = [{ text: this.from.boss ? 'Avatar appears! Fire, water, rock, ice and leaves swirl around it!' : `A wild ${wild.big ? 'BIG ' : ''}${species(content, wild.species).name} appears!`, ms: this.from.boss ? 2200 : undefined }];
+    if (this.from.boss && markTipSeen('avatar-battle')) lines.push({ text: tipText('avatar-battle'), ms: 2600 });
     if (first) lines.push({ text: tipText('first-catch'), ms: 2600 });
     else {
       const lead = activeOf(this.battle.player);
@@ -389,11 +404,16 @@ export class BattleScene extends Phaser.Scene {
     else if (ended.outcome === 'fled' && this.enemySprite) this.tweens.add({ targets: this.enemySprite, x: GAME_WIDTH + 200, duration: 500, ease: 'Quad.easeIn' });
 
     const lines: Beat[] = [];
+    if (ended.kind === 'boss' && ended.outcome === 'won') {
+      // The first win plays the ending and credits; a rematch just goes back to the map.
+      this.endingNext = !!this.before && playsEnding(this.before, state);
+      lines.push({ text: this.endingNext ? 'You beat Avatar!' : 'You beat Avatar again! What a team!', ms: 2200 });
+    }
     if (rewards.caught) {
       const name = species(content, rewards.caught.species).name;
       lines.push({ text: rewards.caughtToTeam ? `${name} joined your team!` : `${name} went to your backpack.` });
     }
-    if (ended.outcome === 'won') {
+    if (ended.outcome === 'won' && ended.kind === 'wild') {
       lines.push({ text: `Your team got ${rewards.xp} XP and ${rewards.gems} Magic Gems!` });
       for (const [uid, levels] of Object.entries(rewards.levelUps)) {
         const m = state.team.find((x) => x.uid === Number(uid));
@@ -411,6 +431,12 @@ export class BattleScene extends Phaser.Scene {
     this.phase = 'done';
     this.report();
     const g = getGame();
+    if (this.endingNext) {
+      // M6b: the ending and credits; they bring the player back to Ansonville by the arena.
+      this.scene.stop(this.from.sceneKey);
+      this.scene.start('Ending');
+      return;
+    }
     if (this.battle.outcome === 'lost') {
       const map = mapById(g.lastReviver);
       const reviver = findAll(map, 'R')[0];
@@ -473,6 +499,18 @@ export class BattleScene extends Phaser.Scene {
     const shadow = Phaser.Display.Color.IntegerToColor(p.encounter).darken(15).color;
     this.add.ellipse(ENEMY_AT.x, ENEMY_AT.y + 70, 300, 60, shadow);
     this.add.ellipse(PLAYER_AT.x, PLAYER_AT.y + 70, 300, 60, shadow);
+  }
+
+  /** Avatar's arena: a dark stone ring with the five elements' colors glowing around the edge. */
+  private drawArena(): void {
+    this.add.rectangle(0, 0, GAME_WIDTH, GAME_HEIGHT, 0x2a2140).setOrigin(0);
+    const colors = [0xff6a1a, 0x3b9be0, 0xb08a5a, 0xbfe9ff, 0x3fae4a];
+    colors.forEach((c, i) => {
+      const band = this.add.rectangle((GAME_WIDTH / colors.length) * i, 0, GAME_WIDTH / colors.length, GAME_HEIGHT * 0.32, c).setOrigin(0).setAlpha(0.35);
+      this.tweens.add({ targets: band, alpha: 0.55, duration: 900 + i * 120, yoyo: true, repeat: -1 });
+    });
+    this.add.ellipse(ENEMY_AT.x, ENEMY_AT.y + 100, 380, 70, 0x1a1430);
+    this.add.ellipse(PLAYER_AT.x, PLAYER_AT.y + 70, 300, 60, 0x1a1430);
   }
 
   private makeBar(x: number, y: number): HpBar {
@@ -580,6 +618,7 @@ export class BattleScene extends Phaser.Scene {
       player: this.battle ? view('player') : null,
       team: currentTeamSize(),
       fast: this.fast,
+      boss: !!this.from?.boss,
     });
   }
 }

@@ -74,6 +74,26 @@
       "id": "map-part",
       "screen": "Map",
       "text": "Locked gates need a map part. Buy one at the shop for 50 Magic Gems. Win battles to earn gems."
+    },
+    {
+      "id": "teleport",
+      "screen": "Teleport",
+      "text": "Pick a shop or pin and press Enter to teleport. Place a pin where you stand. X picks a pin back up."
+    },
+    {
+      "id": "avatar-battle",
+      "screen": "Battle",
+      "text": "Avatar uses all 5 elements and gets stronger as the fight goes on. You can't cage it or run!"
+    },
+    {
+      "id": "ending",
+      "screen": "Ending",
+      "text": "Press Enter to go on. After the credits you're back in Ansonville!"
+    },
+    {
+      "id": "after-avatar",
+      "screen": "Map",
+      "text": "You beat Avatar! The game keeps going. Catch Big Monsters and fill your Monster Book!"
     }
   ],
   "topics": [
@@ -235,18 +255,22 @@
     {
       "id": "teleport",
       "question": "How does teleporting work?",
-      "answer": "Once a monster on your team is level 50, you can teleport to shops and to Teleport Pins you place. You can place 5 pins.",
+      "answer": "When a monster on your team is level 50, press M and pick Teleport. Pick a shop or a pin and press Enter. Place up to 5 pins where you stand. X picks a pin up again.",
       "covers": [
-        "rule:teleport"
+        "rule:teleport",
+        "scene:Teleport",
+        "key:X",
+        "key:DELETE"
       ],
       "unlock": "canTeleport"
     },
     {
       "id": "avatar",
       "question": "Who is Avatar?",
-      "answer": "Avatar is the boss! Catch every wild monster from every place to open Avatar's arena in the middle of Ansonville.",
+      "answer": "Avatar is the boss! Catch every wild monster to open its arena in the middle of Ansonville, then walk into the gate. It uses all 5 elements. Heal up first!",
       "covers": [
-        "rule:avatar"
+        "rule:avatar",
+        "rule:avatar-battle"
       ]
     },
     {
@@ -272,6 +296,16 @@
       "covers": [
         "scene:Papai"
       ]
+    },
+    {
+      "id": "after-avatar",
+      "question": "I beat Avatar! What now?",
+      "answer": "Great job! The game keeps going. Catch Big Monsters, fill your Monster Book, and grow your team to level 100. You can battle Avatar again too!",
+      "covers": [
+        "scene:Ending",
+        "rule:after-avatar"
+      ],
+      "unlock": "avatarBeaten"
     }
   ],
   "goals": [
@@ -298,7 +332,12 @@
     {
       "id": "fight-avatar",
       "when": "arenaOpen",
-      "text": "You caught every wild monster! Avatar's battle is coming soon. Keep training your team!"
+      "text": "You caught every wild monster! Heal up, then walk into the arena gate in the middle of Ansonville to battle Avatar!"
+    },
+    {
+      "id": "after-avatar",
+      "when": "avatarBeaten",
+      "text": "You beat Avatar! Now catch Big Monsters and fill your Monster Book. Can you get a monster to level 100?"
     },
     {
       "id": "open-place",

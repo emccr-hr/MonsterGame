@@ -16,4 +16,6 @@ export interface WildEncounterEvent {
   tile: Tile;
   /** The visible wild monster the player walked into (Round 62); missing for a hidden surprise. */
   spawn?: Spawn;
+  /** Avatar's battle (M6b): walking into the open arena gate. `biomeId` is then the map's id. */
+  boss?: boolean;
 }

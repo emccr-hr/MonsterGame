@@ -127,6 +127,20 @@ No code change needed (ADR 0003). Schemas: `src/data/schema.ts`; cross-checks: `
   the player stands so the gate shows open.
 - The map HUD shows gems and cages; the Avatar arena gate says "Monsters caught: X / 15".
 
+## Teleporting, Avatar and the ending (M6b)
+- **Teleport** (`src/scenes/TeleportScene.ts`, from the M menu): rows come from `teleportChoices` and
+  `pinsInBag` in `src/logic/world.ts`; placing and picking up use `placePin`/`removePin`. Going
+  somewhere stops the paused map and starts the target map with `{ at, arrive }` (`arrive` is the
+  message shown with a sparkle). Shops land beside the `$` tile. Pins are drawn by `drawPin` in `mapArt.ts`.
+- **Avatar:** MapScene asks `arenaGate` (`src/logic/ending.ts`) and fires `WILD_ENCOUNTER` with
+  `boss: true`; BattleScene then uses `startAvatarBattle`, the `avatar` song and its own arena
+  background. A first win (`playsEnding`) stops the map and starts `Ending`; a rematch returns to the map.
+- **Ending** (`src/scenes/EndingScene.ts`): story lines, credits and the last words come from
+  `src/data/ending.json` (Zod schema `ending` in `schema.ts`); "Your adventure" is `adventureLines`.
+  Enter skips a line or speeds up the credits; the last Enter starts Ansonville beside the arena gate.
+- Smoke test `tests/smoke/endgame.spec.ts` loads a late-game save (it reads the JSON with `fs`,
+  because Playwright's Node can't import JSON without an import attribute).
+
 ## Papai, the game expert (ADR 0008)
 - Papai answers from `src/data/guide.json`: `tips` (first-time), `topics` (questions and answers, with
   what each `covers`) and `goals` ("What should I do next?", first match wins). Conditions are in
