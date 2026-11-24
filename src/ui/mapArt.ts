@@ -2,7 +2,7 @@
 // on top of the flat tile colors MapScene paints. Kept out of MapScene so the scene only asks
 // "what did you draw?" and skips its old placeholder shapes for those.
 import * as Phaser from 'phaser';
-import type { GameMap } from '../data/maps';
+import { zoneAt, type GameMap } from '../data/maps';
 import { findAll } from '../world/grid';
 import { spriteKey } from './spriteManifest';
 import { addSprite } from './sprites';
@@ -43,11 +43,51 @@ export function drawMapArt(
     if (!img) continue;
     if (d.flip) img.setFlipX(true);
     if (d.alt) animateAlt(scene, img, d.sprite, d.alt);
+    if (d.shuttle) {
+      // Walk out of the water onto the sand and back (crabs, Round 84): faint while still in the sea.
+      img.setDepth(4.4).setAlpha(0.45);
+      scene.tweens.add({
+        targets: img,
+        x: img.x + d.shuttle[0] * T,
+        y: img.y + d.shuttle[1] * T,
+        alpha: 1,
+        duration: 1800 + Math.random() * 800,
+        hold: 1200 + Math.random() * 1500,
+        repeatDelay: 900 + Math.random() * 1500,
+        yoyo: true,
+        repeat: -1,
+        ease: 'Sine.easeInOut',
+        delay: Math.random() * 2000,
+      });
+    }
+    if (d.jump) {
+      // Leap out of the water and splash back in, somewhere in its block, now and then (fish, Round 84).
+      img.setAlpha(0).setDepth(4.4);
+      const leap = () =>
+        scene.time.delayedCall(1500 + Math.random() * 3500, () => {
+          if (!img.active) return;
+          const x = (d.x + Math.random() * d.w) * T;
+          const y = (d.y + d.h * 0.7) * T;
+          const left = Math.random() < 0.5;
+          img.setPosition(x, y).setAlpha(1).setFlipX(!left).setAngle(left ? 40 : -40);
+          splash(scene, x, y);
+          scene.tweens.add({ targets: img, x: x + (left ? -28 : 28), duration: 700, ease: 'Linear' });
+          scene.tweens.add({ targets: img, y: y - 34, angle: 0, duration: 350, yoyo: true, ease: 'Quad.easeOut', onComplete: () => { img.setAlpha(0); splash(scene, img.x, y); leap(); } });
+        });
+      leap();
+    }
+    if (d.swing) {
+      // Hang from the top of its block and swing like a pendulum (monkeys on vines, Round 82).
+      img.setOrigin(0.5, 0).setY(d.y * T).setDepth(4.7);
+      img.setAngle(-20);
+      scene.tweens.add({ targets: img, angle: 20, duration: 1300 + Math.random() * 400, yoyo: true, repeat: -1, ease: 'Sine.easeInOut', delay: Math.random() * 600 });
+    }
   }
 
-  const tree = `tree-${map.biome ?? 'ansonville'}`;
   for (const t of findAll(map, 'T')) {
     if (underDecor(t.x, t.y)) continue;
+    // In Ansonville's biome areas (Round 80), each tree matches its area: palm, cactus, pine, rock.
+    const tree = `tree-${zoneAt(map, t.x, t.y) ?? map.biome ?? 'ansonville'}`;
     const { cx, cy } = at(t.x, t.y);
     drawn.trees = !!addSprite(scene, 'tile', tree, cx, cy, T)?.setDepth(1) || drawn.trees;
   }
@@ -80,6 +120,13 @@ export function drawMapArt(
     }
   }
   return drawn;
+}
+
+/** A little ring of splash where a fish leaves or enters the water. */
+function splash(scene: Phaser.Scene, x: number, y: number): void {
+  const ring = scene.add.ellipse(x, y + 6, 14, 6).setStrokeStyle(2, 0xffffff, 0.9).setDepth(4.3);
+  ring.isFilled = false;
+  scene.tweens.add({ targets: ring, scale: 2.2, alpha: 0, duration: 450, onComplete: () => ring.destroy() });
 }
 
 /** Now and then show the other picture for a moment (an animal lifting its head), at a random rhythm. */

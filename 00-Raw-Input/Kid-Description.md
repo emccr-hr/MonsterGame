@@ -442,3 +442,29 @@ His answers to two follow-up questions:
 > Add a watering hole with giraffes, elephants, and lions drinking from it. They lift their heads sometimes. You cannot catch them or battle them. They are not an actual entity.
 
 *(note: "spawning platforms" read as grass patches where wild monsters appear. The watering hole went in the Desert; he didn't say which biome.)*
+
+## 2026-11-23 — Round 80 (Ansonville in five areas)
+
+> In Ansonville, I want it to be divided up into sections. Instead of it all looking like the forest biome, I want it to be 1/5 goes to each biome. 1/5 goes to forest, 1/5 to ice, and etc.
+
+## 2026-11-23 — Round 81 (a Dumble frozen in a glacier)
+
+> In the middle of the ice biome, I want there to be a glacier, but there's a dumble frozen inside of it. You cannot catch it. It is just there.
+
+*(note: "the ice biome" = Snowy.)*
+
+## 2026-11-23 — Round 82 (monkeys on a vine tree)
+
+> In the forest area, I want there to be a big tree with vines, and I want to see monkeys swinging on them, holding bananas in the other hand. You cannot catch the monkeys.
+
+## 2026-11-23 — Round 83 (a fire-breathing dragon)
+
+> In the fire area, I want to see a dragon breathing fire. You cannot catch the dragon.
+
+*(note: "the fire area" = the Volcano.)*
+
+## 2026-11-23 — Round 84 (the sea at the Beach)
+
+> In the beach area. On the right, fifth end of the thing, I want to see water and crabs coming in and out. I want to see fish jumping in and out too.
+
+*(note: "On the right, fifth end of the thing" read as: the right fifth of the Beach map is the sea.)*

@@ -1,7 +1,7 @@
 import * as Phaser from 'phaser';
 import { COLORS, FONT, GAME_HEIGHT, GAME_WIDTH, STEP_MS, TILE_SIZE } from '../config';
 import { content } from '../data';
-import { ANSONVILLE, mapById, type GameMap } from '../data/maps';
+import { ANSONVILLE, mapById, paletteAt, type GameMap } from '../data/maps';
 import { debugLevelTeam, readyToEvolve } from '../logic/collection';
 import { stepOnEncounterGround } from '../logic/encounterRate';
 import { createRng, type Rng } from '../logic/rng';
@@ -448,7 +448,10 @@ export class MapScene extends Phaser.Scene {
         const kind = kindOf(row[x] ?? '#') ?? 'wall';
         // Under M8 tree and building sprites the ground shows, not the old placeholder color.
         const onSprite = (kind === 'blocker' && art.trees) || ((kind === 'shop' || kind === 'reviver') && art.buildings);
-        let color = onSprite ? p.ground : (colors[kind] ?? p.ground);
+        // Ansonville's five biome areas (Round 80): ground, grass, walls and trees take the nearest gate's colors.
+        const zp = this.map.zoned ? paletteAt(this.map, x, y) : p;
+        const tileColors = zp === p ? colors : { ...colors, wall: zp.wall, ground: zp.ground, encounter: zp.encounter, blocker: zp.blocker, guide: zp.ground };
+        let color = onSprite ? zp.ground : (tileColors[kind] ?? zp.ground);
         if (kind === 'gate') {
           const biome = gateBiome(this.map, row[x] ?? '');
           color = biome && isBiomeOpen(biome) ? 0xffd166 : 0x6c6a80;

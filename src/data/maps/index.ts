@@ -23,6 +23,11 @@ export interface GameMap {
   /** The biome whose wild monsters live here, or null for Ansonville. */
   biome: string | null;
   /**
+   * Ansonville (Round 80): split into five areas, one per biome. Each tile takes the colors and trees
+   * of the biome whose gate is nearest (`zoneAt`, `paletteAt`).
+   */
+  zoned?: boolean;
+  /**
    * Where this map's wild monsters come from when it has no biome (Round 71): "ansonville" means
    * any first form from any biome (`MIXED_POOL` in src/logic/spawning.ts).
    */
@@ -49,6 +54,12 @@ export interface MapDecor {
   flat?: boolean;
   /** Animation (Round 79): now and then it switches to this other picture for a moment (an animal lifting its head). */
   alt?: string;
+  /** Animation (Round 82): hangs from the top of its block and swings back and forth (a monkey on a vine). */
+  swing?: boolean;
+  /** Animation (Round 84): walks this many tiles (x, y) and back, again and again (a crab coming out of the sea). */
+  shuttle?: readonly [number, number];
+  /** Animation (Round 84): now and then leaps up out of the water somewhere in its block (a fish). */
+  jump?: boolean;
 }
 
 export const ANSONVILLE: GameMap = {
@@ -57,6 +68,7 @@ export const ANSONVILLE: GameMap = {
   biome: null,
   // Round 71: grassy spots all around town and a ring around Avatar's arena, where any first-form monster can appear.
   wildPool: 'ansonville',
+  zoned: true,
   // Layout follows the sketch in 03-World-and-Story/Setting.md: Snowy north, Desert and Volcano
   // up the sides, Forest and Beach down the sides, the Avatar arena in the middle.
   rows: [
@@ -147,8 +159,9 @@ function withBigDecor(rows: readonly string[], decor: readonly MapDecor[]): read
   return out.map((r) => r.join(''));
 }
 
-/** Big trees all over the Forest (Rounds 73 and 78). */
+/** Big trees all over the Forest (Rounds 73 and 78), and a big vine tree (Round 82). */
 const FOREST_DECOR: readonly MapDecor[] = [
+  { sprite: 'tree-vines', x: 32, y: 6, w: 3, h: 3, scale: 1.6 },
   { sprite: 'tree-big', x: 11, y: 15, w: 2, h: 2 },
   { sprite: 'tree-big', x: 43, y: 15, w: 2, h: 2 },
   { sprite: 'tree-big', x: 21, y: 18, w: 2, h: 2 },
@@ -176,6 +189,12 @@ const WATERING_HOLE: readonly MapDecor[] = [
   { sprite: 'lion-drink', alt: 'lion-up', x: 16, y: 9, w: 1, h: 1, scale: 1.6 },
 ];
 
+/** Monkeys swinging on the vine tree's vines, holding bananas (Round 82). Scenery: they don't block or battle. */
+const FOREST_MONKEYS: readonly MapDecor[] = [
+  { sprite: 'monkey-swing', x: 31, y: 5, w: 1, h: 2, scale: 1.25, swing: true },
+  { sprite: 'monkey-swing', x: 35, y: 5, w: 1, h: 2, scale: 1.25, swing: true, flip: true },
+];
+
 /** Old skeletons poking out of the Desert sand (Rounds 74 and 78). */
 const DESERT_DECOR: readonly MapDecor[] = [
   ...WATERING_HOLE,
@@ -187,8 +206,9 @@ const DESERT_DECOR: readonly MapDecor[] = [
   { sprite: 'skeleton', x: 26, y: 2, w: 3, h: 2 },
 ];
 
-/** Little glaciers in the Snowy map (Rounds 75 and 78). */
+/** Little glaciers in the Snowy map (Rounds 75 and 78), and a big one in the middle with a Dumble frozen inside (Round 81, scenery only). */
 const SNOWY_DECOR: readonly MapDecor[] = [
+  { sprite: 'glacier-dumble', x: 31, y: 6, w: 3, h: 3, scale: 1.4 },
   { sprite: 'glacier', x: 10, y: 15, w: 2, h: 2 },
   { sprite: 'glacier', x: 44, y: 15, w: 2, h: 2 },
   { sprite: 'glacier', x: 10, y: 22, w: 2, h: 2 },
@@ -201,8 +221,9 @@ const SNOWY_DECOR: readonly MapDecor[] = [
   { sprite: 'glacier', x: 50, y: 17, w: 2, h: 2 },
 ];
 
-/** Big volcanoes in the Volcano map (Rounds 72 and 78). */
+/** Big volcanoes in the Volcano map (Rounds 72 and 78), and a dragon by the lava that breathes fire now and then (Round 83, scenery only). */
 const VOLCANO_DECOR: readonly MapDecor[] = [
+  { sprite: 'dragon', alt: 'dragon-fire', x: 31, y: 7, w: 3, h: 2, scale: 1.8 },
   { sprite: 'volcano-big', x: 10, y: 15, w: 3, h: 2 },
   { sprite: 'volcano-big', x: 43, y: 15, w: 3, h: 2 },
   { sprite: 'volcano-big', x: 11, y: 2, w: 3, h: 2 },
@@ -218,9 +239,9 @@ const BEACH_PALMS: readonly MapDecor[] = [
   { sprite: 'palm-big', x: 12, y: 2, w: 2, h: 2 },
   { sprite: 'palm-big', x: 42, y: 2, w: 2, h: 2 },
   { sprite: 'palm-big', x: 5, y: 7, w: 2, h: 2 },
-  { sprite: 'palm-big', x: 48, y: 7, w: 2, h: 2 },
+  { sprite: 'palm-big', x: 44, y: 7, w: 2, h: 2 },
   { sprite: 'palm-big', x: 3, y: 24, w: 2, h: 2 },
-  { sprite: 'palm-big', x: 50, y: 24, w: 2, h: 2 },
+  { sprite: 'palm-big', x: 44, y: 24, w: 2, h: 2 },
 ];
 const BEACH_COCONUTS: readonly MapDecor[] = [
   { sprite: 'coconut', x: 10, y: 16, w: 1, h: 1 },
@@ -233,21 +254,42 @@ const BEACH_COCONUTS: readonly MapDecor[] = [
   { sprite: 'coconut', x: 44, y: 3, w: 1, h: 1 },
   { sprite: 'coconut', x: 4, y: 8, w: 1, h: 1 },
   { sprite: 'coconut', x: 7, y: 8, w: 1, h: 1 },
-  { sprite: 'coconut', x: 47, y: 8, w: 1, h: 1 },
-  { sprite: 'coconut', x: 50, y: 8, w: 1, h: 1 },
+  { sprite: 'coconut', x: 43, y: 8, w: 1, h: 1 },
+  { sprite: 'coconut', x: 43, y: 7, w: 1, h: 1 },
   { sprite: 'coconut', x: 2, y: 25, w: 1, h: 1 },
   { sprite: 'coconut', x: 5, y: 25, w: 1, h: 1 },
-  { sprite: 'coconut', x: 49, y: 25, w: 1, h: 1 },
-  { sprite: 'coconut', x: 52, y: 25, w: 1, h: 1 },
+  { sprite: 'coconut', x: 43, y: 25, w: 1, h: 1 },
+  { sprite: 'coconut', x: 43, y: 24, w: 1, h: 1 },
+];
+
+/** The Beach's right side is the ocean (Round 84): from this column to the wall. */
+const OCEAN_FROM = 46;
+/** Rows with the ocean on the right: every tile from OCEAN_FROM to the wall becomes water. */
+function withOcean(rows: readonly string[], from: number): readonly string[] {
+  return rows.map((r, y) => (y === 0 || y === rows.length - 1 ? r : r.slice(0, from) + '~'.repeat(r.length - 1 - from) + r.slice(-1)));
+}
+
+/** Crabs walking out of the sea and back, and fish jumping (Round 84). Scenery: no battles. */
+const BEACH_SEA_LIFE: readonly MapDecor[] = [
+  { sprite: 'beach-crab', x: 47, y: 9, w: 1, h: 1, scale: 0.9, shuttle: [-3, 0] },
+  { sprite: 'beach-crab', x: 47, y: 13, w: 1, h: 1, scale: 0.9, shuttle: [-4, 0] },
+  { sprite: 'beach-crab', x: 47, y: 18, w: 1, h: 1, scale: 0.9, shuttle: [-3, 0] },
+  { sprite: 'beach-crab', x: 47, y: 22, w: 1, h: 1, scale: 0.9, shuttle: [-4, 0] },
+  { sprite: 'fish', x: 49, y: 4, w: 2, h: 2, scale: 0.5, jump: true },
+  { sprite: 'fish', x: 52, y: 9, w: 2, h: 2, scale: 0.5, jump: true },
+  { sprite: 'fish', x: 48, y: 15, w: 2, h: 2, scale: 0.5, jump: true },
+  { sprite: 'fish', x: 51, y: 20, w: 2, h: 2, scale: 0.5, jump: true },
+  { sprite: 'fish', x: 53, y: 24, w: 2, h: 2, scale: 0.5, jump: true },
+  { sprite: 'fish', x: 50, y: 12, w: 2, h: 2, scale: 0.5, jump: true },
 ];
 
 // Colors: the chosen palette rows in 06-Art-and-Audio/Art-Mockups.html section 5 (owner, 2026-11-21).
 // Forest and Beach kept their colors; Desert, Snowy and Volcano use the brighter rows.
 export const BIOME_MAPS: readonly GameMap[] = [
   // Tall grass, trees, a pond.
-  biome('forest', 'Forest', { ground: 0x7cb35a, path: 0xb89c6a, encounter: 0x3f8f3a, wall: 0x2f4f2f, blocker: 0x1f5a24, water: 0x3b7dd8 }, withBigDecor(BIOME_ROWS, FOREST_DECOR), FOREST_DECOR),
+  biome('forest', 'Forest', { ground: 0x7cb35a, path: 0xb89c6a, encounter: 0x3f8f3a, wall: 0x2f4f2f, blocker: 0x1f5a24, water: 0x3b7dd8 }, withBigDecor(BIOME_ROWS, FOREST_DECOR), [...FOREST_DECOR, ...FOREST_MONKEYS]),
   // Soft sand, palm trees, tide pools.
-  biome('beach', 'Beach', { ground: 0xf1e7c6, path: 0xd8c08c, encounter: 0xe2c16a, wall: 0x8a6d3b, blocker: 0x4f9a4a, water: 0x2e86c1 }, withBigDecor(BIOME_ROWS, BEACH_PALMS), [...BEACH_PALMS, ...BEACH_COCONUTS]),
+  biome('beach', 'Beach', { ground: 0xf1e7c6, path: 0xd8c08c, encounter: 0xe2c16a, wall: 0x8a6d3b, blocker: 0x4f9a4a, water: 0x2e86c1 }, withBigDecor(withOcean(BIOME_ROWS, OCEAN_FROM), BEACH_PALMS), [...BEACH_PALMS, ...BEACH_COCONUTS, ...BEACH_SEA_LIFE]),
   // Dunes, cactus, quicksand.
   biome('desert', 'Desert', { ground: 0xf6d77e, path: 0xd9a24e, encounter: 0xf0a830, wall: 0xb5652a, blocker: 0x3fae4a, water: 0xc88a4a }, withBigDecor(BIOME_ROWS, DESERT_DECOR), DESERT_DECOR),
   // Deep snow, pine trees, ice.
@@ -257,6 +299,41 @@ export const BIOME_MAPS: readonly GameMap[] = [
 ];
 
 export const MAPS: readonly GameMap[] = [ANSONVILLE, ...BIOME_MAPS];
+
+/** Where each gate is, by biome (cached per map). */
+const gateSpots = new WeakMap<GameMap, { biome: string; x: number; y: number }[]>();
+function gatesOf(map: GameMap): { biome: string; x: number; y: number }[] {
+  let list = gateSpots.get(map);
+  if (!list) {
+    list = [];
+    for (const [ch, biome] of Object.entries(map.gates ?? {}))
+      map.rows.forEach((row, y) => {
+        const x = row.indexOf(ch);
+        if (x >= 0) list!.push({ biome, x, y });
+      });
+    gateSpots.set(map, list);
+  }
+  return list;
+}
+
+/** Which biome's area a tile of a zoned map belongs to: the one whose gate is nearest (Round 80). Null on other maps. */
+export function zoneAt(map: GameMap, x: number, y: number): string | null {
+  if (!map.zoned) return null;
+  let best: string | null = null;
+  let bestD = Infinity;
+  for (const g of gatesOf(map)) {
+    const d = (g.x - x) ** 2 + (g.y - y) ** 2;
+    if (d < bestD) [best, bestD] = [g.biome, d];
+  }
+  return best;
+}
+
+/** The colors for one tile: its area's biome colors on a zoned map (paths keep the town's color), else the map's own. */
+export function paletteAt(map: GameMap, x: number, y: number): Palette {
+  const zone = zoneAt(map, x, y);
+  const biomeMap = zone ? BIOME_MAPS.find((m) => m.id === zone) : undefined;
+  return biomeMap ? { ...biomeMap.palette, path: map.palette.path } : map.palette;
+}
 
 export function mapById(id: string): GameMap {
   const map = MAPS.find((m) => m.id === id);
